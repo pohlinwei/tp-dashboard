@@ -1,0 +1,2986 @@
+[
+  {
+    "path": "docs/tutorials/AddRemark.adoc",
+    "fileType": "adoc",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d Tutorial - Adding a new Command"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":toc: macro"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":site-section: DeveloperGuide"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":imagesDir: ../images/add-remark"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":stylesDir: ../stylesheets"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":xrefstyle: full"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "ifdef::env-github[]"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":tip-caption: :bulb:"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":note-caption: :information_source:"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ":warning-caption: :warning:"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "endif::[]"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "toc::[]"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Introduction"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "In this tutorial, we\u0027ll walk you through the implementation of a new command -- `remark`."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "The command should have the format of `remark INDEX r/REMARK`."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "An example of the command is `remark 2 r/Likes baseball`."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We\u0027ll assume that you have already set up the development environment as outlined in the Developer\u0027s Guide."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Create a new `remark` command"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Looking in the `logic.command` package, you will notice that each existing command have their own class."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "All the commands inherit from the abstract class `Command` which means that they must override `execute()`."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Each `Command` returns an instance of `CommandResult` upon success and `CommandResult#feedbackToUser` is printed to the `ResultDisplay`."
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s start by creating a new `RemarkCommand` class in the `src/main/java/seedu/address/logic/command` directory."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "For now, let\u0027s keep `RemarkCommand` as simple as possible and print some output."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We accomplish that by returning a `CommandResult` with an accompanying message."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".RemarkCommand.java"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * Changes the remark of an existing person in the address book."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public class RemarkCommand extends Command {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"remark\";"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public CommandResult execute(Model model) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return new CommandResult(\"Hello from remark\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Hook `RemarkCommand` into the application"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "You can refer to the changes in this link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/7d04e49e364dad661cd88f462f01923fba972d2c#diff-5338391f3f6fbb4022c44add6590b74f[diff]."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Run the application"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Run `Main#main` and try out your new `RemarkCommand`."
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "If everything went well, you should see something like this:"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".Output displayed"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::RemarkHello.png[]"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Change `RemarkCommand` to throw an exception"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do."
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s change the command to throw an `CommandException` to accurately reflect that our command is still a work in progress."
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".The relationship between RemarkCommand and Command"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::CommandInterface.png[]"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Following the convention in other commands, we add relevant messages as constants and use them."
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".RemarkCommand.java"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Edits the remark of the person identified \""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"by the index number used in the last person listing. \""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"Existing remark will be overwritten by the input.\\n\""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"r/ [REMARK]\\n\""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"r/ Likes to swim.\";"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_NOT_IMPLEMENTED_YET \u003d \"Remark command not implemented yet\";"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Enhancing `RemarkCommand`"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s change `RemarkCommand` to  parse input from the user."
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Make the command accept parameters"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`."
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "While we are at it, let\u0027s change the error message to echo the values."
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "While this is not a replacement for tests, it is an obvious way to tell if our code is functioning as intended."
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "//..."
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public class RemarkCommand extends Command {"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    //..."
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_ARGUMENTS \u003d \"Index: %1$d, Remark: %2$s\";"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private final Index index;"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private final String remark;"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param index of the person in the filtered person list to edit the remark"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param remark of the person to be updated to"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public RemarkCommand(Index index, String remark) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        requireAllNonNull(index, remark);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        this.remark \u003d remark;"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        throw new CommandException(String.format(MESSAGE_ARGUMENTS, index.getOneBased(), remark));"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (!(other instanceof RemarkCommand)) {"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        RemarkCommand e \u003d (RemarkCommand) other;"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return index.equals(e.index)"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                \u0026\u0026 remark.equals(e.remark);"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Your code should look something like link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/83dd9e6b03d6b83199ceb6f3b66166483155abed#diff-34ace715a8a8d2e5a66e71289f017b47[this] after you are done."
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Parse user input"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Now let\u0027s move on to writing a parser that will extract the index and remark from the input provided by the user."
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package."
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "The class must extend the `Parser` interface."
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".The relationship between Parser and RemarkCommandParser"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::ParserInterface.png[]"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input."
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s take a look at the JavaDoc provided for the function to understand what it does."
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".ArgumentTokenizer.java"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * Tokenizes an arguments string and returns an {@code ArgumentMultimap}"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * object that maps prefixes to their respective argument values. Only the"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * given prefixes will be recognized in the arguments string."
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * @param argsString Arguments string of the form:"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * {@code preamble \u003cprefix\u003evalue \u003cprefix\u003evalue ...}"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * @param prefixes   Prefixes to tokenize the arguments string with"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * @return           ArgumentMultimap object that maps prefixes to their"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * arguments"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` and it will return us an instance of `ArgumentMultimap`."
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Now let\u0027s find out what we need to do in order to obtain the Index and String that we need."
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s look through `ArgumentMultimap` :"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".ArgumentMultimap.java"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * Returns the last value of {@code prefix}."
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public Optional\u003cString\u003e getValue(Prefix prefix) {"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    List\u003cString\u003e values \u003d getAllValues(prefix);"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    return values.isEmpty() ? Optional.empty() :"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Optional.of(values.get(values.size() - 1));"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "This appears to be what we need to get a String of the remark."
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "But what about the Index? Taking a quick peek at existing an `Command`..."
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".DeleteCommandParser.java"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Index index \u003d ParserUtil.parseIndex(args);"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "return new DeleteCommand(index);"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "There appears to be another utility class that obtains an `Index` from the input provided by the user."
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Now that we have the know-how to extract the data that we need from the user\u0027s input, we can create a new instance of `RemarkCommand`."
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".RemarkCommandParser.java"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public RemarkCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    requireNonNull(args);"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args,"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        PREFIX_REMARK);"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    Index index;"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    try {"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    } catch (IllegalValueException ive) {"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            RemarkCommand.MESSAGE_USAGE), ive);"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    String remark \u003d argMultimap.getValue(PREFIX_REMARK).orElse(\"\");"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    return new RemarkCommand(index, remark);"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "NOTE: Don\u0027t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "If you are stuck, check out the sample link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/efdcdf0e80cec9489f7b47e3f65824f4688ad8f7#diff-fc19ecee89c3732a62fbc8c840250508[here]."
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Add `Remark` to the model"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Now that we have all the information that we need, let\u0027s lay the groundwork for some _persistent_ changes."
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We achieve that by working with the `Person` model."
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person\u0027s name)."
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person."
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Add a new `Remark` class"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code."
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "A copy-paste and search-replace later, you should have something like link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/b7a47c50c8e5f0430d343a23d2863446b6ce9298#diff-af2f075d24dfcd333876f0fbce321f25[this]."
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Note how `Remark` has no constrains and thus does not require input validation."
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Make use of `Remark`"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark` class instead of plain `String`."
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "These should be relatively simple changes."
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Add a placeholder element for remark to the UI"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Without getting too deep into `fxml`, let\u0027s go on a 5 minute adventure to get some placeholder text to show up for each person."
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Simply add"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".PersonCard.java"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "```"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "@FXML"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "private Label remark;"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "```"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "to link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/2758455583f0101ed918a318fc75679270843a0d#diff-0c6b6abcfac8c205e075294f25e851fe[`seedu.address.ui.PersonCard`]."
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "`@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML."
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "It might sound like Greek to you right now, don\u0027t worry -- we will get back to it later."
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Then insert"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "```"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003cLabel fx:id\u003d\"remark\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$remark\" /\u003e"
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "```"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "into link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/2758455583f0101ed918a318fc75679270843a0d#diff-12580431f55d7880578aa4c16f249e71[`main/resources/view/PersonListCard.fxml`]."
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "That\u0027s it! Fire up the application again and you should see something like this:"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".$remark shows up in each entry"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::$Remark.png[]"
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Modify `Person` to support a `Remark` field"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!"
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Modify `Person`"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We change the constructor of `Person` to take a `Remark`."
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "We will also need to define new fields and accessors accordingly to store our new addition."
+      },
+      {
+        "lineNumber": 300,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 301,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Update other usages of `Person`"
+      },
+      {
+        "lineNumber": 302,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 303,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!"
+      },
+      {
+        "lineNumber": 304,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 305,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "TIP: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands."
+      },
+      {
+        "lineNumber": 306,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 307,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Refer to link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/b241ef8526bd4e8a6ad94b8118b7fc3441ec8fa3#diff-3462fc1118b9872387a01b41157b0402[this commit] and check that you have got everything in order!"
+      },
+      {
+        "lineNumber": 308,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 309,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Updating Storage"
+      },
+      {
+        "lineNumber": 310,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 311,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library -- Jackson."
+      },
+      {
+        "lineNumber": 312,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s update `JsonAdaptedPerson` to work with our new `Person`!"
+      },
+      {
+        "lineNumber": 313,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 314,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "While the changes to code may be minimal, the test data will have to be updated as well."
+      },
+      {
+        "lineNumber": 315,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 316,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "WARNING: You must delete AddressBook\u0027s storage file located at `/data/addressbook.json` before running it!"
+      },
+      {
+        "lineNumber": 317,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Not doing so will cause AddressBook to default to an empty address book!"
+      },
+      {
+        "lineNumber": 318,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 319,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Check out link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/ce4f9b70f524d2395948861d80d57fda9ae6e82e#diff-07708562699e2436c717f3330bafae1e[this commit] to see what the changes entail."
+      },
+      {
+        "lineNumber": 320,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 321,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Finalizing the UI"
+      },
+      {
+        "lineNumber": 322,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 323,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI."
+      },
+      {
+        "lineNumber": 324,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 325,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Just add link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/56d5cb662c31dd38b02f6a5301ba6ab3c667d6a3#diff-0c6b6abcfac8c205e075294f25e851fe[this one line of code!]"
+      },
+      {
+        "lineNumber": 326,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 327,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".PersonCard.java"
+      },
+      {
+        "lineNumber": 328,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 329,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public PersonCard(Person person, int displayedIndex) {"
+      },
+      {
+        "lineNumber": 330,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    //..."
+      },
+      {
+        "lineNumber": 331,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    remark.setText(person.getRemark().value);"
+      },
+      {
+        "lineNumber": 332,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 333,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 334,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 335,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".The remark label is bound properly!"
+      },
+      {
+        "lineNumber": 336,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::RemarkBound.png[]"
+      },
+      {
+        "lineNumber": 337,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 338,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Putting everything together"
+      },
+      {
+        "lineNumber": 339,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 340,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "After the previous step, we notice a peculiar regression -- we went from displaying something to nothing at all."
+      },
+      {
+        "lineNumber": 341,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "However, this is expected behavior as we have never changed `RemarkCommand` at all!"
+      },
+      {
+        "lineNumber": 342,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 343,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Update `RemarkCommand` and `RemarkCommandParser`"
+      },
+      {
+        "lineNumber": 344,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 345,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`."
+      },
+      {
+        "lineNumber": 346,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and save it with `Model#setPerson()`."
+      },
+      {
+        "lineNumber": 347,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 348,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "[source, java]"
+      },
+      {
+        "lineNumber": 349,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".RemarkCommand.java"
+      },
+      {
+        "lineNumber": 350,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 351,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "//..."
+      },
+      {
+        "lineNumber": 352,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_ADD_REMARK_SUCCESS \u003d \"Added remark to Person: %1$s\";"
+      },
+      {
+        "lineNumber": 353,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_DELETE_REMARK_SUCCESS \u003d \"Removed remark from Person: %1$s\";"
+      },
+      {
+        "lineNumber": 354,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "//..."
+      },
+      {
+        "lineNumber": 355,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 356,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 357,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        List\u003cPerson\u003e lastShownList \u003d model.getFilteredPersonList();"
+      },
+      {
+        "lineNumber": 358,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 359,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 360,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 361,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 362,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 363,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Person personToEdit \u003d lastShownList.get(index.getZeroBased());"
+      },
+      {
+        "lineNumber": 364,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Person editedPerson \u003d new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),"
+      },
+      {
+        "lineNumber": 365,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                personToEdit.getAddress(), remark, personToEdit.getTags());"
+      },
+      {
+        "lineNumber": 366,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 367,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        model.setPerson(personToEdit, editedPerson);"
+      },
+      {
+        "lineNumber": 368,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
+      },
+      {
+        "lineNumber": 369,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 370,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return new CommandResult(generateSuccessMessage(editedPerson));"
+      },
+      {
+        "lineNumber": 371,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 372,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 373,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 374,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * Generates a command execution success message based on whether the remark is added to or removed from"
+      },
+      {
+        "lineNumber": 375,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * {@code personToEdit}."
+      },
+      {
+        "lineNumber": 376,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 377,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private String generateSuccessMessage(Person personToEdit) {"
+      },
+      {
+        "lineNumber": 378,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        String message \u003d !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;"
+      },
+      {
+        "lineNumber": 379,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return String.format(message, personToEdit);"
+      },
+      {
+        "lineNumber": 380,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 381,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "----"
+      },
+      {
+        "lineNumber": 382,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 383,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Make one last link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/b3307d7a42acb613a8f1d36979a7f547abcf6623#diff-34ace715a8a8d2e5a66e71289f017b47[check] to ensure that everything is working properly..."
+      },
+      {
+        "lineNumber": 384,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 385,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".Congratulations!"
+      },
+      {
+        "lineNumber": 386,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::RemarkComplete.png[]"
+      },
+      {
+        "lineNumber": 387,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 388,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Writing tests"
+      },
+      {
+        "lineNumber": 389,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 390,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Tests are crucial to ensuring that bugs don\u0027t slip into the codebase unnoticed. This is especially true for large"
+      },
+      {
+        "lineNumber": 391,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "code bases where a change might lead to unintended behavior."
+      },
+      {
+        "lineNumber": 392,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 393,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s verify the correctness of our code by writing some tests!"
+      },
+      {
+        "lineNumber": 394,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 395,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d\u003d Automagically generating tests"
+      },
+      {
+        "lineNumber": 396,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 397,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "The goal is to write effective and efficient tests to ensure that `RemarkCommand#execute()` behaves as expected."
+      },
+      {
+        "lineNumber": 398,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 399,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "The convention for test names is _``methodName_testScenario_expectedResult``_."
+      },
+      {
+        "lineNumber": 400,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "An example would be `execute_filteredList_success`."
+      },
+      {
+        "lineNumber": 401,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 402,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s create a test for `RemarkCommand#execute()` to test that adding a remark works."
+      },
+      {
+        "lineNumber": 403,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "On `IntelliJ IDEA` you can bring up the context menu and choose to `Go To` \u003e `Test` or use the appropriate keyboard shortcut."
+      },
+      {
+        "lineNumber": 404,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 405,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".Using the context menu to jump to tests"
+      },
+      {
+        "lineNumber": 406,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::ContextMenu.png[, 1223px, 267px]"
+      },
+      {
+        "lineNumber": 407,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 408,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Then, create a test for the `execute` method."
+      },
+      {
+        "lineNumber": 409,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 410,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ".Creating a test for `execute`."
+      },
+      {
+        "lineNumber": 411,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "image::CreateTest.png[, 664px,751px]"
+      },
+      {
+        "lineNumber": 412,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 413,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Following convention, let\u0027s change the name of the generated method to `execute_addRemarkUnfilteredList_success`."
+      },
+      {
+        "lineNumber": 414,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 415,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "Let\u0027s use the utility functions provided in `CommandTestUtil`. The functions ensure that commands produce the expected `CommandResult` and output the correct message."
+      },
+      {
+        "lineNumber": 416,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "In this case, `CommandTestUtil#assertCommandSuccess` is the best fit as we are testing that a `RemarkCommand` will successfully add a `Remark`."
+      },
+      {
+        "lineNumber": 417,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 418,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "You should end up with a test that looks something like"
+      },
+      {
+        "lineNumber": 419,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "link:https://github.com/nus-cs2103-AY1920S1/addressbook-level3/commit/b3307d7a42acb613a8f1d36979a7f547abcf6623#diff-d749de38392f7ea504da7824641ba8d9[this]."
+      },
+      {
+        "lineNumber": 420,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 421,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "\u003d\u003d Conclusion"
+      },
+      {
+        "lineNumber": 422,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 423,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "This concludes the tutorial for adding a new `Command` to AddressBook."
+      },
+      {
+        "lineNumber": 424,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 425,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "//Link to more discussions"
+      }
+    ],
+    "authorContributionMap": {
+      "tysng": 425
+    }
+  }
+]
