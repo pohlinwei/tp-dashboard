@@ -19179,222 +19179,348 @@
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New person added: %1$s\";"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
         "content": "    public static final String MESSAGE_DUPLICATE_PERSON \u003d \"This person already exists!\";"
       },
       {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New person added: %1$s\";"
+      },
+      {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
         "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    private final Person toAdd;"
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase(),"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "        \"addstu\", \"addstud\"};"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Creates an AddCommand to add the specified {@code Person}"
+        "content": "    private final Person toAdd;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "lumos309"
+          "gitId": "-"
         },
-        "content": "    public AddStudentCommand(Person person) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(person);"
+        "content": "     * Creates an AddCommand to add the specified {@code Person}"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "        toAdd \u003d person;"
+        "content": "     */"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    }"
+        "content": "    public AddStudentCommand(Person person) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        requireNonNull(person);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        toAdd \u003d person;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(model);"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (model.hasPerson(toAdd)) {"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(MESSAGE_DUPLICATE_PERSON);"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        if (model.hasPerson(toAdd)) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.addPerson(toAdd);"
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_PERSON);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));"
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        model.addPerson(toAdd);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lumos309"
         },
-        "content": "                || (other instanceof AddStudentCommand // instanceof handles nulls"
+        "content": "    /**"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "lumos309"
         },
-        "content": "                \u0026\u0026 toAdd.equals(((AddStudentCommand) other).toAdd));"
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
       },
       {
         "lineNumber": 56,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @param userCommand command word from user."
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @return whether user command matches specified command word or synonyms."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                || (other instanceof AddStudentCommand // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                \u0026\u0026 toAdd.equals(((AddStudentCommand) other).toAdd));"
+      },
+      {
+        "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
@@ -19402,9 +19528,9 @@
       }
     ],
     "authorContributionMap": {
-      "Ellieyee": 10,
-      "-": 42,
-      "lumos309": 5
+      "Ellieyee": 9,
+      "-": 40,
+      "lumos309": 26
     }
   },
   {
@@ -20065,7 +20191,7 @@
     }
   },
   {
-    "path": "src/main/java/seedu/tarence/logic/commands/DeleteCommand.java",
+    "path": "src/main/java/seedu/tarence/logic/commands/DeleteStudentCommand.java",
     "fileType": "functional",
     "lines": [
       {
@@ -20176,9 +20302,9 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "public class DeleteCommand extends Command {"
+        "content": "public class DeleteStudentCommand extends Command {"
       },
       {
         "lineNumber": 17,
@@ -20190,58 +20316,58 @@
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"delete\";"
+        "content": "    public static final String COMMAND_WORD \u003d \"deleteStudent\";"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
         "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
+        "content": "    public static final String MESSAGE_DELETE_PERSON_SUCCESS \u003d \"Deleted Person: %1$s\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "            + \": Deletes the person identified by the index number used in the displayed person list.\\n\""
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "            + \"Parameters: INDEX (must be a positive integer)\\n\""
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" 1\";"
+        "content": "            + \": Deletes the person identified by the index number used in the displayed person list.\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            + \"Parameters: INDEX (must be a positive integer)\\n\""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_DELETE_PERSON_SUCCESS \u003d \"Deleted Person: %1$s\";"
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1\";"
       },
       {
         "lineNumber": 26,
@@ -20253,187 +20379,313 @@
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    private final Index targetIndex;"
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase(),"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "        \"deletestu\", \"deletestud\", \"delstudent\", \"delstu\", \"delstud\"};"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public DeleteCommand(Index targetIndex) {"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.targetIndex \u003d targetIndex;"
+        "content": "    private final Index targetIndex;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "    public DeleteStudentCommand(Index targetIndex) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        this.targetIndex \u003d targetIndex;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(model);"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "        List\u003cPerson\u003e lastShownList \u003d model.getFilteredPersonList();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+        "content": "        List\u003cPerson\u003e lastShownList \u003d model.getFilteredPersonList();"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        Person personToDelete \u003d lastShownList.get(targetIndex.getZeroBased());"
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.deletePerson(personToDelete);"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        Person personToDelete \u003d lastShownList.get(targetIndex.getZeroBased());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        model.deletePerson(personToDelete);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "                || (other instanceof DeleteCommand // instanceof handles nulls"
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "                \u0026\u0026 targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check"
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
       },
       {
         "lineNumber": 52,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @param userCommand command word from user."
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @return whether user command matches specified command word or synonyms."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                || (other instanceof DeleteStudentCommand // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                \u0026\u0026 targetIndex.equals(((DeleteStudentCommand) other).targetIndex)); // state check"
+      },
+      {
+        "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
@@ -20442,7 +20694,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 7,
-      "-": 46
+      "-": 39,
+      "lumos309": 25
     }
   },
   {
@@ -20690,23 +20943,23 @@
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String MESSAGE_EDIT_PERSON_SUCCESS \u003d \"Edited Person: %1$s\";"
+        "content": "    public static final String MESSAGE_DUPLICATE_PERSON \u003d \"This person already exists.\";"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_NOT_EDITED \u003d \"At least one field to edit must be provided.\";"
+        "content": "    public static final String MESSAGE_EDIT_PERSON_SUCCESS \u003d \"Edited Person: %1$s\";"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_DUPLICATE_PERSON \u003d \"This person already exists.\";"
+        "content": "    public static final String MESSAGE_NOT_EDITED \u003d \"At least one field to edit must be provided.\";"
       },
       {
         "lineNumber": 38,
@@ -20718,901 +20971,1020 @@
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    private final Index index;"
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase()};"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final EditPersonDescriptor editPersonDescriptor;"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private final Index index;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    private final EditPersonDescriptor editPersonDescriptor;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param index of the person in the filtered person list to edit"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param editPersonDescriptor details to edit the person with"
+        "content": "    /**"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @param index of the person in the filtered person list to edit"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {"
+        "content": "     * @param editPersonDescriptor details to edit the person with"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(index);"
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(editPersonDescriptor);"
+        "content": "    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        requireNonNull(index);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.index \u003d index;"
+        "content": "        requireNonNull(editPersonDescriptor);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.editPersonDescriptor \u003d new EditPersonDescriptor(editPersonDescriptor);"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this.index \u003d index;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        this.editPersonDescriptor \u003d new EditPersonDescriptor(editPersonDescriptor);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "        List\u003cPerson\u003e lastShownList \u003d model.getFilteredPersonList();"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "        List\u003cPerson\u003e lastShownList \u003d model.getFilteredPersonList();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "        Person personToEdit \u003d lastShownList.get(index.getZeroBased());"
+        "content": "        }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "        Person editedPerson \u003d createEditedPerson(personToEdit, editPersonDescriptor);"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        Person personToEdit \u003d lastShownList.get(index.getZeroBased());"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!personToEdit.isSamePerson(editedPerson) \u0026\u0026 model.hasPerson(editedPerson)) {"
+        "content": "        Person editedPerson \u003d createEditedPerson(personToEdit, editPersonDescriptor);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(MESSAGE_DUPLICATE_PERSON);"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (!personToEdit.isSamePerson(editedPerson) \u0026\u0026 model.hasPerson(editedPerson)) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_PERSON);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.setPerson(personToEdit, editedPerson);"
+        "content": "        }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));"
+        "content": "        model.setPerson(personToEdit, editedPerson);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Creates and returns a {@code Person} with the details of {@code personToEdit}"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "     * edited with {@code editPersonDescriptor}."
+        "content": "    /**"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Creates and returns a {@code Person} with the details of {@code personToEdit}"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {"
+        "content": "     * edited with {@code editPersonDescriptor}."
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "        assert personToEdit !\u003d null;"
+        "content": "     */"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "        Name updatedName \u003d editPersonDescriptor.getName().orElse(personToEdit.getName());"
+        "content": "        assert personToEdit !\u003d null;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "        Email updatedEmail \u003d editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        Name updatedName \u003d editPersonDescriptor.getName().orElse(personToEdit.getName());"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        return new Person(updatedName, updatedEmail);"
+        "content": "        Email updatedEmail \u003d editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": ""
+        "content": "        return new Person(updatedName, updatedEmail);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        // short circuit if same object"
+        "content": "    /**"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return true;"
+        "content": "     *"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        }"
+        "content": "     * @param userCommand command word from user."
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "     * @return whether user command matches specified command word or synonyms."
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        // instanceof handles nulls"
+        "content": "     */"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        if (!(other instanceof EditCommand)) {"
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return false;"
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        }"
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "                return true;"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        // state check"
+        "content": "            }"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        EditCommand e \u003d (EditCommand) other;"
+        "content": "        }"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        return index.equals(e.index)"
+        "content": "        return false;"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "                \u0026\u0026 editPersonDescriptor.equals(e.editPersonDescriptor);"
+        "content": "    }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Stores the details to edit the person with. Each non-empty field value will replace the"
+        "content": "        // short circuit if same object"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": "     * corresponding field value of the person."
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "            return true;"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static class EditPersonDescriptor {"
+        "content": "        }"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "-"
         },
-        "content": "        private Name name;"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
-        "content": "        private Email email;"
+        "content": "        // instanceof handles nulls"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        if (!(other instanceof EditCommand)) {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "-"
         },
-        "content": "        public EditPersonDescriptor() {}"
+        "content": "            return false;"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": "        /**"
+        "content": ""
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
-        "content": "         * Copy constructor."
+        "content": "        // state check"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
-        "content": "         * A defensive copy of {@code tags} is used internally."
+        "content": "        EditCommand e \u003d (EditCommand) other;"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "-"
         },
-        "content": "         */"
+        "content": "        return index.equals(e.index)"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "-"
         },
-        "content": "        public EditPersonDescriptor(EditPersonDescriptor toCopy) {"
+        "content": "                \u0026\u0026 editPersonDescriptor.equals(e.editPersonDescriptor);"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
-        "content": "            setName(toCopy.name);"
+        "content": "    }"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "-"
         },
-        "content": "            setEmail(toCopy.email);"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     * Stores the details to edit the person with. Each non-empty field value will replace the"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
-        "content": "        /**"
+        "content": "     * corresponding field value of the person."
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
-        "content": "         * Returns true if at least one field is edited."
+        "content": "     */"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "-"
         },
-        "content": "         */"
+        "content": "    public static class EditPersonDescriptor {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "-"
         },
-        "content": "        public boolean isAnyFieldEdited() {"
+        "content": "        private Name name;"
       },
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "            return CollectionUtil.isAnyNonNull(name, email);"
+        "content": "        private Email email;"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        public EditPersonDescriptor() {}"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
-        "content": "        public void setName(Name name) {"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
-        "content": "            this.name \u003d name;"
+        "content": "        /**"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "         * Copy constructor."
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "         * A defensive copy of {@code tags} is used internally."
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Optional\u003cName\u003e getName() {"
+        "content": "         */"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
-        "content": "            return Optional.ofNullable(name);"
+        "content": "        public EditPersonDescriptor(EditPersonDescriptor toCopy) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            setName(toCopy.name);"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            setEmail(toCopy.email);"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
-        "content": "        public void setEmail(Email email) {"
+        "content": "        }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "-"
         },
-        "content": "            this.email \u003d email;"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        /**"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "         * Returns true if at least one field is edited."
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": "        public Optional\u003cEmail\u003e getEmail() {"
+        "content": "         */"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "            return Optional.ofNullable(email);"
+        "content": "        public boolean isAnyFieldEdited() {"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "        }"
+        "content": "            return CollectionUtil.isAnyNonNull(name, email);"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": "        @Override"
+        "content": ""
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "        public boolean equals(Object other) {"
+        "content": "        public void setName(Name name) {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": "            // short circuit if same object"
+        "content": "            this.name \u003d name;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (other \u003d\u003d this) {"
+        "content": "        }"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "                return true;"
+        "content": ""
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "        public Optional\u003cName\u003e getName() {"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(name);"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "-"
         },
-        "content": "            // instanceof handles nulls"
+        "content": "        }"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (!(other instanceof EditPersonDescriptor)) {"
+        "content": ""
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
-        "content": "                return false;"
+        "content": "        public void setEmail(Email email) {"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "            this.email \u003d email;"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "            // state check"
+        "content": ""
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "            EditPersonDescriptor e \u003d (EditPersonDescriptor) other;"
+        "content": "        public Optional\u003cEmail\u003e getEmail() {"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(email);"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": "            return getName().equals(e.getName())"
+        "content": "        }"
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "                    \u0026\u0026 getEmail().equals(e.getEmail());"
+        "content": ""
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        @Override"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        public boolean equals(Object other) {"
       },
       {
         "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            // short circuit if same object"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (!(other instanceof EditPersonDescriptor)) {"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                return false;"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            // state check"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            EditPersonDescriptor e \u003d (EditPersonDescriptor) other;"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return getName().equals(e.getName())"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "                    \u0026\u0026 getEmail().equals(e.getEmail());"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
@@ -21620,8 +21992,9 @@
       }
     ],
     "authorContributionMap": {
-      "Ellieyee": 17,
-      "-": 150
+      "Ellieyee": 16,
+      "-": 153,
+      "lumos309": 15
     }
   },
   {
@@ -21722,40 +22095,159 @@
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    @Override"
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase()};"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public CommandResult execute(Model model) {"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public CommandResult execute(Model model) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);"
       },
       {
         "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @param userCommand command word from user."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @return whether user command matches specified command word or synonyms."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
@@ -21764,7 +22256,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 3,
-      "-": 16
+      "-": 16,
+      "lumos309": 17
     }
   },
   {
@@ -21879,187 +22372,299 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase()};"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Finds all persons whose names contain any of \""
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "            + \"the specified keywords (case-insensitive) and displays them as a list with index numbers.\\n\""
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Finds all persons whose names contain any of \""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "            + \"Parameters: KEYWORD [MORE_KEYWORDS]...\\n\""
+        "content": "            + \"the specified keywords (case-insensitive) and displays them as a list with index numbers.\\n\""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" alice bob charlie\";"
+        "content": "            + \"Parameters: KEYWORD [MORE_KEYWORDS]...\\n\""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            + \"Example: \" + COMMAND_WORD + \" alice bob charlie\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final NameContainsKeywordsPredicate predicate;"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private final NameContainsKeywordsPredicate predicate;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    public FindCommand(NameContainsKeywordsPredicate predicate) {"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.predicate \u003d predicate;"
+        "content": "    public FindCommand(NameContainsKeywordsPredicate predicate) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this.predicate \u003d predicate;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(Model model) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    public CommandResult execute(Model model) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.updateFilteredPersonList(predicate);"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult("
+        "content": "        model.updateFilteredPersonList(predicate);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));"
+        "content": "        return new CommandResult("
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 37,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @param userCommand command word from user."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @return whether user command matches specified command word or synonyms."
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
         "content": "    public boolean equals(Object other) {"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "                || (other instanceof FindCommand // instanceof handles nulls"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "                \u0026\u0026 predicate.equals(((FindCommand) other).predicate)); // state check"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
@@ -22068,7 +22673,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 5,
-      "-": 37
+      "-": 37,
+      "lumos309": 16
     }
   },
   {
@@ -22190,33 +22796,152 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    @Override"
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase()};"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public CommandResult execute(Model model) {"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public CommandResult execute(Model model) {"
       },
       {
         "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @param userCommand command word from user."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @return whether user command matches specified command word or synonyms."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
@@ -22225,7 +22950,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 2,
-      "-": 19
+      "-": 19,
+      "lumos309": 17
     }
   },
   {
@@ -22319,9 +23045,9 @@
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"list\";"
+        "content": "    public static final String COMMAND_WORD \u003d \"listStudent\";"
       },
       {
         "lineNumber": 14,
@@ -22347,54 +23073,173 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "    private static final String[] COMMAND_SYNONYMS \u003d {COMMAND_WORD.toLowerCase(),"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    @Override"
+        "content": "        \"liststu\", \"liststud\"};"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(Model model) {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
+        "content": "    public CommandResult execute(Model model) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new CommandResult(MESSAGE_SUCCESS);"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
       },
       {
         "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new CommandResult(MESSAGE_SUCCESS);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * Returns true if user command matches command word or any defined synonyms, and false otherwise."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @param userCommand command word from user."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     * @return whether user command matches specified command word or synonyms."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    public static boolean isMatchingCommandWord(String userCommand) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        for (String synonym : COMMAND_SYNONYMS) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            if (synonym.equals(userCommand.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
@@ -22403,7 +23248,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 4,
-      "-": 20
+      "-": 19,
+      "lumos309": 18
     }
   },
   {
@@ -23100,9 +23946,9 @@
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "import seedu.tarence.logic.commands.DeleteCommand;"
+        "content": "import seedu.tarence.logic.commands.DeleteStudentCommand;"
       },
       {
         "lineNumber": 12,
@@ -23333,199 +24179,150 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "        if (AddStudentCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lumos309"
         },
-        "content": "        case AddStudentCommand.COMMAND_WORD:"
+        "content": "            return new AddStudentCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lumos309"
         },
-        "content": "            return new AddStudentCommandParser().parse(arguments);"
+        "content": "        } else if (EditCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": "        } else if (DeleteStudentCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "            return new DeleteStudentCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "        } else if (FindCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "        } else if (ListCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": "        } else if (ExitCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "        } else if (HelpCommand.isMatchingCommandWord(commandWord)) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return new ListCommand();"
+        "content": "        } else {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return new ExitCommand();"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new HelpCommand();"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        default:"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
@@ -23533,9 +24330,9 @@
       }
     ],
     "authorContributionMap": {
-      "Ellieyee": 12,
-      "-": 57,
-      "lumos309": 3
+      "Ellieyee": 11,
+      "-": 41,
+      "lumos309": 13
     }
   },
   {
@@ -25232,7 +26029,7 @@
     }
   },
   {
-    "path": "src/main/java/seedu/tarence/logic/parser/DeleteCommandParser.java",
+    "path": "src/main/java/seedu/tarence/logic/parser/DeleteStudentCommandParser.java",
     "fileType": "functional",
     "lines": [
       {
@@ -25273,9 +26070,9 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "import seedu.tarence.logic.commands.DeleteCommand;"
+        "content": "import seedu.tarence.logic.commands.DeleteStudentCommand;"
       },
       {
         "lineNumber": 7,
@@ -25315,9 +26112,9 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "public class DeleteCommandParser implements Parser\u003cDeleteCommand\u003e {"
+        "content": "public class DeleteStudentCommandParser implements Parser\u003cDeleteStudentCommand\u003e {"
       },
       {
         "lineNumber": 13,
@@ -25364,9 +26161,9 @@
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public DeleteCommand parse(String args) throws ParseException {"
+        "content": "    public DeleteStudentCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 20,
@@ -25385,9 +26182,9 @@
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "            return new DeleteCommand(index);"
+        "content": "            return new DeleteStudentCommand(index);"
       },
       {
         "lineNumber": 23,
@@ -25406,9 +26203,9 @@
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);"
+        "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE), pe);"
       },
       {
         "lineNumber": 26,
@@ -25440,8 +26237,9 @@
       }
     ],
     "authorContributionMap": {
-      "Ellieyee": 5,
-      "-": 24
+      "Ellieyee": 4,
+      "-": 20,
+      "lumos309": 5
     }
   },
   {
@@ -52996,9 +53794,9 @@
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        String deleteCommand \u003d \"delete 9\";"
+        "content": "        String deleteCommand \u003d \"deleteStudent 9\";"
       },
       {
         "lineNumber": 60,
@@ -53703,8 +54501,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 32,
-      "-": 125,
-      "lumos309": 2
+      "-": 124,
+      "lumos309": 3
     }
   },
   {
@@ -56021,65 +56819,65 @@
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "ZiHawkEye"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String VALID_MATRIC_BOB \u003d \"U0987654X\";"
+        "content": "    public static final String VALID_MATRIC_BOB \u003d \"a3456789a\";"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "    public static final String VALID_NUSNET_AMY \u003d \"E0123456\";"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String NAME_DESC_AMY \u003d \" \" + PREFIX_NAME + VALID_NAME_AMY;"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String NAME_DESC_BOB \u003d \" \" + PREFIX_NAME + VALID_NAME_BOB;"
+        "content": "    public static final String NAME_DESC_AMY \u003d \" \" + PREFIX_NAME + VALID_NAME_AMY;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String EMAIL_DESC_AMY \u003d \" \" + PREFIX_EMAIL + VALID_EMAIL_AMY;"
+        "content": "    public static final String NAME_DESC_BOB \u003d \" \" + PREFIX_NAME + VALID_NAME_BOB;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String EMAIL_DESC_BOB \u003d \" \" + PREFIX_EMAIL + VALID_EMAIL_BOB;"
+        "content": "    public static final String EMAIL_DESC_AMY \u003d \" \" + PREFIX_EMAIL + VALID_EMAIL_AMY;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public static final String EMAIL_DESC_BOB \u003d \" \" + PREFIX_EMAIL + VALID_EMAIL_BOB;"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String INVALID_NAME_DESC \u003d \" \" + PREFIX_NAME + \"James\u0026\"; // \u0027\u0026\u0027 not allowed in names"
+        "content": "    public static final String MATRIC_DESC_AMY \u003d \" \" + VALID_MATRIC_AMY;"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    public static final String INVALID_EMAIL_DESC \u003d \" \" + PREFIX_EMAIL + \"bob!yahoo\"; // missing \u0027@\u0027 symbol"
+        "content": "    public static final String NUSNET_DESC_AMY \u003d \" \" + VALID_NUSNET_AMY;"
       },
       {
         "lineNumber": 40,
@@ -56093,14 +56891,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String PREAMBLE_WHITESPACE \u003d \"\\t  \\r  \\n\";"
+        "content": "    public static final String INVALID_NAME_DESC \u003d \" \" + PREFIX_NAME + \"James\u0026\"; // \u0027\u0026\u0027 not allowed in names"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String PREAMBLE_NON_EMPTY \u003d \"NonEmptyPreamble\";"
+        "content": "    public static final String INVALID_EMAIL_DESC \u003d \" \" + PREFIX_EMAIL + \"bob!yahoo\"; // missing \u0027@\u0027 symbol"
       },
       {
         "lineNumber": 43,
@@ -56114,14 +56912,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final EditCommand.EditPersonDescriptor DESC_AMY;"
+        "content": "    public static final String PREAMBLE_WHITESPACE \u003d \"\\t  \\r  \\n\";"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final EditCommand.EditPersonDescriptor DESC_BOB;"
+        "content": "    public static final String PREAMBLE_NON_EMPTY \u003d \"NonEmptyPreamble\";"
       },
       {
         "lineNumber": 46,
@@ -56135,420 +56933,420 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    static {"
+        "content": "    public static final EditCommand.EditPersonDescriptor DESC_AMY;"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        DESC_AMY \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withEmail(VALID_EMAIL_AMY).build();"
+        "content": "    public static final EditCommand.EditPersonDescriptor DESC_BOB;"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        DESC_BOB \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB).build();"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    static {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": ""
+        "content": "        DESC_AMY \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withEmail(VALID_EMAIL_AMY).build();"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "    /**"
+        "content": "        DESC_BOB \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB).build();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
+        "content": "    }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - the returned {@link CommandResult} matches {@code expectedCommandResult} \u003cbr\u003e"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - the {@code actualModel} matches {@code expectedModel}"
+        "content": "    /**"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,"
+        "content": "     * - the returned {@link CommandResult} matches {@code expectedCommandResult} \u003cbr\u003e"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "            Model expectedModel) {"
+        "content": "     * - the {@code actualModel} matches {@code expectedModel}"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "     */"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "            CommandResult result \u003d command.execute(actualModel);"
+        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "            assertEquals(expectedCommandResult, result);"
+        "content": "            Model expectedModel) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "            assertEquals(expectedModel, actualModel);"
+        "content": "        try {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (CommandException ce) {"
+        "content": "            CommandResult result \u003d command.execute(actualModel);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new AssertionError(\"Execution of command should not fail.\", ce);"
+        "content": "            assertEquals(expectedCommandResult, result);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            assertEquals(expectedModel, actualModel);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        } catch (CommandException ce) {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new AssertionError(\"Execution of command should not fail.\", ce);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}"
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "     * that takes a string {@code expectedMessage}."
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,"
+        "content": "     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "            Model expectedModel) {"
+        "content": "     * that takes a string {@code expectedMessage}."
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "        CommandResult expectedCommandResult \u003d new CommandResult(expectedMessage);"
+        "content": "     */"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);"
+        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            Model expectedModel) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        CommandResult expectedCommandResult \u003d new CommandResult(expectedMessage);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - a {@code CommandException} is thrown \u003cbr\u003e"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - the CommandException message matches {@code expectedMessage} \u003cbr\u003e"
+        "content": "    /**"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "     * - the application, filtered person list and selected person in {@code actualModel} remain unchanged"
+        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * - a {@code CommandException} is thrown \u003cbr\u003e"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {"
+        "content": "     * - the CommandException message matches {@code expectedMessage} \u003cbr\u003e"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "        // we are unable to defensively copy the model for comparison later, so we can"
+        "content": "     * - the application, filtered person list and selected person in {@code actualModel} remain unchanged"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "        // only do so by copying its components."
+        "content": "     */"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        Application expectedApplication \u003d new Application(actualModel.getApplication());"
+        "content": "    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "        List\u003cPerson\u003e expectedFilteredList \u003d new ArrayList\u003c\u003e(actualModel.getFilteredPersonList());"
+        "content": "        // we are unable to defensively copy the model for comparison later, so we can"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // only do so by copying its components."
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "        assertThrows(CommandException.class, expectedMessage, () -\u003e command.execute(actualModel));"
+        "content": "        Application expectedApplication \u003d new Application(actualModel.getApplication());"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertEquals(expectedApplication, actualModel.getApplication());"
+        "content": "        List\u003cPerson\u003e expectedFilteredList \u003d new ArrayList\u003c\u003e(actualModel.getFilteredPersonList());"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        assertThrows(CommandException.class, expectedMessage, () -\u003e command.execute(actualModel));"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "    /**"
+        "content": "        assertEquals(expectedApplication, actualModel.getApplication());"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "     * Updates {@code model}\u0027s application to show only the person at the given {@code targetIndex} in the"
+        "content": "        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "     * {@code model}\u0027s application."
+        "content": "    }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "    public static void showPersonAtIndex(Model model, Index targetIndex) {"
+        "content": "     * Updates {@code model}\u0027s application to show only the person at the given {@code targetIndex} in the"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "        assertTrue(targetIndex.getZeroBased() \u003c model.getFilteredPersonList().size());"
+        "content": "     * {@code model}\u0027s application."
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "        Person person \u003d model.getFilteredPersonList().get(targetIndex.getZeroBased());"
+        "content": "    public static void showPersonAtIndex(Model model, Index targetIndex) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String[] splitName \u003d person.getName().fullName.split(\"\\\\s+\");"
+        "content": "        assertTrue(targetIndex.getZeroBased() \u003c model.getFilteredPersonList().size());"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));"
+        "content": ""
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        Person person \u003d model.getFilteredPersonList().get(targetIndex.getZeroBased());"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertEquals(1, model.getFilteredPersonList().size());"
+        "content": "        final String[] splitName \u003d person.getName().fullName.split(\"\\\\s+\");"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));"
       },
       {
         "lineNumber": 107,
@@ -56562,17 +57360,39 @@
         "author": {
           "gitId": "-"
         },
+        "content": "        assertEquals(1, model.getFilteredPersonList().size());"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "ZiHawkEye": 2,
+      "ZiHawkEye": 1,
       "Ellieyee": 18,
-      "-": 88
+      "-": 88,
+      "lumos309": 4
     }
   },
   {
-    "path": "src/test/java/seedu/tarence/logic/commands/DeleteCommandTest.java",
+    "path": "src/test/java/seedu/tarence/logic/commands/DeleteStudentCommandTest.java",
     "fileType": "tests",
     "lines": [
       {
@@ -56746,9 +57566,9 @@
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "public class DeleteCommandTest {"
+        "content": "public class DeleteStudentCommandTest {"
       },
       {
         "lineNumber": 26,
@@ -56795,9 +57615,9 @@
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(INDEX_FIRST_PERSON);"
+        "content": "        DeleteStudentCommand deleteStudentCommand \u003d new DeleteStudentCommand(INDEX_FIRST_PERSON);"
       },
       {
         "lineNumber": 33,
@@ -56809,9 +57629,9 @@
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        String expectedMessage \u003d String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);"
+        "content": "        String expectedMessage \u003d String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);"
       },
       {
         "lineNumber": 35,
@@ -56844,9 +57664,9 @@
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);"
+        "content": "        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);"
       },
       {
         "lineNumber": 40,
@@ -56886,9 +57706,9 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(outOfBoundIndex);"
+        "content": "        DeleteStudentCommand deleteStudentCommand \u003d new DeleteStudentCommand(outOfBoundIndex);"
       },
       {
         "lineNumber": 46,
@@ -56900,9 +57720,9 @@
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+        "content": "        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 48,
@@ -56956,9 +57776,9 @@
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(INDEX_FIRST_PERSON);"
+        "content": "        DeleteStudentCommand deleteStudentCommand \u003d new DeleteStudentCommand(INDEX_FIRST_PERSON);"
       },
       {
         "lineNumber": 56,
@@ -56970,9 +57790,9 @@
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        String expectedMessage \u003d String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);"
+        "content": "        String expectedMessage \u003d String.format(DeleteStudentCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);"
       },
       {
         "lineNumber": 58,
@@ -57012,9 +57832,9 @@
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);"
+        "content": "        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);"
       },
       {
         "lineNumber": 64,
@@ -57089,9 +57909,9 @@
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(outOfBoundIndex);"
+        "content": "        DeleteStudentCommand deleteStudentCommand \u003d new DeleteStudentCommand(outOfBoundIndex);"
       },
       {
         "lineNumber": 75,
@@ -57103,9 +57923,9 @@
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+        "content": "        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 77,
@@ -57138,16 +57958,16 @@
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteFirstCommand \u003d new DeleteCommand(INDEX_FIRST_PERSON);"
+        "content": "        DeleteStudentCommand deleteFirstCommand \u003d new DeleteStudentCommand(INDEX_FIRST_PERSON);"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteSecondCommand \u003d new DeleteCommand(INDEX_SECOND_PERSON);"
+        "content": "        DeleteStudentCommand deleteSecondCommand \u003d new DeleteStudentCommand(INDEX_SECOND_PERSON);"
       },
       {
         "lineNumber": 83,
@@ -57187,9 +58007,9 @@
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand deleteFirstCommandCopy \u003d new DeleteCommand(INDEX_FIRST_PERSON);"
+        "content": "        DeleteStudentCommand deleteFirstCommandCopy \u003d new DeleteStudentCommand(INDEX_FIRST_PERSON);"
       },
       {
         "lineNumber": 89,
@@ -57341,7 +58161,8 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 18,
-      "-": 91
+      "-": 77,
+      "lumos309": 14
     }
   },
   {
@@ -60092,261 +60913,261 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.NAME_DESC_AMY;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.MATRIC_DESC_AMY;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.NAME_DESC_BOB;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.NAME_DESC_AMY;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.NAME_DESC_BOB;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.NUSNET_DESC_AMY;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.logic.parser.CommandParserTestUtil.assertParseFailure;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.logic.parser.CommandParserTestUtil.assertParseSuccess;"
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Ellieyee"
         },
-        "content": "import static seedu.tarence.testutil.TypicalPersons.BOB;"
+        "content": "import static seedu.tarence.logic.parser.CommandParserTestUtil.assertParseFailure;"
       },
       {
         "lineNumber": 17,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "import static seedu.tarence.logic.parser.CommandParserTestUtil.assertParseSuccess;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "import static seedu.tarence.testutil.TypicalPersons.BOB;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "import static seedu.tarence.testutil.TypicalStudents.AMY;"
+      },
+      {
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": "import org.junit.jupiter.api.Test;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 23,
         "author": {
           "gitId": "lumos309"
         },
         "content": "import seedu.tarence.logic.commands.AddStudentCommand;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 24,
         "author": {
           "gitId": "Ellieyee"
         },
         "content": "import seedu.tarence.model.person.Email;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 25,
         "author": {
           "gitId": "Ellieyee"
         },
         "content": "import seedu.tarence.model.person.Name;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 26,
         "author": {
           "gitId": "Ellieyee"
         },
         "content": "import seedu.tarence.model.person.Person;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "import seedu.tarence.model.student.Student;"
+      },
+      {
+        "lineNumber": 28,
         "author": {
           "gitId": "Ellieyee"
         },
         "content": "import seedu.tarence.testutil.PersonBuilder;"
       },
       {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "lumos309"
-        },
-        "content": "public class AddStudentCommandParserTest {"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "lumos309"
-        },
-        "content": "    private AddStudentCommandParser parser \u003d new AddStudentCommandParser();"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 29,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    @Test"
+        "content": "import seedu.tarence.testutil.StudentBuilder;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parse_allFieldsPresent_success() {"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "        Person expectedPerson \u003d new PersonBuilder(BOB).build();"
+        "content": "public class AddStudentCommandParserTest {"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "    private AddStudentCommandParser parser \u003d new AddStudentCommandParser();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "        // whitespace only preamble"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB,"
+        "content": "    @Test"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "lumos309"
+          "gitId": "-"
         },
-        "content": "                new AddStudentCommand(expectedPerson));"
+        "content": "    public void parse_allFieldsPresent_success() {"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": ""
+        "content": "        Person expectedPerson \u003d new PersonBuilder(BOB).build();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "        // multiple names - last name accepted"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + EMAIL_DESC_BOB,"
+        "content": "        // whitespace only preamble"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "lumos309"
+          "gitId": "Ellieyee"
         },
-        "content": "                new AddStudentCommand(expectedPerson));"
+        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB,"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "                new AddStudentCommand(expectedPerson));"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        // multiple emails - last email accepted"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertParseSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB,"
+        "content": "        // multiple names - last name accepted"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "lumos309"
+          "gitId": "Ellieyee"
         },
-        "content": "                new AddStudentCommand(expectedPerson));"
+        "content": "        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + EMAIL_DESC_BOB,"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    }"
+        "content": "                new AddStudentCommand(expectedPerson));"
       },
       {
         "lineNumber": 45,
@@ -60360,234 +61181,374 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "        // multiple emails - last email accepted"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "    public void parse_compulsoryFieldMissing_failure() {"
+        "content": "        assertParseSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB,"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lumos309"
         },
-        "content": "        String expectedMessage \u003d String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);"
+        "content": "                new AddStudentCommand(expectedPerson));"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        // missing name prefix"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "        assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,"
+        "content": "    @Test"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "                expectedMessage);"
+        "content": "    public void parse_withOptionalFields_success() {"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "        Student expectedStudent \u003d new StudentBuilder(AMY).build();"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        // missing email prefix"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "        assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,"
+        "content": "        // MatricNum and NusnetID both present"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "                expectedMessage);"
+        "content": "        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "                + MATRIC_DESC_AMY + NUSNET_DESC_AMY,"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        // all prefixes missing"
+        "content": "                new AddStudentCommand(expectedStudent));"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "Ellieyee"
-        },
-        "content": "        assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB,"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                expectedMessage);"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
         "content": ""
       },
       {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        // random ordering of optional fields"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "        assertParseSuccess(parser, MATRIC_DESC_AMY + NAME_DESC_AMY"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                + NUSNET_DESC_AMY + EMAIL_DESC_AMY ,"
+      },
+      {
         "lineNumber": 63,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                new AddStudentCommand(expectedStudent));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void parse_invalidValue_failure() {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // invalid name"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "Ellieyee"
-        },
-        "content": "        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB, Name.MESSAGE_CONSTRAINTS);"
-      },
-      {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void parse_compulsoryFieldMissing_failure() {"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        // invalid email"
+        "content": "        String expectedMessage \u003d String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertParseFailure(parser, NAME_DESC_BOB + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // missing name prefix"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "        // two invalid values, only first invalid value reported"
+        "content": "        assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB,"
+        "content": "                expectedMessage);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "                Name.MESSAGE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // missing email prefix"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "Ellieyee"
         },
-        "content": "        // non-empty preamble"
+        "content": "        assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "-"
         },
-        "content": "        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + EMAIL_DESC_BOB,"
+        "content": "                expectedMessage);"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "lumos309"
+          "gitId": "-"
         },
-        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        // all prefixes missing"
       },
       {
         "lineNumber": 79,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "        assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB,"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                expectedMessage);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parse_invalidValue_failure() {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // invalid name"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB, Name.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // invalid email"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "        assertParseFailure(parser, NAME_DESC_BOB + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // two invalid values, only first invalid value reported"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB,"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Name.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // non-empty preamble"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Ellieyee"
+        },
+        "content": "        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + EMAIL_DESC_BOB,"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
@@ -60597,7 +61558,7 @@
     "authorContributionMap": {
       "Ellieyee": 30,
       "-": 41,
-      "lumos309": 8
+      "lumos309": 28
     }
   },
   {
@@ -60719,9 +61680,9 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "import seedu.tarence.logic.commands.DeleteCommand;"
+        "content": "import seedu.tarence.logic.commands.DeleteStudentCommand;"
       },
       {
         "lineNumber": 18,
@@ -60908,23 +61869,23 @@
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        DeleteCommand command \u003d (DeleteCommand) parser.parseCommand("
+        "content": "        DeleteStudentCommand command \u003d (DeleteStudentCommand) parser.parseCommand("
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "                DeleteCommand.COMMAND_WORD + \" \" + INDEX_FIRST_PERSON.getOneBased());"
+        "content": "                DeleteStudentCommand.COMMAND_WORD + \" \" + INDEX_FIRST_PERSON.getOneBased());"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);"
+        "content": "        assertEquals(new DeleteStudentCommand(INDEX_FIRST_PERSON), command);"
       },
       {
         "lineNumber": 47,
@@ -61264,9 +62225,9 @@
       }
     ],
     "authorContributionMap": {
-      "Ellieyee": 22,
-      "-": 69,
-      "lumos309": 3
+      "Ellieyee": 21,
+      "-": 66,
+      "lumos309": 7
     }
   },
   {
@@ -62606,7 +63567,7 @@
     }
   },
   {
-    "path": "src/test/java/seedu/tarence/logic/parser/DeleteCommandParserTest.java",
+    "path": "src/test/java/seedu/tarence/logic/parser/DeleteStudentCommandParserTest.java",
     "fileType": "tests",
     "lines": [
       {
@@ -62675,9 +63636,9 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "Ellieyee"
+          "gitId": "lumos309"
         },
-        "content": "import seedu.tarence.logic.commands.DeleteCommand;"
+        "content": "import seedu.tarence.logic.commands.DeleteStudentCommand;"
       },
       {
         "lineNumber": 11,
@@ -62738,9 +63699,9 @@
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "public class DeleteCommandParserTest {"
+        "content": "public class DeleteStudentCommandParserTest {"
       },
       {
         "lineNumber": 20,
@@ -62752,9 +63713,9 @@
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "    private DeleteCommandParser parser \u003d new DeleteCommandParser();"
+        "content": "    private DeleteStudentCommandParser parser \u003d new DeleteStudentCommandParser();"
       },
       {
         "lineNumber": 22,
@@ -62780,9 +63741,9 @@
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertParseSuccess(parser, \"1\", new DeleteCommand(INDEX_FIRST_PERSON));"
+        "content": "        assertParseSuccess(parser, \"1\", new DeleteStudentCommand(INDEX_FIRST_PERSON));"
       },
       {
         "lineNumber": 26,
@@ -62815,19 +63776,26 @@
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "        assertParseFailure(parser, \"a\", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));"
+        "content": "        assertParseFailure(parser, \"a\", String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "                                                               DeleteStudentCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
@@ -62835,8 +63803,9 @@
       }
     ],
     "authorContributionMap": {
-      "Ellieyee": 6,
-      "-": 26
+      "Ellieyee": 5,
+      "-": 22,
+      "lumos309": 6
     }
   },
   {
@@ -77864,334 +78833,341 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "ZiHawkEye"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "import static seedu.tarence.logic.commands.CommandTestUtil.VALID_NUSNET_AMY;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "import seedu.tarence.model.student.Student;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": ""
+        "content": "import seedu.tarence.model.student.Student;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": " * A utility class containing a list of {@code Student} objects to be used in tests."
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": " */"
+        "content": " * A utility class containing a list of {@code Student} objects to be used in tests."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "public class TypicalStudents {"
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": ""
+        "content": "public class TypicalStudents {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student ALICE \u003d new StudentBuilder().withName(\"Alice Pauline\")"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"alice@example.com\").withMatricNum(\"A0123456A\").withNusnetId(\"e0123456\")"
+        "content": "    public static final Student ALICE \u003d new StudentBuilder().withName(\"Alice Pauline\")"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"alice@example.com\").withMatricNum(\"A0123456A\").withNusnetId(\"e0123456\")"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student BENSON \u003d new StudentBuilder().withName(\"Benson Meier\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"johnd@example.com\").withMatricNum(\"A1234560A\").withNusnetId(\"e1234560\")"
+        "content": "    public static final Student BENSON \u003d new StudentBuilder().withName(\"Benson Meier\")"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"johnd@example.com\").withMatricNum(\"A1234560A\").withNusnetId(\"e1234560\")"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student CARL \u003d new StudentBuilder().withName(\"Carl Kurz\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"heinz@example.com\").withMatricNum(\"A2345601A\").withNusnetId(\"e2345601\")"
+        "content": "    public static final Student CARL \u003d new StudentBuilder().withName(\"Carl Kurz\")"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"heinz@example.com\").withMatricNum(\"A2345601A\").withNusnetId(\"e2345601\")"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student DANIEL \u003d new StudentBuilder().withName(\"Daniel Meier\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"cornelia@example.com\").withMatricNum(\"A3456012A\").withNusnetId(\"e3456012\")"
+        "content": "    public static final Student DANIEL \u003d new StudentBuilder().withName(\"Daniel Meier\")"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"cornelia@example.com\").withMatricNum(\"A3456012A\").withNusnetId(\"e3456012\")"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student ELLE \u003d new StudentBuilder().withName(\"Elle Meyer\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"werner@example.com\").withMatricNum(\"A4560123A\").withNusnetId(\"e4560123\")"
+        "content": "    public static final Student ELLE \u003d new StudentBuilder().withName(\"Elle Meyer\")"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"werner@example.com\").withMatricNum(\"A4560123A\").withNusnetId(\"e4560123\")"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student FIONA \u003d new StudentBuilder().withName(\"Fiona Kunz\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"lydia@example.com\").withMatricNum(\"A5601234A\").withNusnetId(\"e5601234\")"
+        "content": "    public static final Student FIONA \u003d new StudentBuilder().withName(\"Fiona Kunz\")"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"lydia@example.com\").withMatricNum(\"A5601234A\").withNusnetId(\"e5601234\")"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student GEORGE \u003d new StudentBuilder().withName(\"George Best\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"anna@example.com\").withMatricNum(\"A6012345A\").withNusnetId(\"e6012345\")"
+        "content": "    public static final Student GEORGE \u003d new StudentBuilder().withName(\"George Best\")"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"anna@example.com\").withMatricNum(\"A6012345A\").withNusnetId(\"e6012345\")"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": ""
+        "content": "            .build();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    // Manually added"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student HOON \u003d new StudentBuilder().withName(\"Hoon Meier\")"
+        "content": "    // Manually added"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"stefan@example.com\").withMatricNum(\"A6543210A\").withNusnetId(\"e6543210\")"
+        "content": "    public static final Student HOON \u003d new StudentBuilder().withName(\"Hoon Meier\")"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"stefan@example.com\").withMatricNum(\"A6543210A\").withNusnetId(\"e6543210\")"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student IDA \u003d new StudentBuilder().withName(\"Ida Mueller\")"
+        "content": "            .build();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .withEmail(\"hans@example.com\").withMatricNum(\"A5432106A\").withNusnetId(\"e5432106\")"
+        "content": "    public static final Student IDA \u003d new StudentBuilder().withName(\"Ida Mueller\")"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "            .build();"
+        "content": "            .withEmail(\"hans@example.com\").withMatricNum(\"A5432106A\").withNusnetId(\"e5432106\")"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": ""
+        "content": "            .build();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    // Manually added - Student\u0027s details found in {@code CommandTestUtil}"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final Student AMY \u003d new StudentBuilder().withName(VALID_NAME_AMY).withEmail(VALID_EMAIL_AMY)"
+        "content": "    // Manually added - Student\u0027s details found in {@code CommandTestUtil}"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "                .withMatricNum(VALID_MATRIC_AMY).build();"
+        "content": "    public static final Student AMY \u003d new StudentBuilder().withName(VALID_NAME_AMY).withEmail(VALID_EMAIL_AMY)"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "ZiHawkEye"
+          "gitId": "lumos309"
         },
-        "content": "    public static final Student BOB \u003d new StudentBuilder().withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)"
+        "content": "                .withMatricNum(VALID_MATRIC_AMY).withNusnetId(VALID_NUSNET_AMY).build();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "                .withMatricNum(VALID_MATRIC_BOB).build();"
+        "content": "    public static final Student BOB \u003d new StudentBuilder().withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": ""
+        "content": "                .withMatricNum(VALID_MATRIC_BOB).build();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    public static final String KEYWORD_MATCHING_MEIER \u003d \"Meier\"; // A keyword that matches MEIER"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": ""
+        "content": "    public static final String KEYWORD_MATCHING_MEIER \u003d \"Meier\"; // A keyword that matches MEIER"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ZiHawkEye"
         },
-        "content": "    private TypicalStudents() {} // prevents instantiation"
+        "content": ""
       },
       {
         "lineNumber": 56,
+        "author": {
+          "gitId": "ZiHawkEye"
+        },
+        "content": "    private TypicalStudents() {} // prevents instantiation"
+      },
+      {
+        "lineNumber": 57,
         "author": {
           "gitId": "ZiHawkEye"
         },
@@ -78199,7 +79175,8 @@
       }
     ],
     "authorContributionMap": {
-      "ZiHawkEye": 56
+      "ZiHawkEye": 55,
+      "lumos309": 2
     }
   },
   {
