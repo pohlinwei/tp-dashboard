@@ -33759,507 +33759,535 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.UndoCommand;"
+        "content": "import seedu.jarvis.logic.commands.RedoCommand;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.AddAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.UndoCommand;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.ClearAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.AddAddressCommand;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.DeleteAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.ClearAddressCommand;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.EditAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.DeleteAddressCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.FindAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.EditAddressCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.ListAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.FindAddressCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.parser.address.AddAddressCommandParser;"
+        "content": "import seedu.jarvis.logic.commands.address.ListAddressCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.parser.address.DeleteAddressCommandParser;"
+        "content": "import seedu.jarvis.logic.parser.address.AddAddressCommandParser;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.parser.address.EditAddressCommandParser;"
+        "content": "import seedu.jarvis.logic.parser.address.DeleteAddressCommandParser;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.parser.address.FindAddressCommandParser;"
+        "content": "import seedu.jarvis.logic.parser.address.EditAddressCommandParser;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.jarvis.logic.parser.address.FindAddressCommandParser;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "import seedu.jarvis.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": " * Parses user input."
+        "content": "/**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": " */"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "public class JarvisParser {"
+        "content": " */"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "public class JarvisParser {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case AddAddressCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new AddAddressCommandParser().parse(arguments);"
+        "content": "        case AddAddressCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new AddAddressCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case EditAddressCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new EditAddressCommandParser().parse(arguments);"
+        "content": "        case EditAddressCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new EditAddressCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case DeleteAddressCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new DeleteAddressCommandParser().parse(arguments);"
+        "content": "        case DeleteAddressCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new DeleteAddressCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case ClearAddressCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new ClearAddressCommand();"
+        "content": "        case ClearAddressCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new ClearAddressCommand();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case FindAddressCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new FindAddressCommandParser().parse(arguments);"
+        "content": "        case FindAddressCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new FindAddressCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case ListAddressCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new ListAddressCommand();"
+        "content": "        case ListAddressCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new ListAddressCommand();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case UndoCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new UndoCommandParser().parse(arguments);"
+        "content": "        case UndoCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new UndoCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case RedoCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new RedoCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        }"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 84,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
         "author": {
           "gitId": "marcfyk"
         },
@@ -34267,7 +34295,7 @@
       }
     ],
     "authorContributionMap": {
-      "marcfyk": 84
+      "marcfyk": 88
     }
   },
   {
@@ -35554,6 +35582,372 @@
     }
   },
   {
+    "path": "src/main/java/seedu/jarvis/logic/parser/RedoCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "package seedu.jarvis.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static seedu.jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static seedu.jarvis.logic.parser.CliSyntax.PREFIX_UNDO_REDO;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.commands.RedoCommand;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.version.VersionControl;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": " * Parses input arguments and creates a new {@code RedoCommand} object"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "public class RedoCommandParser implements Parser\u003cRedoCommand\u003e {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    private static final String ARGUMENT_UNDO_ALL \u003d \"all\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the {@code RedoCommand}"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * and returns a {@code RedoCommand} object for execution."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * @throws ParseException If the user input does not conform the expected format."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public RedoCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        ArgumentMultimap argumentMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_UNDO_REDO);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        Optional\u003cString\u003e optionalArgument \u003d argumentMultimap.getValue(PREFIX_UNDO_REDO);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        // if no argument is given, create a redo command for one action."
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        if (optionalArgument.isEmpty()) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return new RedoCommand();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String argument \u003d optionalArgument.get();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        // if argument is all, create a redo command for all available actions."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        if (argument.equalsIgnoreCase(ARGUMENT_UNDO_ALL)) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return new RedoCommand(VersionControl.INSTANCE.getTotalNumberOfRedoableCommands());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        int numberOfTimes;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            numberOfTimes \u003d Math.max(Integer.parseInt(argument), 1);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        } catch (NumberFormatException nfe) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RedoCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        // if argument is a number, create a redo command to redo the given number of actions."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        return new RedoCommand(numberOfTimes);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "marcfyk": 51
+    }
+  },
+  {
     "path": "src/main/java/seedu/jarvis/logic/parser/UndoCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -35709,7 +36103,7 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format."
+        "content": "     * @throws ParseException If the user input does not conform the expected format."
       },
       {
         "lineNumber": 23,
@@ -35807,7 +36201,7 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // if argument is all, create an undo command for all available undoable action."
+        "content": "        // if argument is all, create an undo command for all available undoable actions."
       },
       {
         "lineNumber": 37,
@@ -38167,175 +38561,175 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Sets the singleton instance to its initial state."
+        "content": "     * Gets the number of available redoable commands in {@code inverselyExecutedCommands}."
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * @return The number of redoable commands."
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void hardReset() {"
+        "content": "     */"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        versionLimit \u003d DEFAULT_INITIAL_SIZE_LIMIT;"
+        "content": "    public int getTotalNumberOfRedoableCommands() {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        executedCommands \u003d new CommandDeque(versionLimit);"
+        "content": "        return inverselyExecutedCommands.getSize();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        inverselyExecutedCommands \u003d new CommandDeque(Integer.MAX_VALUE);"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "     * Sets the singleton instance to its initial state."
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Adds an invertible {@code Command} to be managed by {@code VersionControl}."
+        "content": "     */"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * {@code Command} is added to {@code executedCommands}."
+        "content": "    public void hardReset() {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     *"
+        "content": "        versionLimit \u003d DEFAULT_INITIAL_SIZE_LIMIT;"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @param command {@code Command} to be added."
+        "content": "        executedCommands \u003d new CommandDeque(versionLimit);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws CommandNotInvertibleException If the {@code Command} instance is not invertible."
+        "content": "        inverselyExecutedCommands \u003d new CommandDeque(Integer.MAX_VALUE);"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws DuplicateCommandException If the {@code Command} instance is already inside {@code VersionControl}."
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void addExecutedCommand(Command command) throws CommandNotInvertibleException, DuplicateCommandException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "     * Adds an invertible {@code Command} to be managed by {@code VersionControl}."
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        if (!command.hasInverseExecution()) {"
+        "content": "     * {@code Command} is added to {@code executedCommands}."
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            throw new CommandNotInvertibleException();"
+        "content": "     *"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        }"
+        "content": "     * @param command {@code Command} to be added."
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "     * @throws CommandNotInvertibleException If the {@code Command} instance is not invertible."
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        if (inverselyExecutedCommands.hasCommand(command)) {"
+        "content": "     * @throws DuplicateCommandException If the {@code Command} instance is already inside {@code VersionControl}."
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            throw new DuplicateCommandException();"
+        "content": "     */"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        }"
+        "content": "    public void addExecutedCommand(Command command) throws CommandNotInvertibleException, DuplicateCommandException {"
       },
       {
         "lineNumber": 104,
@@ -38349,147 +38743,147 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        executedCommands.addLatestCommand(command);"
+        "content": "        if (!command.hasInverseExecution()) {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "            throw new CommandNotInvertibleException();"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Adds an invertible {@code Command} to be managed by {@code VersionControl}."
+        "content": "        if (inverselyExecutedCommands.hasCommand(command)) {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * {@code Command} is added to {@code inverselyExecutedCommands}."
+        "content": "            throw new DuplicateCommandException();"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     *"
+        "content": "        }"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @param command {@code Command} to be added."
+        "content": ""
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws CommandNotInvertibleException If the {@code Command} instance is not invertible."
+        "content": "        executedCommands.addLatestCommand(command);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws DuplicateCommandException If the {@code Command} instance is already inside {@code VersionControl}."
+        "content": "    }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void addInverselyExecutedCommand(Command command) throws CommandNotInvertibleException,"
+        "content": "    /**"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            DuplicateCommandException {"
+        "content": "     * Adds an invertible {@code Command} to be managed by {@code VersionControl}."
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "     * {@code Command} is added to {@code inverselyExecutedCommands}."
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        if (!command.hasInverseExecution()) {"
+        "content": "     *"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            throw new CommandNotInvertibleException();"
+        "content": "     * @param command {@code Command} to be added."
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        }"
+        "content": "     * @throws CommandNotInvertibleException If the {@code Command} instance is not invertible."
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "     * @throws DuplicateCommandException If the {@code Command} instance is already inside {@code VersionControl}."
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        if (executedCommands.hasCommand(command)) {"
+        "content": "     */"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            throw new DuplicateCommandException();"
+        "content": "    public void addInverselyExecutedCommand(Command command) throws CommandNotInvertibleException,"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        }"
+        "content": "            DuplicateCommandException {"
       },
       {
         "lineNumber": 126,
@@ -38503,276 +38897,332 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        inverselyExecutedCommands.addLatestCommand(command);"
+        "content": "        if (!command.hasInverseExecution()) {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "            throw new CommandNotInvertibleException();"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Undo the execution of the latest {@code Command} in {@code executedCommands} to the given {@code Model}."
+        "content": "        if (executedCommands.hasCommand(command)) {"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Stores the undone {@code Command} in {@code inverselyExecutedCommands}."
+        "content": "            throw new DuplicateCommandException();"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     *"
+        "content": "        }"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @param model {@code Model} for the command to inversely execute on."
+        "content": ""
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @return {@code CommandResult} from the inverse execution of the command."
+        "content": "        inverselyExecutedCommands.addLatestCommand(command);"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws CommandNotFoundException If {@code executedCommands} is empty."
+        "content": "    }"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws CommandException If the inverse execution of the command throws a {@code CommandException}."
+        "content": ""
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws DuplicateCommandException If {@code Command} is already stored in {@code VersionControl}."
+        "content": "    /**"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Undo the execution of the latest {@code Command} in {@code executedCommands} to the given {@code Model}."
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public CommandResult undo(Model model) throws CommandNotFoundException, CommandException,"
+        "content": "     * Stores the undone {@code Command} in {@code inverselyExecutedCommands}."
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            DuplicateCommandException {"
+        "content": "     *"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Command command \u003d executedCommands.deleteLatestCommand();"
+        "content": "     * @param model {@code Model} for the command to inversely execute on."
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandResult commandResult \u003d command.executeInverse(model);"
+        "content": "     * @return {@code CommandResult} from the inverse execution of the command."
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        inverselyExecutedCommands.addLatestCommand(command);"
+        "content": "     * @throws CommandNotFoundException If {@code executedCommands} is empty."
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        return commandResult;"
+        "content": "     * @throws CommandException If the inverse execution of the command throws a {@code CommandException}."
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "     * @throws DuplicateCommandException If {@code Command} is already stored in {@code VersionControl}."
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "    public CommandResult undo(Model model) throws CommandNotFoundException, CommandException,"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Undo the inverse execution of the latest {@code Command} in {@code inverselyExecutedCommands} to the given"
+        "content": "            DuplicateCommandException {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * {@code Model}."
+        "content": "        Command command \u003d executedCommands.deleteLatestCommand();"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Stores the redone {@code Command} in {@code executedCommands}."
+        "content": "        CommandResult commandResult \u003d command.executeInverse(model);"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     *"
+        "content": "        inverselyExecutedCommands.addLatestCommand(command);"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @param model {@code Model} for the command to be execute on."
+        "content": "        return commandResult;"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @return {@code CommandResult} from the execution of the command."
+        "content": "    }"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws CommandNotFoundException If {@code inverselyExecutedCommands} is empty."
+        "content": ""
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws CommandException If the execution of the command throws a {@code CommandException}."
+        "content": "    /**"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * @throws DuplicateCommandException If {@code Command} is already stored in {@code VersionControl}."
+        "content": "     * Undo the inverse execution of the latest {@code Command} in {@code inverselyExecutedCommands} to the given"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * {@code Model}."
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public CommandResult redo(Model model) throws CommandNotFoundException, CommandException,"
+        "content": "     * Stores the redone {@code Command} in {@code executedCommands}."
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            DuplicateCommandException {"
+        "content": "     *"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Command command \u003d inverselyExecutedCommands.deleteLatestCommand();"
+        "content": "     * @param model {@code Model} for the command to be execute on."
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandResult commandResult \u003d command.execute(model);"
+        "content": "     * @return {@code CommandResult} from the execution of the command."
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        executedCommands.addLatestCommand(command);"
+        "content": "     * @throws CommandNotFoundException If {@code inverselyExecutedCommands} is empty."
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        return commandResult;"
+        "content": "     * @throws CommandException If the execution of the command throws a {@code CommandException}."
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "     * @throws DuplicateCommandException If {@code Command} is already stored in {@code VersionControl}."
       },
       {
         "lineNumber": 166,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public CommandResult redo(Model model) throws CommandNotFoundException, CommandException,"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            DuplicateCommandException {"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        Command command \u003d inverselyExecutedCommands.deleteLatestCommand();"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        CommandResult commandResult \u003d command.execute(model);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        executedCommands.addLatestCommand(command);"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        return commandResult;"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 174,
         "author": {
           "gitId": "marcfyk"
         },
@@ -38780,7 +39230,7 @@
       }
     ],
     "authorContributionMap": {
-      "marcfyk": 166
+      "marcfyk": 174
     }
   },
   {
@@ -40106,64 +40556,6 @@
     }
   },
   {
-    "path": "src/main/java/seedu/jarvis/model/HistoryModel.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": "package seedu.jarvis.model;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": " * The API of the HistoryModel component."
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": "public interface HistoryModel {"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "marcfyk"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "marcfyk": 7
-    }
-  },
-  {
     "path": "src/main/java/seedu/jarvis/model/Model.java",
     "fileType": "functional",
     "lines": [
@@ -40221,7 +40613,7 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "public interface Model extends AddressModel, HistoryModel {"
+        "content": "public interface Model extends AddressModel {"
       },
       {
         "lineNumber": 9,
@@ -62682,7 +63074,7 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.ClearAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 16,
@@ -62703,196 +63095,196 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "import seedu.jarvis.model.Model;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": " * Tests the functionality of {@code CommandDeque}."
+        "content": "/**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": " */"
+        "content": " * Tests the functionality of {@code CommandDeque}."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "public class CommandDequeTest {"
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "public class CommandDequeTest {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that the overloaded constructor to set a custom size limit works as intended."
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that the overloaded constructor to set a custom size limit works as intended."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_customSizeLimitConstructor() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        int customSizeLimit \u003d 5;"
+        "content": "    public void test_customSizeLimitConstructor() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque(customSizeLimit);"
+        "content": "        int customSizeLimit \u003d 5;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(customSizeLimit, commandDeque.getSizeLimit());"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque(customSizeLimit);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(customSizeLimit, commandDeque.getSizeLimit());"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#addLatestCommand(Command)} adds the command correctly into the deque."
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque#addLatestCommand(Command)} adds the command correctly into the deque."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void addLatestCommand_success() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void addLatestCommand_success() {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Command command \u003d new ClearAddressCommand();"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command)); // tests a successful add."
+        "content": "        Command command \u003d new InvertibleCommandStub();"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Command latestCommand \u003d assertDoesNotThrow(commandDeque::getLatestCommand);"
+        "content": "        assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command)); // tests a successful add."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertSame(latestCommand, command); // making sure the command was added correctly."
+        "content": "        Command latestCommand \u003d assertDoesNotThrow(commandDeque::getLatestCommand);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertSame(latestCommand, command); // making sure the command was added correctly."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 46,
@@ -62906,871 +63298,1018 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#addLatestCommand(Command)} does not allow adding the same command object"
+        "content": "    /**"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * instance to the deque while it already is inside it."
+        "content": "     * Verifies that {@code CommandDeque#addLatestCommand(Command)} does not allow adding the same command object"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * instance to the deque while it already is inside it."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void addLatestCommand_duplicateCommand_exceptionThrown() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void addLatestCommand_duplicateCommand_exceptionThrown() {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Command command \u003d new ClearAddressCommand();"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        Command command \u003d new InvertibleCommandStub();"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // adds command the first time."
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command));"
+        "content": "        // adds command the first time."
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command));"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // adds the same command and checks that the correct exception is thrown."
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertThrows(DuplicateCommandException.class, () -\u003e commandDeque.addLatestCommand(command));"
+        "content": "        // adds the same command and checks that the correct exception is thrown."
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertThrows(DuplicateCommandException.class, () -\u003e commandDeque.addLatestCommand(command));"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#deleteLatestCommand()} removes the correct command successfully."
+        "content": "    /**"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque#deleteLatestCommand()} removes the correct command successfully."
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void deleteLatestCommand_nonEmpty_success() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void deleteLatestCommand_nonEmpty_success() {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Deque\u003cCommand\u003e commands \u003d new ArrayDeque\u003c\u003e();"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        int numberOfCommands \u003d 10;"
+        "content": "        Deque\u003cCommand\u003e commands \u003d new ArrayDeque\u003c\u003e();"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, numberOfCommands)"
+        "content": "        int numberOfCommands \u003d 10;"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .mapToObj(index -\u003e new ClearAddressCommand())"
+        "content": "        IntStream.range(0, numberOfCommands)"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(commands::addLast);"
+        "content": "                .mapToObj(index -\u003e new InvertibleCommandStub())"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        commands.forEach(command -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command)));"
+        "content": "                .forEach(commands::addLast);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, numberOfCommands)"
+        "content": "        commands.forEach(command -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command)));"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(index -\u003e {"
+        "content": "        IntStream.range(0, numberOfCommands)"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                    Command c \u003d assertDoesNotThrow(commandDeque::deleteLatestCommand);"
+        "content": "                .forEach(index -\u003e {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                    assertSame(c, commands.removeLast());"
+        "content": "                    Command c \u003d assertDoesNotThrow(commandDeque::deleteLatestCommand);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                });"
+        "content": "                    assertSame(c, commands.removeLast());"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "                });"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#deletelatestCommand()} throws {@code CommandNotFoundException} if it is empty."
+        "content": "    /**"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque#deletelatestCommand()} throws {@code CommandNotFoundException} if it is empty."
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void deleteLatestCommand_empty_exceptionThrown() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void deleteLatestCommand_empty_exceptionThrown() {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertThrows(CommandNotFoundException.class, commandDeque::deleteOldestCommand);"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertThrows(CommandNotFoundException.class, commandDeque::deleteOldestCommand);"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#deleteOldestCommand()} removes the correct command successfully."
+        "content": "    /**"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque#deleteOldestCommand()} removes the correct command successfully."
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void deleteOldestCommand_nonEmpty_success() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void deleteOldestCommand_nonEmpty_success() {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        ArrayDeque\u003cCommand\u003e commands \u003d new ArrayDeque\u003c\u003e();"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        int numberOfCommands \u003d 10;"
+        "content": "        ArrayDeque\u003cCommand\u003e commands \u003d new ArrayDeque\u003c\u003e();"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, numberOfCommands)"
+        "content": "        int numberOfCommands \u003d 10;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .mapToObj(index -\u003e new ClearAddressCommand())"
+        "content": "        IntStream.range(0, numberOfCommands)"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(commands::addLast);"
+        "content": "                .mapToObj(index -\u003e new InvertibleCommandStub())"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        commands.forEach(command -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command)));"
+        "content": "                .forEach(commands::addLast);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, numberOfCommands)"
+        "content": "        commands.forEach(command -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(command)));"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(index -\u003e {"
+        "content": "        IntStream.range(0, numberOfCommands)"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                    Command c \u003d assertDoesNotThrow(commandDeque::deleteOldestCommand);"
+        "content": "                .forEach(index -\u003e {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                    assertSame(c, commands.removeFirst());"
+        "content": "                    Command c \u003d assertDoesNotThrow(commandDeque::deleteOldestCommand);"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                });"
+        "content": "                    assertSame(c, commands.removeFirst());"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "                });"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#deleteOldestCommand()} throws {@code CommandNotFoundException} if it is empty."
+        "content": "    /**"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque#deleteOldestCommand()} throws {@code CommandNotFoundException} if it is empty."
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void deleteOldestCommand_empty_exceptionThrown() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void deleteOldestCommand_empty_exceptionThrown() {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertThrows(CommandNotFoundException.class, commandDeque::deleteOldestCommand);"
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertThrows(CommandNotFoundException.class, commandDeque::deleteOldestCommand);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque} is keeping within its size limit when it is adding commands."
+        "content": "    /**"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque} is keeping within its size limit when it is adding commands."
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_sizeLimit() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void test_sizeLimit() {"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // adds twice the amount of commands allowed by its size limit."
+        "content": ""
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, commandDeque.getSizeLimit() * 2)"
+        "content": "        // adds twice the amount of commands allowed by its size limit."
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(index -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(new ClearAddressCommand())));"
+        "content": "        IntStream.range(0, commandDeque.getSizeLimit() * 2)"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "                .forEach(index -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(new InvertibleCommandStub())));"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // checks that it is size has not exceeded limit."
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(commandDeque.getSizeLimit(), commandDeque.getSize());"
+        "content": "        // checks that it is size has not exceeded limit."
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(commandDeque.getSizeLimit(), commandDeque.getSize());"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque} is keeping within its size limit when it is adding commands"
+        "content": "    /**"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque} is keeping within its size limit when it is adding commands"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_resizing() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void test_resizing() {"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // adds commands until it is at the size limit."
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, commandDeque.getSizeLimit())"
+        "content": "        // adds commands until it is at the size limit."
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(index -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(new ClearAddressCommand())));"
+        "content": "        IntStream.range(0, commandDeque.getSizeLimit())"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "                .forEach(index -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(new InvertibleCommandStub())));"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        int updatedLimit \u003d commandDeque.getSizeLimit() / 2;"
+        "content": ""
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        commandDeque.setSizeLimit(updatedLimit);"
+        "content": "        int updatedLimit \u003d commandDeque.getSizeLimit() / 2;"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        commandDeque.setSizeLimit(updatedLimit);"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(updatedLimit, commandDeque.getSizeLimit()); // checks if limit is updated."
+        "content": ""
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(updatedLimit, commandDeque.getSize()); // checks if new limit is enforced."
+        "content": "        assertEquals(updatedLimit, commandDeque.getSizeLimit()); // checks if limit is updated."
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(updatedLimit, commandDeque.getSize()); // checks if new limit is enforced."
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that {@code CommandDeque#clear()} will correctly clear all commands stored."
+        "content": "    /**"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that {@code CommandDeque#clear()} will correctly clear all commands stored."
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_clear() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
+        "content": "    public void test_clear() {"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        CommandDeque commandDeque \u003d new CommandDeque();"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        // adds commands until it is at the size limit."
+        "content": ""
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        IntStream.range(0, commandDeque.getSizeLimit())"
+        "content": "        // adds commands until it is at the size limit."
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(index -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(new ClearAddressCommand())));"
+        "content": "        IntStream.range(0, commandDeque.getSizeLimit())"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "                .forEach(index -\u003e assertDoesNotThrow(() -\u003e commandDeque.addLatestCommand(new InvertibleCommandStub())));"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        int limit \u003d commandDeque.getSizeLimit();"
+        "content": ""
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        int limit \u003d commandDeque.getSizeLimit();"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        commandDeque.clear();"
+        "content": ""
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        commandDeque.clear();"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(commandDeque.isEmpty()); // checks that commands are all cleared."
+        "content": ""
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(limit, commandDeque.getSizeLimit()); // checks that limit is unchanged."
+        "content": "        assertTrue(commandDeque.isEmpty()); // checks that commands are all cleared."
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        assertEquals(limit, commandDeque.getSizeLimit()); // checks that limit is unchanged."
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 171,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * A stub command class to store in {@code VersionControl}."
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    private static class InvertibleCommandStub extends Command {"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public boolean hasInverseExecution() {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public CommandResult executeInverse(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 192,
         "author": {
           "gitId": "marcfyk"
         },
@@ -63778,7 +64317,7 @@
       }
     ],
     "authorContributionMap": {
-      "marcfyk": 171
+      "marcfyk": 192
     }
   },
   {
@@ -67055,7 +67594,7 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertCommandSuccess(new RedoCommand(numberOfCommandsToRedo), model, expectedMessage, expectedModel);"
+        "content": "        assertCommandSuccess(redoCommand, model, expectedMessage, expectedModel);"
       },
       {
         "lineNumber": 131,
@@ -77961,703 +78500,822 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.UndoCommand;"
+        "content": "import seedu.jarvis.logic.commands.RedoCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.AddAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.UndoCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.ClearAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.AddAddressCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.DeleteAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.ClearAddressCommand;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.EditAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.DeleteAddressCommand;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.EditAddressCommand.EditPersonDescriptor;"
+        "content": "import seedu.jarvis.logic.commands.address.EditAddressCommand;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.FindAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.EditAddressCommand.EditPersonDescriptor;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.ListAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.address.FindAddressCommand;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.jarvis.logic.commands.address.ListAddressCommand;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.model.person.NameContainsKeywordsPredicate;"
+        "content": "import seedu.jarvis.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.model.person.Person;"
+        "content": "import seedu.jarvis.model.person.NameContainsKeywordsPredicate;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.testutil.EditPersonDescriptorBuilder;"
+        "content": "import seedu.jarvis.model.person.Person;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.testutil.PersonBuilder;"
+        "content": "import seedu.jarvis.testutil.EditPersonDescriptorBuilder;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.testutil.PersonUtil;"
+        "content": "import seedu.jarvis.testutil.PersonBuilder;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "import seedu.jarvis.testutil.PersonUtil;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "public class JarvisParserTest {"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "public class JarvisParserTest {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    private final JarvisParser parser \u003d new JarvisParser();"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    private final JarvisParser parser \u003d new JarvisParser();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_add() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Person person \u003d new PersonBuilder().build();"
+        "content": "    public void parseCommand_add() throws Exception {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        AddAddressCommand command \u003d (AddAddressCommand) parser.parseCommand(PersonUtil.getAddCommand(person));"
+        "content": "        Person person \u003d new PersonBuilder().build();"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(new AddAddressCommand(person), command);"
+        "content": "        AddAddressCommand command \u003d (AddAddressCommand) parser.parseCommand(PersonUtil.getAddCommand(person));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(new AddAddressCommand(person), command);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_clear() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(ClearAddressCommand.COMMAND_WORD) instanceof ClearAddressCommand);"
+        "content": "    public void parseCommand_clear() throws Exception {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(ClearAddressCommand.COMMAND_WORD + \" 3\") instanceof ClearAddressCommand);"
+        "content": "        assertTrue(parser.parseCommand(ClearAddressCommand.COMMAND_WORD) instanceof ClearAddressCommand);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertTrue(parser.parseCommand(ClearAddressCommand.COMMAND_WORD + \" 3\") instanceof ClearAddressCommand);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_delete() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        DeleteAddressCommand command \u003d (DeleteAddressCommand) parser.parseCommand("
+        "content": "    public void parseCommand_delete() throws Exception {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                DeleteAddressCommand.COMMAND_WORD + \" \" + INDEX_FIRST_PERSON.getOneBased());"
+        "content": "        DeleteAddressCommand command \u003d (DeleteAddressCommand) parser.parseCommand("
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(new DeleteAddressCommand(INDEX_FIRST_PERSON), command);"
+        "content": "                DeleteAddressCommand.COMMAND_WORD + \" \" + INDEX_FIRST_PERSON.getOneBased());"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(new DeleteAddressCommand(INDEX_FIRST_PERSON), command);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_edit() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Person person \u003d new PersonBuilder().build();"
+        "content": "    public void parseCommand_edit() throws Exception {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        EditPersonDescriptor descriptor \u003d new EditPersonDescriptorBuilder(person).build();"
+        "content": "        Person person \u003d new PersonBuilder().build();"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        EditAddressCommand command \u003d (EditAddressCommand) parser.parseCommand(EditAddressCommand.COMMAND_WORD + \" \""
+        "content": "        EditPersonDescriptor descriptor \u003d new EditPersonDescriptorBuilder(person).build();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                + INDEX_FIRST_PERSON.getOneBased() + \" \" + PersonUtil.getEditPersonDescriptorDetails(descriptor));"
+        "content": "        EditAddressCommand command \u003d (EditAddressCommand) parser.parseCommand(EditAddressCommand.COMMAND_WORD + \" \""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(new EditAddressCommand(INDEX_FIRST_PERSON, descriptor), command);"
+        "content": "                + INDEX_FIRST_PERSON.getOneBased() + \" \" + PersonUtil.getEditPersonDescriptorDetails(descriptor));"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(new EditAddressCommand(INDEX_FIRST_PERSON, descriptor), command);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_exit() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);"
+        "content": "    public void parseCommand_exit() throws Exception {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + \" 3\") instanceof ExitCommand);"
+        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + \" 3\") instanceof ExitCommand);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_find() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        List\u003cString\u003e keywords \u003d Arrays.asList(\"foo\", \"bar\", \"baz\");"
+        "content": "    public void parseCommand_find() throws Exception {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        FindAddressCommand command \u003d (FindAddressCommand) parser.parseCommand("
+        "content": "        List\u003cString\u003e keywords \u003d Arrays.asList(\"foo\", \"bar\", \"baz\");"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                FindAddressCommand.COMMAND_WORD + \" \" + keywords.stream().collect(Collectors.joining(\" \")));"
+        "content": "        FindAddressCommand command \u003d (FindAddressCommand) parser.parseCommand("
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertEquals(new FindAddressCommand(new NameContainsKeywordsPredicate(keywords)), command);"
+        "content": "                FindAddressCommand.COMMAND_WORD + \" \" + keywords.stream().collect(Collectors.joining(\" \")));"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertEquals(new FindAddressCommand(new NameContainsKeywordsPredicate(keywords)), command);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_help() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);"
+        "content": "    public void parseCommand_help() throws Exception {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + \" 3\") instanceof HelpCommand);"
+        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + \" 3\") instanceof HelpCommand);"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_list() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(ListAddressCommand.COMMAND_WORD) instanceof ListAddressCommand);"
+        "content": "    public void parseCommand_list() throws Exception {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(ListAddressCommand.COMMAND_WORD + \" 3\") instanceof ListAddressCommand);"
+        "content": "        assertTrue(parser.parseCommand(ListAddressCommand.COMMAND_WORD) instanceof ListAddressCommand);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertTrue(parser.parseCommand(ListAddressCommand.COMMAND_WORD + \" 3\") instanceof ListAddressCommand);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parsing undo commands work as intended."
+        "content": "    /**"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": "     * Verifies that parsing undo commands work as intended."
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "     */"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_undo() throws Exception {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);"
+        "content": "    public void parseCommand_undo() throws Exception {"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"all\")"
+        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                instanceof UndoCommand);"
+        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"all\")"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"5\")"
+        "content": "                instanceof UndoCommand);"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                instanceof UndoCommand);"
+        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"5\")"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"0\")"
+        "content": "                instanceof UndoCommand);"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                instanceof UndoCommand);"
+        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"0\")"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"-5\")"
+        "content": "                instanceof UndoCommand);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                instanceof UndoCommand);"
+        "content": "        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"-5\")"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "                instanceof UndoCommand);"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_unrecognisedInput_throwsParseException() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()"
+        "content": "     * Verifies that parsing redo commands work as intended."
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "            -\u003e parser.parseCommand(\"\"));"
+        "content": "     */"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "    @Test"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    public void parseCommand_redo() throws Exception {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void parseCommand_unknownCommand_throwsParseException() {"
+        "content": "        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"all\")"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -\u003e parser.parseCommand(\"unknownCommand\"));"
+        "content": "                instanceof RedoCommand);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"5\")"
       },
       {
         "lineNumber": 119,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                instanceof RedoCommand);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"0\")"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                instanceof RedoCommand);"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + \" \" + PREFIX_UNDO_REDO + \"-5\")"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                instanceof RedoCommand);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void parseCommand_unrecognisedInput_throwsParseException() {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            -\u003e parser.parseCommand(\"\"));"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void parseCommand_unknownCommand_throwsParseException() {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -\u003e parser.parseCommand(\"unknownCommand\"));"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 136,
         "author": {
           "gitId": "marcfyk"
         },
@@ -78665,7 +79323,7 @@
       }
     ],
     "authorContributionMap": {
-      "marcfyk": 119
+      "marcfyk": 136
     }
   },
   {
@@ -80051,6 +80709,960 @@
     }
   },
   {
+    "path": "src/test/java/seedu/jarvis/logic/parser/RedoCommandParserTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "package seedu.jarvis.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static seedu.jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static seedu.jarvis.logic.parser.CliSyntax.PREFIX_UNDO_REDO;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static seedu.jarvis.logic.parser.CommandParserTestUtil.assertParseFailure;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import static seedu.jarvis.logic.parser.CommandParserTestUtil.assertParseSuccess;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import java.util.stream.Stream;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import org.junit.jupiter.api.AfterEach;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import org.junit.jupiter.api.BeforeEach;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.commands.Command;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.commands.RedoCommand;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.logic.version.VersionControl;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "import seedu.jarvis.model.Model;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": " * Tests RedoCommandParser\u0027s behaviour on parsing arguments."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "public class RedoCommandParserTest {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    private Parser\u003cRedoCommand\u003e parser \u003d new RedoCommandParser();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Resets version control before each test."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @BeforeEach"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void resetBefore() {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        VersionControl.INSTANCE.hardReset();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Resets version control after each test."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @AfterEach"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void resetAfter() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        VersionControl.INSTANCE.hardReset();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Verifies that parsing no arguments returns an undo command of 1 action."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void test_parse_noArguments() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String arguments \u003d \"\";"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertParseSuccess(parser, arguments, new RedoCommand());"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Verifies that parsing all as argument returns an undo command to undo all available actions."
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void test_parse_all() {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String arguments1 \u003d \" \" + PREFIX_UNDO_REDO + \"all\";"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        System.out.println(VersionControl.INSTANCE.getTotalNumberOfRedoableCommands());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertParseSuccess(parser, arguments1, new RedoCommand("
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                VersionControl.INSTANCE.getTotalNumberOfRedoableCommands()));"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String arguments2 \u003d \" \" + PREFIX_UNDO_REDO + \"ALL\";"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertParseSuccess(parser, arguments2, new RedoCommand("
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                VersionControl.INSTANCE.getTotalNumberOfRedoableCommands()));"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String arguments3 \u003d \" \" + PREFIX_UNDO_REDO + \"aLl\";"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addInverselyExecutedCommand(new InvertibleCommandStub()));"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertParseSuccess(parser, arguments3, new RedoCommand("
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                VersionControl.INSTANCE.getTotalNumberOfRedoableCommands()));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Verifies that parsing a valid numeric value would return an redo command to undo that many actions."
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void test_parse_validNumeric() {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String validNumber \u003d \"5\";"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + validNumber;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertParseSuccess(parser, arguments, new RedoCommand(Integer.parseInt(validNumber)));"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Verifies that parsing a negative number as argument returns an redo command of 1 action."
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void test_parse_negativeNumeric() {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String negativeNumber \u003d \"-5\";"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + negativeNumber;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        assertParseSuccess(parser, arguments, new RedoCommand());"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * Verifies that parser throws exception if the argument is invalid."
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    public void test_parse_invalid() {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        Stream.of(\"1.1\", \" \", \"INVALID\", \"?\", \"Html Is A Programming Language\")"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                .map(invalidArgument -\u003e \" \" + PREFIX_UNDO_REDO + invalidArgument)"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                .forEach(argument -\u003e assertParseFailure(parser, argument,"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RedoCommand.MESSAGE_USAGE)));"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * A stub command class to store in {@code VersionControl}."
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    private static class InvertibleCommandStub extends Command {"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public boolean hasInverseExecution() {"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public CommandResult executeInverse(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "marcfyk": 135
+    }
+  },
+  {
     "path": "src/test/java/seedu/jarvis/logic/parser/UndoCommandParserTest.java",
     "fileType": "tests",
     "lines": [
@@ -80157,731 +81769,892 @@
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.UndoCommand;"
+        "content": "import seedu.jarvis.logic.commands.Command;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.commands.address.ClearAddressCommand;"
+        "content": "import seedu.jarvis.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "import seedu.jarvis.logic.version.VersionControl;"
+        "content": "import seedu.jarvis.logic.commands.UndoCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "import seedu.jarvis.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "/**"
+        "content": "import seedu.jarvis.logic.version.VersionControl;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": " * Tests UndoCommandParser\u0027s behaviour on parsing arguments."
+        "content": "import seedu.jarvis.model.Model;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "public class UndoCommandParserTest {"
+        "content": "/**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": " * Tests UndoCommandParser\u0027s behaviour on parsing arguments."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    private Parser\u003cUndoCommand\u003e parser \u003d new UndoCommandParser();"
+        "content": " */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "public class UndoCommandParserTest {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Resets version control before each test."
+        "content": "    private Parser\u003cUndoCommand\u003e parser \u003d new UndoCommandParser();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @BeforeEach"
+        "content": "    /**"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void resetBefore() {"
+        "content": "     * Resets version control before each test."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        VersionControl.INSTANCE.hardReset();"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "    @BeforeEach"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    public void resetBefore() {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "        VersionControl.INSTANCE.hardReset();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Resets version control after each test."
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @AfterEach"
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void resetAfter() {"
+        "content": "     * Resets version control after each test."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        VersionControl.INSTANCE.hardReset();"
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "    @AfterEach"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "    public void resetAfter() {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "        VersionControl.INSTANCE.hardReset();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parsing no arguments returns an undo command of 1 action."
+        "content": "    }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "    /**"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_parse_noArguments() {"
+        "content": "     * Verifies that parsing no arguments returns an undo command of 1 action."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments \u003d \"\";"
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments, new UndoCommand());"
+        "content": "    @Test"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "    public void test_parse_noArguments() {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        String arguments \u003d \"\";"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "        assertParseSuccess(parser, arguments, new UndoCommand());"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parsing all as argument returns an undo command to undo all available actions."
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "    /**"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_parse_all() {"
+        "content": "     * Verifies that parsing all as argument returns an undo command to undo all available actions."
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments1 \u003d \" \" + PREFIX_UNDO_REDO + \"all\";"
+        "content": "     */"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "    @Test"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "    public void test_parse_all() {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "        String arguments1 \u003d \" \" + PREFIX_UNDO_REDO + \"all\";"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments1, new UndoCommand("
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                VersionControl.INSTANCE.getTotalNumberOfUndoableCommands()));"
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments2 \u003d \" \" + PREFIX_UNDO_REDO + \"ALL\";"
+        "content": "        assertParseSuccess(parser, arguments1, new UndoCommand("
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "                VersionControl.INSTANCE.getTotalNumberOfUndoableCommands()));"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "        String arguments2 \u003d \" \" + PREFIX_UNDO_REDO + \"ALL\";"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments2, new UndoCommand("
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                VersionControl.INSTANCE.getTotalNumberOfUndoableCommands()));"
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments3 \u003d \" \" + PREFIX_UNDO_REDO + \"aLl\";"
+        "content": "        assertParseSuccess(parser, arguments2, new UndoCommand("
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": "                VersionControl.INSTANCE.getTotalNumberOfUndoableCommands()));"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new ClearAddressCommand()));"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments3, new UndoCommand("
+        "content": "        String arguments3 \u003d \" \" + PREFIX_UNDO_REDO + \"aLl\";"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                VersionControl.INSTANCE.getTotalNumberOfUndoableCommands()));"
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        assertDoesNotThrow(() -\u003e VersionControl.INSTANCE.addExecutedCommand(new InvertibleCommandStub()));"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        assertParseSuccess(parser, arguments3, new UndoCommand("
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "                VersionControl.INSTANCE.getTotalNumberOfUndoableCommands()));"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parsing a valid numeric value would return an undo command to undo that many actions."
+        "content": "    }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "    /**"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_parse_validNumeric() {"
+        "content": "     * Verifies that parsing a valid numeric value would return an undo command to undo that many actions."
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String validNumber \u003d \"5\";"
+        "content": "     */"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + validNumber;"
+        "content": "    @Test"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments, new UndoCommand(Integer.parseInt(validNumber)));"
+        "content": "    public void test_parse_validNumeric() {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        String validNumber \u003d \"5\";"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + validNumber;"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "        assertParseSuccess(parser, arguments, new UndoCommand(Integer.parseInt(validNumber)));"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parsing a negative number as argument returns an undo command of 1 action."
+        "content": "    }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "    /**"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_parse_negativeNumeric() {"
+        "content": "     * Verifies that parsing a negative number as argument returns an undo command of 1 action."
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String negativeNumber \u003d \"-5\";"
+        "content": "     */"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + negativeNumber;"
+        "content": "    @Test"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments, new UndoCommand());"
+        "content": "    public void test_parse_negativeNumeric() {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "        String negativeNumber \u003d \"-5\";"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + negativeNumber;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "        assertParseSuccess(parser, arguments, new UndoCommand());"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parsing zero as argument returns an undo command of 1 action."
+        "content": "    }"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "    /**"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_parse_zero() {"
+        "content": "     * Verifies that parsing zero as argument returns an undo command of 1 action."
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + \"0\";"
+        "content": "     */"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        assertParseSuccess(parser, arguments, new UndoCommand());"
+        "content": "    @Test"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "    public void test_parse_zero() {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": ""
+        "content": "        String arguments \u003d \" \" + PREFIX_UNDO_REDO + \"0\";"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    /**"
+        "content": "        assertParseSuccess(parser, arguments, new UndoCommand());"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     * Verifies that parser throws exception if the argument is invalid."
+        "content": "    }"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    @Test"
+        "content": "    /**"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    public void test_parse_invalid() {"
+        "content": "     * Verifies that parser throws exception if the argument is invalid."
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "        Stream.of(\"1.1\", \" \", \"INVALID\", \"?\", \"Html Is A Programming Language\")"
+        "content": "     */"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .map(invalidArgument -\u003e \" \" + PREFIX_UNDO_REDO + invalidArgument)"
+        "content": "    @Test"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                .forEach(argument -\u003e assertParseFailure(parser, argument,"
+        "content": "    public void test_parse_invalid() {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoCommand.MESSAGE_USAGE)));"
+        "content": "        Stream.of(\"1.1\", \" \", \"INVALID\", \"?\", \"Html Is A Programming Language\")"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "marcfyk"
         },
-        "content": "    }"
+        "content": "                .map(invalidArgument -\u003e \" \" + PREFIX_UNDO_REDO + invalidArgument)"
       },
       {
         "lineNumber": 119,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                .forEach(argument -\u003e assertParseFailure(parser, argument,"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoCommand.MESSAGE_USAGE)));"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     * A stub command class to store in {@code VersionControl}."
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    private static class InvertibleCommandStub extends Command {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public boolean hasInverseExecution() {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        public CommandResult executeInverse(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "            return null;"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "marcfyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 142,
         "author": {
           "gitId": "marcfyk"
         },
@@ -80889,7 +82662,7 @@
       }
     ],
     "authorContributionMap": {
-      "marcfyk": 119
+      "marcfyk": 142
     }
   },
   {
