@@ -1713,9 +1713,9 @@
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "ryantay232"
         },
-        "content": "image::yijinl.jpg[width\u003d\"150\", align\u003d\"left\"]"
+        "content": "image::ryantay232.png[width\u003d\"150\", align\u003d\"left\"]"
       },
       {
         "lineNumber": 33,
@@ -1887,7 +1887,8 @@
       }
     ],
     "authorContributionMap": {
-      "-": 38,
+      "ryantay232": 1,
+      "-": 37,
       "charliechoong": 18
     }
   },
@@ -50975,6 +50976,2881 @@
     ],
     "authorContributionMap": {
       "charliechoong": 85
+    }
+  },
+  {
+    "path": "src/main/java/seedu/deliverymans/model/Email.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "package seedu.deliverymans.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static seedu.deliverymans.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Represents a Person\u0027s email in the address book."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "public class Email {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private static final String SPECIAL_CHARACTERS \u003d \"!#$%\u0026\u0027*+/\u003d?`{|}~^.-\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d \"Emails should be of the format local-part@domain \""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"and adhere to the following constraints:\\n\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"1. The local-part should only contain alphanumeric characters and these special characters, excluding \""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"the parentheses, (\" + SPECIAL_CHARACTERS + \") .\\n\""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"2. This is followed by a \u0027@\u0027 and then a domain name. \""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"The domain name must:\\n\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"    - be at least 2 characters long\\n\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"    - start and end with alphanumeric characters\\n\""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + \"    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    // alphanumeric and special characters"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private static final String LOCAL_PART_REGEX \u003d \"^[\\\\w\" + SPECIAL_CHARACTERS + \"]+\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private static final String DOMAIN_FIRST_CHARACTER_REGEX \u003d \"[^\\\\W_]\"; // alphanumeric characters except underscore"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private static final String DOMAIN_MIDDLE_REGEX \u003d \"[a-zA-Z0-9.-]*\"; // alphanumeric, period and hyphen"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private static final String DOMAIN_LAST_CHARACTER_REGEX \u003d \"[^\\\\W_]$\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d LOCAL_PART_REGEX + \"@\""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public final String value;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Constructs an {@code Email}."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * @param email A valid email address."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Email(String email) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        requireNonNull(email);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        value \u003d email;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns if a given string is a valid email."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static boolean isValidEmail(String test) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return value;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                || (other instanceof Email // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 value.equals(((Email) other).value)); // state check"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return value.hashCode();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ryantay232": 67
+    }
+  },
+  {
+    "path": "src/main/java/seedu/deliverymans/model/Food.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "package seedu.deliverymans.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static seedu.deliverymans.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Represents a Food in a restaurant."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "public class Food {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d \"Tags names should be alphanumeric\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"\\\\p{Alnum}+\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public final String foodName;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Constructs a {@code Food}."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * @param foodName A valid food name."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Food(String foodName) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        requireNonNull(foodName);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        checkArgument(isValidFoodName(foodName), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        this.foodName \u003d foodName;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns true if a given string is a valid tag name."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static boolean isValidFoodName(String test) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                || (other instanceof Food // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 foodName.equals(((Food) other).foodName)); // state check"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return foodName.hashCode();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Format state as text for viewing."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return \u0027[\u0027 + foodName + \u0027]\u0027;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ryantay232": 53
+    }
+  },
+  {
+    "path": "src/main/java/seedu/deliverymans/model/Name.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "package seedu.deliverymans.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static seedu.deliverymans.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Represents a Person\u0027s name in the address book."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "public class Name {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            \"Names should only contain alphanumeric characters and spaces, and it should not be blank\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /*"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * The first character of the address must not be a whitespace,"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * otherwise \" \" (a blank string) becomes a valid input."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"[\\\\p{Alnum}][\\\\p{Alnum} ]*\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public final String fullName;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Constructs a {@code Name}."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * @param name A valid name."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Name(String name) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        requireNonNull(name);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        fullName \u003d name;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns true if a given string is a valid name."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static boolean isValidName(String test) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return fullName;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                || (other instanceof Name // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 fullName.equals(((Name) other).fullName)); // state check"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return fullName.hashCode();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ryantay232": 59
+    }
+  },
+  {
+    "path": "src/main/java/seedu/deliverymans/model/Order.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "package seedu.deliverymans.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static seedu.deliverymans.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Represents an Order of food."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "public class Order {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d \"Tags names should be alphanumeric\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"\\\\p{Alnum}+\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public final String orderName;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public final Set\u003cFood\u003e foods \u003d new HashSet\u003c\u003e();   //implement food class"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Constructs a {@code Order}"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * @param orderName A valid order name."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Order(String orderName) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        requireNonNull(orderName);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        checkArgument(isValidOrderName(orderName), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        this.orderName \u003d orderName;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns true if a given string is a valid tag name."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static boolean isValidOrderName(String test) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public void addFood(Food food) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        foods.add(food);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return other \u003d\u003d this || (other instanceof Order \u0026\u0026 orderName.equals(((Order) other).orderName));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return orderName.hashCode();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return \u0027[\u0027 + orderName + \u0027]\u0027;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ryantay232": 55
+    }
+  },
+  {
+    "path": "src/main/java/seedu/deliverymans/model/Phone.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "package seedu.deliverymans.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static seedu.deliverymans.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Represents a Person\u0027s phone number in the address book."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "public class Phone {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            \"Phone numbers should only contain numbers, and it should be at least 3 digits long\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"\\\\d{3,}\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public final String value;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Constructs a {@code Phone}."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * @param phone A valid phone number."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Phone(String phone) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        requireNonNull(phone);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        value \u003d phone;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns true if a given string is a valid phone number."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public static boolean isValidPhone(String test) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return value;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                || (other instanceof Phone // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 value.equals(((Phone) other).value)); // state check"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return value.hashCode();"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ryantay232": 53
+    }
+  },
+  {
+    "path": "src/main/java/seedu/deliverymans/model/customer/Customer.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "package seedu.deliverymans.model.customer;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import static seedu.deliverymans.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import seedu.deliverymans.model.Name;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import seedu.deliverymans.model.Phone;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import seedu.deliverymans.model.Email;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import seedu.deliverymans.model.Order;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "public class Customer {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    // Identity fields"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private final Name name;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private final Phone phone;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private final Email email;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    // Data fields"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private final Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    private final Set\u003cOrder\u003e orders \u003d new HashSet\u003c\u003e();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Every field must be present and not null."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Customer(Name name, Phone phone, Email email, Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        requireAllNonNull(name, phone, email, tags);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        this.name \u003d name;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        this.phone \u003d phone;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        this.email \u003d email;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        this.tags.addAll(tags);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Name getName() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Phone getPhone() {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return phone;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Email getEmail() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return email;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * if modification is attempted."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public Set\u003cTag\u003e getTags() {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return Collections.unmodifiableSet(tags);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public void addOrder(Order order) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        orders.add(order);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns true if both persons of the same name have at least one other identity field that is the same."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * This defines a weaker notion of equality between two persons."
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean isSameCustomer(Customer otherCustomer) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        if (otherCustomer \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return otherCustomer !\u003d null"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 otherCustomer.getName().equals(getName())"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 (otherCustomer.getPhone().equals(getPhone()) || otherCustomer.getEmail().equals(getEmail()));"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * Returns true if both persons have the same identity and data fields."
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     * This defines a stronger notion of equality between two persons."
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        if (!(other instanceof Customer)) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        Customer otherCustomer \u003d (Customer) other;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return otherCustomer.getName().equals(getName())"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 otherCustomer.getPhone().equals(getPhone())"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 otherCustomer.getEmail().equals(getEmail())"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                \u0026\u0026 otherCustomer.getTags().equals(getTags());"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return Objects.hash(name, phone, email, tags);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        builder.append(getName())"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                .append(\" Phone: \")"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                .append(getPhone())"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                .append(\" Email: \")"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                .append(getEmail())"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "                .append(\" Tags: \");"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        getTags().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "ryantay232"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ryantay232": 116
     }
   },
   {
