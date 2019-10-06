@@ -6728,6 +6728,3692 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/model/ItemModel.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import seedu.address.model.item.EventList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import seedu.address.model.item.Item;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import seedu.address.model.item.ItemList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import seedu.address.model.item.ReminderList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import seedu.address.model.item.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Represents the model for ELISA"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class ItemModel {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private ItemList allItems;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private TaskList taskList;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private EventList eventList;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private ReminderList reminderList;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    // The list to be used for visualizing in the Ui"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private ItemList visualList;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemModel() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.allItems \u003d new ItemList();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.eventList \u003d new EventList();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.reminderList \u003d new ReminderList();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.visualList \u003d taskList;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Adds an item to the respective list. All items will be added to the central list."
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * It will also be added to the respective list depending on whether it is a task, event or a reminder."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param item the item to be added to the program"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public void add (Item item) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        allItems.add(item);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        if (item.isTask()) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            taskList.add(item);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        if (item.isEvent()) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            eventList.add(item);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        if (item.isReminder()) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            reminderList.add(item);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Adds an item to a specific list"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param item the item to be added to the list"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param il the list the item is to be added to"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public void add (Item item, ItemList il) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        il.add(item);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Remove an item from the current list."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param index the item to be removed from the current list"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return the item that was removed"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Item remove(int index) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        Item item \u003d visualList.remove(index);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        if (visualList instanceof TaskList) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            taskList.remove(item);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        } else if (visualList instanceof EventList) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            eventList.remove(item);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        } else if (visualList instanceof ReminderList) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            reminderList.remove(item);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            // never reached here as there are only three variants for the visualList"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return item;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Deletes an item from the program."
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param index the index of the item to be deleted."
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return the item that was deleted from the program"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Item delete(int index) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        Item item \u003d visualList.remove(index);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        allItems.remove(item);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        taskList.remove(item);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        eventList.remove(item);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        reminderList.remove(item);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return item;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList getVisualList() {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.visualList;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Set the new item list to be the visualization list."
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param il the item list to be visualized"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public void setVisualList(ItemList il) {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.visualList \u003d il;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 102
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/Event.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.core.JsonProcessingException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.databind.ObjectMapper;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Stub class for the event class."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class Event {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private String date;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String getDate() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.date;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Creates an event from a JSON string."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param json a JSON string representation of the event"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a newly created event"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws IOException throws an exception if the JSON string format is incorrect."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public static Event eventFromJson(String json) throws IOException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ObjectMapper objectMapper \u003d new ObjectMapper();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        Event event \u003d objectMapper.readValue(json, Event.class);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return event;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Create a string representation of the event object."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a string representation of the object"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws JsonProcessingException throws an exception if the object cannot be expressed as a JSON string"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String toJson() throws JsonProcessingException {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ObjectMapper objectMapper \u003d new ObjectMapper();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return objectMapper.writeValueAsString(this);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 39
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/EventList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Object class to store all the items that are events within the program"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class EventList extends ItemList {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public EventList() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Sorts the event list based on the date of the event."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a sorted EventList of the current list"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList sort() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        EventList el \u003d new EventList();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        for (Item item: list) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            el.add(item);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        el.list.sort((item1, item2) -\u003e item1.getEvent().getDate().compareTo(item2.getEvent().getDate()));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return el;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Finds a substring within the description of an item."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param searchString a string to be search for within the description of an item"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a new EventList only containing the items that have the search string in their description"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList find(String searchString) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        EventList el \u003d new EventList();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return find(searchString, el);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 34
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/Item.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import java.util.TreeSet;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.core.JsonProcessingException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * A stub class for the items."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class Item {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private Optional\u003cTask\u003e task;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private Optional\u003cEvent\u003e event;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private Optional\u003cReminder\u003e reminder;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private TreeSet\u003cString\u003e tags;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Item (String description, Optional\u003cTask\u003e task, Optional\u003cEvent\u003e event, Optional\u003cReminder\u003e reminder) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this(description, task, event, reminder, new TreeSet\u003c\u003e());"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Item (String description, Optional\u003cTask\u003e task, Optional\u003cEvent\u003e event, Optional\u003cReminder\u003e reminder,"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "                 TreeSet\u003cString\u003e tag) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.task \u003d task;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.event \u003d event;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.reminder \u003d reminder;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.tags \u003d tag;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.description;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public boolean isTask() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.task.isPresent();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public boolean isEvent() {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.event.isPresent();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public boolean isReminder() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.reminder.isPresent();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Task getTask() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return task.get();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Event getEvent() {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return event.get();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Reminder getReminder() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return reminder.get();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public TreeSet\u003cString\u003e getTags() {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.tags;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Converts the item object to a JSON string. The JSON string is then stored within the saving."
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a JSON string representation of the object"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws JsonProcessingException throws any exception to be handled in the main program"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String toJson() throws JsonProcessingException {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        String taskJson \u003d isTask() ? task.get().toJson() : \"null\";"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        String eventJson \u003d isEvent() ? event.get().toJson() : \"null\";"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        String reminderJson \u003d isReminder() ? reminder.get().toJson() : \"null\";"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        String result \u003d String.format(\"{\\\"description\\\": \\\"%s\\\", \\\"task\\\": \\\"%s\\\", \\\"event\\\": \\\"%s\\\", \""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "                + \"\\\"reminder\\\": \\\"%s\\\"\", description, taskJson, eventJson, reminderJson);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return result;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 79
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/ItemList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * An object to hold items. Parent class for TaskList, EventList and ReminderList."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class ItemList {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    protected ArrayList\u003cItem\u003e list;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        this.list \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Add an item into the list."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param item the item to be added into the list"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public void add(Item item) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        list.add(item);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Get the list of the item list."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return an ArrayList of all the items in the ItemList"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ArrayList\u003cItem\u003e getList() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.list;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Removes an item from the list base on it\u0027s index."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param index the integer value of the index of the item to be removed"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return the item that is removed from this operation"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Item remove(int index) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return list.remove(index);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Removes an item from the list."
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param item the item to be removed from the list"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public void remove(Item item) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        list.remove(item);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Sorts the items in the list by their lexicographical order."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return the item list in the sorted order"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList sort() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ItemList il \u003d new ItemList();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        for (Item item : list) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            il.add(item);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        il.list.sort((item1, item2) -\u003e item1.getDescription().compareTo(item2.getDescription()));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return il;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Main method to find a search string."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param searchString the string to be searched for within the description"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a new ItemList containing all the items that match the criteria."
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList find(String searchString) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ItemList il \u003d new ItemList();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return find(searchString, il);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Helper function to find an item based on their description."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param searchString the string to be search for within the description of an item"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param il the item list that will hold the items that contain the string within its description"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return the item list that was given with the found items added"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    protected ItemList find(String searchString, ItemList il) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        for (Item i : list) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            if (i.getDescription().toLowerCase().contains(searchString.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "                il.add(i);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return il;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 86
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/Reminder.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.core.JsonProcessingException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.databind.ObjectMapper;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Stub class for a Reminder object."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class Reminder {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private String date;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Creates a Reminder from a JSON string."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param json a JSON string representation of the reminder"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a newly created reminder"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws IOException throws an exception if the JSON string format is incorrect."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public static Reminder reminderFromJson(String json) throws IOException {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ObjectMapper objectMapper \u003d new ObjectMapper();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        Reminder reminder \u003d objectMapper.readValue(json, Reminder.class);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return reminder;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Create a string representation of the Reminder object."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a string representation of the object"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws JsonProcessingException throws an exception if the object cannot be expressed as a JSON string"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String toJson() throws JsonProcessingException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ObjectMapper objectMapper \u003d new ObjectMapper();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return objectMapper.writeValueAsString(this);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String getDate() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.date;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 39
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/ReminderList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Object class to store all the items that are reminders within the program"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class ReminderList extends ItemList {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ReminderList() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Sorts the Reminders by the date."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a new ReminderList with the reminders within sorted."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList sort() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ReminderList rl \u003d new ReminderList();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        for (Item i : list) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            rl.add(i);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        rl.list.sort((item1, item2) -\u003e item1.getReminder().getDate().compareTo(item2.getReminder().getDate()));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return rl;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Finds a substring within the description of an item."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param searchString a string to be search for within the description of an item"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a new ReminderList only containing the items that have the search string in their description"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList find(String searchString) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ReminderList rl \u003d new ReminderList();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return super.find(searchString, rl);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 34
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/Task.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.core.JsonProcessingException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "import com.fasterxml.jackson.databind.ObjectMapper;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Stub class for the task object."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Enum class that contains the priority of the tasks."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    enum Priority implements Comparable\u003cPriority\u003e {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        HIGH, MEDIUM, LOW;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private boolean done;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    private Priority priority;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Task() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        done \u003d false;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        priority \u003d Priority.MEDIUM;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public Priority getPriority() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.priority;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public boolean isDone() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return this.done;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Creates a Task from a JSON string."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param json a JSON string representation of the Task"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a newly created task"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws IOException throws an exception if the JSON string format is incorrect."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public static Task taskFromJson(String json) throws IOException {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ObjectMapper objectMapper \u003d new ObjectMapper();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        Task task \u003d objectMapper.readValue(json, Task.class);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return task;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Create a string representation of the Task object."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a string representation of the object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @throws JsonProcessingException throws an exception if the object cannot be expressed as a JSON string"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public String toJson() throws JsonProcessingException {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        ObjectMapper objectMapper \u003d new ObjectMapper();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return objectMapper.writeValueAsString(this);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 56
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/item/TaskList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "package seedu.address.model.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " * Object class to store all the items that are task within the program"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "public class TaskList extends ItemList {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Sort the items in the task list. The items are first sorted by whether they are"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * done or not and then by their priority."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return an ItemList of all the items sorted"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList sort() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        TaskList tl \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        for (Item item: list) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            tl.add(item);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        tl.list.sort((item1, item2) -\u003e {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            Task task1 \u003d item1.getTask();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            Task task2 \u003d item2.getTask();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            if (task1.isDone() \u0026\u0026 !task2.isDone()) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "                return 1;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            } else if (!task1.isDone() \u0026\u0026 task2.isDone()) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "                return -1;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "                return task1.getPriority().compareTo(task2.getPriority());"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return tl;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * Finds a substring within the description of an item."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @param searchString a string to be search for within the description of an item"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     * @return a new TaskList containing only the items that have the search string in their description"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    public ItemList find(String searchString) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        TaskList tl \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "        return find(searchString, tl);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sianghwee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sianghwee": 46
+    }
+  },
+  {
     "path": "src/main/resources/view/MainWindow.fxml",
     "fileType": "functional",
     "lines": [
