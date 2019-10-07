@@ -18020,6 +18020,507 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/internal/gmaps/GmapsJsonUtils.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "package seedu.address.logic.internal.gmaps;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.json.simple.JSONArray;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.json.simple.JSONObject;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": " * This class conatains static method for the processing of Gmaps API repsonse"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "public class GmapsJsonUtils {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * This method is used to get the arraylist of arraylist of value for the calculation of the matrix"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @param apiResponse"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public static ArrayList\u003cArrayList\u003cLong\u003e\u003e getArrayListMatrix(JSONObject apiResponse) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cArrayList\u003cLong\u003e\u003e distanceMatrixArrayList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        JSONArray rows \u003d (JSONArray) apiResponse.get(\"rows\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        for (int i \u003d 0; i \u003c rows.size(); i++) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            ArrayList\u003cLong\u003e currVertex \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            JSONObject currRow \u003d (JSONObject) rows.get(i);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            JSONArray elements \u003d (JSONArray) currRow.get(\"elements\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            for (int j \u003d 0; j \u003c elements.size(); j++) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                Long value;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                JSONObject currElement \u003d (JSONObject) elements.get(j);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                if (((String) currElement.get(\"status\")).equals(\"OK\")) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                    JSONObject duration \u003d (JSONObject) currElement.get(\"duration\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                    value \u003d (Long) duration.get(\"value\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                    value \u003d null;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                currVertex.add(value);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            distanceMatrixArrayList.add(currVertex);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        return distanceMatrixArrayList;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "klementtan": 42
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/internal/gmaps/LocationArrayListUtils.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "package seedu.address.logic.internal.gmaps;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.security.InvalidParameterException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import seedu.address.model.gmaps.Location;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": " * This class is used for process location object arraylist"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "public class LocationArrayListUtils {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public static ArrayList\u003cLocation\u003e getSubList(ArrayList\u003cLocation\u003e arrayList, int start, int end) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cLocation\u003e newArrayList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        if (start \u003c 0 || start \u003e arrayList.size()) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            throw new InvalidParameterException(\"Value for start parameter is out of bound\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        } else if (end \u003c 0 || end \u003e arrayList.size()) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            throw new InvalidParameterException(\"Value for end parameter is out of bound\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        } else if (start \u003e end) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            throw new InvalidParameterException(\"Start \u003e end is an invalid logic\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        for (int i \u003d start; i \u003c\u003d end; i++) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            Location currLocation \u003d arrayList.get(i);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            newArrayList.add(currLocation);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        return newArrayList;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "klementtan": 27
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/parser/AddEventCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -31555,14 +32056,14 @@
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    public final String latitude;"
+        "content": "    private String latitude;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    public final String longitude;"
+        "content": "    private String longitude;"
       },
       {
         "lineNumber": 14,
@@ -31590,56 +32091,56 @@
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        requireNonNull(latitude);"
+        "content": "        this.locationName \u003d locationName;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        requireNonNull(longitude);"
+        "content": "        this.latitude \u003d latitude;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        this.locationName \u003d locationName;"
+        "content": "        this.longitude \u003d longitude;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        this.latitude \u003d latitude;"
+        "content": "    }"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        this.longitude \u003d longitude;"
+        "content": "    public Location(String locationName) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    }"
+        "content": "        requireNonNull(locationName);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "klementtan"
         },
-        "content": ""
+        "content": "        this.locationName \u003d locationName;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 25,
@@ -31653,80 +32154,94 @@
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        return other \u003d\u003d this || other instanceof Location"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "                \u0026\u0026 ((Location) other).locationName.equals(locationName)"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "                \u0026\u0026 ((Location) other).latitude.equals(latitude)"
+        "content": "        return other \u003d\u003d this || other instanceof Location"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "                \u0026\u0026 ((Location) other).longitude.equals(longitude);"
+        "content": "                \u0026\u0026 ((Location) other).locationName.equals(locationName)"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 ((Location) other).latitude.equals(latitude)"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "klementtan"
         },
-        "content": ""
+        "content": "                \u0026\u0026 ((Location) other).longitude.equals(longitude);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "        return \"Location: \" + locationName + \" at latitude: \" + latitude + \", longitude: \" + longitude;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "klementtan"
         },
-        "content": "    }"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 37,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        return \"Location: \" + locationName + \" at latitude: \" + latitude + \", longitude: \" + longitude;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
         "author": {
           "gitId": "klementtan"
         },
@@ -31734,7 +32249,7 @@
       }
     ],
     "authorContributionMap": {
-      "klementtan": 37
+      "klementtan": 39
     }
   },
   {
@@ -63648,6 +64163,435 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/websocket/GmapsApi.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "package seedu.address.websocket;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.net.ConnectException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.security.InvalidParameterException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.json.simple.JSONObject;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import seedu.address.websocket.util.ApiQuery;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import seedu.address.websocket.util.ParserUtil;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import seedu.address.websocket.util.QueryResult;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": " * This class is used for making API request to Google Maps API"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "public class GmapsApi {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    private final String apiKey;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(this.getClass());"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public GmapsApi(String apiKey) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        this.apiKey \u003d apiKey;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * This method is used to execute the Google Maps distance matrix API. It will return"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * a complete matrix mapping of all the String in the locations"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @param locations"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @return JSONObject of api call"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @throws InvalidParameterException"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @throws ConnectException"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public JSONObject getDistanceMatrix(ArrayList\u003cString\u003e locations)"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            throws InvalidParameterException, ConnectException {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        if (locations.size() \u003e 10) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            throw new InvalidParameterException(\"GMAPS API Only can make request to 10 locations.\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String baseUrl \u003d \"https://maps.googleapis.com/maps/api/distancematrix/json?units\u003dimperial\u0026\";"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String apiKeyQueryParams \u003d \"key\u003d\" + apiKey;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String originQueryParams \u003d \"origins\u003d\";"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String destinationQueryParams \u003d \"destinations\u003d\";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String venuesQueryParams \u003d \"\";"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        for (int i \u003d 0; i \u003c locations.size(); i++) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            venuesQueryParams \u003d venuesQueryParams + locations.get(i) + \"|\";"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        originQueryParams \u003d originQueryParams + venuesQueryParams + \"\u0026\";"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        destinationQueryParams \u003d destinationQueryParams + venuesQueryParams + \"\u0026\";"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String fullUrl \u003d baseUrl + originQueryParams + destinationQueryParams + apiKeyQueryParams;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ApiQuery query \u003d new ApiQuery(fullUrl);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        QueryResult queryResult \u003d query.execute();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        if (queryResult.process(logger)) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            return obj;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            throw new ConnectException(ParserUtil.parseStringToJsonObject(queryResult.getResponseResult()).toString());"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "klementtan": 60
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/websocket/NusmodApi.java",
     "fileType": "functional",
     "lines": [
@@ -63682,838 +64626,845 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "Alvinnyk"
+          "gitId": "klementtan"
         },
-        "content": "import org.json.simple.JSONObject;"
+        "content": "import org.json.simple.JSONArray;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "import org.json.simple.JSONObject;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "import seedu.address.commons.core.LogsCenter;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "import seedu.address.websocket.util.ApiQuery;"
+        "content": "import seedu.address.commons.core.LogsCenter;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "import seedu.address.websocket.util.ParserUtil;"
+        "content": "import seedu.address.websocket.util.ApiQuery;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "import seedu.address.websocket.util.QueryResult;"
+        "content": "import seedu.address.websocket.util.ParserUtil;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "import seedu.address.websocket.util.QueryResult;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": " * NUSMods API websocket"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": " * Refer to https://api.nusmods.com/v2/#/ for more detailed information"
+        "content": " * NUSMods API websocket"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": " */"
+        "content": " * Refer to https://api.nusmods.com/v2/#/ for more detailed information"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "public class NusmodApi {"
+        "content": " */"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String BASEURL \u003d \"https://api.nusmods.com/v2\";"
+        "content": "public class NusmodApi {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String BASEURL2 \u003d \"http://api.nusmods.com/v2\";"
+        "content": "    private static final String BASEURL \u003d \"https://api.nusmods.com/v2\";"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    private static final String BASEURL2 \u003d \"http://api.nusmods.com/v2\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String ACAD_YEAR \u003d \"/2018-2019\";"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String MODULES \u003d \"/modules\";"
+        "content": "    private static final String ACAD_YEAR \u003d \"/2018-2019\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String SLASH \u003d \"/\";"
+        "content": "    private static final String MODULES \u003d \"/modules\";"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String JSON_EXTENTION \u003d \".json\";"
+        "content": "    private static final String SLASH \u003d \"/\";"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String MODULE_LIST \u003d \"/moduleList\";"
+        "content": "    private static final String JSON_EXTENTION \u003d \".json\";"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String MODULE_INFO \u003d \"/moduleInfo\";"
+        "content": "    private static final String MODULE_LIST \u003d \"/moduleList\";"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String SEMESTERS \u003d \"/semesters\";"
+        "content": "    private static final String MODULE_INFO \u003d \"/moduleInfo\";"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String VENUES \u003d \"/venues\";"
+        "content": "    private static final String SEMESTERS \u003d \"/semesters\";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private static final String VENUE_INFO \u003d \"/venueInformation\";"
+        "content": "    private static final String VENUES \u003d \"/venues\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    private static final String VENUE_INFO \u003d \"/venueInformation\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    private final Logger logger \u003d LogsCenter.getLogger(this.getClass());"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(this.getClass());"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public NusmodApi() {"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    public NusmodApi() {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * Returns a JSONObject of summaries of all modules in ACAD_YEAR."
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *"
+        "content": "     * Returns a JSONObject of summaries of all modules in ACAD_YEAR."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @return JSONObject"
+        "content": "     *"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     */"
+        "content": "     * @return JSONObject"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public JSONObject getModuleList() {"
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + MODULE_LIST + JSON_EXTENTION);"
+        "content": "    public JSONObject getModuleList() {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        QueryResult queryResult \u003d query.execute();"
+        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + MODULE_LIST + JSON_EXTENTION);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        if (queryResult.process(logger)) {"
+        "content": "        QueryResult queryResult \u003d query.execute();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
+        "content": "        if (queryResult.process(logger)) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return obj;"
+        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        } else {"
+        "content": "            return obj;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return null;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        }"
+        "content": "            return null;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * Returns a JSONObject of detailed information about all modules in ACED_YEAR."
+        "content": "    /**"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *"
+        "content": "     * Returns a JSONObject of detailed information about all modules in ACED_YEAR."
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @return"
+        "content": "     *"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     */"
+        "content": "     * @return"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public JSONObject getModuleInfo() {"
+        "content": "     */"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + MODULE_INFO + JSON_EXTENTION);"
+        "content": "    public JSONObject getModuleInfo() {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        QueryResult queryResult \u003d query.execute();"
+        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + MODULE_INFO + JSON_EXTENTION);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        if (queryResult.process(logger)) {"
+        "content": "        QueryResult queryResult \u003d query.execute();"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
+        "content": "        if (queryResult.process(logger)) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return obj;"
+        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        } else {"
+        "content": "            return obj;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return null;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        }"
+        "content": "            return null;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * Returns a JSONObject of all information about moduleCode in ACAD_YEAR."
+        "content": "    /**"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *"
+        "content": "     * Returns a JSONObject of all information about moduleCode in ACAD_YEAR."
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @param moduleCode code of the specific module"
+        "content": "     *"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @return JSONObject representing information of the module"
+        "content": "     * @param moduleCode code of the specific module"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     */"
+        "content": "     * @return JSONObject representing information of the module"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public JSONObject getModules(String moduleCode) {"
+        "content": "     */"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + MODULES + SLASH + moduleCode + JSON_EXTENTION);"
+        "content": "    public JSONObject getModules(String moduleCode) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        QueryResult queryResult \u003d query.execute();"
+        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + MODULES + SLASH + moduleCode + JSON_EXTENTION);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        if (queryResult.process(logger)) {"
+        "content": "        QueryResult queryResult \u003d query.execute();"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
+        "content": "        if (queryResult.process(logger)) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return obj;"
+        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        } else {"
+        "content": "            return obj;"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return null;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        }"
+        "content": "            return null;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * Returns a JSONObject of summaries of all venues for the current semester."
+        "content": "    /**"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "Alvinnyk"
+          "gitId": "klementtan"
         },
-        "content": "     *"
+        "content": "     * Returns a JSONArray of summaries of all venues for the current semester."
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @param semester current semmester: 1 -\u003e sem 1"
+        "content": "     *"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *                 2 -\u003e sem 2"
+        "content": "     * @param semester current semmester: 1 -\u003e sem 1"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *                 3 -\u003e special term 1"
+        "content": "     *                 2 -\u003e sem 2"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *                 4 -\u003e special term 2"
+        "content": "     *                 3 -\u003e special term 1"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @return JSONObject representing the venues"
+        "content": "     *                 4 -\u003e special term 2"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "Alvinnyk"
+          "gitId": "klementtan"
         },
-        "content": "     */"
+        "content": "     * @return JSONArray representing the venues"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public JSONObject getVenues(String semester) {"
+        "content": "     */"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "Alvinnyk"
+          "gitId": "klementtan"
         },
-        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + SEMESTERS + semester + VENUES + JSON_EXTENTION);"
+        "content": "    public JSONArray getVenues(String semester) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        QueryResult queryResult \u003d query.execute();"
+        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + SEMESTERS + semester + VENUES + JSON_EXTENTION);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        if (queryResult.process(logger)) {"
+        "content": "        QueryResult queryResult \u003d query.execute();"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
+        "content": "        if (queryResult.process(logger)) {"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "Alvinnyk"
+          "gitId": "klementtan"
         },
-        "content": "            return obj;"
+        "content": "            JSONArray obj \u003d ParserUtil.parseStringToJsonArray(queryResult.getResponseResult());"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        } else {"
+        "content": "            return obj;"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return null;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        }"
+        "content": "            return null;"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * Returns a JSONObject of detailed infomation of all venues."
+        "content": "    /**"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *"
+        "content": "     * Returns a JSONObject of detailed infomation of all venues."
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @param semester current semmester: 1 -\u003e sem 1"
+        "content": "     *"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *                 2 -\u003e sem 2"
+        "content": "     * @param semester current semmester: 1 -\u003e sem 1"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *                 3 -\u003e special term 1"
+        "content": "     *                 2 -\u003e sem 2"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *                 4 -\u003e special term 2"
+        "content": "     *                 3 -\u003e special term 1"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @return JSONObject representing the venues"
+        "content": "     *                 4 -\u003e special term 2"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     */"
+        "content": "     * @return JSONObject representing the venues"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public JSONObject getVenueInformation(String semester) {"
+        "content": "     */"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + SEMESTERS + semester + VENUE_INFO + JSON_EXTENTION);"
+        "content": "    public JSONObject getVenueInformation(String semester) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        QueryResult queryResult \u003d query.execute();"
+        "content": "        ApiQuery query \u003d new ApiQuery(BASEURL + ACAD_YEAR + SEMESTERS + semester + VENUE_INFO + JSON_EXTENTION);"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        if (queryResult.process(logger)) {"
+        "content": "        QueryResult queryResult \u003d query.execute();"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
+        "content": "        if (queryResult.process(logger)) {"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return obj;"
+        "content": "            JSONObject obj \u003d ParserUtil.parseStringToJsonObject(queryResult.getResponseResult());"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        } else {"
+        "content": "            return obj;"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            return null;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        }"
+        "content": "            return null;"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 124,
+        "author": {
+          "gitId": "Alvinnyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 125,
         "author": {
           "gitId": "Alvinnyk"
         },
@@ -64521,7 +65472,8 @@
       }
     ],
     "authorContributionMap": {
-      "Alvinnyk": 124
+      "klementtan": 5,
+      "Alvinnyk": 120
     }
   },
   {
@@ -65275,180 +66227,299 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "Alvinnyk"
+          "gitId": "klementtan"
         },
-        "content": "import org.json.simple.JSONObject;"
+        "content": "import org.json.simple.JSONArray;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "import org.json.simple.parser.JSONParser;"
+        "content": "import org.json.simple.JSONObject;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "import org.json.simple.parser.ParseException;"
+        "content": "import org.json.simple.parser.JSONParser;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "import org.json.simple.parser.ParseException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": " * Parser Utilities"
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": " */"
+        "content": " * Parser Utilities"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "public class ParserUtil {"
+        "content": " */"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": ""
+        "content": "public class ParserUtil {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * Converts a String into a JSONObject."
+        "content": "    /**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     *"
+        "content": "     * Converts a String into a JSONObject."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @param s String to be converted"
+        "content": "     *"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     * @return JSONObject"
+        "content": "     * @param s String to be converted"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "     */"
+        "content": "     * @return JSONObject"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    public static JSONObject parseStringToJsonObject(String s) {"
+        "content": "     */"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        JSONObject obj \u003d null;"
+        "content": "    public static JSONObject parseStringToJsonObject(String s) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        try {"
+        "content": "        JSONObject obj \u003d null;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            JSONParser parser \u003d new JSONParser();"
+        "content": "        try {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            obj \u003d (JSONObject) parser.parse(s);"
+        "content": "            JSONParser parser \u003d new JSONParser();"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        } catch (ParseException pe) {"
+        "content": "            obj \u003d (JSONObject) parser.parse(s);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "            System.out.println(\"Failed to parse JSON object\");"
+        "content": "        } catch (ParseException pe) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        }"
+        "content": "            System.out.println(\"Failed to parse JSON object\");"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "        return obj;"
+        "content": "        }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Alvinnyk"
         },
-        "content": "    }"
+        "content": "        return obj;"
       },
       {
         "lineNumber": 28,
+        "author": {
+          "gitId": "Alvinnyk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * Converts a String into a JSONArray."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @param s String to be converted"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     * @return JSONArray"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public static JSONArray parseStringToJsonArray(String s) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        JSONArray obj \u003d null;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            JSONParser parser \u003d new JSONParser();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            obj \u003d (JSONArray) parser.parse(s);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            System.out.println(\"Failed to parse JSON Array\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        return obj;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
         "author": {
           "gitId": "Alvinnyk"
         },
@@ -65456,6 +66527,7 @@
       }
     ],
     "authorContributionMap": {
+      "klementtan": 17,
       "Alvinnyk": 28
     }
   },
@@ -74694,6 +75766,1375 @@
     ],
     "authorContributionMap": {
       "YiJiee": 36
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/logic/internal/gmaps/GmapsJsonUtilsTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "package seedu.address.logic.internal.gmaps;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.json.simple.JSONObject;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.json.simple.parser.JSONParser;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.json.simple.parser.ParseException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "public class GmapsJsonUtilsTest {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public void contructs_nxn_matrix() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        String gmapsResponse \u003d"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                \"{ \\n\""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   \\\"destination_addresses\\\":[ \\n\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      \\\"10 Lower Kent Ridge Rd, National University of Singapore, Singapore\\\",\\n\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      \\\"Lower Kent Ridge Rd, Singapore\\\",\\n\""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      \\\"11 Computing Dr, Singapore 117416\\\"\\n\""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   ],\\n\""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   \\\"rows\\\":[ \\n\""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      { \\n\""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"         \\\"elements\\\":[ \\n\""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1 min\\\",\\n\""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":0\\n\""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1 ft\\\",\\n\""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":0\\n\""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            },\\n\""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"3 mins\\\",\\n\""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":157\\n\""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"0.3 mi\\\",\\n\""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":466\\n\""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            },\\n\""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"8 mins\\\",\\n\""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":455\\n\""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1.4 mi\\\",\\n\""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":2293\\n\""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            }\\n\""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"         ]\\n\""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      },\\n\""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      { \\n\""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"         \\\"elements\\\":[ \\n\""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"           { \\n\""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"2 mins\\\",\\n\""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":145\\n\""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"0.3 mi\\\",\\n\""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":466\\n\""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            },\\n\""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1 min\\\",\\n\""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":0\\n\""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1 ft\\\",\\n\""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":0\\n\""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            },\\n\""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"6 mins\\\",\\n\""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":348\\n\""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1.2 mi\\\",\\n\""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":1964\\n\""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            }\\n\""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"         ]\\n\""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      },\\n\""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      { \\n\""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"         \\\"elements\\\":[ \\n\""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"9 mins\\\",\\n\""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":526\\n\""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1.6 mi\\\",\\n\""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":2534\\n\""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            },\\n\""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"7 mins\\\",\\n\""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":434\\n\""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1.4 mi\\\",\\n\""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":2205\\n\""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            },\\n\""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            { \\n\""
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"duration\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1 min\\\",\\n\""
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":0\\n\""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"distance\\\":{ \\n\""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"text\\\":\\\"1 ft\\\",\\n\""
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"                  \\\"value\\\":0\\n\""
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               },\\n\""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"               \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"            }\\n\""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"         ]\\n\""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      }\\n\""
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   ],\\n\""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   \\\"origin_addresses\\\":[ \\n\""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      \\\"10 Lower Kent Ridge Rd, National University of Singapore, Singapore\\\",\\n\""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      \\\"Lower Kent Ridge Rd, Singapore\\\",\\n\""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"      \\\"11 Computing Dr, Singapore 117416\\\"\\n\""
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   ],\\n\""
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"   \\\"status\\\":\\\"OK\\\"\\n\""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "                + \"}\\n\";"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        JSONParser parser \u003d new JSONParser();"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cLong\u003e expectedRow1 \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow1.add((long) 0);"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow1.add((long) 157);"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow1.add((long) 455);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cLong\u003e expectedRow2 \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow2.add((long) 145);"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow2.add((long) 0);"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow2.add((long) 348);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cLong\u003e expectedRow3 \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow3.add((long) 526);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow3.add((long) 434);"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedRow3.add((long) 0);"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cArrayList\u003cLong\u003e\u003e expectedMatrix \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedMatrix.add(expectedRow1);"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedMatrix.add(expectedRow2);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        expectedMatrix.add(expectedRow3);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            JSONObject response \u003d (JSONObject) parser.parse(gmapsResponse);"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            ArrayList\u003cArrayList\u003cLong\u003e\u003e matrix \u003d GmapsJsonUtils.getArrayListMatrix(response);"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            assertTrue(matrix.equals(expectedMatrix));"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            System.out.println(\"Failed to parse JSON object\");"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "klementtan": 168
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/logic/internal/gmaps/LocationArrayListUtilsTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "package seedu.address.logic.internal.gmaps;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "import seedu.address.model.gmaps.Location;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "public class LocationArrayListUtilsTest {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    public void getSubList_test() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cLocation\u003e locationArrayList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        for (int i \u003d 0; i \u003c 10; i++) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            Location currLocation \u003d new Location(Integer.toString(i));"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            locationArrayList.add(currLocation);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        ArrayList\u003cLocation\u003e newlocationArrayList \u003d LocationArrayListUtils.getSubList(locationArrayList, 3, 5);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        assertTrue(newlocationArrayList.size() \u003d\u003d 3);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        for (int i \u003d 0; i \u003c newlocationArrayList.size(); i++) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "            assertTrue(Integer.parseInt(newlocationArrayList.get(i).locationName) \u003d\u003d i + 3);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "klementtan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "klementtan": 25
     }
   },
   {
