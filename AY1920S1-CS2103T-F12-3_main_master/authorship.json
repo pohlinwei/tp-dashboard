@@ -40936,6 +40936,526 @@
     }
   },
   {
+    "path": "src/main/java/tagline/ui/ChatPane.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "package tagline.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.control.ScrollPane;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.image.Image;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.layout.GridPane;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.layout.StackPane;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.layout.VBox;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import tagline.ui.CommandBox.CommandExecutor;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": " * The UI component that stores the chat window."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "public class ChatPane extends UiPart\u003cGridPane\u003e {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final String FXML \u003d \"ChatPane.fxml\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final String TAGLINE_RESPONSE_IMAGE \u003d \"/images/tagline_icon.png\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private CommandBox commandBox;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private StackPane commandBoxPlaceholder;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private ScrollPane dialogScrollPane;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private VBox dialogContainer;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private Image image \u003d new Image(getClass().getResourceAsStream(TAGLINE_RESPONSE_IMAGE));"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public ChatPane() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        //setting vvalue to 1.0 doesn\u0027t work"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        dialogScrollPane.vvalueProperty().bind(dialogContainer.heightProperty());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Fills up all the placeholders of this window."
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    void fillInnerParts(CommandExecutor commandExecutor) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        commandBox \u003d new CommandBox(commandExecutor);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        commandBox.getRoot().prefWidthProperty().bind(getRoot().widthProperty());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Displays a new command from the user in the chat window."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param commandFromUser Command entered by user"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public void setCommandFromUser(String commandFromUser) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        requireNonNull(commandFromUser);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        //Don\u0027t display empty messages"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        if (commandFromUser.isEmpty()) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        dialogContainer.getChildren().add(DialogBox.getCommandDialog(commandFromUser).getRoot());"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Displays the feedback returned by TagLine in the chat window."
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param feedbackToUser Feedback to user"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public void setFeedbackToUser(String feedbackToUser) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        requireNonNull(feedbackToUser);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        dialogContainer.getChildren().add(DialogBox.getResponseDialog(feedbackToUser, image).getRoot());"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 73
+    }
+  },
+  {
     "path": "src/main/java/tagline/ui/CommandBox.java",
     "fileType": "functional",
     "lines": [
@@ -41482,6 +42002,948 @@
     "authorContributionMap": {
       "stevenwjy": 5,
       "-": 72
+    }
+  },
+  {
+    "path": "src/main/java/tagline/ui/ContactResultPane.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "package tagline.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.layout.StackPane;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import tagline.model.person.Person;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": " * The UI component that displays the contact list as a result."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "public class ContactResultPane extends ResultPane {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final String FXML \u003d \"ContactResultPane.fxml\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private PersonListPanel personListPanel;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private StackPane personListPanelPlaceholder;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public ContactResultPane() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Fills up all the placeholders of this window."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    void fillInnerParts(ObservableList\u003cPerson\u003e personList) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        personListPanel \u003d new PersonListPanel(personList);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 31
+    }
+  },
+  {
+    "path": "src/main/java/tagline/ui/DialogBox.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "package tagline.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.animation.FadeTransition;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.geometry.Pos;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.control.Label;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.image.Image;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.image.ImageView;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.layout.HBox;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.scene.shape.Circle;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "import javafx.util.Duration;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": " * A dialog box to display chat messages."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "class DialogBox extends UiPart\u003cHBox\u003e {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final String FXML \u003d \"DialogBox.fxml\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final String COMMAND_DIALOG \u003d \"command-dialog\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final String RESPONSE_DIALOG \u003d \"response-dialog\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final double TRANSITION_DURATION \u003d 0.5;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final double TRANSITION_OPACITY_FROM \u003d 0.5;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private static final double TRANSITION_OPACITY_TO \u003d 1.0;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private Label dialog;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private ImageView displayPicture;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private FadeTransition fadeTransition;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Creates a new DialogBox."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param text  Text to place in the dialog box"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private DialogBox(String text) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        dialog.setText(text);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        prepareAnimation();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        double radius \u003d displayPicture.getFitHeight() / 2;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        displayPicture.setClip(new Circle(radius, radius, radius));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Prepares the fade-in transition of the dialog box."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private void prepareAnimation() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        fadeTransition \u003d new FadeTransition();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        fadeTransition.setDuration(Duration.seconds(TRANSITION_DURATION));"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        fadeTransition.setFromValue(TRANSITION_OPACITY_FROM);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        fadeTransition.setToValue(TRANSITION_OPACITY_TO);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        fadeTransition.setNode(dialog);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Flips the dialog box so that the text is aligned on the left."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    private void flip() {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        getRoot().setAlignment(Pos.TOP_LEFT);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Creates a dialog box for commands from the user."
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * The text box is aligned to the right."
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param text  Text to place in the dialog box"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @return      A DialogBox object for the message"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public static DialogBox getCommandDialog(String text) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        DialogBox db \u003d new DialogBox(text);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        db.dialog.getStyleClass().add(COMMAND_DIALOG);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        db.fadeTransition.play();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        return db;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * Creates a dialog box for response messages."
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * The text box is aligned to the left."
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param text  Text to place in the dialog box"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param image Image to place as the icon"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @return      A DialogBox object for the message"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public static DialogBox getResponseDialog(String text, Image image) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        DialogBox db \u003d new DialogBox(text);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        db.flip();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        db.displayPicture.setImage(image);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        db.dialog.getStyleClass().add(RESPONSE_DIALOG);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        db.fadeTransition.play();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        return db;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 101
     }
   },
   {
@@ -42446,16 +43908,16 @@
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    private PersonListPanel personListPanel;"
+        "content": "    private ChatPane chatPane;"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    private ResultDisplay resultDisplay;"
+        "content": "    private ContactResultPane contactResultPane;"
       },
       {
         "lineNumber": 36,
@@ -42483,7 +43945,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    private StackPane commandBoxPlaceholder;"
+        "content": "    private MenuItem helpMenuItem;"
       },
       {
         "lineNumber": 40,
@@ -42502,9 +43964,9 @@
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    private MenuItem helpMenuItem;"
+        "content": "    private StackPane statusbarPlaceholder;"
       },
       {
         "lineNumber": 43,
@@ -42523,9 +43985,9 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    private StackPane personListPanelPlaceholder;"
+        "content": "    private StackPane chatPanePlaceholder;"
       },
       {
         "lineNumber": 46,
@@ -42544,9 +44006,9 @@
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    private StackPane resultDisplayPlaceholder;"
+        "content": "    private StackPane resultPanePlaceholder;"
       },
       {
         "lineNumber": 49,
@@ -42560,14 +44022,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "    public MainWindow(Stage primaryStage, Logic logic) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "    private StackPane statusbarPlaceholder;"
+        "content": "        super(FXML, primaryStage);"
       },
       {
         "lineNumber": 52,
@@ -42581,42 +44043,42 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    public MainWindow(Stage primaryStage, Logic logic) {"
+        "content": "        // Set dependencies"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "        super(FXML, primaryStage);"
+        "content": "        this.primaryStage \u003d primaryStage;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        this.logic \u003d logic;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        // Set dependencies"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.primaryStage \u003d primaryStage;"
+        "content": "        // Configure the UI"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.logic \u003d logic;"
+        "content": "        setWindowDefaultSize(logic.getGuiSettings());"
       },
       {
         "lineNumber": 59,
@@ -42630,28 +44092,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        // Configure the UI"
+        "content": "        setAccelerators();"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "        setWindowDefaultSize(logic.getGuiSettings());"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        helpWindow \u003d new HelpWindow();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "        setAccelerators();"
+        "content": "    }"
       },
       {
         "lineNumber": 64,
@@ -42665,357 +44127,357 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        helpWindow \u003d new HelpWindow();"
+        "content": "    public Stage getPrimaryStage() {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return primaryStage;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Stage getPrimaryStage() {"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "        return primaryStage;"
+        "content": "    private void setAccelerators() {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        setAccelerator(helpMenuItem, KeyCombination.valueOf(\"F1\"));"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void setAccelerators() {"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "        setAccelerator(helpMenuItem, KeyCombination.valueOf(\"F1\"));"
+        "content": "    /**"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "     * Sets the accelerator of a MenuItem."
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     * @param keyCombination the KeyCombination value of the accelerator"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Sets the accelerator of a MenuItem."
+        "content": "    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param keyCombination the KeyCombination value of the accelerator"
+        "content": "        menuItem.setAccelerator(keyCombination);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {"
+        "content": "        /*"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "        menuItem.setAccelerator(keyCombination);"
+        "content": "         * TODO: the code below can be removed once the bug reported here"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "         * https://bugs.openjdk.java.net/browse/JDK-8131666"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "        /*"
+        "content": "         * is fixed in later version of SDK."
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "         * TODO: the code below can be removed once the bug reported here"
+        "content": "         *"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "         * https://bugs.openjdk.java.net/browse/JDK-8131666"
+        "content": "         * According to the bug report, TextInputControl (TextField, TextArea) will"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "         * is fixed in later version of SDK."
+        "content": "         * consume function-key events. Because CommandBox contains a TextField, thus"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "         *"
+        "content": "         * some accelerators (e.g F1) will not work when the focus is in them because"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "         * According to the bug report, TextInputControl (TextField, TextArea) will"
+        "content": "         * the key event is consumed by the TextInputControl(s)."
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "         * consume function-key events. Because CommandBox contains a TextField, and"
+        "content": "         *"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will"
+        "content": "         * For now, we add following event filter to capture such key events and open"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "         * not work when the focus is in them because the key event is consumed by"
+        "content": "         * help window purposely so to support accelerators even when focus is"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "         * the TextInputControl(s)."
+        "content": "         * in CommandBox."
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "         *"
+        "content": "         */"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "         * For now, we add following event filter to capture such key events and open"
+        "content": "        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -\u003e {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "         * help window purposely so to support accelerators even when focus is"
+        "content": "            if (event.getTarget() instanceof TextInputControl \u0026\u0026 keyCombination.match(event)) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "         * in CommandBox or ResultDisplay."
+        "content": "                menuItem.getOnAction().handle(new ActionEvent());"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "         */"
+        "content": "                event.consume();"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -\u003e {"
+        "content": "            }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (event.getTarget() instanceof TextInputControl \u0026\u0026 keyCombination.match(event)) {"
+        "content": "        });"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": "                menuItem.getOnAction().handle(new ActionEvent());"
+        "content": "    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "                event.consume();"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        });"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 103,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "     * Fills up all the placeholders of this window."
+        "content": "     * Swaps the current view in the result pane."
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 104,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "     * @param resultPane Next view to display"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "tanlk99"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    void setResultPaneView(ResultPane resultPane) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        resultPanePlaceholder.getChildren().removeAll();"
+      },
+      {
         "lineNumber": 109,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    void fillInnerParts() {"
+        "content": "        resultPanePlaceholder.getChildren().add(resultPane.getRoot());"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "        personListPanel \u003d new PersonListPanel(logic.getFilteredPersonList());"
+        "content": "    }"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
-        "content": "        resultDisplay \u003d new ResultDisplay();"
+        "content": "     * Fills up all the placeholders of this window."
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "-"
         },
-        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
+        "content": "     */"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    void fillInnerParts() {"
       },
       {
         "lineNumber": 116,
@@ -43041,413 +44503,413 @@
       {
         "lineNumber": 119,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
+        "content": "        contactResultPane \u003d new ContactResultPane();"
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
+        "content": "        contactResultPane.fillInnerParts(logic.getFilteredPersonList());"
       },
       {
         "lineNumber": 121,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": ""
       },
       {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        //set to contact result pane by default"
+      },
+      {
         "lineNumber": 123,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    /**"
+        "content": "        setResultPaneView(contactResultPane);"
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "     * Sets the default size based on {@code guiSettings}."
+        "content": ""
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "     */"
+        "content": "        chatPane \u003d new ChatPane();"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "    private void setWindowDefaultSize(GuiSettings guiSettings) {"
+        "content": "        chatPane.fillInnerParts(this::executeCommand);"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "        primaryStage.setHeight(guiSettings.getWindowHeight());"
+        "content": "        chatPanePlaceholder.getChildren().add(chatPane.getRoot());"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.setWidth(guiSettings.getWindowWidth());"
+        "content": "    }"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (guiSettings.getWindowCoordinates() !\u003d null) {"
+        "content": ""
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
-        "content": "            primaryStage.setX(guiSettings.getWindowCoordinates().getX());"
+        "content": "    /**"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
-        "content": "            primaryStage.setY(guiSettings.getWindowCoordinates().getY());"
+        "content": "     * Sets the default size based on {@code guiSettings}."
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    private void setWindowDefaultSize(GuiSettings guiSettings) {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        primaryStage.setHeight(guiSettings.getWindowHeight());"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        primaryStage.setWidth(guiSettings.getWindowWidth());"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Opens the help window or focuses on it if it\u0027s already opened."
+        "content": "        if (guiSettings.getWindowCoordinates() !\u003d null) {"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "            primaryStage.setX(guiSettings.getWindowCoordinates().getX());"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "            primaryStage.setY(guiSettings.getWindowCoordinates().getY());"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void handleHelp() {"
+        "content": "        }"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!helpWindow.isShowing()) {"
+        "content": "    }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "-"
         },
-        "content": "            helpWindow.show();"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
-        "content": "        } else {"
+        "content": "    /**"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": "            helpWindow.focus();"
+        "content": "     * Opens the help window or focuses on it if it\u0027s already opened."
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void handleHelp() {"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
-        "content": "    void show() {"
+        "content": "        if (!helpWindow.isShowing()) {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.show();"
+        "content": "            helpWindow.show();"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            helpWindow.focus();"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Closes the application."
+        "content": "    }"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "    void show() {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void handleExit() {"
+        "content": "        primaryStage.show();"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
-        "content": "        GuiSettings guiSettings \u003d new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),"
+        "content": "    }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
-        "content": "                (int) primaryStage.getX(), (int) primaryStage.getY());"
+        "content": ""
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": "        logic.setGuiSettings(guiSettings);"
+        "content": "    /**"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": "        helpWindow.hide();"
+        "content": "     * Closes the application."
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.hide();"
+        "content": "     */"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private void handleExit() {"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": "    public PersonListPanel getPersonListPanel() {"
+        "content": "        GuiSettings guiSettings \u003d new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": "        return personListPanel;"
+        "content": "                (int) primaryStage.getX(), (int) primaryStage.getY());"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        logic.setGuiSettings(guiSettings);"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        helpWindow.hide();"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        primaryStage.hide();"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Executes the command and returns the result."
+        "content": "    }"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "stevenwjy"
+          "gitId": "-"
         },
-        "content": "     * @see tagline.logic.Logic#execute(String)"
+        "content": "    /**"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Executes the command and returns the result."
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "-"
         },
-        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
+        "content": "     *"
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "-"
+          "gitId": "stevenwjy"
         },
-        "content": "        try {"
+        "content": "     * @see tagline.logic.Logic#execute(String)"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "-"
         },
-        "content": "            CommandResult commandResult \u003d logic.execute(commandText);"
+        "content": "     */"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Result: \" + commandResult.getFeedbackToUser());"
+        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());"
+        "content": "        chatPane.setCommandFromUser(commandText);"
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": ""
       },
@@ -43456,108 +44918,143 @@
         "author": {
           "gitId": "-"
         },
-        "content": "            if (commandResult.isShowHelp()) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "-"
         },
-        "content": "                handleHelp();"
+        "content": "            CommandResult commandResult \u003d logic.execute(commandText);"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "            logger.info(\"Result: \" + commandResult.getFeedbackToUser());"
       },
       {
         "lineNumber": 181,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": ""
+        "content": "            chatPane.setFeedbackToUser(commandResult.getFeedbackToUser());"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (commandResult.isExit()) {"
+        "content": ""
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "-"
         },
-        "content": "                handleExit();"
+        "content": "            if (commandResult.isShowHelp()) {"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "                handleHelp();"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
-        "content": "            return commandResult;"
+        "content": ""
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (CommandException | ParseException e) {"
+        "content": "            if (commandResult.isExit()) {"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Invalid command: \" + commandText);"
+        "content": "                handleExit();"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "-"
         },
-        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
+        "content": "            }"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw e;"
+        "content": ""
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            return commandResult;"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        } catch (CommandException | ParseException e) {"
       },
       {
         "lineNumber": 193,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.info(\"Invalid command: \" + commandText);"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "            chatPane.setFeedbackToUser(e.getMessage());"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 198,
         "author": {
           "gitId": "-"
         },
@@ -43566,7 +45063,8 @@
     ],
     "authorContributionMap": {
       "stevenwjy": 8,
-      "-": 185
+      "tanlk99": 32,
+      "-": 158
     }
   },
   {
@@ -44430,209 +45928,96 @@
     }
   },
   {
-    "path": "src/main/java/tagline/ui/ResultDisplay.java",
+    "path": "src/main/java/tagline/ui/ResultPane.java",
     "fileType": "functional",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
-          "gitId": "stevenwjy"
+          "gitId": "tanlk99"
         },
         "content": "package tagline.ui;"
       },
       {
         "lineNumber": 2,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": "import static java.util.Objects.requireNonNull;"
+        "content": "import javafx.scene.layout.VBox;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.fxml.FXML;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.control.TextArea;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.layout.Region;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
-        "content": " * A ui for the status bar that is displayed at the header of the application."
+        "content": " * Abstract class for a UI component that displays a command result."
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": " */"
       },
       {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "public abstract class ResultPane extends UiPart\u003cVBox\u003e {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    public ResultPane(String fxml) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        super(fxml);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    }"
+      },
+      {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
-        },
-        "content": "public class ResultDisplay extends UiPart\u003cRegion\u003e {"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private static final String FXML \u003d \"ResultDisplay.fxml\";"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @FXML"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private TextArea resultDisplay;"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public ResultDisplay() {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        super(FXML);"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void setFeedbackToUser(String feedbackToUser) {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        requireNonNull(feedbackToUser);"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        resultDisplay.setText(feedbackToUser);"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
+          "gitId": "tanlk99"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "stevenwjy": 1,
-      "-": 27
+      "tanlk99": 12
     }
   },
   {
@@ -46164,6 +47549,1232 @@
     "authorContributionMap": {
       "stevenwjy": 2,
       "-": 86
+    }
+  },
+  {
+    "path": "src/main/resources/view/ChatPane.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.control.ScrollPane?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.RowConstraints?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003cGridPane xmlns\u003d\"http://javafx.com/javafx/8\""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "          xmlns:fx\u003d\"http://javafx.com/fxml/1\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003crowConstraints\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cRowConstraints vgrow\u003d\"ALWAYS\" valignment\u003d\"TOP\"/\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cRowConstraints vgrow\u003d\"NEVER\" valignment\u003d\"BOTTOM\"/\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/rowConstraints\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cStackPane VBox.vgrow\u003d\"ALWAYS\" styleClass\u003d\"stack-pane\" GridPane.rowIndex\u003d\"0\"\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "            \u003cScrollPane fx:id\u003d\"dialogScrollPane\" hbarPolicy\u003d\"NEVER\" fitToWidth\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                \u003ccontent\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                    \u003cVBox fx:id\u003d\"dialogContainer\" /\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                \u003c/content\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "            \u003c/ScrollPane\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003c/StackPane\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cStackPane VBox.vgrow\u003d\"NEVER\" fx:id\u003d\"commandBoxPlaceholder\" styleClass\u003d\"stack-pane\""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                   GridPane.rowIndex\u003d\"1\"\u003e"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "            \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                \u003cInsets top\u003d\"5\" right\u003d\"10\" bottom\u003d\"5\" left\u003d\"10\" /\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "            \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003c/StackPane\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c/GridPane\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 32
+    }
+  },
+  {
+    "path": "src/main/resources/view/CommandBox.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.control.Button?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.TextField?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.ColumnConstraints?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003cGridPane styleClass\u003d\"stack-pane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003ccolumnConstraints\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cColumnConstraints hgrow\u003d\"ALWAYS\" halignment\u003d\"LEFT\"/\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cColumnConstraints hgrow\u003d\"NEVER\" prefWidth\u003d\"5.0\" minWidth\u003d\"5.0\"/\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cColumnConstraints hgrow\u003d\"NEVER\" minWidth\u003d\"60.0\"/\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/columnConstraints\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cTextField fx:id\u003d\"commandTextField\" onAction\u003d\"#handleCommandEntered\" promptText\u003d\"Enter command here...\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                   GridPane.columnIndex\u003d\"0\"/\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cButton onAction\u003d\"#handleCommandEntered\" text\u003d\"Send\" GridPane.columnIndex\u003d\"2\"/\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c/GridPane\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 15,
+      "-": 4
+    }
+  },
+  {
+    "path": "src/main/resources/view/ContactResultPane.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003cVBox xmlns\u003d\"http://javafx.com/javafx/8\""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "      xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cInsets top\u003d\"10\" right\u003d\"10\" bottom\u003d\"10\" left\u003d\"10\" /\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003cStackPane fx:id\u003d\"personListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c/VBox\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 13
+    }
+  },
+  {
+    "path": "src/main/resources/view/DialogBox.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.control.Label?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.image.ImageView?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003cHBox styleClass\u003d\"dialog-box\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\" alignment\u003d\"TOP_RIGHT\" \u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cImageView fx:id\u003d\"displayPicture\" fitHeight\u003d\"40\" fitWidth\u003d\"40\" preserveRatio\u003d\"true\" pickOnBounds\u003d\"true\" /\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cLabel fx:id\u003d\"dialog\" wrapText\u003d\"true\" minHeight\u003d\"40\" styleClass\u003d\"message-content\" /\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "        \u003cInsets bottom\u003d\"10.0\" left\u003d\"10.0\" right\u003d\"10.0\" top\u003d\"10.0\" /\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "    \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c/HBox\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 16
+    }
+  },
+  {
+    "path": "src/main/resources/view/HelpWindow.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.Scene?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.Button?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.Label?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.image.Image?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.stage.Stage?\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003cfx:root resizable\u003d\"false\" title\u003d\"Help\" type\u003d\"javafx.stage.Stage\" xmlns\u003d\"http://javafx.com/javafx/11\""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "         xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cicons\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cImage url\u003d\"@/images/help_icon.png\"/\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/icons\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cscene\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cScene\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003cHBox alignment\u003d\"CENTER\"\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cLabel fx:id\u003d\"helpMessage\" text\u003d\"Label\"\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cHBox.margin\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                            \u003cInsets right\u003d\"5.0\"/\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003c/HBox.margin\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/Label\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cButton fx:id\u003d\"copyButton\" mnemonicParsing\u003d\"false\" onAction\u003d\"#copyUrl\" text\u003d\"Copy URL\"\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cHBox.margin\u003e"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                            \u003cInsets left\u003d\"5.0\"/\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003c/HBox.margin\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003copaqueInsets\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cInsets bottom\u003d\"10.0\" left\u003d\"5.0\" right\u003d\"10.0\" top\u003d\"5.0\"/\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/opaqueInsets\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cInsets bottom\u003d\"10.0\" left\u003d\"5.0\" right\u003d\"10.0\" top\u003d\"5.0\"/\u003e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003c/Scene\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/scene\u003e"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c/fx:root\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 2,
+      "-": 38
+    }
+  },
+  {
+    "path": "src/main/resources/view/MainWindow.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import java.net.URL?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.Menu?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.MenuBar?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.MenuItem?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.image.Image?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.scene.Scene?\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "\u003c?import javafx.stage.Stage?\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003cfx:root type\u003d\"javafx.stage.Stage\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "         title\u003d\"Address App\" minWidth\u003d\"800\" minHeight\u003d\"600\" onCloseRequest\u003d\"#handleExit\"\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cicons\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cImage url\u003d\"@/images/address_book_32.png\"/\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/icons\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cscene\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cScene\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003cstylesheets\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cURL value\u003d\"@DarkTheme.css\"/\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cURL value\u003d\"@Extensions.css\"/\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003c/stylesheets\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003cVBox\u003e"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cMenuBar fx:id\u003d\"menuBar\" VBox.vgrow\u003d\"NEVER\"\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"File\"\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cMenuItem mnemonicParsing\u003d\"false\" onAction\u003d\"#handleExit\" text\u003d\"Exit\"/\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/Menu\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"Help\"\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cMenuItem fx:id\u003d\"helpMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleHelp\" text\u003d\"Help\"/\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/Menu\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/MenuBar\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                \u003cHBox minWidth\u003d\"-Infinity\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                    \u003cStackPane fx:id\u003d\"chatPanePlaceholder\" styleClass\u003d\"pane-with-border\" minWidth\u003d\"350\" prefWidth\u003d\"350\""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                               HBox.hgrow\u003d\"NEVER\"/\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                    \u003cStackPane fx:id\u003d\"resultPanePlaceholder\" styleClass\u003d\"pane-with-border\" minWidth\u003d\"350\""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                               prefWidth\u003d\"350\" HBox.hgrow\u003d\"ALWAYS\"/\u003e"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tanlk99"
+        },
+        "content": "                \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cStackPane fx:id\u003d\"statusbarPlaceholder\" VBox.vgrow\u003d\"NEVER\"/\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003c/Scene\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/scene\u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c/fx:root\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "tanlk99": 10,
+      "-": 37
     }
   },
   {

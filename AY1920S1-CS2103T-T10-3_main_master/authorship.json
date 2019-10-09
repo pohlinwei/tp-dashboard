@@ -5630,6 +5630,4484 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/commons/core/item/Event.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "package seedu.address.commons.core.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.time.Duration;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Represents an Item\u0027s Event in ELISA."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Duration of Event is 0 by default."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Priority of Event is medium by default."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Guarantees: immutable;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "public class Event {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final LocalDateTime startDateTime;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final LocalDateTime endDateTime;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    //Duration chosen over Period as Events are unlikely to exceed a day."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Duration duration;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Priority priority;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Constructs an {@code Event}."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param startDateTime A valid LocalDateTime object that denotes the start of the event."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param duration A Duration of the event. Defaults to Duration.ZERO if null."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param priority A Priority of the event. Defaults to Priority.MEDIUM if null."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Event(LocalDateTime startDateTime, Duration duration, Priority priority) throws IllegalArgumentException {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        requireNonNull(startDateTime);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (duration !\u003d null) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.duration \u003d duration;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.duration \u003d Duration.ZERO;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (priority !\u003d null) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.priority \u003d priority;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.priority \u003d Priority.MEDIUM;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.startDateTime \u003d startDateTime;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.endDateTime \u003d startDateTime.plus(duration);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public LocalDateTime getStartDateTime() {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return startDateTime;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public LocalDateTime getEndDateTime() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return endDateTime;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Duration getDuration() {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return duration;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Priority getPriority() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return priority;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Event changeStartDateTime(LocalDateTime newStartDateTime) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new Event(newStartDateTime, getDuration(), getPriority());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Event changeDuration(Duration newDuration) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new Event(getStartDateTime(), newDuration, getPriority());"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Event changePriority(Priority newPriority) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new Event(getStartDateTime(), getDuration(), newPriority);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        builder.append(\"Start DateTime: \")"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getStartDateTime().toString())"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" End DateTime: \")"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getEndDateTime().toString())"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Duration: \")"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getDuration().toString())"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Priority: \")"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getPriority().toString());"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (!(other instanceof Item)) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        Event otherEvent \u003d (Event) other;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return otherEvent.getStartDateTime().equals(getStartDateTime())"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherEvent.getEndDateTime().equals(getEndDateTime())"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherEvent.getDuration().equals(getDuration())"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherEvent.getPriority().equals(getPriority());"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return Objects.hash(startDateTime, endDateTime, duration, priority);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "blimyj": 112
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/commons/core/item/Item.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "package seedu.address.commons.core.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Represents an Item in Elisa."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Guarantees: ItemDescription is present and not null."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * At least one of the following three fields (Task, Event, Reminder) is present and not null."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "public class Item {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    // Identity fields"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Task task;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Event event;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Reminder reminder;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    // Data fields"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final ItemDescription itemDescription;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Every field must be present and not null."
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private Item(Task task, Event event, Reminder reminder,"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                 ItemDescription itemDescription, Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        requireNonNull(itemDescription);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.task \u003d task;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.event \u003d event;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.reminder \u003d reminder;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.itemDescription \u003d itemDescription;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.tags.addAll(tags);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean hasTask() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return task !\u003d null;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean hasEvent() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return event !\u003d null;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean hasReminder() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return reminder !\u003d null;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Optional\u003cTask\u003e getTask() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (this.task \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return Optional.empty();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return Optional.of(this.task);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Optional\u003cEvent\u003e getEvent() {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (this.event \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return Optional.empty();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return Optional.of(this.event);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Optional\u003cReminder\u003e getReminder() {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (this.reminder \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return Optional.empty();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return Optional.of(this.reminder);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * if modification is attempted."
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Set\u003cTag\u003e getTags() {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return Collections.unmodifiableSet(tags);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public ItemDescription getItemDescription() {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return itemDescription;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Change ItemDescription"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Item changeItemDescription(ItemDescription newItemDescription) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new ItemBuilder().setItemDescription(newItemDescription)"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTask(task)"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setEvent(event)"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setReminder(reminder)"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTags(tags)"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Change Task referenced"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Item changeTask(Task newTask) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new ItemBuilder().setItemDescription(itemDescription)"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTask(newTask)"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setEvent(event)"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setReminder(reminder)"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTags(tags)"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Change Event referenced"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Item changeEvent(Event newEvent) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new ItemBuilder().setItemDescription(itemDescription)"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTask(task)"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setEvent(newEvent)"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setReminder(reminder)"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTags(tags)"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Change Reminder referenced"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Item changeReminder(Reminder newReminder) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new ItemBuilder().setItemDescription(itemDescription)"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTask(task)"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setEvent(event)"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setReminder(newReminder)"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTags(tags)"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Change Tags referenced"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Item changeTags(HashSet\u003cTag\u003e newTags) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new ItemBuilder().setItemDescription(itemDescription)"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTask(task)"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setEvent(event)"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setReminder(reminder)"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .setTags(newTags)"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Returns true if both items have the same task referenced."
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * This defines a weaker notion of equality between two items."
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean hasSameTask(Item otherItem) {"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return getTask().equals(otherItem.getTask());"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Returns true if both items have the same Event referenced."
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * This defines a weaker notion of equality between two items."
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean hasSameEvent(Item otherItem) {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return getEvent().equals(otherItem.getEvent());"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Returns true if both items have the same Reminder referenced."
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * This defines a weaker notion of equality between two items."
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean hasSameReminder(Item otherItem) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return getReminder().equals(otherItem.getReminder());"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Returns true if both items have the same identity and data fields."
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * This defines a stronger notion of equality between two items."
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (!(other instanceof Item)) {"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        Item otherItem \u003d (Item) other;"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return otherItem.getTask().equals(getTask())"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherItem.getReminder().equals(getReminder())"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherItem.getEvent().equals(getEvent())"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherItem.getItemDescription().equals(getItemDescription())"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherItem.getTags().equals(getTags());"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return Objects.hash(task, event, reminder, itemDescription, tags);"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        builder.append(\"Description: \")"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(itemDescription.toString())"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Task: \")"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getTask().toString())"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Event: \")"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getEvent().toString())"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Reminder: \")"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getReminder().toString())"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Tags: \")"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getTags().toString());"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        getTags().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Builder class for Item."
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public static class ItemBuilder {"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        // Identity fields"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        private Task task;"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        private Event event;"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        private Reminder reminder;"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        // Data fields"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        private ItemDescription itemDescription;"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        private Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public ItemBuilder() {}"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public ItemBuilder setTask(Task task) {"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            requireNonNull(task);"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.task \u003d task;"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return this;"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public ItemBuilder setEvent(Event event) {"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            requireNonNull(event);"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.event \u003d event;"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return this;"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public ItemBuilder setReminder(Reminder reminder) {"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            requireNonNull(reminder);"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.reminder \u003d reminder;"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return this;"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public ItemBuilder setItemDescription(ItemDescription descriptor) {"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            requireNonNull(descriptor);"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.itemDescription \u003d descriptor;"
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return this;"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        //Consider using a defensive copy of tags, similar to EditCommand in AB3"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public ItemBuilder setTags(Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            requireNonNull(tags);"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.tags \u003d tags;"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return this;"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        /**Validates arguments of Item before initialising it"
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "         * @return A valid Item."
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "         * @throws IllegalArgumentException If description not provided or task, event and reminder fields are null."
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        public Item build() throws IllegalArgumentException {"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            Item newItem \u003d new Item(this.task, this.event, this.reminder, this.itemDescription, this.tags);"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //Validation of parameters of object after object has been created."
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //Validate after object has been created as per StackOverflow link"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //https://stackoverflow.com/questions/38173274/builder-pattern-validation-effective-java"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //However this seems to be contrary to the answer in the following link"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //https://stackoverflow.com/questions/12930852/clearing-doubts-about-the-builder-pattern"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //However it seems safer to follow the first as the object fields could be mutated after it has been copied"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            // from the builder to the object."
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            if (newItem.getItemDescription() \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                throw new IllegalArgumentException(\"Description must be provided!\");"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            if (newItem.getTask() \u003d\u003d null \u0026\u0026 newItem.getEvent() \u003d\u003d null \u0026\u0026 newItem.getReminder() \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                throw new IllegalArgumentException(\"Task, Event \u0026 Reminder cannot all be empty!\");"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            //Resetting all constructing parameters back to null, so a new object doesn\u0027t use the parameters of the"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            // previous object."
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            task \u003d null;"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            event \u003d null;"
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            reminder \u003d null;"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            itemDescription \u003d null;"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            tags \u003d null;"
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return newItem;"
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "blimyj": 299
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/commons/core/item/ItemDescription.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "package seedu.address.commons.core.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import static seedu.address.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Represents an Item\u0027s description in ELISA."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidItemDescription(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "public class ItemDescription {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        \"ItemDescription should only contain characters and spaces, and it should not be blank\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final String description;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Constructs an {@code ItemDescription}."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param description A valid item description."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public ItemDescription(String description) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        requireNonNull(description);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        checkArgument(isValidItemDescription(description), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Returns true if a given string is a valid item description."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public static boolean isValidItemDescription(String test) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return test.trim().length() \u003e 0;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                || (other instanceof ItemDescription // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 getDescription().equals(((ItemDescription) other).getDescription())); // state check"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return description.hashCode();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "blimyj": 56
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/commons/core/item/Priority.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "package seedu.address.commons.core.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Available priority levels for tasks and events."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "public enum Priority {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    HIGH, MEDIUM, LOW;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "blimyj": 8
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/commons/core/item/Reminder.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "package seedu.address.commons.core.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Represents an Item\u0027s Reminder in ELISA."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Guarantees: immutable;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "public class Reminder {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final LocalDateTime dateTime;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Constructs a {@code Task}."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param dateTime A valid LocalDateTime object."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Reminder(LocalDateTime dateTime) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        requireNonNull(dateTime);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        this.dateTime \u003d dateTime;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public LocalDateTime getDateTime() {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return dateTime;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Changes the dateTime that the reminder occurs. Removes the previous reminder so it does not occur."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param dateTime A LocalDateTime object which dictates the dateTime the reminder occurs."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @return A new Reminder with the new dateTime for the reminder."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Reminder changeDateTime(LocalDateTime dateTime) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        //When Reminder is implemented, the previous reminder notification should also be removed here"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new Reminder(dateTime);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        builder.append(\"Reminder DateTime: \")"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getDateTime().toString());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (!(other instanceof Item)) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        Reminder otherReminder \u003d (Reminder) other;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return otherReminder.getDateTime().equals(getDateTime());"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    //Possibility of high number of hash collisions and as a result slower performance"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return Objects.hash(dateTime);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "blimyj": 70
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/commons/core/item/Task.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "package seedu.address.commons.core.item;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Represents an Item\u0027s Task in ELISA."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Completion state of Event is false by default."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Priority of Event is medium by default."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " * Guarantees: immutable;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Priority priority;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    private final Boolean complete;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * Constructs a {@code Task}."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param priority A Priority of the event. Defaults to Priority.MEDIUM if null."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     * @param complete Denotes whether the task has been completed or not. Defaults to false if null."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Task(Priority priority, Boolean complete) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (priority !\u003d null) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.priority \u003d priority;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.priority \u003d Priority.MEDIUM;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (complete !\u003d null) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.complete \u003d complete;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            this.complete \u003d false;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Priority getPriority() {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return priority;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Boolean isComplete() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return complete;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Task markComplete() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new Task(getPriority(), true);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public Task markIncomplete() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return new Task(getPriority(), false);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        builder.append(\"Priority: \")"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(getPriority().toString())"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(\" Completed: \")"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                .append(isComplete().toString());"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    //Problematic as the details of the task might be the same while the Item/actual task being referred to is not the"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    //same due to description"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        if (!(other instanceof Item)) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        Task otherTask \u003d (Task) other;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return otherTask.getPriority().equals(getPriority())"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "                \u0026\u0026 otherTask.isComplete().equals(isComplete());"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    //hashCode is problematic as I believe that there are only 3*2 permutations of priority and Boolean"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    //Possibility of high number of hash collisions and as a result slower performance"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "        return Objects.hash(priority, complete);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "blimyj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "blimyj": 87
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/LogicManager.java",
     "fileType": "functional",
     "lines": [
@@ -5902,51 +10380,51 @@
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "mannggoo"
+          "gitId": "blimyj"
         },
-        "content": "        //Logging, safe to ignore"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "blimyj"
         },
-        "content": "        logger.info(\"----------------[USER COMMAND][\" + commandText + \"]\");"
+        "content": "        //Logging"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        logger.info(\"----------------[USER COMMAND][\" + commandText + \"]\");"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        CommandResult commandResult;"
+        "content": ""
       },
       {
         "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        CommandResult commandResult;"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "mannggoo"
         },
         "content": "        //Parse user input from String to a Command"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
         "content": "        Command command \u003d addressBookParser.parseCommand(commandText);"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "mannggoo"
-        },
-        "content": "        //Executes the Command and stores the result"
       },
       {
         "lineNumber": 46,
@@ -5972,236 +10450,229 @@
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "mannggoo"
+          "gitId": "-"
         },
-        "content": "            //Model is modified in some way above, then we store the modified version."
+        "content": "            storage.saveAddressBook(model.getAddressBook());"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "            storage.saveAddressBook(model.getAddressBook());"
+        "content": "        } catch (IOException ioe) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException ioe) {"
+        "content": "            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);"
+        "content": "        }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        return commandResult;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "        return commandResult;"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public ReadOnlyAddressBook getAddressBook() {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "    public ReadOnlyAddressBook getAddressBook() {"
+        "content": "        return model.getAddressBook();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "        return model.getAddressBook();"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public ObservableList\u003cPerson\u003e getFilteredPersonList() {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "    public ObservableList\u003cPerson\u003e getFilteredPersonList() {"
+        "content": "        return model.getFilteredPersonList();"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "        return model.getFilteredPersonList();"
+        "content": "    }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public Path getAddressBookFilePath() {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Path getAddressBookFilePath() {"
+        "content": "        return model.getAddressBookFilePath();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "        return model.getAddressBookFilePath();"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public GuiSettings getGuiSettings() {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "    public GuiSettings getGuiSettings() {"
+        "content": "        return model.getGuiSettings();"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "        return model.getGuiSettings();"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
+        "content": "        model.setGuiSettings(guiSettings);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.setGuiSettings(guiSettings);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
@@ -6209,7 +10680,8 @@
       }
     ],
     "authorContributionMap": {
-      "mannggoo": 4,
+      "blimyj": 2,
+      "mannggoo": 1,
       "-": 78
     }
   },
