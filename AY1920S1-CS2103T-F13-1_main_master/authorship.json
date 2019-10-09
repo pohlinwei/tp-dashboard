@@ -9764,6 +9764,603 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/commons/core/UserSettings.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "package seedu.address.commons.core;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "import java.io.Serializable;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": " * A Serializable class that contains the User settings."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": " * Guarantees: immutable."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "public class UserSettings implements Serializable {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    private static final int DEFAULT_LOAN_PERIOD \u003d 14;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    private static final int DEFAULT_RENEW_PERIOD \u003d 14;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    private static final double DEFAULT_FINE_PERCENTAGE_INCREMENT \u003d 10;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    private final int loanPeriod;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    private final int renewPeriod;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    private final double finePercentageIncrement;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     * Instantiates a UserSettings that contains the default loanPeriod, renewPeriod and finePercentageIncrement."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public UserSettings() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        loanPeriod \u003d DEFAULT_LOAN_PERIOD;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        renewPeriod \u003d DEFAULT_RENEW_PERIOD;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        finePercentageIncrement \u003d DEFAULT_FINE_PERCENTAGE_INCREMENT;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     * Instantiates a UserSettings that contains the specified loanPeriod, renewPeriod and finePercentageIncrement."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     * @param loanPeriod Number of days that a book can be loaned."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     * @param renewPeriod Number of additional days given when loan is renewed."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     * @param finePercentageIncrement Percentage of the cost of the book that is added for each day of overdue."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public UserSettings(int loanPeriod, int renewPeriod, double finePercentageIncrement) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        this.loanPeriod \u003d loanPeriod;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        this.renewPeriod \u003d renewPeriod;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        this.finePercentageIncrement \u003d finePercentageIncrement;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public int getLoanPeriod() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return loanPeriod;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public int getRenewPeriod() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return renewPeriod;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public double getFinePercentageIncrement() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return finePercentageIncrement;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        if (!(other instanceof UserSettings)) { //this handles null as well."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        UserSettings o \u003d (UserSettings) other;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return loanPeriod \u003d\u003d o.loanPeriod"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                \u0026\u0026 renewPeriod \u003d\u003d o.renewPeriod"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                \u0026\u0026 finePercentageIncrement \u003d\u003d o.finePercentageIncrement;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return Objects.hash(loanPeriod, renewPeriod, finePercentageIncrement);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        StringBuilder sb \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        sb.append(\"Loan period : \" + loanPeriod + \"\\n\");"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        sb.append(\"Renew period : \" + renewPeriod + \"\\n\");"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        sb.append(\"Fine percentage increment : \" + finePercentageIncrement);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return sb.toString();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Cronyxx": 84
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/commons/util/DateUtil.java",
     "fileType": "functional",
     "lines": [
@@ -21851,96 +22448,117 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": ""
+        "content": "import seedu.address.commons.core.UserSettings;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "-"
         },
-        "content": " * Unmodifiable view of user prefs."
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Unmodifiable view of user prefs."
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": "public interface ReadOnlyUserPrefs {"
+        "content": " */"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public interface ReadOnlyUserPrefs {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "    GuiSettings getGuiSettings();"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    GuiSettings getGuiSettings();"
       },
       {
         "lineNumber": 14,
-        "author": {
-          "gitId": "hoholyin"
-        },
-        "content": "    Path getCatalogFilePath();"
-      },
-      {
-        "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    UserSettings getUserSettings();"
+      },
+      {
         "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    Path getCatalogFilePath();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    Path getLoanRecordsFilePath();"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 20,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 21,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    Path getBorrowerRecordsFilePath();"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
@@ -21949,7 +22567,8 @@
     ],
     "authorContributionMap": {
       "hoholyin": 1,
-      "-": 15,
+      "Cronyxx": 2,
+      "-": 16,
       "shiyao821": 3
     }
   },
@@ -22410,726 +23029,824 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": ""
+        "content": "import seedu.address.commons.core.UserSettings;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": " * Represents User\u0027s preferences."
+        "content": "/**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Represents User\u0027s preferences."
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "public class UserPrefs implements ReadOnlyUserPrefs {"
+        "content": " */"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class UserPrefs implements ReadOnlyUserPrefs {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "    private GuiSettings guiSettings \u003d new GuiSettings();"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "    private Path loanRecordsFilePath \u003d Paths.get(\"data\", \"loanrecords.json\");"
+        "content": "    private GuiSettings guiSettings \u003d new GuiSettings();"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "hoholyin"
+          "gitId": "Cronyxx"
         },
-        "content": "    private Path catalogFilePath \u003d Paths.get(\"data\", \"catalog.json\");"
+        "content": "    private UserSettings userSettings \u003d new UserSettings();"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "    private Path borrowerRecordsFilePath \u003d Paths.get(\"data\", \"borrowerrecords.json\");"
+        "content": "    private Path loanRecordsFilePath \u003d Paths.get(\"data\", \"loanrecords.json\");"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    private Path catalogFilePath \u003d Paths.get(\"data\", \"catalog.json\");"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": "    /**"
+        "content": "    private Path borrowerRecordsFilePath \u003d Paths.get(\"data\", \"borrowerrecords.json\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Creates a {@code UserPrefs} with default values."
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    public UserPrefs() {}"
+        "content": "     * Creates a {@code UserPrefs} with default values."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    public UserPrefs() {}"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}."
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    public UserPrefs(ReadOnlyUserPrefs userPrefs) {"
+        "content": "     * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "        this();"
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "        resetData(userPrefs);"
+        "content": "    public UserPrefs(ReadOnlyUserPrefs userPrefs) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        resetData(userPrefs);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}."
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void resetData(ReadOnlyUserPrefs newUserPrefs) {"
+        "content": "     * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(newUserPrefs);"
+        "content": "     */"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "        setGuiSettings(newUserPrefs.getGuiSettings());"
+        "content": "    public void resetData(ReadOnlyUserPrefs newUserPrefs) {"
       },
       {
         "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(newUserPrefs);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setGuiSettings(newUserPrefs.getGuiSettings());"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        setUserSettings(newUserPrefs.getUserSettings());"
+      },
+      {
+        "lineNumber": 43,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        setLoanRecordsFilePath(newUserPrefs.getLoanRecordsFilePath());"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 44,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "        setCatalogFilePath(newUserPrefs.getCatalogFilePath());"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 45,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        setBorrowerRecordsFilePath(newUserPrefs.getBorrowerRecordsFilePath());"
       },
       {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public GuiSettings getGuiSettings() {"
-      },
-      {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        return guiSettings;"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public GuiSettings getGuiSettings() {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
+        "content": "        return guiSettings;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(guiSettings);"
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.guiSettings \u003d guiSettings;"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        requireNonNull(guiSettings);"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "    public Path getLoanRecordsFilePath() {"
+        "content": "        this.guiSettings \u003d guiSettings;"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "        return loanRecordsFilePath;"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 57,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "    public UserSettings getUserSettings() {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return userSettings;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "shiyao821"
-        },
-        "content": "    public void setLoanRecordsFilePath(Path loanRecordsFilePath) {"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "shiyao821"
-        },
-        "content": "        requireNonNull(loanRecordsFilePath);"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "shiyao821"
-        },
-        "content": "        this.loanRecordsFilePath \u003d loanRecordsFilePath;"
-      },
-      {
         "lineNumber": 61,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "Cronyxx"
         },
-        "content": "    }"
+        "content": "    public void setUserSettings(UserSettings userSettings) {"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "Cronyxx"
         },
-        "content": ""
+        "content": "        requireNonNull(userSettings);"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "Cronyxx"
         },
-        "content": "    public Path getCatalogFilePath() {"
+        "content": "        this.userSettings \u003d userSettings;"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "Cronyxx"
         },
-        "content": "        return catalogFilePath;"
+        "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "Cronyxx"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": ""
+        "content": "    public Path getLoanRecordsFilePath() {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "    public void setCatalogFilePath(Path catalogFilePath) {"
+        "content": "        return loanRecordsFilePath;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        requireNonNull(catalogFilePath);"
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        this.catalogFilePath \u003d catalogFilePath;"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "    }"
+        "content": "    public void setLoanRecordsFilePath(Path loanRecordsFilePath) {"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": ""
+        "content": "        requireNonNull(loanRecordsFilePath);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "    public Path getBorrowerRecordsFilePath() {"
+        "content": "        this.loanRecordsFilePath \u003d loanRecordsFilePath;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        return borrowerRecordsFilePath;"
+        "content": "    }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": ""
+        "content": "    public Path getCatalogFilePath() {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "    public void setBorrowerRecordsFilePath(Path borrowerRecordsFilePath) {"
+        "content": "        return catalogFilePath;"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        requireNonNull(borrowerRecordsFilePath);"
+        "content": "    }"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        this.borrowerRecordsFilePath \u003d borrowerRecordsFilePath;"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": "    }"
+        "content": "    public void setCatalogFilePath(Path catalogFilePath) {"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": ""
+        "content": "        requireNonNull(catalogFilePath);"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": "    @Override"
+        "content": "        this.catalogFilePath \u003d catalogFilePath;"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    }"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
-        },
-        "content": "        if (other \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (!(other instanceof UserPrefs)) { //this handles null as well."
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
         "content": ""
       },
       {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "    public Path getBorrowerRecordsFilePath() {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "        return borrowerRecordsFilePath;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "    public void setBorrowerRecordsFilePath(Path borrowerRecordsFilePath) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "        requireNonNull(borrowerRecordsFilePath);"
+      },
+      {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": "        UserPrefs o \u003d (UserPrefs) other;"
+        "content": "        this.borrowerRecordsFilePath \u003d borrowerRecordsFilePath;"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "        return guiSettings.equals(o.guiSettings)"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 loanRecordsFilePath.equals(o.loanRecordsFilePath)"
+        "content": "    @Override"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 catalogFilePath.equals(o.catalogFilePath)"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 borrowerRecordsFilePath.equals(o.borrowerRecordsFilePath);"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            return true;"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        if (!(other instanceof UserPrefs)) { //this handles null as well."
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "    public int hashCode() {"
+        "content": "            return false;"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "-"
         },
-        "content": "        return Objects.hash(guiSettings, catalogFilePath, loanRecordsFilePath, borrowerRecordsFilePath);"
+        "content": "        }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        UserPrefs o \u003d (UserPrefs) other;"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "    public String toString() {"
+        "content": "        return guiSettings.equals(o.guiSettings)"
       },
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "        StringBuilder sb \u003d new StringBuilder();"
+        "content": "                \u0026\u0026 userSettings.equals(o.userSettings)"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "-"
+          "gitId": "shiyao821"
         },
-        "content": "        sb.append(\"Gui Settings : \" + guiSettings);"
+        "content": "                \u0026\u0026 loanRecordsFilePath.equals(o.loanRecordsFilePath)"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        sb.append(\"\\nLocal LoanRecords data file location : \" + loanRecordsFilePath);"
+        "content": "                \u0026\u0026 catalogFilePath.equals(o.catalogFilePath)"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "        sb.append(\"\\nLocal Catalog data file location : \" + catalogFilePath);"
+        "content": "                \u0026\u0026 borrowerRecordsFilePath.equals(o.borrowerRecordsFilePath);"
       },
       {
         "lineNumber": 109,
-        "author": {
-          "gitId": "shiyao821"
-        },
-        "content": "        sb.append(\"\\nLocal BorrowerRecords data file location : \" + borrowerRecordsFilePath);"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return sb.toString();"
-      },
-      {
-        "lineNumber": 111,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
         "lineNumber": 113,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        return Objects.hash(guiSettings, userSettings, catalogFilePath, loanRecordsFilePath, borrowerRecordsFilePath);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        StringBuilder sb \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        sb.append(\"Gui Settings : \" + guiSettings);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        sb.append(\"\\nUser Settings : \" + userSettings);"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "        sb.append(\"\\nLocal LoanRecords data file location : \" + loanRecordsFilePath);"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "        sb.append(\"\\nLocal Catalog data file location : \" + catalogFilePath);"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": "        sb.append(\"\\nLocal BorrowerRecords data file location : \" + borrowerRecordsFilePath);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return sb.toString();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
         "author": {
           "gitId": "-"
         },
@@ -23138,8 +23855,9 @@
     ],
     "authorContributionMap": {
       "hoholyin": 2,
+      "Cronyxx": 13,
       "-": 77,
-      "shiyao821": 34
+      "shiyao821": 35
     }
   },
   {
