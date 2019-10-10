@@ -455,6 +455,62 @@
             "deletions": 1
           }
         ]
+      },
+      {
+        "insertions": 2245,
+        "deletions": 1536,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "dd8ddc9e5935ba2108edcd42b72e3bf76b6b8e17",
+            "messageTitle": "Changed how application stores commands for undo and redo",
+            "messageBody": "Application was storing commands for undo and redo in a Singleton class called VersionControl, which was updated in LogicManager after each invertible command execution, and was used to facilitate undo and redo commands in their execution. Undo and redo commands also failed silently when not being able to fully undo or redo their given number of iterations.\n\nThe use of a singleton introduced unecessary dependency and the silent failure of undo and redo commands were not as user friendly as it seems.\n\nLets change the way commands are stored with a HistoryManager that will be in ModelManager. History related methods for ModelManager to implement is defined in HistoryModel which is extended by Model. There is less dependency between LogicManager, UndoCommand, RedoCommand and ModelManager. Undo and Redo Commands are now atomic in nature, where they do not fail silently anymore and will not make partial changes, it will either be fully successful or fail completely.  \"all\" argument removed from undo and redo as it is not useful for user. History range is now set to 20 commands.\n",
+            "insertions": 1935,
+            "deletions": 1254
+          },
+          {
+            "hash": "08ee88bf50dae6c90dddebf4845e0511979bfe8c",
+            "messageTitle": "Update UserGuide to reflect latest changes and details of undo and redo",
+            "messageBody": "",
+            "insertions": 20,
+            "deletions": 6
+          },
+          {
+            "hash": "e24f5b7fe433b58748b4a9dcfcfe8cce4f7946fc",
+            "messageTitle": "Rename AddressStorageManager to StorageManager",
+            "messageBody": "",
+            "insertions": 18,
+            "deletions": 18
+          },
+          {
+            "hash": "a349f5fe7bcc319969426f3a38ed4f0faae8f97b",
+            "messageTitle": "Remove redundant overrides in Storage",
+            "messageBody": "",
+            "insertions": 2,
+            "deletions": 28
+          },
+          {
+            "hash": "15e4b9505359e3e1cd5464087f28634e10828f16",
+            "messageTitle": "Update Model and Storage interfaces",
+            "messageBody": "",
+            "insertions": 4,
+            "deletions": 1
+          },
+          {
+            "hash": "5a541d3336bd46292583240ecc81d3da0a8bcae9",
+            "messageTitle": "Add history package to hold history related classes",
+            "messageBody": "",
+            "insertions": 155,
+            "deletions": 138
+          },
+          {
+            "hash": "cde10ce7e561fbf30a8ca8a14c2a20b012214b2e",
+            "messageTitle": "Re-package files into logical features",
+            "messageBody": "",
+            "insertions": 111,
+            "deletions": 91
+          }
+        ]
       }
     ],
     "mrnewguy": [
@@ -487,7 +543,7 @@
         ]
       },
       {
-        "insertions": 103,
+        "insertions": 133,
         "deletions": 25,
         "date": "2019-10-02",
         "commitResults": [
@@ -527,11 +583,74 @@
             "deletions": 5
           },
           {
+            "hash": "8e695154c64a770fde6f2b7d5ca08e1c48049960",
+            "messageTitle": "add AddCcaCommand",
+            "messageBody": "",
+            "insertions": 30,
+            "deletions": 0
+          },
+          {
             "hash": "20108787140f634cd9ec7efd201231470662ae66",
             "messageTitle": "add cca tracker feature to user guide",
             "messageBody": "",
             "insertions": 78,
             "deletions": 0
+          }
+        ]
+      },
+      {
+        "insertions": 254,
+        "deletions": 1,
+        "date": "2019-10-08",
+        "commitResults": [
+          {
+            "hash": "2004e8473a92d97d282ecce47f8f4eff4ec3154f",
+            "messageTitle": "add tests and model for cca class",
+            "messageBody": "",
+            "insertions": 254,
+            "deletions": 1
+          }
+        ]
+      },
+      {
+        "insertions": 606,
+        "deletions": 47,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "997643bb152db721905d2c9fd4f5021c5b3220e2",
+            "messageTitle": "Add CCA classes to the Model component",
+            "messageBody": "",
+            "insertions": 362,
+            "deletions": 9
+          },
+          {
+            "hash": "268e225cdac8c80a0be0f85a5f76db8ae0641a3e",
+            "messageTitle": "Add exceptions for CCA tracker classes",
+            "messageBody": "",
+            "insertions": 36,
+            "deletions": 0
+          },
+          {
+            "hash": "f782d9e02d087505d958f5ec48a1f44a99a3196c",
+            "messageTitle": "Add testing for Cca classes",
+            "messageBody": "",
+            "insertions": 208,
+            "deletions": 8
+          },
+          {
+            "hash": "ca058f37f8c006c5d8f7499e3c9178b72c9ba9ba",
+            "messageTitle": "Delete AddCcaCommand",
+            "messageBody": "",
+            "insertions": 0,
+            "deletions": 26
+          },
+          {
+            "hash": "fbd4b8b2d05dd559c2e2aca22c55599442d23d82",
+            "messageTitle": "Remove references to CcaCommand",
+            "messageBody": "",
+            "insertions": 0,
+            "deletions": 4
           }
         ]
       }
@@ -1083,33 +1202,33 @@
     ]
   },
   "authorFinalContributionMap": {
-    "marcfyk": 4700,
-    "mrnewguy": 141,
-    "gohsnn": 911,
-    "ryanYtan": 2072,
+    "marcfyk": 5471,
+    "mrnewguy": 986,
+    "gohsnn": 907,
+    "ryanYtan": 2064,
     "nishcafe": 13
   },
   "authorFileTypeContributionMap": {
     "marcfyk": {
-      "docs": 28,
-      "tests": 2777,
-      "functional": 1894,
+      "docs": 45,
+      "tests": 3270,
+      "functional": 2155,
       "other": 1
     },
     "mrnewguy": {
-      "docs": 141,
-      "tests": 0,
-      "functional": 0
+      "docs": 144,
+      "tests": 319,
+      "functional": 523
     },
     "gohsnn": {
       "docs": 54,
       "tests": 358,
-      "functional": 499
+      "functional": 495
     },
     "ryanYtan": {
-      "docs": 524,
+      "docs": 518,
       "tests": 510,
-      "functional": 1033,
+      "functional": 1031,
       "other": 5
     },
     "nishcafe": {
@@ -1119,11 +1238,11 @@
     }
   },
   "authorContributionVariance": {
-    "marcfyk": 495146.0,
-    "mrnewguy": 860.60986,
-    "gohsnn": 72963.305,
-    "ryanYtan": 66184.586,
-    "nishcafe": 19.297579
+    "marcfyk": 827798.3,
+    "mrnewguy": 13942.076,
+    "gohsnn": 71153.75,
+    "ryanYtan": 64617.33,
+    "nishcafe": 18.762442
   },
   "authorDisplayNameMap": {
     "marcfyk": "CS2103T-T10-1 MARC  ... G KIT",

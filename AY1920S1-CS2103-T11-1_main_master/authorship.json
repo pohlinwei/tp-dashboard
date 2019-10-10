@@ -15185,9 +15185,9 @@
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "                new District(\"16 Upper East Coast\"), new Availability(\"AVAILABLE\")),"
+        "content": "                new District(1), new Availability(\"AVAILABLE\")),"
       },
       {
         "lineNumber": 52,
@@ -15199,9 +15199,9 @@
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "                new District(\"6 City Hall\"), new Availability(\"BUSY\")),"
+        "content": "                new District(6), new Availability(\"BUSY\")),"
       },
       {
         "lineNumber": 54,
@@ -15213,9 +15213,9 @@
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "                new District(\"20 Ang Mo Kio\"), new Availability(\"AVAILABLE\")),"
+        "content": "                new District(20), new Availability(\"AVAILABLE\")),"
       },
       {
         "lineNumber": 56,
@@ -15227,9 +15227,9 @@
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "                new District(\"8 Little India\"), new Availability(\"BUSY\"))"
+        "content": "                new District(8), new Availability(\"BUSY\"))"
       },
       {
         "lineNumber": 58,
@@ -15401,8 +15401,9 @@
       }
     ],
     "authorContributionMap": {
-      "atharvjoshi": 21,
-      "-": 60
+      "atharvjoshi": 17,
+      "-": 60,
+      "tirameshu": 4
     }
   },
   {
@@ -15946,16 +15947,16 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": " * Represents a district in the IMS."
+        "content": " * Represents a Person\u0027s  in the address book."
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidDistrict(String)}"
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidDistrict(int)}"
       },
       {
         "lineNumber": 9,
@@ -16004,318 +16005,262 @@
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    /*"
+        "content": "    public static final int FIRST_DISTRICT \u003d 1;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     * The first character of the address must not be a whitespace,"
+        "content": "    public static final int LAST_DISTRICT \u003d 28;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     * otherwise \" \" (a blank string) becomes a valid input."
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     */"
+        "content": "    public final int districtNum;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    public static final String VALIDATION_REGEX \u003d \"[\\\\p{Alnum}][\\\\p{Alnum} ]*\";"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    public final String district;"
+        "content": "     * Constructs a {@code District}."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    /**"
+        "content": "     * @param d A valid District."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     * Constructs a {@code District}."
+        "content": "     */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     *"
+        "content": "    public District(int d) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     * @param d A valid District."
+        "content": "        requireNonNull(d);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     */"
+        "content": "        checkArgument(isValidDistrict(d), MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    public District(String d) {"
+        "content": "        districtNum \u003d d;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "        requireNonNull(d);"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "        checkArgument(isValidDistrict(d), MESSAGE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "        district \u003d d;"
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    }"
+        "content": "     * Returns true if a given string is a valid District."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    /**"
+        "content": "    public static boolean isValidDistrict(int test) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     * Returns true if a given string is a valid District."
+        "content": "        return FIRST_DISTRICT \u003c\u003d test \u0026\u0026 test \u003c\u003d LAST_DISTRICT;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    public static boolean isValidDistrict(String test) {"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "        return test.matches(VALIDATION_REGEX);"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": ""
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": ""
+        "content": "        return String.valueOf(districtNum);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "        return district;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": ""
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    @Override"
+        "content": "                || (other instanceof District // instanceof handles nulls"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "                \u0026\u0026 districtNum \u003d\u003d ((District) other).districtNum); // state check"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": "    }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "                || (other instanceof District // instanceof handles nulls"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "tirameshu"
         },
-        "content": "                \u0026\u0026 district.equals(((District) other).district)); // state check"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": "    public int hashCode() {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": "        return district.hashCode();"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "tirameshu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "tirameshu"
-        },
         "content": "}"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 52,
         "author": {
           "gitId": "tirameshu"
         },
@@ -16323,8 +16268,7 @@
       }
     ],
     "authorContributionMap": {
-      "atharvjoshi": 1,
-      "tirameshu": 59
+      "tirameshu": 52
     }
   },
   {
@@ -19402,9 +19346,9 @@
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "    private final String district;"
+        "content": "    private final int districtNum;"
       },
       {
         "lineNumber": 23,
@@ -19465,9 +19409,9 @@
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "                              @JsonProperty(\"district\") String district,"
+        "content": "                              @JsonProperty(\"district\") int districtNum,"
       },
       {
         "lineNumber": 32,
@@ -19493,9 +19437,9 @@
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "        this.district \u003d district;"
+        "content": "        this.districtNum \u003d districtNum;"
       },
       {
         "lineNumber": 36,
@@ -19563,9 +19507,9 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "        district \u003d source.getDistrict().district;"
+        "content": "        districtNum \u003d source.getDistrict().districtNum;"
       },
       {
         "lineNumber": 46,
@@ -19759,9 +19703,9 @@
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "        if (district \u003d\u003d null) {"
+        "content": "        if (districtNum \u003d\u003d 0) {"
       },
       {
         "lineNumber": 74,
@@ -19787,9 +19731,9 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "        if (!District.isValidDistrict(district)) {"
+        "content": "        if (!District.isValidDistrict(districtNum)) {"
       },
       {
         "lineNumber": 78,
@@ -19808,9 +19752,9 @@
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "        final District modelDistrict \u003d new District(district);"
+        "content": "        final District modelDistrict \u003d new District(districtNum);"
       },
       {
         "lineNumber": 81,
@@ -19912,7 +19856,8 @@
       }
     ],
     "authorContributionMap": {
-      "atharvjoshi": 94
+      "atharvjoshi": 87,
+      "tirameshu": 7
     }
   },
   {
@@ -22203,9 +22148,9 @@
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "atharvjoshi"
+          "gitId": "tirameshu"
         },
-        "content": "        district.setText(vehicle.getDistrict().district);"
+        "content": "        district.setText(String.valueOf(vehicle.getDistrict().districtNum));"
       },
       {
         "lineNumber": 46,
@@ -22356,7 +22301,8 @@
       }
     ],
     "authorContributionMap": {
-      "atharvjoshi": 66
+      "atharvjoshi": 65,
+      "tirameshu": 1
     }
   },
   {

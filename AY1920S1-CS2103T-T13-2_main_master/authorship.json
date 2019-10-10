@@ -10872,6 +10872,351 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/UndoableCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "//@@author ambervoong"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": " * Represents a command that can be undone or redone, undoing or redoing changes to Mortago made by the command."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": " * Only commands that change program state can be undone"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "public abstract class UndoableCommand extends Command {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "     * Enumerates through the possible states of an UndoableCommand."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public enum UndoableCommandState {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        UNDOABLE, REDOABLE, PRE_EXECUTION"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public static final String MESSAGE_UNDO_FAIL \u003d \"Command cannot be undone before it is successfully executed.\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public static final String MESSAGE_REDO_FAIL \u003d \"Command cannot be redone before it is successfully undone!\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    private UndoableCommandState commandState \u003d UndoableCommandState.PRE_EXECUTION;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public abstract CommandResult undo();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "     * Re-executes the command that was previously undone."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public CommandResult redo(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        if (getCommandState() !\u003d UndoableCommandState.REDOABLE) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "            return new CommandResult(MESSAGE_UNDO_FAIL);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        return execute(model);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public void setUndoable() {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        commandState \u003d UndoableCommandState.UNDOABLE;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public void setRedoable() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        commandState \u003d UndoableCommandState.REDOABLE;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    public UndoableCommandState getCommandState() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        return commandState;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ambervoong": 48
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/parser/ParserUtil.java",
     "fileType": "functional",
     "lines": [
@@ -18403,6 +18748,190 @@
     "authorContributionMap": {
       "arjavibahety": 1,
       "-": 11
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/logic/commands/UndoableCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "//@@author ambervoong"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "class UndoableCommandTest {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    void test_commandStateEnum() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "        assertEquals(UndoableCommand.UndoableCommandState.UNDOABLE.toString(), \"UNDOABLE\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    void setUndoable() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    void setRedoable() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    void getCommandState() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ambervoong"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ambervoong": 25
     }
   },
   {
