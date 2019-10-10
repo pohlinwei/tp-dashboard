@@ -26090,6 +26090,626 @@
         "author": {
           "gitId": "limerencee"
         },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.commands.AddExpenseCommand;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Description;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Expense;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.TransactionDate;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Value;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": " * Parses input arguments and creates a new AddExpenseCommand object."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "public class AddExpenseCommandParser extends AddTransactionCommandParser implements Parser\u003cAddExpenseCommand\u003e {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddExpenseCommand"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * and returns an AddExpenseCommand object for execution."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * @throws ParseException if the user input does not conform to the expected format"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public AddExpenseCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COST, CliSyntax.PREFIX_TAG);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COST)"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                    AddExpenseCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Description description \u003d parseTransactionDescription(argMultimap);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Value value \u003d parseTransactionValue(argMultimap);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        TransactionDate date \u003d parseTransactionDate();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Set\u003cTag\u003e tagList \u003d parseTransactionTags(argMultimap);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Expense expense \u003d new Expense(description, value, date, tagList);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        return new AddExpenseCommand(expense);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "limerencee": 43
+    }
+  },
+  {
+    "path": "src/main/java/thrift/logic/parser/AddIncomeCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "package thrift.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.commands.AddIncomeCommand;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Description;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Income;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.TransactionDate;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Value;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": " * Parses input arguments and creates a new AddIncomeCommand object."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "public class AddIncomeCommandParser extends AddTransactionCommandParser implements Parser\u003cAddIncomeCommand\u003e {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddIncomeCommand"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * and returns an AddIncomeCommand object for execution."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * @throws ParseException if the user input does not conform to the expected format."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public AddIncomeCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COST, CliSyntax.PREFIX_TAG);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COST)"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                    AddIncomeCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Description description \u003d parseTransactionDescription(argMultimap);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Value value \u003d parseTransactionValue(argMultimap);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        TransactionDate date \u003d parseTransactionDate();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Set\u003cTag\u003e tagList \u003d parseTransactionTags(argMultimap);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Income income \u003d new Income(description, value, date, tagList);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        return new AddIncomeCommand(income);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "limerencee": 43
+    }
+  },
+  {
+    "path": "src/main/java/thrift/logic/parser/AddTransactionCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "package thrift.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "limerencee"
+        },
         "content": "import static thrift.model.transaction.TransactionDate.DATE_FORMATTER;"
       },
       {
@@ -26132,332 +26752,402 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.commons.core.Messages;"
+        "content": "import thrift.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.AddExpenseCommand;"
+        "content": "import thrift.model.tag.Tag;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.parser.exceptions.ParseException;"
+        "content": "import thrift.model.transaction.Description;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.model.tag.Tag;"
+        "content": "import thrift.model.transaction.TransactionDate;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.model.transaction.Description;"
+        "content": "import thrift.model.transaction.Value;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.model.transaction.Expense;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.model.transaction.TransactionDate;"
+        "content": "/**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.model.transaction.Value;"
+        "content": " * Parses common parameters that are necessary for either AddExpenseCommand or AddIncomeCommand."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "/**"
+        "content": "public abstract class AddTransactionCommandParser {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "limerencee"
         },
-        "content": " * Parses input arguments and creates a new AddExpenseCommand object"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "limerencee"
         },
-        "content": " */"
+        "content": "    /**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "public class AddExpenseCommandParser implements Parser\u003cAddExpenseCommand\u003e {"
+        "content": "     * This methods checks if the required prefixes are present in the {@code ArgumentMultimap}."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    /**"
+        "content": "     * @param argumentMultimap the object to check for the existence of prefixes."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the AddExpenseCommand"
+        "content": "     * @param prefixes variable amount of {@code Prefix} to confirm the existence of."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * and returns an AddExpenseCommand object for execution."
+        "content": "     * @return true if specified prefixes are present in the argumentMultimap."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     */"
+        "content": "    protected static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public AddExpenseCommand parse(String args) throws ParseException {"
+        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COST, CliSyntax.PREFIX_TAG);"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_COST)"
+        "content": "     * Parses for {@code Description} object given the {@code ArgumentMultimap} object."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+        "content": "     * @param argMultimap the object to parse from."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,"
+        "content": "     * @return {@code Description} object based on the values in the input {@code ArgumentMultimap}."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                    AddExpenseCommand.MESSAGE_USAGE));"
+        "content": "     */"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        }"
+        "content": "    protected Description parseTransactionDescription(ArgumentMultimap argMultimap) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "        return ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        Description description \u003d ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        Value value \u003d ParserUtil.parseValue(argMultimap.getValue(CliSyntax.PREFIX_COST).get());"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        TransactionDate date \u003d new TransactionDate(DATE_FORMATTER.format(new Date()));"
+        "content": "    /**"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));"
+        "content": "     * Parses for {@code Value} object given the {@code ArgumentMultimap} object."
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "     * @param argMultimap the object to parse from."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        Expense expense \u003d new Expense(description, value, date, tagList);"
+        "content": "     * @return {@code Value} object based on the values in the input {@code ArgumentMultimap}."
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        return new AddExpenseCommand(expense);"
+        "content": "    protected Value parseTransactionValue(ArgumentMultimap argMultimap) throws ParseException {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "        return ParserUtil.parseValue(argMultimap.getValue(CliSyntax.PREFIX_COST).get());"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
+        "content": "    /**"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * {@code ArgumentMultimap}."
+        "content": "     * Parses for {@code TransactionDate} object using the current System\u0027s date."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     */"
+        "content": "     * @return {@code TransactionDate} object based on the current System\u0027s date."
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+        "content": "     */"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+        "content": "    protected TransactionDate parseTransactionDate() {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "        return new TransactionDate(DATE_FORMATTER.format(new Date()));"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 56,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * Parses for {@code Set\u003cTag\u003e} object given the {@code ArgumentMultimap} object."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * @param argMultimap the object to parse from."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * @return {@code Set\u003cTag\u003e} object based on the values in the input {@code ArgumentMultimap}."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    protected Set\u003cTag\u003e parseTransactionTags(ArgumentMultimap argMultimap) throws ParseException {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        return ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "limerencee"
         },
@@ -26465,7 +27155,7 @@
       }
     ],
     "authorContributionMap": {
-      "limerencee": 56
+      "limerencee": 66
     }
   },
   {
@@ -30093,493 +30783,521 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.ClearCommand;"
+        "content": "import thrift.logic.commands.AddIncomeCommand;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.Command;"
+        "content": "import thrift.logic.commands.ClearCommand;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.DeleteCommand;"
+        "content": "import thrift.logic.commands.Command;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.EditCommand;"
+        "content": "import thrift.logic.commands.DeleteCommand;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.ExitCommand;"
+        "content": "import thrift.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.FindCommand;"
+        "content": "import thrift.logic.commands.ExitCommand;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.HelpCommand;"
+        "content": "import thrift.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "import thrift.logic.commands.ListCommand;"
+        "content": "import thrift.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 18,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.commands.ListCommand;"
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "lightz96"
         },
         "content": "import thrift.logic.commands.UndoCommand;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 20,
         "author": {
           "gitId": "limerencee"
         },
         "content": "import thrift.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": "/**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 25,
         "author": {
           "gitId": "lightz96"
         },
         "content": "public class ThriftParser {"
       },
       {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "-"
         },
-        "content": "        case AddExpenseCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            return new AddExpenseCommandParser().parse(arguments);"
+        "content": "        case AddExpenseCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "limerencee"
         },
-        "content": ""
+        "content": "            return new AddExpenseCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "limerencee"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case AddIncomeCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "limerencee"
         },
-        "content": ""
+        "content": "            return new AddIncomeCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ClearCommand();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "lightz96"
+          "gitId": "-"
         },
-        "content": "        case UndoCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "lightz96"
+          "gitId": "-"
         },
-        "content": "            return new UndoCommand();"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "lightz96"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "lightz96"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case UndoCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "lightz96"
         },
-        "content": ""
+        "content": "            return new UndoCommand();"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "-"
+          "gitId": "lightz96"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
@@ -30587,9 +31305,9 @@
       }
     ],
     "authorContributionMap": {
-      "limerencee": 15,
+      "limerencee": 18,
       "lightz96": 5,
-      "-": 60
+      "-": 61
     }
   },
   {
@@ -38858,7 +39576,7 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    private static final DecimalFormat decimalFormatter \u003d new DecimalFormat(\"0.00\");"
+        "content": "    private static final DecimalFormat decimalFormatter \u003d new DecimalFormat(\"#,##0.00\");"
       },
       {
         "lineNumber": 25,
@@ -39306,77 +40024,77 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    @Override"
+        "content": "    /**"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public String toString() {"
+        "content": "     * Returns the value from {@link #getMonetaryValue()} in String type. This is useful for formatting to JSON and"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        return String.valueOf(decimalFormatter.format(getMonetaryValue()));"
+        "content": "     * storing."
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public String getUnformattedString() {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    @Override"
+        "content": "        return Double.toString(getMonetaryValue());"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    }"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": ""
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                || (other instanceof Value // instanceof handles nulls"
+        "content": "    @Override"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                \u0026\u0026 amount \u003d\u003d (((Value) other).amount)"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                \u0026\u0026 currency.equals(((Value) other).currency)); // state check"
+        "content": "        return String.valueOf(decimalFormatter.format(getMonetaryValue()));"
       },
       {
         "lineNumber": 99,
@@ -39404,31 +40122,87 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public int hashCode() {"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        return amount.hashCode();"
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "                || (other instanceof Value // instanceof handles nulls"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "                \u0026\u0026 amount \u003d\u003d (((Value) other).amount)"
       },
       {
         "lineNumber": 106,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                \u0026\u0026 currency.equals(((Value) other).currency)); // state check"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        return amount.hashCode();"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
         "author": {
           "gitId": "limerencee"
         },
@@ -39436,7 +40210,7 @@
       }
     ],
     "authorContributionMap": {
-      "limerencee": 105,
+      "limerencee": 113,
       "lightz96": 1
     }
   },
@@ -41090,7 +41864,7 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        value \u003d source.getValue().toString();"
+        "content": "        value \u003d source.getValue().getUnformattedString();"
       },
       {
         "lineNumber": 61,
@@ -57947,72 +58721,72 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "limerencee"
-        },
-        "content": "import thrift.model.transaction.Income;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
           "gitId": "lightz96"
         },
         "content": "import thrift.model.transaction.Transaction;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "limerencee"
         },
         "content": "import thrift.testutil.ExpenseBuilder;"
       },
       {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "import thrift.testutil.IncomeBuilder;"
-      },
-      {
-        "lineNumber": 20,
+        "lineNumber": 18,
         "author": {
           "gitId": "limerencee"
         },
         "content": "import thrift.testutil.TypicalTransactions;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 19,
         "author": {
           "gitId": "limerencee"
         },
         "content": ""
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 20,
         "author": {
           "gitId": "limerencee"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 21,
         "author": {
           "gitId": "limerencee"
         },
         "content": " * Contains integration tests (interaction with the Model) for {@code AddExpenseCommand}."
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 22,
         "author": {
           "gitId": "limerencee"
         },
         "content": " */"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 23,
         "author": {
           "gitId": "limerencee"
         },
         "content": "public class AddExpenseCommandIntegrationTest {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    private Model model;"
       },
       {
         "lineNumber": 26,
@@ -58026,152 +58800,152 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    private Model model;"
+        "content": "    @BeforeEach"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "    @BeforeEach"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "limerencee"
-        },
         "content": "    public void setUp() {"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 29,
         "author": {
           "gitId": "lightz96"
         },
         "content": "        model \u003d new ModelManager(TypicalTransactions.getTypicalThrift(), new UserPrefs(), new PastUndoableCommands());"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 30,
         "author": {
           "gitId": "limerencee"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public void execute_newExpense_success() {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    @Test"
+        "content": "        Expense validExpense \u003d new ExpenseBuilder().build();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public void execute_newExpense_success() {"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "        Expense validExpense \u003d new ExpenseBuilder().build();"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "limerencee"
-        },
         "content": ""
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 36,
         "author": {
           "gitId": "lightz96"
         },
         "content": "        Model expectedModel \u003d new ModelManager(model.getThrift(), new UserPrefs(), new PastUndoableCommands());"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 37,
         "author": {
           "gitId": "limerencee"
         },
         "content": "        expectedModel.addExpense(validExpense);"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 38,
         "author": {
           "gitId": "limerencee"
         },
         "content": ""
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 39,
         "author": {
           "gitId": "limerencee"
         },
         "content": "        assertCommandSuccess(new AddExpenseCommand(validExpense), model,"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 40,
         "author": {
           "gitId": "limerencee"
         },
         "content": "                String.format(AddExpenseCommand.MESSAGE_SUCCESS, validExpense), expectedModel);"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 41,
         "author": {
           "gitId": "limerencee"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 42,
         "author": {
           "gitId": "limerencee"
         },
         "content": ""
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 43,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
         "content": "    @Test"
       },
       {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lightz96"
+        },
+        "content": "    public void undo_success() {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lightz96"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(model.getThrift(), new UserPrefs(), new PastUndoableCommands());"
+      },
+      {
         "lineNumber": 46,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "    public void execute_newIncome_success() {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "        Income validIncome \u003d new IncomeBuilder().build();"
+        "content": "        Expense validExpense \u003d new ExpenseBuilder().build();"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
         "content": ""
       },
@@ -58180,47 +58954,47 @@
         "author": {
           "gitId": "lightz96"
         },
-        "content": "        Model expectedModel \u003d new ModelManager(model.getThrift(), new UserPrefs(), new PastUndoableCommands());"
+        "content": "        model.addExpense(validExpense);"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "        expectedModel.addIncome(validIncome);"
+        "content": "        List\u003cTransaction\u003e lastShownList \u003d model.getThrift().getTransactionList();"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": ""
+        "content": "        assertEquals(validExpense, lastShownList.get(lastShownList.size() - 1));"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "        assertCommandSuccess(new AddIncomeCommand(validIncome), model,"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "                String.format(AddIncomeCommand.MESSAGE_SUCCESS, validIncome), expectedModel);"
+        "content": "        Transaction transactionToDelete \u003d lastShownList.get(lastShownList.size() - 1);"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "    }"
+        "content": "        model.deleteTransaction(transactionToDelete);"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
         "content": ""
       },
@@ -58229,115 +59003,24 @@
         "author": {
           "gitId": "lightz96"
         },
-        "content": "    @Test"
+        "content": "        assertEquals(expectedModel, model);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lightz96"
         },
-        "content": "    public void undo_success() {"
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "lightz96"
         },
-        "content": "        Model expectedModel \u003d new ModelManager(model.getThrift(), new UserPrefs(), new PastUndoableCommands());"
+        "content": ""
       },
       {
         "lineNumber": 59,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        Expense validExpense \u003d new ExpenseBuilder().build();"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        model.addExpense(validExpense);"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        List\u003cTransaction\u003e lastShownList \u003d model.getThrift().getTransactionList();"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        assertEquals(validExpense, lastShownList.get(lastShownList.size() - 1));"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        Transaction transactionToDelete \u003d lastShownList.get(lastShownList.size() - 1);"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        model.deleteTransaction(transactionToDelete);"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "        assertEquals(expectedModel, model);"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 72,
         "author": {
           "gitId": "limerencee"
         },
@@ -58345,8 +59028,8 @@
       }
     ],
     "authorContributionMap": {
-      "limerencee": 48,
-      "lightz96": 24
+      "limerencee": 36,
+      "lightz96": 23
     }
   },
   {
@@ -58617,7 +59300,7 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public void execute_expenseAcceptedByModel_addSuccessful() throws Exception {"
+        "content": "    public void execute_expenseAcceptedByModel_addSuccessful() {"
       },
       {
         "lineNumber": 39,
@@ -60313,6 +60996,1725 @@
     }
   },
   {
+    "path": "src/test/java/thrift/logic/commands/AddIncomeCommandIntegrationTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "package thrift.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static thrift.logic.commands.CommandTestUtil.assertCommandSuccess;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import org.junit.jupiter.api.BeforeEach;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.Model;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.ModelManager;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.PastUndoableCommands;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.UserPrefs;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Income;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.testutil.IncomeBuilder;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.testutil.TypicalTransactions;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": " * Contains integration tests (interaction with the Model) for {@code AddIncomeCommand}"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "public class AddIncomeCommandIntegrationTest {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    private Model model;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @BeforeEach"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void setUp() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        model \u003d new ModelManager(TypicalTransactions.getTypicalThrift(), new UserPrefs(), new PastUndoableCommands());"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void execute_newIncome_success() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Income validIncome \u003d new IncomeBuilder().build();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(model.getThrift(), new UserPrefs(), new PastUndoableCommands());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        expectedModel.addIncome(validIncome);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertCommandSuccess(new AddIncomeCommand(validIncome), model,"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                String.format(AddIncomeCommand.MESSAGE_SUCCESS, validIncome), expectedModel);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "limerencee": 38
+    }
+  },
+  {
+    "path": "src/test/java/thrift/logic/commands/AddIncomeCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "package thrift.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static thrift.testutil.Assert.assertThrows;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import java.nio.file.Path;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import java.util.Arrays;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import java.util.function.Predicate;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.commons.core.GuiSettings;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.Model;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.ReadOnlyThrift;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.ReadOnlyUserPrefs;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.Thrift;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Expense;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Income;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Transaction;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.testutil.IncomeBuilder;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "public class AddIncomeCommandTest {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void constructor_nullIncome_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e new AddIncomeCommand(null));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void execute_incomeAcceptedByModel_addSuccessful() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        ModelStubAcceptingTransactionAdded modelStub \u003d new ModelStubAcceptingTransactionAdded();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Income validIncome \u003d new IncomeBuilder().build();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandResult commandResult \u003d new AddIncomeCommand(validIncome).execute(modelStub);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertEquals(String.format(AddIncomeCommand.MESSAGE_SUCCESS, validIncome), commandResult.getFeedbackToUser());"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertEquals(Arrays.asList(validIncome), modelStub.transactionsAdded);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Income one \u003d new IncomeBuilder().withDescription(\"Income One\").build();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        Income two \u003d new IncomeBuilder().withDescription(\"Income Two\").build();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        AddIncomeCommand addOneCommand \u003d new AddIncomeCommand(one);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        AddIncomeCommand addTwoCommand \u003d new AddIncomeCommand(two);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertTrue(addOneCommand.equals(addOneCommand));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        AddIncomeCommand addOneCommandCopy \u003d new AddIncomeCommand(one);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertTrue(addOneCommand.equals(addOneCommandCopy));"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // different types -\u003e returns false"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertFalse(addOneCommand.equals(1));"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertFalse(addOneCommand.equals(null));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // different transaction -\u003e returns false"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertFalse(addOneCommand.equals(addTwoCommand));"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * A default model stub that have all of the methods failing."
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    private class ModelStub implements Model {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public ReadOnlyUserPrefs getUserPrefs() {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public GuiSettings getGuiSettings() {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void setGuiSettings(GuiSettings guiSettings) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public Path getThriftFilePath() {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void setThriftFilePath(Path thriftFilePath) {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void addExpense(Expense expense) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void addIncome(Income income) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called\");"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void setThrift(ReadOnlyThrift newData) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public ReadOnlyThrift getThrift() {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public boolean hasTransaction(Transaction transaction) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void deleteTransaction(Transaction transaction) {"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void setTransaction(Transaction target, Transaction editedTransaction) {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public ObservableList\u003cTransaction\u003e getFilteredTransactionList() {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void updateFilteredTransactionList(Predicate\u003cTransaction\u003e predicate) {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void keepTrackCommands(Undoable command) {"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public Undoable getPreviousUndoableCommand() {"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public boolean hasUndoableCommand() {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            throw new AssertionError(\"This method should not be called.\");"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * A Model stub that contains a single transaction."
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    private class ModelStubWithTransaction extends ModelStub {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        private final Transaction transaction;"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        ModelStubWithTransaction(Transaction transaction) {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            requireNonNull(transaction);"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            this.transaction \u003d transaction;"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public boolean hasTransaction(Transaction transaction) {"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            requireNonNull(transaction);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            return this.transaction.isSameTransaction(transaction);"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     * A Model stub that always accept the transaction being added."
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    private class ModelStubAcceptingTransactionAdded extends ModelStub {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        final ArrayList\u003cTransaction\u003e transactionsAdded \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public boolean hasTransaction(Transaction transaction) {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            requireNonNull(transaction);"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            return transactionsAdded.stream().anyMatch(transaction::isSameTransaction);"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public void addIncome(Income income) {"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            requireNonNull(income);"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            transactionsAdded.add(income);"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        public ReadOnlyThrift getThrift() {"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "            return new Thrift();"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "limerencee": 205
+    }
+  },
+  {
     "path": "src/test/java/thrift/logic/commands/ClearCommandTest.java",
     "fileType": "tests",
     "lines": [
@@ -61147,217 +63549,217 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_DESCRIPTION_LAKSA \u003d \"Laksa\";"
+        "content": "    public static final String VALID_DESCRIPTION_BURSARY \u003d \"Bursary\";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_DESCRIPTION_PENANG_LAKSA \u003d \"Penang Laksa\";"
+        "content": "    public static final String VALID_DESCRIPTION_LAKSA \u003d \"Laksa\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_DESCRIPTION_AIRPODS \u003d \"Airpods\";"
+        "content": "    public static final String VALID_DESCRIPTION_PENANG_LAKSA \u003d \"Penang Laksa\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_VALUE_LAKSA \u003d \"3.50\";"
+        "content": "    public static final String VALID_DESCRIPTION_AIRPODS \u003d \"Airpods\";"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_VALUE_AIRPODS \u003d \"350\";"
+        "content": "    public static final String VALID_VALUE_BURSARY \u003d \"500\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_DATE_LAKSA \u003d \"13/03/1937\";"
+        "content": "    public static final String VALID_VALUE_LAKSA \u003d \"3.50\";"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_DATE_AIRPODS \u003d \"14/03/1937\";"
+        "content": "    public static final String VALID_VALUE_AIRPODS \u003d \"350\";"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_TAG_LUNCH \u003d \"Lunch\";"
+        "content": "    public static final String VALID_DATE_BURSARY \u003d \"09/10/2019\";"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_TAG_BRUNCH \u003d \"Brunch\";"
+        "content": "    public static final String VALID_DATE_LAKSA \u003d \"13/03/1937\";"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALID_TAG_ACCESSORY \u003d \"Accessory\";"
+        "content": "    public static final String VALID_DATE_AIRPODS \u003d \"14/03/1937\";"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public static final String VALID_TAG_AWARD \u003d \"Award\";"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String DESC_LAKSA \u003d \" \" + PREFIX_NAME + VALID_DESCRIPTION_LAKSA;"
+        "content": "    public static final String VALID_TAG_LUNCH \u003d \"Lunch\";"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String DESC_AIRPODS \u003d \" \" + PREFIX_NAME + VALID_DESCRIPTION_AIRPODS;"
+        "content": "    public static final String VALID_TAG_BRUNCH \u003d \"Brunch\";"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALUE_LAKSA \u003d \" \" + PREFIX_COST + VALID_VALUE_LAKSA;"
+        "content": "    public static final String VALID_TAG_ACCESSORY \u003d \"Accessory\";"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String VALUE_AIRPODS \u003d \" \" + PREFIX_COST + VALID_VALUE_AIRPODS;"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String TAG_LAKSA \u003d \" \" + PREFIX_TAG + VALID_TAG_LUNCH;"
+        "content": "    public static final String DESC_BURSARY \u003d \" \" + PREFIX_NAME + VALID_DESCRIPTION_BURSARY;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String TAG_BRUNCH \u003d \" \" + PREFIX_TAG + VALID_TAG_BRUNCH;"
+        "content": "    public static final String DESC_LAKSA \u003d \" \" + PREFIX_NAME + VALID_DESCRIPTION_LAKSA;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String TAG_AIRPODS \u003d \" \" + PREFIX_TAG + VALID_TAG_ACCESSORY;"
+        "content": "    public static final String DESC_AIRPODS \u003d \" \" + PREFIX_NAME + VALID_DESCRIPTION_AIRPODS;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public static final String VALUE_BURSARY \u003d \" \" + PREFIX_COST + VALID_VALUE_BURSARY;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String INVALID_VALUE \u003d \" \" + PREFIX_COST + \".00\"; // missing whole number"
+        "content": "    public static final String VALUE_LAKSA \u003d \" \" + PREFIX_COST + VALID_VALUE_LAKSA;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String INVALID_TAG \u003d \" \" + PREFIX_TAG + \"A+\"; //illegal character"
+        "content": "    public static final String VALUE_AIRPODS \u003d \" \" + PREFIX_COST + VALID_VALUE_AIRPODS;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public static final String TAG_BURSARY \u003d \" \" + PREFIX_TAG + VALID_TAG_AWARD;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String PREAMBLE_WHITESPACE \u003d \"\\t  \\r  \\n\";"
+        "content": "    public static final String TAG_LAKSA \u003d \" \" + PREFIX_TAG + VALID_TAG_LUNCH;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final String PREAMBLE_NON_EMPTY \u003d \"NonEmptyPreamble\";"
+        "content": "    public static final String TAG_BRUNCH \u003d \" \" + PREFIX_TAG + VALID_TAG_BRUNCH;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public static final String TAG_AIRPODS \u003d \" \" + PREFIX_TAG + VALID_TAG_ACCESSORY;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final EditCommand.EditTransactionDescriptor DESC_MEAL;"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static final EditCommand.EditTransactionDescriptor DESC_PURCHASE;"
+        "content": "    public static final String INVALID_VALUE \u003d \" \" + PREFIX_COST + \".00\"; // missing whole number"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    public static final String INVALID_TAG \u003d \" \" + PREFIX_TAG + \"A+\"; //illegal character"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    static {"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        DESC_MEAL \u003d new EditTransactionDescriptorBuilder().withDescription(VALID_DESCRIPTION_LAKSA)"
+        "content": "    public static final String PREAMBLE_WHITESPACE \u003d \"\\t  \\r  \\n\";"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                .withValue(VALID_VALUE_LAKSA).withDate(VALID_DATE_LAKSA).withTags(VALID_TAG_LUNCH).build();"
+        "content": "    public static final String PREAMBLE_NON_EMPTY \u003d \"NonEmptyPreamble\";"
       },
       {
         "lineNumber": 58,
@@ -61371,420 +63773,420 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        DESC_PURCHASE \u003d new EditTransactionDescriptorBuilder().withDescription(VALID_DESCRIPTION_AIRPODS)"
+        "content": "    public static final EditCommand.EditTransactionDescriptor DESC_MEAL;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                .withValue(VALID_VALUE_AIRPODS).withDate(VALID_DATE_AIRPODS).withTags(VALID_TAG_ACCESSORY).build();"
+        "content": "    public static final EditCommand.EditTransactionDescriptor DESC_PURCHASE;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "    static {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    /**"
+        "content": "        DESC_MEAL \u003d new EditTransactionDescriptorBuilder().withDescription(VALID_DESCRIPTION_LAKSA)"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
+        "content": "                .withValue(VALID_VALUE_LAKSA).withDate(VALID_DATE_LAKSA).withTags(VALID_TAG_LUNCH).build();"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * - the returned {@link CommandResult} matches {@code expectedCommandResult} \u003cbr\u003e"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * - the {@code actualModel} matches {@code expectedModel}"
+        "content": "        DESC_PURCHASE \u003d new EditTransactionDescriptorBuilder().withDescription(VALID_DESCRIPTION_AIRPODS)"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     */"
+        "content": "                .withValue(VALID_VALUE_AIRPODS).withDate(VALID_DATE_AIRPODS).withTags(VALID_TAG_ACCESSORY).build();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,"
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            Model expectedModel) {"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        try {"
+        "content": "    /**"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            CommandResult result \u003d command.execute(actualModel);"
+        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            assertEquals(expectedCommandResult, result);"
+        "content": "     * - the returned {@link CommandResult} matches {@code expectedCommandResult} \u003cbr\u003e"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            assertEquals(expectedModel, actualModel);"
+        "content": "     * - the {@code actualModel} matches {@code expectedModel}"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        } catch (CommandException ce) {"
+        "content": "     */"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            throw new AssertionError(\"Execution of command should not fail.\", ce);"
+        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        }"
+        "content": "            Model expectedModel) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "            CommandResult result \u003d command.execute(actualModel);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    /**"
+        "content": "            assertEquals(expectedCommandResult, result);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}"
+        "content": "            assertEquals(expectedModel, actualModel);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * that takes a string {@code expectedMessage}."
+        "content": "        } catch (CommandException ce) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     */"
+        "content": "            throw new AssertionError(\"Execution of command should not fail.\", ce);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,"
+        "content": "        }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "            Model expectedModel) {"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        CommandResult expectedCommandResult \u003d new CommandResult(expectedMessage);"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);"
+        "content": "    /**"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "     * that takes a string {@code expectedMessage}."
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
+        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * - a {@code CommandException} is thrown \u003cbr\u003e"
+        "content": "            Model expectedModel) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * - the CommandException message matches {@code expectedMessage} \u003cbr\u003e"
+        "content": "        CommandResult expectedCommandResult \u003d new CommandResult(expectedMessage);"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "lightz96"
+          "gitId": "limerencee"
         },
-        "content": "     * - thrift, filtered transaction list and selected transaction in {@code actualModel} remain unchanged"
+        "content": "        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {"
+        "content": ""
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        // we are unable to defensively copy the model for comparison later, so we can"
+        "content": "    /**"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        // only do so by copying its components."
+        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "     * - a {@code CommandException} is thrown \u003cbr\u003e"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "lightz96"
+          "gitId": "limerencee"
         },
-        "content": "        Thrift expectedThrift \u003d new Thrift(actualModel.getThrift());"
+        "content": "     * - the CommandException message matches {@code expectedMessage} \u003cbr\u003e"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "        List\u003cTransaction\u003e expectedFilteredList \u003d new ArrayList\u003c\u003e(actualModel.getFilteredTransactionList());"
+        "content": "     * - thrift, filtered transaction list and selected transaction in {@code actualModel} remain unchanged"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        assertThrows(CommandException.class, expectedMessage, () -\u003e command.execute(actualModel));"
+        "content": "    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "lightz96"
+          "gitId": "limerencee"
         },
-        "content": "        assertEquals(expectedThrift, actualModel.getThrift());"
+        "content": "        // we are unable to defensively copy the model for comparison later, so we can"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        assertEquals(expectedFilteredList, actualModel.getFilteredTransactionList());"
+        "content": "        // only do so by copying its components."
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "    /**"
+        "content": "        Thrift expectedThrift \u003d new Thrift(actualModel.getThrift());"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "     * Updates {@code model}\u0027s filtered list to show only the transaction at the given {@code targetIndex} in the"
+        "content": "        List\u003cTransaction\u003e expectedFilteredList \u003d new ArrayList\u003c\u003e(actualModel.getFilteredTransactionList());"
       },
       {
         "lineNumber": 108,
-        "author": {
-          "gitId": "lightz96"
-        },
-        "content": "     * {@code model}\u0027s thrift."
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "    public static void showTransactionAtIndex(Model model, Index targetIndex) {"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "        assertTrue(targetIndex.getZeroBased() \u003c model.getFilteredTransactionList().size());"
-      },
-      {
-        "lineNumber": 112,
         "author": {
           "gitId": "limerencee"
         },
         "content": ""
       },
       {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertThrows(CommandException.class, expectedMessage, () -\u003e command.execute(actualModel));"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "lightz96"
+        },
+        "content": "        assertEquals(expectedThrift, actualModel.getThrift());"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertEquals(expectedFilteredList, actualModel.getFilteredTransactionList());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
         "lineNumber": 113,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        Transaction transaction \u003d model.getFilteredTransactionList().get(targetIndex.getZeroBased());"
+        "content": "    /**"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        final String[] splitDescription \u003d transaction.getDescription().toString().split(\"\\\\s+\");"
+        "content": "     * Updates {@code model}\u0027s filtered list to show only the transaction at the given {@code targetIndex} in the"
       },
       {
         "lineNumber": 115,
         "author": {
-          "gitId": "limerencee"
+          "gitId": "lightz96"
         },
-        "content": "        model.updateFilteredTransactionList(new DescriptionContainsKeywordsPredicate("
+        "content": "     * {@code model}\u0027s thrift."
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                Arrays.asList(splitDescription[0])));"
+        "content": "     */"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        assertEquals(1, model.getFilteredTransactionList().size());"
+        "content": "    public static void showTransactionAtIndex(Model model, Index targetIndex) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "    }"
+        "content": "        assertTrue(targetIndex.getZeroBased() \u003c model.getFilteredTransactionList().size());"
       },
       {
         "lineNumber": 119,
@@ -61798,11 +64200,60 @@
         "author": {
           "gitId": "limerencee"
         },
+        "content": "        Transaction transaction \u003d model.getFilteredTransactionList().get(targetIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        final String[] splitDescription \u003d transaction.getDescription().toString().split(\"\\\\s+\");"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        model.updateFilteredTransactionList(new DescriptionContainsKeywordsPredicate("
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                Arrays.asList(splitDescription[0])));"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertEquals(1, model.getFilteredTransactionList().size());"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "limerencee"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "limerencee": 115,
+      "limerencee": 122,
       "lightz96": 5
     }
   },
@@ -65976,14 +68427,534 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "        // invalid value"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "limerencee"
         },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_LAKSA"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.INVALID_VALUE + CommandTestUtil.TAG_LAKSA"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.TAG_BRUNCH, Value.VALUE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "limerencee"
+        },
         "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // invalid tag"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_LAKSA"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.VALUE_LAKSA + CommandTestUtil.INVALID_TAG, Tag.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // two invalid values, only first invalid value reported"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_LAKSA"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.INVALID_VALUE + CommandTestUtil.INVALID_TAG,"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                Value.VALUE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // non-empty preamble"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.DESC_LAKSA + CommandTestUtil.VALUE_LAKSA"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.TAG_LAKSA + CommandTestUtil.TAG_BRUNCH,"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "limerencee": 73
+    }
+  },
+  {
+    "path": "src/test/java/thrift/logic/parser/AddIncomeCommandParserTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "package thrift.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import static thrift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.commands.AddIncomeCommand;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.logic.commands.CommandTestUtil;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "import thrift.model.transaction.Value;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "public class AddIncomeCommandParserTest {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    private AddIncomeCommandParser parser \u003d new AddIncomeCommandParser();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void parse_allFieldsPresent_success() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // whitespace only preamble"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e parser.parse(CommandTestUtil.PREAMBLE_WHITESPACE"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.DESC_BURSARY + CommandTestUtil.VALUE_BURSARY"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.TAG_BURSARY));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // multiple tags - all accepted"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e parser.parse(CommandTestUtil.DESC_BURSARY + CommandTestUtil.VALUE_BURSARY"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.TAG_BURSARY + CommandTestUtil.TAG_AIRPODS));"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void parse_optionalFieldsMissing_success() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // zero tags"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        assertDoesNotThrow(() -\u003e parser.parse(CommandTestUtil.DESC_BURSARY + CommandTestUtil.VALUE_BURSARY));"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void parse_compulsoryFieldMissing_failure() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // zero tags"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        String expectedMessage \u003d String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIncomeCommand.MESSAGE_USAGE);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // missing description prefix"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_DESCRIPTION_BURSARY"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.VALUE_BURSARY, expectedMessage);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // missing value prefix"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_BURSARY"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.VALID_VALUE_BURSARY, expectedMessage);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        // all prefixes missing"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_DESCRIPTION_BURSARY"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "                + CommandTestUtil.VALID_VALUE_BURSARY, expectedMessage);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "limerencee"
+        },
+        "content": "    public void parse_invalidValue_failure() {"
       },
       {
         "lineNumber": 55,
@@ -65997,136 +68968,122 @@
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_LAKSA"
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_BURSARY"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                + CommandTestUtil.INVALID_VALUE + CommandTestUtil.TAG_LAKSA"
+        "content": "                + CommandTestUtil.INVALID_VALUE + CommandTestUtil.TAG_BURSARY, Value.VALUE_CONSTRAINTS);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                + CommandTestUtil.TAG_BRUNCH, Value.VALUE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "        // invalid tag"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        // invalid tag"
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_BURSARY"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_LAKSA"
+        "content": "                + CommandTestUtil.VALUE_BURSARY + CommandTestUtil.INVALID_TAG, Tag.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                + CommandTestUtil.VALUE_LAKSA + CommandTestUtil.INVALID_TAG, Tag.MESSAGE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "        // two invalid values, only first invalid value reported"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        // two invalid values, only first invalid value reported"
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_BURSARY"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.DESC_LAKSA"
+        "content": "                + CommandTestUtil.INVALID_VALUE + CommandTestUtil.INVALID_TAG, Value.VALUE_CONSTRAINTS);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                + CommandTestUtil.INVALID_VALUE + CommandTestUtil.INVALID_TAG,"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                Value.VALUE_CONSTRAINTS);"
+        "content": "        // non-empty preamble"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "limerencee"
         },
-        "content": ""
+        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        // non-empty preamble"
+        "content": "                + CommandTestUtil.DESC_BURSARY + CommandTestUtil.VALUE_BURSARY + CommandTestUtil.TAG_BURSARY,"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY"
+        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIncomeCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                + CommandTestUtil.DESC_LAKSA + CommandTestUtil.VALUE_LAKSA"
+        "content": "    }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "limerencee"
         },
-        "content": "                + CommandTestUtil.TAG_LAKSA + CommandTestUtil.TAG_BRUNCH,"
+        "content": ""
       },
       {
         "lineNumber": 73,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE));"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "limerencee"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 75,
         "author": {
           "gitId": "limerencee"
         },
@@ -66134,7 +69091,7 @@
       }
     ],
     "authorContributionMap": {
-      "limerencee": 75
+      "limerencee": 73
     }
   },
   {
