@@ -13684,5 +13684,1819 @@
     "authorContributionMap": {
       "nexolute": 72
     }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/Amount.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "package seedu.address.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static seedu.address.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Represents a Transaction\u0027s amount in the transaction recorder."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "public class Amount {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "            \"Amount should be in the format \u0027\u003cdollars\u003e.\u003ccents\u003e\u0027 or \u0027\u003cdollars\u003e\u0027.\\n\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                    + \"\u003cdollars\u003e consists of numbers with no leading zeroes, unless it is \u00270\u0027.\\n\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                    + \"\u003ccents\u003e consists of numbers, and is exactly 2 digits long.\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String CENTS_REGEX \u003d \"(\\\\.\\\\d\\\\d)\"; // \u0027.\u0027 followed by exactly two numerical digits"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String DOLLARS_REGEX \u003d \"([1-9]\\\\d*|0)\"; // \u00270\u0027, or number without leading zeroes"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d DOLLARS_REGEX + CENTS_REGEX + \"?\"; // Dollars, with cents optionally"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public final String value;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Constructs a {@code Amount}."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * @param amount A valid amount."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Amount(String amount) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        requireNonNull(amount);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        value \u003d amount;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Returns true if a given string is a valid amount."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static boolean isValidAmount(String test) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return value;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                || (other instanceof Amount // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                \u0026\u0026 value.equals(((Amount) other).value)); // state check"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return value.hashCode();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "weiyang13": 58
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/Description.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "package seedu.address.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static seedu.address.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Represents a Transaction\u0027s description in the transaction recorder."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "public class Description {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "            \"Names should only contain alphanumeric characters and spaces, and it should not be blank\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /*"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * The first character of the address must not be a whitespace,"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * otherwise \" \" (a blank string) becomes a valid input."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"[\\\\p{Alnum}][\\\\p{Alnum} ]*\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public final String description;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Constructs a {@code Description}."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * @param description A valid description."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Description(String description) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        requireNonNull(description);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Returns true if a given string is a valid description."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static boolean isValidDescription(String test) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                || (other instanceof Description // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                \u0026\u0026 description.equals(((Description) other).description)); // state check"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return description.hashCode();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "weiyang13": 58
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/transaction/Category.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "package seedu.address.model.transaction;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static seedu.address.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Represents a Transaction\u0027s description in the transaction recorder."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "public class Category {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "            \"Categories should only contain alphanumeric characters and spaces, and it should not be blank\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /*"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * The first character of the address must not be a whitespace,"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * otherwise \" \" (a blank string) becomes a valid input."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"[\\\\p{Alnum}][\\\\p{Alnum} ]*\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public final String category;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Constructs a {@code Category}."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * @param category A valid category."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Category(String category) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        requireNonNull(category);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        checkArgument(isValidCategory(category), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        this.category \u003d category;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Returns true if a given string is a valid category."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public static boolean isValidCategory(String test) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return category;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                || (other instanceof Category // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                \u0026\u0026 category.equals(((Category) other).category)); // state check"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return category.hashCode();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "weiyang13": 59
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/transaction/Transaction.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "package seedu.address.model.transaction;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import seedu.address.model.Amount;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "import seedu.address.model.Description;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Represents a Transaction in IchiFund."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "public class Transaction {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    private final Amount amount;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    private final Description description;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    private final Category category;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Every field must be present and not null."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Transaction(Description description, Amount amount, Category category) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        requireAllNonNull(description, amount, category);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        this.amount \u003d amount;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        this.category \u003d category;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Amount getAmount() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return amount;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Description getDescription() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public Category getCategory() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return category;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * Returns true if both persons have the same identity and data fields."
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     * This defines a stronger notion of equality between two persons."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        if (!(other instanceof Transaction)) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        Transaction otherTransaction \u003d (Transaction) other;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return otherTransaction.getDescription().equals(getDescription())"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                \u0026\u0026 otherTransaction.getAmount().equals(getAmount())"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                \u0026\u0026 otherTransaction.getCategory().equals(getCategory());"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return Objects.hash(amount, description, category);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        builder.append(getDescription())"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                .append(\" Amount: \")"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                .append(getAmount())"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                .append(\" Category: \")"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "                .append(getCategory());"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "weiyang13": 79
+    }
   }
 ]

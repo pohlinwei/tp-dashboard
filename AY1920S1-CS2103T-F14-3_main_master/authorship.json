@@ -8809,9 +8809,9 @@
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        logger.info(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d[ Initializing AddressBook ]\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\");"
+        "content": "        logger.info(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d[ Initializing Typee ]\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\");"
       },
       {
         "lineNumber": 55,
@@ -8963,782 +8963,789 @@
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * Returns a {@code ModelManager} with the data from {@code storage}\u0027s address book and {@code userPrefs}. \u003cbr\u003e"
+        "content": "     * Returns a {@code ModelManager} with the data from {@code storage}\u0027s appointment manager and {@code userPrefs}."
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * The data from the sample address book will be used instead if {@code storage}\u0027s address book is not found,"
+        "content": "     * \u003cbr\u003e The data from the sample Typee application will be used instead if {@code storage}\u0027s appointment"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * or an empty address book will be used instead if errors occur when reading {@code storage}\u0027s address book."
+        "content": "     * manager is not found, or an empty appointment manager will be used instead if errors occur when reading"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     */"
+        "content": "     * {@code storage}\u0027s appointment manager."
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {"
+        "content": "     */"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "        Optional\u003cReadOnlyAddressBook\u003e addressBookOptional;"
+        "content": "    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "        ReadOnlyAddressBook initialData;"
+        "content": "        Optional\u003cReadOnlyAddressBook\u003e addressBookOptional;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        ReadOnlyAddressBook initialData;"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "            addressBookOptional \u003d storage.readAddressBook();"
+        "content": "        try {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (!addressBookOptional.isPresent()) {"
+        "content": "            addressBookOptional \u003d storage.readAddressBook();"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "                logger.info(\"Data file not found. Will be starting with a sample AddressBook\");"
+        "content": "            if (!addressBookOptional.isPresent()) {"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "            }"
+        "content": "                logger.info(\"Data file not found. Will be starting with a sample appointment manager\");"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "            initialData \u003d addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);"
+        "content": "            }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (DataConversionException e) {"
+        "content": "            initialData \u003d addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Data file not in the correct format. Will be starting with an empty AddressBook\");"
+        "content": "        } catch (DataConversionException e) {"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "            initialData \u003d new AddressBook();"
+        "content": "            logger.warning(\"Data file not in the correct format. Will be starting with an empty appointment manager\");"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            initialData \u003d new AddressBook();"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty AddressBook\");"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "            initialData \u003d new AddressBook();"
+        "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty appointment manager\");"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            initialData \u003d new AddressBook();"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new ModelManager(initialData, userPrefs);"
+        "content": ""
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return new ModelManager(initialData, userPrefs);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void initLogging(Config config) {"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "        LogsCenter.init(config);"
+        "content": "    private void initLogging(Config config) {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        LogsCenter.init(config);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns a {@code Config} using the file at {@code configFilePath}. \u003cbr\u003e"
+        "content": "    /**"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead"
+        "content": "     * Returns a {@code Config} using the file at {@code configFilePath}. \u003cbr\u003e"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
-        "content": "     * if {@code configFilePath} is null."
+        "content": "     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * if {@code configFilePath} is null."
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
-        "content": "    protected Config initConfig(Path configFilePath) {"
+        "content": "     */"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
-        "content": "        Config initializedConfig;"
+        "content": "    protected Config initConfig(Path configFilePath) {"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "-"
         },
-        "content": "        Path configFilePathUsed;"
+        "content": "        Config initializedConfig;"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        Path configFilePathUsed;"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
-        "content": "        configFilePathUsed \u003d Config.DEFAULT_CONFIG_FILE;"
+        "content": ""
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        configFilePathUsed \u003d Config.DEFAULT_CONFIG_FILE;"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (configFilePath !\u003d null) {"
+        "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Custom Config file specified \" + configFilePath);"
+        "content": "        if (configFilePath !\u003d null) {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
-        "content": "            configFilePathUsed \u003d configFilePath;"
+        "content": "            logger.info(\"Custom Config file specified \" + configFilePath);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            configFilePathUsed \u003d configFilePath;"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"Using config file : \" + configFilePathUsed);"
+        "content": ""
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        logger.info(\"Using config file : \" + configFilePathUsed);"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
-        "content": "            Optional\u003cConfig\u003e configOptional \u003d ConfigUtil.readConfig(configFilePathUsed);"
+        "content": "        try {"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedConfig \u003d configOptional.orElse(new Config());"
+        "content": "            Optional\u003cConfig\u003e configOptional \u003d ConfigUtil.readConfig(configFilePathUsed);"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (DataConversionException e) {"
+        "content": "            initializedConfig \u003d configOptional.orElse(new Config());"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Config file at \" + configFilePathUsed + \" is not in the correct format. \""
+        "content": "        } catch (DataConversionException e) {"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "-"
         },
-        "content": "                    + \"Using default config properties\");"
+        "content": "            logger.warning(\"Config file at \" + configFilePathUsed + \" is not in the correct format. \""
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedConfig \u003d new Config();"
+        "content": "                    + \"Using default config properties\");"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            initializedConfig \u003d new Config();"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
-        "content": "        //Update config file in case it was missing to begin with or there are new/unused fields"
+        "content": ""
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        //Update config file in case it was missing to begin with or there are new/unused fields"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
-        "content": "            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);"
+        "content": "        try {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
-        "content": "        return initializedConfig;"
+        "content": "        }"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return initializedConfig;"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns a {@code UserPrefs} using the file at {@code storage}\u0027s user prefs file path,"
+        "content": "    /**"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
-        "content": "     * or a new {@code UserPrefs} with default configuration if errors occur when"
+        "content": "     * Returns a {@code UserPrefs} using the file at {@code storage}\u0027s user prefs file path,"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": "     * reading from the file."
+        "content": "     * or a new {@code UserPrefs} with default configuration if errors occur when"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * reading from the file."
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "    protected UserPrefs initPrefs(UserPrefsStorage storage) {"
+        "content": "     */"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": "        Path prefsFilePath \u003d storage.getUserPrefsFilePath();"
+        "content": "    protected UserPrefs initPrefs(UserPrefsStorage storage) {"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"Using prefs file : \" + prefsFilePath);"
+        "content": "        Path prefsFilePath \u003d storage.getUserPrefsFilePath();"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        logger.info(\"Using prefs file : \" + prefsFilePath);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "        UserPrefs initializedPrefs;"
+        "content": ""
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        UserPrefs initializedPrefs;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "            Optional\u003cUserPrefs\u003e prefsOptional \u003d storage.readUserPrefs();"
+        "content": "        try {"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedPrefs \u003d prefsOptional.orElse(new UserPrefs());"
+        "content": "            Optional\u003cUserPrefs\u003e prefsOptional \u003d storage.readUserPrefs();"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (DataConversionException e) {"
+        "content": "            initializedPrefs \u003d prefsOptional.orElse(new UserPrefs());"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"UserPrefs file at \" + prefsFilePath + \" is not in the correct format. \""
+        "content": "        } catch (DataConversionException e) {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "-"
         },
-        "content": "                    + \"Using default user prefs\");"
+        "content": "            logger.warning(\"UserPrefs file at \" + prefsFilePath + \" is not in the correct format. \""
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedPrefs \u003d new UserPrefs();"
+        "content": "                    + \"Using default user prefs\");"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            initializedPrefs \u003d new UserPrefs();"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty AddressBook\");"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedPrefs \u003d new UserPrefs();"
+        "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty AddressBook\");"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            initializedPrefs \u003d new UserPrefs();"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": "        //Update prefs file in case it was missing to begin with or there are new/unused fields"
+        "content": ""
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        //Update prefs file in case it was missing to begin with or there are new/unused fields"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": "            storage.saveUserPrefs(initializedPrefs);"
+        "content": "        try {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            storage.saveUserPrefs(initializedPrefs);"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "-"
         },
-        "content": "        return initializedPrefs;"
+        "content": ""
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return initializedPrefs;"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void start(Stage primaryStage) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"Starting AddressBook \" + MainApp.VERSION);"
+        "content": "    public void start(Stage primaryStage) {"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        ui.start(primaryStage);"
+        "content": "        logger.info(\"Starting Typee \" + MainApp.VERSION);"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        ui.start(primaryStage);"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void stop() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d [ Stopping Address Book ] \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\");"
+        "content": "    public void stop() {"
       },
       {
         "lineNumber": 181,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        try {"
+        "content": "        logger.info(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d [ Stopping Typee ] \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\");"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "-"
         },
-        "content": "            storage.saveUserPrefs(model.getUserPrefs());"
+        "content": "        try {"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            storage.saveUserPrefs(model.getUserPrefs());"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.severe(\"Failed to save preferences \" + StringUtil.getDetails(e));"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            logger.severe(\"Failed to save preferences \" + StringUtil.getDetails(e));"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 188,
         "author": {
           "gitId": "-"
         },
@@ -9747,7 +9754,8 @@
     ],
     "authorContributionMap": {
       "nordic96": 25,
-      "-": 162
+      "lyskevin": 10,
+      "-": 153
     }
   },
   {

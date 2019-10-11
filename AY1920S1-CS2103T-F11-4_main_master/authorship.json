@@ -14972,6 +14972,386 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/quiz/QuizModeCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "package seedu.address.logic.commands.quiz;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_DIFFICULTY;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_NUMBER;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.commands.Command;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.model.question.Difficulty;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.model.question.Subject;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " * Enters the quiz mode of NUStudy."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "public class QuizModeCommand extends Command {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"quiz\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Enters quiz mode where questions will be displayed \""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + \" and answer input is required to check the accuracy.\\n\""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + \"Parameters: \""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + PREFIX_NUMBER + \"number of questions (a positive integer) \""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + PREFIX_DIFFICULTY + \"DIFFICULTY \""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + PREFIX_SUBJECT + \"SUBJECT \""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" \""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + PREFIX_NUMBER + \"8 \""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + PREFIX_DIFFICULTY + \"Easy \""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + PREFIX_SUBJECT + \"Maths \";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"You have successfully entered quiz mode!\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final String MESSAGE_NOT_ENOUGH_QUESTIONS \u003d \"There are not enough questions to do\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    private final int numOfQuestions;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    private final Subject subject;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    private final Difficulty difficulty;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * @param numOfQuestions total number of questions for user to do"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public QuizModeCommand(int numOfQuestions, Subject subject, Difficulty difficulty) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        this.numOfQuestions \u003d numOfQuestions;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        this.subject \u003d subject;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        this.difficulty \u003d difficulty;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public CommandResult execute(Model model) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return new CommandResult(MESSAGE_SUCCESS);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Auxinnn": 53
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/parser/AddNoteCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -15422,406 +15802,406 @@
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.logic.commands.quiz.QuizModeCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
-        "content": "/**"
+        "content": "import seedu.address.logic.parser.quiz.QuizModeCommandParser;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     *"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "     */"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        switch (commandWord) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "        case AddNoteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 50,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "            return new AddNoteCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 52,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "        case EditNoteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 53,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "            return new EditNoteCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 55,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "        case DeleteNoteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 56,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "            return new DeleteNoteCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 58,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "        case ClearNoteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 59,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "            return new ClearNoteCommand();"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 61,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "        case FindNoteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 62,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "            return new FindNoteCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 64,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "        case ListNoteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 65,
         "author": {
           "gitId": "Parcly-Taxel"
         },
         "content": "            return new ListNoteCommand();"
       },
       {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        case ExitCommand.COMMAND_WORD:"
-      },
-      {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "        default:"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
-        "content": "        }"
+        "content": "        case QuizModeCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
-        "content": "    }"
+        "content": "            return new QuizModeCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
         "content": ""
       },
@@ -15830,11 +16210,47 @@
         "author": {
           "gitId": "-"
         },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
       "Parcly-Taxel": 18,
+      "Auxinnn": 5,
       "-": 58
     }
   },
@@ -15901,6 +16317,27 @@
       {
         "lineNumber": 9,
         "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final Prefix PREFIX_NUMBER \u003d new Prefix(\"n/\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final Prefix PREFIX_DIFFICULTY \u003d new Prefix(\"d/\");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final Prefix PREFIX_SUBJECT \u003d new Prefix(\"s/\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
           "gitId": "-"
         },
         "content": "}"
@@ -15908,6 +16345,7 @@
     ],
     "authorContributionMap": {
       "Parcly-Taxel": 2,
+      "Auxinnn": 3,
       "-": 7
     }
   },
@@ -16788,348 +17226,635 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
-        "content": ""
+        "content": "import seedu.address.model.question.Difficulty;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "Auxinnn"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.question.Subject;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": " * Contains utility methods used for parsing strings in the various *Parser classes."
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "public class ParserUtil {"
+        "content": " * Contains utility methods used for parsing strings in the various *Parser classes."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_INVALID_INDEX \u003d \"Index is not a non-zero unsigned integer.\";"
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class ParserUtil {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    public static final String MESSAGE_INVALID_INDEX \u003d \"Index is not a non-zero unsigned integer.\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "     * trimmed."
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer)."
+        "content": "     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * trimmed."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static Index parseIndex(String oneBasedIndex) throws ParseException {"
+        "content": "     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer)."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "        String trimmedIndex \u003d oneBasedIndex.trim();"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {"
+        "content": "    public static Index parseIndex(String oneBasedIndex) throws ParseException {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(MESSAGE_INVALID_INDEX);"
+        "content": "        String trimmedIndex \u003d oneBasedIndex.trim();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "        return Index.fromOneBased(Integer.parseInt(trimmedIndex));"
+        "content": "            throw new ParseException(MESSAGE_INVALID_INDEX);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        return Index.fromOneBased(Integer.parseInt(trimmedIndex));"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "     * Parses a {@code String title} into a {@code Title}."
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Leading and trailing whitespaces will be trimmed."
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "     * @throws ParseException if the given {@code title} is invalid."
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "    public static Title parseTitle(String title) throws ParseException {"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "        requireNonNull(title);"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "        String trimmedName \u003d title.trim();"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "        if (!Title.isValidTitle(trimmedName)) {"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "            throw new ParseException(Title.MESSAGE_CONSTRAINTS);"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "Parcly-Taxel"
-        },
-        "content": "        return new Title(trimmedName);"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 33,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     * Parses a {@code String content} into an {@code Content}."
+        "content": "     * Parses a {@code String title} into a {@code Title}."
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
         "content": "     * Leading and trailing whitespaces will be trimmed."
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 36,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     * @throws ParseException if the given {@code content} is invalid."
+        "content": "     * @throws ParseException if the given {@code title} is invalid."
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 38,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    public static Content parseContent(String content) throws ParseException {"
+        "content": "    public static Title parseTitle(String title) throws ParseException {"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 39,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        requireNonNull(content);"
+        "content": "        requireNonNull(title);"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 40,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        String trimmedAddress \u003d content.trim();"
+        "content": "        String trimmedName \u003d title.trim();"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 41,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        if (!Content.isValidContent(trimmedAddress)) {"
+        "content": "        if (!Title.isValidTitle(trimmedName)) {"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 42,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "            throw new ParseException(Content.MESSAGE_CONSTRAINTS);"
+        "content": "            throw new ParseException(Title.MESSAGE_CONSTRAINTS);"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 44,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        return new Content(trimmedAddress);"
+        "content": "        return new Title(trimmedName);"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "     * Parses a {@code String content} into an {@code Content}."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Leading and trailing whitespaces will be trimmed."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "     * @throws ParseException if the given {@code content} is invalid."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "    public static Content parseContent(String content) throws ParseException {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "        requireNonNull(content);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "        String trimmedAddress \u003d content.trim();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "        if (!Content.isValidContent(trimmedAddress)) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "            throw new ParseException(Content.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
         "lineNumber": 59,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "        return new Content(trimmedAddress);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Parses a {@code String number} into an {@code Integer}."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Leading and trailing whitespaces will be trimmed."
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static int parseNumber(String number) throws ParseException {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(number);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return Integer.parseInt(number);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Parses a {@code String subject} into an {@code Subject}."
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Leading and trailing whitespaces will be trimmed."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * @throws ParseException if the given {@code subject} is invalid."
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static Subject parseSubject(String subject) throws ParseException {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(subject);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        String trimmedSubject \u003d subject.trim();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        if (!Subject.isValidSubject(trimmedSubject)) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            throw new ParseException(Subject.MESSAGE_CONSTRAINT);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return new Subject(trimmedSubject);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Parses a {@code String difficulty} into an {@code Difficulty}."
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Leading and trailing whitespaces will be trimmed."
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * @throws ParseException if the given {@code difficulty} is invalid."
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static Difficulty parseDifficulty(String difficulty) throws ParseException {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(difficulty);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        String trimmedDifficulty \u003d difficulty.trim();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        if (!Difficulty.isValidDifficulty(trimmedDifficulty)) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            throw new ParseException(Difficulty.MESSAGE_CONSTRAINT);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return new Difficulty((trimmedDifficulty));"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
@@ -17138,7 +17863,388 @@
     ],
     "authorContributionMap": {
       "Parcly-Taxel": 18,
-      "-": 41
+      "Auxinnn": 22,
+      "-": 60
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/quiz/QuizModeCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "package seedu.address.logic.parser.quiz;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_DIFFICULTY;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_NUMBER;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import java.util.stream.Stream;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.commands.quiz.QuizModeCommand;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.parser.ArgumentMultimap;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.parser.ArgumentTokenizer;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.parser.Parser;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.parser.ParserUtil;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.parser.Prefix;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.model.question.Difficulty;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import seedu.address.model.question.Subject;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " * Parses input arguments and creates a new QuizModeCommand object."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "public class QuizModeCommandParser implements Parser\u003cQuizModeCommand\u003e {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the QuizModeCommand"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * and returns an QuizModeCommand object for execution."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * @throws ParseException if the user input does not conform to the expected format."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public QuizModeCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(args);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NUMBER, PREFIX_DIFFICULTY, PREFIX_SUBJECT);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        int numOfQuestions;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_DIFFICULTY, PREFIX_SUBJECT)"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "                || (!argMultimap.getPreamble().isEmpty())) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizModeCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        numOfQuestions \u003d ParserUtil.parseNumber(argMultimap.getValue(PREFIX_NUMBER).get());"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        Subject subject \u003d ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        Difficulty difficulty \u003d ParserUtil.parseDifficulty(argMultimap.getValue(PREFIX_DIFFICULTY).get());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return new QuizModeCommand(numOfQuestions, subject, difficulty);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Auxinnn": 53
     }
   },
   {
@@ -21734,383 +22840,411 @@
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "Parcly-Taxel"
+          "gitId": "shuiyao-sg"
         },
-        "content": "    public void setNotes(UniqueNoteList replacement) {"
+        "content": "    public Note get(int index) {"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "Parcly-Taxel"
+          "gitId": "shuiyao-sg"
         },
-        "content": "        requireNonNull(replacement);"
+        "content": "        return internalList.get(index);"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "Parcly-Taxel"
+          "gitId": "shuiyao-sg"
         },
-        "content": "        internalList.setAll(replacement.internalList);"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "Parcly-Taxel"
+          "gitId": "shuiyao-sg"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "    public void setNotes(UniqueNoteList replacement) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    /**"
+        "content": "        requireNonNull(replacement);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     * Replaces the contents of this list with {@code notes} containing no duplicates."
+        "content": "        internalList.setAll(replacement.internalList);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    public void setNotes(List\u003cNote\u003e notes) {"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        requireAllNonNull(notes);"
+        "content": "    /**"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        if (!notesAreUnique(notes)) {"
+        "content": "     * Replaces the contents of this list with {@code notes} containing no duplicates."
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "            throw new DuplicateTitleException();"
+        "content": "     */"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        }"
+        "content": "    public void setNotes(List\u003cNote\u003e notes) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "        requireAllNonNull(notes);"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        internalList.setAll(notes);"
+        "content": "        if (!notesAreUnique(notes)) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    }"
+        "content": "            throw new DuplicateTitleException();"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     * Returns the backing list as an unmodifiable {@code ObservableList}."
+        "content": "        internalList.setAll(notes);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    public ObservableList\u003cNote\u003e asUnmodifiableObservableList() {"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        return internalUnmodifiableList;"
+        "content": "    /**"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    }"
+        "content": "     * Returns the backing list as an unmodifiable {@code ObservableList}."
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    @Override"
+        "content": "    public ObservableList\u003cNote\u003e asUnmodifiableObservableList() {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    public Iterator\u003cNote\u003e iterator() {"
+        "content": "        return internalUnmodifiableList;"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        return internalList.iterator();"
+        "content": "    }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    @Override"
+        "content": "    public Iterator\u003cNote\u003e iterator() {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "        return internalList.iterator();"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": "    }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "                || (other instanceof UniqueNoteList // instanceof handles nulls"
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "                        \u0026\u0026 internalList.equals(((UniqueNoteList) other).internalList));"
+        "content": "    @Override"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    @Override"
+        "content": "                || (other instanceof UniqueNoteList // instanceof handles nulls"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    public int hashCode() {"
+        "content": "                        \u0026\u0026 internalList.equals(((UniqueNoteList) other).internalList));"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        return internalList.hashCode();"
+        "content": "    }"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    /**"
+        "content": "    public int hashCode() {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     * Returns true if {@code note} contains only unique notes."
+        "content": "        return internalList.hashCode();"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    private boolean notesAreUnique(List\u003cNote\u003e notes) {"
+        "content": ""
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        for (int i \u003d 0; i \u003c notes.size() - 1; i++) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "            for (int j \u003d i + 1; j \u003c notes.size(); j++) {"
+        "content": "     * Returns true if {@code note} contains only unique notes."
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "                if (notes.get(i).isSameNote(notes.get(j))) {"
+        "content": "     */"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "                    return false;"
+        "content": "    private boolean notesAreUnique(List\u003cNote\u003e notes) {"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "                }"
+        "content": "        for (int i \u003d 0; i \u003c notes.size() - 1; i++) {"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "            }"
+        "content": "            for (int j \u003d i + 1; j \u003c notes.size(); j++) {"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        }"
+        "content": "                if (notes.get(i).isSameNote(notes.get(j))) {"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "        return true;"
+        "content": "                    return false;"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "Parcly-Taxel"
         },
-        "content": "    }"
+        "content": "                }"
       },
       {
         "lineNumber": 127,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "Parcly-Taxel"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 131,
         "author": {
           "gitId": "Parcly-Taxel"
         },
@@ -22118,7 +23252,8 @@
       }
     ],
     "authorContributionMap": {
-      "Parcly-Taxel": 127
+      "Parcly-Taxel": 127,
+      "shuiyao-sg": 4
     }
   },
   {
@@ -22249,6 +23384,1649 @@
     ],
     "authorContributionMap": {
       "Parcly-Taxel": 6
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/question/Difficulty.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "package seedu.address.model.question;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " * Represents a question\u0027s difficulty. Difficulties are only guaranteed immutable and non-blank;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " * in particular there can be duplicates."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "public class Difficulty {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINT \u003d \"Difficulty should begin with a non-white space character \""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + \"and only covers the existed difficulty in the database\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public final String difficulty;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Constructs a {@code Difficulty}"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * @param difficulty Valid difficulty"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public Difficulty(String difficulty) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(difficulty);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        this.difficulty \u003d difficulty;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Returns true if a given string is a valid difficulty."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static boolean isValidDifficulty(String test) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return test.trim().length() \u003e 0;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return difficulty;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return other \u003d\u003d this"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "                || (other instanceof Difficulty)"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "                \u0026\u0026 difficulty.equals(((Difficulty) other).difficulty);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return difficulty.hashCode();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Auxinnn": 48
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/question/Subject.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "package seedu.address.model.question;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " * Represents a question\u0027s subject. Subjects are only guaranteed immutable and non-blank;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " * in particular there can be duplicates."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "public class Subject {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINT \u003d \"Subjects should begin with a non-white space character \""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "            + \"and only covers the existed subjects in the database\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public final String subject;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Constructs a {@code Subject} object."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * @param subject A valid subject."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public Subject(String subject) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        requireNonNull(subject);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        this.subject \u003d subject;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     * Returns true if a given string is a valid subject."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public static boolean isValidSubject(String test) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return test.trim().length() \u003e 0;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return subject;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "                || (other instanceof Subject // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "                \u0026\u0026 subject.equals(((Subject) other).subject)); // state check"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "        return subject.hashCode();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Auxinnn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Auxinnn": 48
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/task/NoteStub.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "package seedu.address.model.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Content;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Note;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Title;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " * Represents a stub for Note class."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "class NoteStub extends Note {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * Constructs a new lecture note. Both fields must be present and non-null."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * @param title   The lecture note\u0027s title, which must be unique among all lecture notes."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * @param content The lecture note\u0027s content (newlines are supported), which do not have to be unique."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    NoteStub(Title title, Content content) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        super(title, content);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shuiyao-sg": 20
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/task/QuestionStub.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "package seedu.address.model.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Content;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Title;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " * Represents a stub for Question class."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "class QuestionStub {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private final Title title;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private final Content content;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    QuestionStub(Title title, Content content) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        requireAllNonNull(title, content);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        this.title \u003d title;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        this.content \u003d content;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private Title getTitle() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return title;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private Content getContent() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return content;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return getTitle() + \"\\n\" + getContent();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shuiyao-sg": 33
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/task/Task.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "package seedu.address.model.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import java.time.LocalDate;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import java.time.LocalTime;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " * Represents a NUStudy revision task. Its"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    static final DateTimeFormatter FORMAT_FILE_DATE_STRING \u003d DateTimeFormatter.ofPattern(\"dd MMMM yyyy\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    static final DateTimeFormatter FORMAT_FILE_TIME_STRING \u003d DateTimeFormatter.ofPattern(\"HH:mm\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private static final DateTimeFormatter FORMAT_USER_INPUT_DATE \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private static final DateTimeFormatter FORMAT_USER_INPUT_TIME \u003d DateTimeFormatter.ofPattern(\"HHmm\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private boolean isDone;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private LocalDate date;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private LocalTime time;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    Task(String date, String time) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        requireNonNull(date);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        this.date \u003d LocalDate.parse(date, FORMAT_USER_INPUT_DATE);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        this.time \u003d LocalTime.parse(time, FORMAT_USER_INPUT_TIME);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * Gets status icon."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * @return \"Y\" if done. \"N\" if not done."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return (isDone ? \"[\" + \"Y\" + \"]\" : \"[\" + \"N\" + \"]\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public abstract String toString();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public LocalDate getDate() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return date;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public LocalTime getTime() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return time;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shuiyao-sg": 52
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/task/TaskForNote.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "package seedu.address.model.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " * Represents a task for revision of notes."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "public class TaskForNote extends Task {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    private NoteStub note;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * Constructs a new revision task for lecture notes. Date field must be non-null."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * @param note The lecture notes to be revised."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * @param date The date by when the task should be done."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     * @param time The time in a day by which the task should be done."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public TaskForNote(NoteStub note, String date, String time) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        super(date, time);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        this.note \u003d note;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        return super.getStatusIcon() + \" \" + note.toString() + \" by: \" + super.getDate().format(FORMAT_FILE_DATE_STRING)"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "                + \" \" + super.getTime().format(FORMAT_FILE_TIME_STRING);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shuiyao-sg": 26
     }
   },
   {
@@ -41441,6 +44219,211 @@
     ],
     "authorContributionMap": {
       "Parcly-Taxel": 167
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/model/task/TaskTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "package seedu.address.model.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import static seedu.address.testutil.Assert.assertThrows;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Content;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "import seedu.address.model.note.Title;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "public class TaskTest {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    void getStatusIcon_default_returnN() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        NoteStub note \u003d new NoteStub(new Title(\"Lecture 1\"), new Content(\"Hello World\"));"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        String date \u003d \"06/07/2019\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        String time \u003d \"1500\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        assertEquals(new TaskForNote(note, date, time).getStatusIcon(),"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "                \"[N]\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    public void constructor_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        NoteStub note \u003d new NoteStub(new Title(\"Lecture 1\"), new Content(\"Hello World\"));"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        String time \u003d \"1500\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e new TaskForNote(note, null, time));"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shuiyao-sg"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shuiyao-sg": 28
     }
   },
   {
