@@ -15814,7 +15814,7 @@
         "author": {
           "gitId": "WilliamRyank"
         },
-        "content": " * Represents a Person\u0027s nric in the address book."
+        "content": " * Represents a Person\u0027s NRIC in ORGANice."
       },
       {
         "lineNumber": 8,
@@ -16563,6 +16563,498 @@
     ],
     "authorContributionMap": {
       "Yen-Peng": 54
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/person/OrganExpiryDate.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "package seedu.address.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static seedu.address.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": " * Represents a Donor organ\u0027s expiry date in ORGANice."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidExpiryDate(String)} (String)}"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "public class OrganExpiryDate {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public static final DateFormat DATE_FORMAT \u003d new SimpleDateFormat(\"dd-MMM-yyyy\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d \"Organ\u0027s expiry date must be in the format DD-MMM-YYYY\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            + \" and is after current date. An example will be 27-Jan-2020\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public final String value;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "     * Constructs an {@code OrganExpiryDate}."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "     * @param expiryDate A valid organ\u0027s expiry date."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public OrganExpiryDate(String expiryDate) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        requireNonNull(expiryDate);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            DateFormat dateFormat \u003d new SimpleDateFormat(\"dd MMM yyyy\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            checkArgument(isValidExpiryDate(expiryDate), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            value \u003d dateFormat.format(DATE_FORMAT.parse(expiryDate)); //make the data value uniform"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            throw new IllegalArgumentException();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "     * Returns true if a given string is a valid organ\u0027s expiry date."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public static boolean isValidExpiryDate(String test) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            DATE_FORMAT.setLenient(false);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            DATE_FORMAT.parse(test);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        return value;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            || (other instanceof OrganExpiryDate // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "            \u0026\u0026 value.equals(((OrganExpiryDate) other).value)); // state check"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        return value.hashCode();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "WilliamRyank": 69
     }
   },
   {
@@ -17962,7 +18454,7 @@
         "author": {
           "gitId": "WilliamRyank"
         },
-        "content": " * Represents a Person\u0027s type in the address book."
+        "content": " * Represents a Person\u0027s type in ORGANice."
       },
       {
         "lineNumber": 8,
@@ -36501,6 +36993,666 @@
     ],
     "authorContributionMap": {
       "WilliamRyank": 71
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/model/person/OrganExpiryDateTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "package seedu.address.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertNotEquals;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import static seedu.address.testutil.Assert.assertThrows;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "public class OrganExpiryDateTest {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public void constructor_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e new OrganExpiryDate(null));"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public void constructor_invalidOrganExpiryDate_throwsIllegalArgumentException() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        String invalidOrganExpiryDate \u003d \"\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertThrows(IllegalArgumentException.class, () -\u003e new OrganExpiryDate(invalidOrganExpiryDate));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public void isValidExpiryDate() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // null organ\u0027s expiry date"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e OrganExpiryDate.isValidExpiryDate(null));"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // invalid organ\u0027s expiry date"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"\")); // empty string"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\" \")); // spaces only"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"^\")); // only non-alphanumeric characters"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"23,Jan 2019\")); // wrong data format"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"22/Jan/2019\")); // wrong data format"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"22.01.2019\")); // wrong data format"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"22/01/2019\")); // wrong data format"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"22-01-2019\")); // wrong data format"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"22-Mai-2019\")); // wrong spelling"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"30-Feb-2019\")); // day is more than number of days"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"00-Jan-2019\")); // there is no day 00"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"29-Feb-2019\")); // not leap year"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"23-Janu-2020\")); // month not in format"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(OrganExpiryDate.isValidExpiryDate(\"23-Augus-2020\")); // month not in format"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // valid organ\u0027s expiry date"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(OrganExpiryDate.isValidExpiryDate(\"23-Jan-2020\")); // valid date"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(OrganExpiryDate.isValidExpiryDate(\"23-January-2019\")); // full month name accepted"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(OrganExpiryDate.isValidExpiryDate(\"23-JaNuArY-2019\")); // full month name accepted"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(OrganExpiryDate.isValidExpiryDate(\"29-Feb-2020\")); // leap year"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(OrganExpiryDate.isValidExpiryDate(\"29-jan-2020\")); // case insensitive"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(OrganExpiryDate.isValidExpiryDate(\"29-JAN-2020\")); // case insensitive"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public void toStringTest() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertEquals(new OrganExpiryDate(\"23-Jan-2020\").toString(), \"23 Jan 2020\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertEquals(new OrganExpiryDate(\"29-JAN-2020\").toString(), \"29 Jan 2020\"); //full month name accepted"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertEquals(new OrganExpiryDate(\"29-JANuArY-2020\").toString(), \"29 Jan 2020\"); //case insensitive"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        OrganExpiryDate expiryDate \u003d new OrganExpiryDate(\"23-Jan-2020\");"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(expiryDate.equals(null));"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // different organ\u0027s expiry date -\u003e return false"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(expiryDate.equals(new OrganExpiryDate(\"24-january-2020\")));"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(expiryDate.equals(new OrganExpiryDate(\"23-may-2020\")));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertFalse(expiryDate.equals(new OrganExpiryDate(\"23-may-2021\")));"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(expiryDate.equals(expiryDate));"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        // same organ\u0027s expiry date -\u003e returns true"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(expiryDate.equals(new OrganExpiryDate(\"23-Jan-2020\")));"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(expiryDate.equals(new OrganExpiryDate(\"23-JAN-2020\")));"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(expiryDate.equals(new OrganExpiryDate(\"23-JANuary-2020\")));"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertTrue(expiryDate.equals(new OrganExpiryDate(\"23-january-2020\")));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    public void hashCodeTest() {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        OrganExpiryDate expiryDate \u003d new OrganExpiryDate(\"23-Jan-2020\");"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertEquals(expiryDate.hashCode(), new OrganExpiryDate(\"23-Jan-2020\").hashCode());"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertEquals(expiryDate.hashCode(), new OrganExpiryDate(\"23-JAN-2020\").hashCode());"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertEquals(expiryDate.hashCode(), new OrganExpiryDate(\"23-JANuaRy-2020\").hashCode());"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertNotEquals(expiryDate.hashCode(), new OrganExpiryDate(\"23-May-2020\").hashCode());"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "        assertNotEquals(expiryDate.hashCode(), new OrganExpiryDate(\"24-Jan-2022\").hashCode());"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "WilliamRyank"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "WilliamRyank": 93
     }
   },
   {

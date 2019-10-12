@@ -16055,133 +16055,133 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.AddCommand;"
+        "content": "import seedu.address.logic.commands.*;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ClearCommand;"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.Command;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.DeleteCommand;"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.EditCommand;"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ExitCommand;"
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.FindCommand;"
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.HelpCommand;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ListCommand;"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.RemarkCommand;"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "     */"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": "    /**"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": "     *"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 29,
@@ -16195,126 +16195,126 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "        }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 48,
@@ -16328,14 +16328,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": "            return new ClearCommand();"
       },
       {
         "lineNumber": 51,
@@ -16349,14 +16349,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 54,
@@ -16368,21 +16368,21 @@
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "ngzhaoming"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": "        case RemarkCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "ngzhaoming"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "            return new RemarkCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "ngzhaoming"
         },
         "content": ""
       },
@@ -16391,14 +16391,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 60,
@@ -16412,14 +16412,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 63,
@@ -16431,21 +16431,21 @@
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        case RemarkCommand.COMMAND_WORD:"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            return new RemarkCommandParser().parse(arguments);"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -16454,14 +16454,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": "        case CalendarCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListCommand();"
+        "content": "            return new CalendarCommand();"
       },
       {
         "lineNumber": 69,
@@ -16475,56 +16475,56 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": "        // todo: remove this when everyone has implemented the UI of their page"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case SampleCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new SampleCommand();"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        default:"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "        case CalendarCommand.COMMAND_WORD:"
+        "content": "        }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new CalendarCommand();"
+        "content": "    }"
       },
       {
         "lineNumber": 78,
@@ -16538,47 +16538,12 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        default:"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "-": 80,
-      "ngzhaoming": 4
+      "-": 76,
+      "ngzhaoming": 3
     }
   },
   {
