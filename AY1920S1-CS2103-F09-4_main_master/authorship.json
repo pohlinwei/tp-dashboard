@@ -6840,9 +6840,9 @@
       {
         "lineNumber": 248,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Format: `assignpolicy INDEX pol/POLICY [MORE_POLICIES]`"
+        "content": "Format: `assignpolicy perindex/INDEX polindex/INDEX`"
       },
       {
         "lineNumber": 249,
@@ -6938,16 +6938,16 @@
       {
         "lineNumber": 262,
         "author": {
-          "gitId": "olivercheok20"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "`assignpolicy 2 pol/Senior Care` +"
+        "content": "`assignpolicy perindex/2 polindex/2` +"
       },
       {
         "lineNumber": 263,
         "author": {
-          "gitId": "olivercheok20"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Assigns the \u0027Senior Care\u0027 policy to the 2nd person in the list of people."
+        "content": "Assigns the \u0027Senior Care\u0027 (the second policy in the list) policy to the 2nd person in the list of people."
       },
       {
         "lineNumber": 264,
@@ -6959,16 +6959,16 @@
       {
         "lineNumber": 265,
         "author": {
-          "gitId": "olivercheok20"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "`assignpolicy 1 pol/Accident Insurance` +"
+        "content": "`assignpolicy perindex/1 polindex/1` +"
       },
       {
         "lineNumber": 266,
         "author": {
-          "gitId": "olivercheok20"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Assigns the \u0027Accident Insurance\u0027 policy to the 1st person in the results of the `find` command."
+        "content": "Assigns the \u0027Accident Insurance\u0027 (the first policy in the list) policy to the 1st person in the results of the `find` command."
       },
       {
         "lineNumber": 267,
@@ -7729,9 +7729,9 @@
       {
         "lineNumber": 375,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Format: `unassignpolicy INDEX pol/POLICY [MORE_POLICIES]`"
+        "content": "Format: `unassignpolicy perindex/INDEX polindex/INDEX`"
       },
       {
         "lineNumber": 376,
@@ -7820,9 +7820,9 @@
       {
         "lineNumber": 388,
         "author": {
-          "gitId": "olivercheok20"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "`unassignpolicy 2 pol/3` +"
+        "content": "`unassignpolicy perindex/2 polindex/3` +"
       },
       {
         "lineNumber": 389,
@@ -7841,9 +7841,9 @@
       {
         "lineNumber": 391,
         "author": {
-          "gitId": "olivercheok20"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "`unassignpolicy 1 pol/4` +"
+        "content": "`unassignpolicy perindex/1 polindex/4` +"
       },
       {
         "lineNumber": 392,
@@ -10900,16 +10900,16 @@
       {
         "lineNumber": 828,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "* *Assign Policy* : `assignpolicy INDEX pol/POLICY [MORE_POLICIES]` +"
+        "content": "* *Assign Policy* : `assignpolicy perindex/INDEX polindex/INDEX` +"
       },
       {
         "lineNumber": 829,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "e.g. `assignpolicy 2 pol/SeniorCare`"
+        "content": "e.g. `assignpolicy perindex/2 polindex/2`"
       },
       {
         "lineNumber": 830,
@@ -10970,16 +10970,16 @@
       {
         "lineNumber": 838,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "* *Unassign Policy* : `unassignpolicy INDEX pol/POLICY [MORE_POLICIES]` +"
+        "content": "* *Unassign Policy* : `unassignpolicy INDEX polindex/INDEX` +"
       },
       {
         "lineNumber": 839,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "e.g. `unassignpolicy 2 pol/SeniorCare`"
+        "content": "e.g. `unassignpolicy perindex/2 pol/2`"
       },
       {
         "lineNumber": 840,
@@ -11123,10 +11123,10 @@
       }
     ],
     "authorContributionMap": {
-      "olivercheok20": 109,
-      "chowyiyin": 362,
+      "olivercheok20": 103,
+      "chowyiyin": 356,
       "larrylawl": 12,
-      "chaitanyabaranwal": 224,
+      "chaitanyabaranwal": 236,
       "ybchen97": 3,
       "-": 149
     }
@@ -22912,6 +22912,904 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/UnassignPolicyCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.Address;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.DateOfBirth;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.Email;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.Name;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.Nric;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.Person;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.person.Phone;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.policy.Policy;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": " * Command to assign a new policy to a person."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "public class UnassignPolicyCommand extends Command {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"unassignpolicy\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Removes an assigned policy from a person.\\n\""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + \"Parameters: \""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + PREFIX_POLICY_INDEX + \"POLICY INDEX \""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + PREFIX_PERSON_INDEX + \"PERSON INDEX\\n\""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + \"Example: \""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + COMMAND_WORD + \" \""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + PREFIX_POLICY_INDEX + \"1 \""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            + PREFIX_PERSON_INDEX + \"1\";"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public static final String MESSAGE_UNASSIGN_POLICY_SUCCESS \u003d \"Unassigned Policy: %1$s from Person: %2$s\";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public static final String MESSAGE_ALREADY_UNASSIGNED \u003d \"Person: %1$s does not have the Policy: %2$s.\";"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    private final Index policyIndex;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    private final Index personIndex;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * @param policyIndex Index of the policy to unassign"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * @param personIndex Index of the person to be unassigned"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public UnassignPolicyCommand(Index policyIndex, Index personIndex) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        requireNonNull(policyIndex);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        requireNonNull(personIndex);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        this.policyIndex \u003d policyIndex;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        this.personIndex \u003d personIndex;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        List\u003cPerson\u003e lastShownPersonList \u003d model.getFilteredPersonList();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        List\u003cPolicy\u003e lastShownPolicyList \u003d model.getFilteredPolicyList();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        if (policyIndex.getZeroBased() \u003e\u003d lastShownPolicyList.size()) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        if (personIndex.getZeroBased() \u003e\u003d lastShownPersonList.size()) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Policy policy \u003d lastShownPolicyList.get(policyIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Person person \u003d lastShownPersonList.get(personIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        if (!person.hasPolicy(policy)) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            throw new CommandException(String.format(MESSAGE_ALREADY_UNASSIGNED,"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "                    person.getName(), policy.getName()));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Person assignedPerson \u003d createUnassignedPerson(person, policy);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        model.setPerson(person, assignedPerson);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_UNASSIGN_POLICY_SUCCESS,"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "                policy.getName(), assignedPerson.getName()));"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * Creates a returns a {@code Person} with the details of {@code person}"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * with an additional policy {@code policy}."
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    private static Person createUnassignedPerson(Person person, Policy policy) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Name name \u003d person.getName();"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Nric nric \u003d person.getNric();"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Phone phone \u003d person.getPhone();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Email email \u003d person.getEmail();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Address address \u003d person.getAddress();"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        DateOfBirth dateOfBirth \u003d person.getDateOfBirth();"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Set\u003cPolicy\u003e updatedPolicies \u003d new HashSet\u003cPolicy\u003e(person.getPolicies());"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        updatedPolicies.remove(policy);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Set\u003cTag\u003e tags \u003d person.getTags();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        return new Person(name, nric, phone, email, address, dateOfBirth, updatedPolicies, tags);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        if (!(other instanceof UnassignPolicyCommand)) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        UnassignPolicyCommand e \u003d (UnassignPolicyCommand) other;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        return personIndex.equals(e.personIndex)"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "                \u0026\u0026 policyIndex.equals(e.policyIndex);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "chaitanyabaranwal": 127
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/commands/exceptions/DuplicatePersonException.java",
     "fileType": "functional",
     "lines": [
@@ -24545,359 +25443,359 @@
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.logic.commands.UnassignPolicyCommand;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": "/**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": " */"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "-"
         },
-        "content": "        case AddPolicyCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new AddPolicyCommandParser().parse(arguments);"
+        "content": "        case AddPolicyCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "            return new AddPolicyCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "-"
         },
-        "content": "        case EditPolicyCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new EditPolicyCommandParser().parse(arguments);"
+        "content": "        case EditPolicyCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "            return new EditPolicyCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "-"
         },
-        "content": "        case DeletePolicyCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new DeletePolicyCommandParser().parse(arguments);"
+        "content": "        case DeletePolicyCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 69,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "            return new DeletePolicyCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 70,
         "author": {
           "gitId": "larrylawl"
         },
         "content": ""
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 71,
         "author": {
           "gitId": "chowyiyin"
         },
         "content": "        case AssignPolicyCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 72,
         "author": {
           "gitId": "chowyiyin"
         },
         "content": "            return new AssignPolicyCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 73,
         "author": {
           "gitId": "chowyiyin"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": "        /*"
       },
       {
         "lineNumber": 74,
@@ -24923,306 +25821,313 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "        case AddTagCommand.COMMAND_WORD:"
+        "content": "        /*"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new AddTagCommandParser().parse(arguments);"
+        "content": "        case AddTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "            return new AddTagCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        case AddPolicyTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new AddPolicyTagCommandParser().parse(arguments);"
+        "content": "        case AddPolicyTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "            return new AddPolicyTagCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "-"
         },
-        "content": "        case DeleteTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new DeleteTagCommandParser().parse(arguments);"
+        "content": "        case DeleteTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "            return new DeleteTagCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        case DeletePolicyTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new DeletePolicyTagCommandParser().parse(arguments);"
+        "content": "        case DeletePolicyTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        */"
+        "content": "            return new DeletePolicyTagCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        */"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ClearCommand();"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "-"
         },
-        "content": "        /*"
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        case FindPolicyCommand.COMMAND_WORD:"
+        "content": "        /*"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new FindPolicyCommandParser().parse(arguments);"
+        "content": "        case FindPolicyCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        */"
+        "content": "            return new FindPolicyCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        case ListPeopleCommand.COMMAND_WORD:"
+        "content": "        */"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new ListPeopleCommand();"
+        "content": "        case ListPeopleCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "            return new ListPeopleCommand();"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "        case ListPolicyCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "larrylawl"
         },
-        "content": "            return new ListPolicyCommand();"
+        "content": "        case ListPolicyCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "-"
+          "gitId": "larrylawl"
         },
-        "content": ""
+        "content": "            return new ListPolicyCommand();"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "chowyiyin"
+          "gitId": "-"
         },
-        "content": "        /*"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        case MergeCommand.COMMAND_WORD:"
+        "content": "        /*"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new MergeCommandParser().parse(arguments);"
+        "content": "        case MergeCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        */"
+        "content": "            return new MergeCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 114,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        */"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+        "content": "        default:"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
@@ -25232,7 +26137,7 @@
     "authorContributionMap": {
       "chowyiyin": 38,
       "larrylawl": 4,
-      "chaitanyabaranwal": 2,
+      "chaitanyabaranwal": 3,
       "ybchen97": 2,
       "-": 74
     }
@@ -29939,6 +30844,407 @@
       "chowyiyin": 127,
       "ybchen97": 14,
       "-": 124
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/UnassignPolicyCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import java.util.stream.Stream;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.logic.commands.UnassignPolicyCommand;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": " * Parses input arguments and creates a new UnassignPolicyCommand object"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "public class UnassignPolicyCommandParser implements Parser\u003cUnassignPolicyCommand\u003e {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the UnassignPolicyCommand"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * and returns an UnassignPolicyCommand object for execution."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    public UnassignPolicyCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        requireNonNull(args);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_POLICY_INDEX, PREFIX_PERSON_INDEX);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_POLICY_INDEX, PREFIX_PERSON_INDEX)"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "                    UnassignPolicyCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Index personIndex \u003d null;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        Index policyIndex \u003d null;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            policyIndex \u003d ParserUtil.parseIndex(argMultimap.getValue(PREFIX_POLICY_INDEX).get());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            personIndex \u003d ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON_INDEX).get());"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "                    UnassignPolicyCommand.MESSAGE_USAGE), pe);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        return new UnassignPolicyCommand(policyIndex, personIndex);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     * {@code ArgumentMultimap}."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "chaitanyabaranwal": 56
     }
   },
   {

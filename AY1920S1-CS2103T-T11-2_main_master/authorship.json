@@ -33542,499 +33542,6 @@
     }
   },
   {
-    "path": "src/main/java/seedu/address/ui/CardCard.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package seedu.address.ui;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import java.util.Comparator;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.fxml.FXML;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.control.Label;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.layout.FlowPane;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.layout.HBox;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.layout.Region;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "import seedu.address.model.card.Card;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": " * An UI component that displays information of a {@code Card}."
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "public class CardCard extends UiPart\u003cRegion\u003e {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private static final String FXML \u003d \"PersonListCard.fxml\";"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Note: Certain keywords such as \"location\" and \"resources\" are reserved keywords in JavaFX."
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * As a consequence, UI elements\u0027 variable names cannot be set to such keywords"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * or an exception will be thrown by JavaFX during runtime."
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * @see \u003ca href\u003d\"https://github.com/se-edu/addressbook-level4/issues/336\"\u003eThe issue on AddressBook level 4\u003c/a\u003e"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "    public final Card card;"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @FXML"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private HBox cardPane;"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @FXML"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private Label name;"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @FXML"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private Label id;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @FXML"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "    private Label address; // todo this should be called description instead"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @FXML"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private FlowPane tags;"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "    public CardCard(Card card, int displayedIndex) {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        super(FXML);"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "        this.card \u003d card;"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        id.setText(displayedIndex + \". \");"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "        name.setText(card.getWord().value);"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "        address.setText(card.getMeaning().value);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "        card.getTags().stream()"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .sorted(Comparator.comparing(tag -\u003e tag.tagName))"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .forEach(tag -\u003e tags.getChildren().add(new Label(tag.tagName)));"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public boolean equals(Object other) {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // short circuit if same object"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (other \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "        if (!(other instanceof CardCard)) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // state check"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "        CardCard card \u003d (CardCard) other;"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return id.getText().equals(card.id.getText())"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "jascxx"
-        },
-        "content": "                \u0026\u0026 this.card.equals(card.card);"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "jascxx": 14,
-      "-": 55
-    }
-  },
-  {
     "path": "src/main/java/seedu/address/ui/CommandBox.java",
     "fileType": "functional",
     "lines": [
@@ -36034,7 +35541,7 @@
         "author": {
           "gitId": "dragontho"
         },
-        "content": "            if (commandText.equals(\"home\")) {"
+        "content": "            if (commandText.equals(\"list\")) {"
       },
       {
         "lineNumber": 201,
@@ -36048,119 +35555,119 @@
         "author": {
           "gitId": "dragontho"
         },
-        "content": "            } else {"
+        "content": "            } else if (commandText.equals(\"help\")) {"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "                modularDisplay.swapToHome(modularDisplayPlaceholder);"
+        "content": "                //modularDisplay.swapToBanks(modularDisplayPlaceholder);"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "            }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "dragontho"
         },
-        "content": ""
+        "content": "                modularDisplay.swapToHome(modularDisplayPlaceholder);"
       },
       {
         "lineNumber": 206,
         "author": {
-          "gitId": "-"
+          "gitId": "dragontho"
         },
-        "content": "            if (commandResult.isShowHelp()) {"
+        "content": "            }"
       },
       {
         "lineNumber": 207,
         "author": {
-          "gitId": "-"
+          "gitId": "dragontho"
         },
-        "content": "                handleHelp();"
+        "content": ""
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "            if (commandResult.isShowHelp()) {"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "                handleHelp();"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (commandResult.isExit()) {"
+        "content": "            }"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "-"
         },
-        "content": "                handleExit();"
+        "content": ""
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "            if (commandResult.isExit()) {"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "                handleExit();"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "-"
         },
-        "content": "            return commandResult;"
+        "content": "            }"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (CommandException | ParseException e) {"
+        "content": ""
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Invalid command: \" + commandText);"
+        "content": "            return commandResult;"
       },
       {
         "lineNumber": 217,
         "author": {
-          "gitId": "kohyida1997"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        } catch (CommandException | ParseException e) {"
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "-"
         },
-        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
+        "content": "            logger.info(\"Invalid command: \" + commandText);"
       },
       {
         "lineNumber": 219,
@@ -36172,47 +35679,61 @@
       {
         "lineNumber": 220,
         "author": {
-          "gitId": "kohyida1997"
+          "gitId": "-"
         },
-        "content": "            gameTimer \u003d new GameTimer("
+        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "kohyida1997"
         },
-        "content": "                    \"Clearing Result Display in\", 800, timerDisplay);"
+        "content": ""
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "kohyida1997"
         },
-        "content": "            gameTimer.run();"
+        "content": "            gameTimer \u003d new GameTimer("
       },
       {
         "lineNumber": 223,
         "author": {
-          "gitId": "-"
+          "gitId": "kohyida1997"
         },
-        "content": "            throw e;"
+        "content": "                    \"Clearing Result Display in\", 800, timerDisplay);"
       },
       {
         "lineNumber": 224,
         "author": {
-          "gitId": "-"
+          "gitId": "kohyida1997"
         },
-        "content": "        }"
+        "content": "            gameTimer.run();"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            throw e;"
       },
       {
         "lineNumber": 226,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 228,
         "author": {
           "gitId": "-"
         },
@@ -36220,7 +35741,7 @@
       }
     ],
     "authorContributionMap": {
-      "dragontho": 12,
+      "dragontho": 14,
       "chrischenhui": 2,
       "kohyida1997": 25,
       "-": 187
@@ -36319,262 +35840,381 @@
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    private final PersonListPanel personListPanel;"
+        "content": "    //private final LoadBankPanel loadBankPanel;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    private final TitleScreenPanel titleScreenPanel;"
+        "content": "    private final PersonListPanel personListPanel;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "dragontho"
         },
-        "content": ""
+        "content": "    private final TitleScreenPanel titleScreenPanel;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "chrischenhui"
+          "gitId": "dragontho"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "chrischenhui"
         },
-        "content": "     * Changes the screen."
+        "content": "    /**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "chrischenhui"
         },
-        "content": "     *"
+        "content": "     * Changes the screen."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "chrischenhui"
         },
-        "content": "     * @param logic"
+        "content": "     *"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "chrischenhui"
+          "gitId": "dragontho"
         },
-        "content": "     */"
+        "content": "     * @param logic Logic used for rendering lists."
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "dragontho"
+          "gitId": "chrischenhui"
         },
-        "content": "    public ModularDisplay(Logic logic) {"
+        "content": "     */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "        personListPanel \u003d new PersonListPanel(logic.getFilteredPersonList());"
+        "content": "    public ModularDisplay(Logic logic) {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "        titleScreenPanel \u003d new TitleScreenPanel();"
+        "content": "        //loadBankPanel \u003d new LoadBankPanel(logic.getFilteredPersonList());"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    }"
+        "content": "        personListPanel \u003d new PersonListPanel(logic.getFilteredPersonList());"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "dragontho"
         },
-        "content": ""
+        "content": "        titleScreenPanel \u003d new TitleScreenPanel();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    public void displayTitle(StackPane paneToDisplay) {"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "        paneToDisplay.getChildren().add(titleScreenPanel.getRoot());"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "dragontho"
         },
-        "content": ""
+        "content": "     * Initially displays title."
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "chrischenhui"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "chrischenhui"
-        },
-        "content": "     * Changes back to home display."
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "chrischenhui"
+          "gitId": "dragontho"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 31,
         "author": {
-          "gitId": "chrischenhui"
+          "gitId": "dragontho"
         },
-        "content": "     * @param paneToDisplay"
+        "content": "     * @param paneToDisplay The view to change."
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 32,
         "author": {
-          "gitId": "chrischenhui"
+          "gitId": "dragontho"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 33,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    public void swapToHome(StackPane paneToDisplay) {"
+        "content": "    public void displayTitle(StackPane paneToDisplay) {"
       },
       {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "dragontho"
-        },
-        "content": "        paneToDisplay.getChildren().clear();"
-      },
-      {
-        "lineNumber": 37,
+        "lineNumber": 34,
         "author": {
           "gitId": "dragontho"
         },
         "content": "        paneToDisplay.getChildren().add(titleScreenPanel.getRoot());"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 35,
         "author": {
           "gitId": "dragontho"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 36,
         "author": {
           "gitId": "dragontho"
         },
         "content": ""
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 37,
         "author": {
           "gitId": "chrischenhui"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 38,
         "author": {
           "gitId": "chrischenhui"
         },
-        "content": "     * Changes one screen to another."
+        "content": "     * Changes back to home display."
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 39,
         "author": {
           "gitId": "chrischenhui"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 40,
         "author": {
-          "gitId": "chrischenhui"
+          "gitId": "dragontho"
         },
-        "content": "     * @param paneToDisplay"
+        "content": "     * @param paneToDisplay The view to change."
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 41,
         "author": {
           "gitId": "chrischenhui"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 42,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "    public void swapToList(StackPane paneToDisplay) {"
+        "content": "    public void swapToHome(StackPane paneToDisplay) {"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 43,
         "author": {
           "gitId": "dragontho"
         },
         "content": "        paneToDisplay.getChildren().clear();"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 44,
         "author": {
           "gitId": "dragontho"
         },
-        "content": "        paneToDisplay.getChildren().add(personListPanel.getRoot());"
+        "content": "        paneToDisplay.getChildren().add(titleScreenPanel.getRoot());"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 45,
         "author": {
           "gitId": "dragontho"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 46,
         "author": {
           "gitId": "dragontho"
         },
         "content": ""
       },
       {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chrischenhui"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * Changes to the word list."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chrischenhui"
+        },
+        "content": "     *"
+      },
+      {
         "lineNumber": 50,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * @param paneToDisplay The view to change."
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chrischenhui"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    public void swapToList(StackPane paneToDisplay) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        paneToDisplay.getChildren().clear();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        paneToDisplay.getChildren().add(personListPanel.getRoot());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * Changes to list the word banks."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * @param paneToDisplay The view to change."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    //public void swapToBanks(StackPane paneToDisplay) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    //    paneToDisplay.getChildren().clear();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    //    paneToDisplay.getChildren().add(loadBankPanel.getRoot());"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    //}"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
         "author": {
           "gitId": "dragontho"
         },
@@ -36582,8 +36222,8 @@
       }
     ],
     "authorContributionMap": {
-      "dragontho": 32,
-      "chrischenhui": 18
+      "dragontho": 53,
+      "chrischenhui": 14
     }
   },
   {
@@ -36849,6 +36489,845 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/ui/modules/CardCard.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "package seedu.address.ui.modules;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Comparator;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.Label;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.FlowPane;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.HBox;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.Region;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "import seedu.address.model.card.Card;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import seedu.address.ui.UiPart;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": " * An UI component that displays information of a {@code Card}."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "public class CardCard extends UiPart\u003cRegion\u003e {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String FXML \u003d \"PersonListCard.fxml\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Note: Certain keywords such as \"location\" and \"resources\" are reserved keywords in JavaFX."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * As a consequence, UI elements\u0027 variable names cannot be set to such keywords"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * or an exception will be thrown by JavaFX during runtime."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @see \u003ca href\u003d\"https://github.com/se-edu/addressbook-level4/issues/336\"\u003eThe issue on AddressBook level 4\u003c/a\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "    public final Card card;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private HBox cardPane;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Label name;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Label id;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "    private Label address; // todo this should be called description instead"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private FlowPane tags;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "    public CardCard(Card card, int displayedIndex) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        this.card \u003d card;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        id.setText(displayedIndex + \". \");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        name.setText(card.getWord().value);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        address.setText(card.getMeaning().value);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        card.getTags().stream()"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .sorted(Comparator.comparing(tag -\u003e tag.tagName))"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .forEach(tag -\u003e tags.getChildren().add(new Label(tag.tagName)));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        if (!(other instanceof CardCard)) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        CardCard card \u003d (CardCard) other;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return id.getText().equals(card.id.getText())"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "                \u0026\u0026 this.card.equals(card.card);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "dragontho": 2,
+      "jascxx": 14,
+      "-": 54
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/ui/modules/LoadBankPanel.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "package seedu.address.ui.modules;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import javafx.scene.control.ListCell;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import javafx.scene.control.ListView;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import javafx.scene.layout.Region;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import seedu.address.model.card.Card;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import seedu.address.ui.UiPart;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": " * Panel containing the list of word banks."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "public class LoadBankPanel extends UiPart\u003cRegion\u003e {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    private static final String FXML \u003d \"LoadBankPanel.fxml\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(LoadBankPanel.class);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    private ListView\u003cCard\u003e loadBankView;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    public LoadBankPanel(ObservableList\u003cCard\u003e wordBankList) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        loadBankView.setItems(wordBankList);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        loadBankView.setCellFactory(listView -\u003e new LoadBankViewCell());"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code CardCard}."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    class LoadBankViewCell extends ListCell\u003cCard\u003e {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        protected void updateItem(Card card, boolean empty) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "            super.updateItem(card, empty);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "            if (empty || card \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "                setGraphic(null);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "                setText(null);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "                setGraphic(new WordBankCard(card, getIndex() + 1).getRoot());"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "dragontho": 47
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/ui/modules/PersonListPanel.java",
     "fileType": "functional",
     "lines": [
@@ -36934,255 +37413,248 @@
         "author": {
           "gitId": "dragontho"
         },
-        "content": "import seedu.address.ui.CardCard;"
+        "content": "import seedu.address.ui.UiPart;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "dragontho"
+          "gitId": "-"
         },
-        "content": "import seedu.address.ui.UiPart;"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": " * Panel containing the list of persons."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": " * Panel containing the list of persons."
+        "content": " */"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "public class PersonListPanel extends UiPart\u003cRegion\u003e {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "public class PersonListPanel extends UiPart\u003cRegion\u003e {"
+        "content": "    private static final String FXML \u003d \"PersonListPanel.fxml\";"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final String FXML \u003d \"PersonListPanel.fxml\";"
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(PersonListPanel.class);"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final Logger logger \u003d LogsCenter.getLogger(PersonListPanel.class);"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    @FXML"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "jascxx"
         },
         "content": "    private ListView\u003cCard\u003e personListView;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "jascxx"
         },
         "content": "    public PersonListPanel(ObservableList\u003cCard\u003e personList) {"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
         "content": "        super(FXML);"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
         "content": "        personListView.setItems(personList);"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
         "content": "        personListView.setCellFactory(listView -\u003e new PersonListViewCell());"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "jascxx"
         },
         "content": "     * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code CardCard}."
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "jascxx"
         },
         "content": "    class PersonListViewCell extends ListCell\u003cCard\u003e {"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
         "content": "        @Override"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "jascxx"
         },
         "content": "        protected void updateItem(Card card, boolean empty) {"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "jascxx"
         },
         "content": "            super.updateItem(card, empty);"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "jascxx"
         },
         "content": "            if (empty || card \u003d\u003d null) {"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
         "content": "                setGraphic(null);"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
         "content": "                setText(null);"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
         "content": "            } else {"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 42,
         "author": {
           "gitId": "jascxx"
         },
         "content": "                setGraphic(new CardCard(card, getIndex() + 1).getRoot());"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
@@ -37190,7 +37662,7 @@
       }
     ],
     "authorContributionMap": {
-      "dragontho": 3,
+      "dragontho": 2,
       "jascxx": 9,
       "-": 36
     }
@@ -37260,7 +37732,7 @@
         "author": {
           "gitId": "dragontho"
         },
-        "content": " * Panel containing the list of persons."
+        "content": " * Panel containing the introduction screen."
       },
       {
         "lineNumber": 10,
@@ -37419,6 +37891,812 @@
     ],
     "authorContributionMap": {
       "dragontho": 31
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/ui/modules/WordBankCard.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "package seedu.address.ui.modules;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.Label;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.HBox;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.Region;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "import seedu.address.model.card.Card;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "import seedu.address.ui.UiPart;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": " * An UI component that displays information of a {@code Card}."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "public class WordBankCard extends UiPart\u003cRegion\u003e {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String FXML \u003d \"PersonListCard.fxml\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Note: Certain keywords such as \"location\" and \"resources\" are reserved keywords in JavaFX."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * As a consequence, UI elements\u0027 variable names cannot be set to such keywords"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * or an exception will be thrown by JavaFX during runtime."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @see \u003ca href\u003d\"https://github.com/se-edu/addressbook-level4/issues/336\"\u003eThe issue on AddressBook level 4\u003c/a\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "    public final Card card;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private HBox cardPane;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Label name;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Label id;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    private Label description;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * Card containing the details of the word bank."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * @param card The card representing its corresponding word bank."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     * @param displayedIndex The index of the word bank."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    public WordBankCard(Card card, int displayedIndex) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        this.card \u003d card;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        id.setText(displayedIndex + \". \");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "        name.setText(card.getWord().value);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        description.setText(card.getMeaning().value);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        if (!(other instanceof WordBankCard)) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        WordBankCard card \u003d (WordBankCard) other;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return id.getText().equals(card.id.getText())"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "jascxx"
+        },
+        "content": "                \u0026\u0026 this.card.equals(card.card);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "dragontho": 14,
+      "jascxx": 7,
+      "-": 46
+    }
+  },
+  {
+    "path": "src/main/resources/view/LoadBankCard.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.control.Label?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.ColumnConstraints?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.RowConstraints?\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "  \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    \u003ccolumnConstraints\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" minWidth\u003d\"10\" prefWidth\u003d\"150\" /\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    \u003c/columnConstraints\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    \u003cVBox alignment\u003d\"CENTER_LEFT\" minHeight\u003d\"105\" GridPane.columnIndex\u003d\"0\"\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        \u003cInsets bottom\u003d\"5\" left\u003d\"15\" right\u003d\"5\" top\u003d\"5\" /\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003cHBox alignment\u003d\"CENTER_LEFT\" spacing\u003d\"5\"\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "          \u003cminWidth\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "            \u003c!-- Ensures that the label text is never truncated --\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "            \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "          \u003c/minWidth\u003e"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        \u003c/Label\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "        \u003cLabel fx:id\u003d\"name\" styleClass\u003d\"cell_big_label\" text\u003d\"\\$first\" /\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003cLabel fx:id\u003d\"description\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$description\" /\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "    \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003crowConstraints\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "         \u003cRowConstraints /\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "      \u003c/rowConstraints\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "  \u003c/GridPane\u003e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c/HBox\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "dragontho": 36
+    }
+  },
+  {
+    "path": "src/main/resources/view/LoadBankPanel.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.control.ListView?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003cVBox xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "  \u003cListView fx:id\u003d\"loadBankView\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "dragontho"
+        },
+        "content": "\u003c/VBox\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "dragontho": 8
     }
   },
   {
