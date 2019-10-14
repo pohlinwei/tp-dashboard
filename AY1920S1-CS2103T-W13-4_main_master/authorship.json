@@ -15397,6 +15397,827 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/model/AccountBook.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.account.Account;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.account.UniqueAccountList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Wraps all data at the account-book level"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Duplicates are not allowed (by .isSameAccount comparison)"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public class AccountBook implements ReadOnlyAccountBook {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private final UniqueAccountList accounts;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /*"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * The \u0027unusual\u0027 code block below is a non-static initialization block, sometimes used to avoid duplication"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     *   among constructors."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        accounts \u003d new UniqueAccountList();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public AccountBook() {}"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Creates an AccountBook using the Accounts in the {@code toBeCopied}"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public AccountBook(ReadOnlyAccountBook toBeCopied) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        this();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        resetData(toBeCopied);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Resets the existing data of this {@code AddressBook} with {@code newData}."
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void resetData(ReadOnlyAccountBook newData) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(newData);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        setAccounts(newData.getAccountList());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    //// account-level operations"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns true if an account with the same identity as {@code account} exists in the account book."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean hasAccount(Account account) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(account);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return accounts.contains(account);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Adds an account to the account book."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * The account must not already exist in the account book."
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void addAccount(Account a) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        accounts.add(a);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Replaces the given account {@code target} in the list with {@code editedAccount}."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * {@code target} must exist in the account book."
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void setAccount(Account target, Account editedAccount) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(editedAccount);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        accounts.setAccount(target, editedAccount);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Replaces the contents of the account list with {@code accounts}."
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * {@code accounts} must not contain duplicate accounts."
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void setAccounts(List\u003cAccount\u003e accounts) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        this.accounts.setAccounts(accounts);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Removes {@code key} from this {@code AccountBook}."
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * {@code key} must exist in the account book."
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void removeAccount(Account key) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        accounts.remove(key);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    //// util methods"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return accounts.asUnmodifiableObservableList().size() + \" accounts\";"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public ObservableList\u003cAccount\u003e getAccountList() {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return accounts.asUnmodifiableObservableList();"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                || (other instanceof AccountBook // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 accounts.equals(((AccountBook) other).accounts));"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return accounts.hashCode();"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 116
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/model/AddressBook.java",
     "fileType": "functional",
     "lines": [
@@ -18847,6 +19668,127 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/model/ReadOnlyAccountBook.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.account.Account;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Unmodifiable view of an account book"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public interface ReadOnlyAccountBook {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns an unmodifiable view of the account list."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * This list will not contain any duplicate accounts."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    ObservableList\u003cAccount\u003e getAccountList();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 16
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/model/ReadOnlyAddressBook.java",
     "fileType": "functional",
     "lines": [
@@ -18980,6 +19922,2228 @@
     "authorContributionMap": {
       "kenneth-fung": 1,
       "-": 17
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/account/Account.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model.account;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.transaction.Transaction;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Represents an account in the account book."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public class Account {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    // Identity fields"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private final Name name;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private final Transaction transaction;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    // Data fields"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private final Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Every field must be present and not null."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public Account(Name name, Transaction transaction, Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireAllNonNull(name, transaction, tags);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        this.name \u003d name;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        this.transaction \u003d transaction;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        this.tags.addAll(tags);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public Name getName() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public Transaction getTransaction() {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return transaction;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * if modification is attempted."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public Set\u003cTag\u003e getTags() {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return Collections.unmodifiableSet(tags);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns true if both accounts of the same name have at least one other identity field that is the same."
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * This defines a weaker notion of equality between two accounts."
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean isSameAccount(Account otherAccount) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (otherAccount \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return otherAccount !\u003d null"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 otherAccount.getName().equals(getName())"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 (otherAccount.getTransaction().equals(getTransaction()));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns true if both accounts have the same identity and data fields."
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * This defines a stronger notion of equality between two accounts."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (!(other instanceof Account)) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        Account otherAccount \u003d (Account) other;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return otherAccount.getName().equals(getName())"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 otherAccount.getTransaction().equals(getTransaction())"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 otherAccount.getTags().equals(getTags());"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return Objects.hash(name, transaction, tags);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        builder.append(getName())"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                .append(\" Tags: \");"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        getTags().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 101
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/account/Name.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model.account;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import static seedu.address.commons.util.AppUtil.checkArgument;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Represents an Account\u0027s name in the account book."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public class Name {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            \"Names should only contain alphanumeric characters and spaces, and it should not be blank\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /*"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * The first character of the account must not be a whitespace,"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * otherwise \" \" (a blank string) becomes a valid input."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public static final String VALIDATION_REGEX \u003d \"[\\\\p{Alnum}][\\\\p{Alnum} ]*\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public final String accountName;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Constructs a {@code Name}."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * @param name A valid name."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public Name(String name) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(name);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        accountName \u003d name;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns true if a given string is a valid name."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public static boolean isValidName(String test) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return accountName;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                || (other instanceof Name // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 accountName.equals(((Name) other).accountName)); // state check"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return accountName.hashCode();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 59
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/account/UniqueAccountList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model.account;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.Iterator;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import javafx.collections.FXCollections;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.account.exception.AccountNotFoundException;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "import seedu.address.model.account.exception.DuplicateAccountException;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * A list of accounts that enforces uniqueness between its elements and does not allow nulls."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Supports a minimal set of list operations."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public class UniqueAccountList implements Iterable\u003cAccount\u003e {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private final ObservableList\u003cAccount\u003e internalList \u003d FXCollections.observableArrayList();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private final ObservableList\u003cAccount\u003e internalUnmodifiableList \u003d"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            FXCollections.unmodifiableObservableList(internalList);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns true if the list contains an equivalent account as the given argument."
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean contains(Account toCheck) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(toCheck);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return internalList.stream().anyMatch(toCheck::isSameAccount);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Adds an account to the list."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * The account must not already exist in the list."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void add(Account toAdd) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(toAdd);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (contains(toAdd)) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            throw new DuplicateAccountException();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        internalList.add(toAdd);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Replaces the account {@code target} in the list with {@code editedAccount}."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * {@code target} must exist in the list."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * The account identity of {@code editedAccount} must not be the same as another existing account in the list."
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void setAccount(Account target, Account editedAccount) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireAllNonNull(target, editedAccount);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        int index \u003d internalList.indexOf(target);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (index \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            throw new AccountNotFoundException();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (!target.isSameAccount(editedAccount) \u0026\u0026 contains(editedAccount)) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            throw new DuplicateAccountException();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        internalList.set(index, editedAccount);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Removes the equivalent account from the list."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * The account must exist in the list."
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void remove(Account toRemove) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(toRemove);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (!internalList.remove(toRemove)) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            throw new AccountNotFoundException();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void setAccounts(UniqueAccountList replacement) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireNonNull(replacement);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        internalList.setAll(replacement.internalList);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Replaces the contents of this list with {@code accounts}."
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * {@code accounts} must not contain duplicate accounts."
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public void setAccounts(List\u003cAccount\u003e accounts) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        requireAllNonNull(accounts);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        if (!accountsAreUnique(accounts)) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            throw new DuplicateAccountException();"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        internalList.setAll(accounts);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns the backing list as an unmodifiable {@code ObservableList}."
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public ObservableList\u003cAccount\u003e asUnmodifiableObservableList() {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return internalUnmodifiableList;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public Iterator\u003cAccount\u003e iterator() {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return internalList.iterator();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                || (other instanceof UniqueAccountList // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                \u0026\u0026 internalList.equals(((UniqueAccountList) other).internalList));"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return internalList.hashCode();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     * Returns true if {@code accounts} contains only unique accounts."
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    private boolean accountsAreUnique(List\u003cAccount\u003e accounts) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        for (int i \u003d 0; i \u003c accounts.size() - 1; i++) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            for (int j \u003d i + 1; j \u003c accounts.size(); j++) {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                if (accounts.get(i).isSameAccount(accounts.get(j))) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                    return false;"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 133
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/account/exception/AccountNotFoundException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model.account.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Signals that the operation is unable to find the specified account."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public class AccountNotFoundException extends RuntimeException {}"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 7
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/account/exception/DuplicateAccountException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "package seedu.address.model.account.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " * identity)."
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "public class DuplicateAccountException extends RuntimeException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    public DuplicateAccountException() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "        super(\"Operation would result in duplicate accounts\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "ChenJiehan318"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "ChenJiehan318": 11
     }
   },
   {

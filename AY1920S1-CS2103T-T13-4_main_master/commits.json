@@ -443,8 +443,8 @@
         ]
       },
       {
-        "insertions": 366,
-        "deletions": 52,
+        "insertions": 441,
+        "deletions": 67,
         "date": "2019-10-07",
         "commitResults": [
           {
@@ -467,14 +467,28 @@
             "messageBody": "Create a new package under seedu.mark.model for the predicates used in\nsearching.\n",
             "insertions": 17,
             "deletions": 13
+          },
+          {
+            "hash": "a6fa3e86920283afbef642d45ae942ae65321d08",
+            "messageTitle": "Refactor: Command#execute to use Storage too",
+            "messageBody": "In preparation for implementing export/ import commands.\nCreate StorageStub in CommandUtil to maintain existing JUnit tests.\n",
+            "insertions": 75,
+            "deletions": 15
           }
         ]
       },
       {
-        "insertions": 11,
+        "insertions": 300,
         "deletions": 5,
         "date": "2019-10-08",
         "commitResults": [
+          {
+            "hash": "af50ae123e84951e4292540fc2aba3059703bbba",
+            "messageTitle": "Add: Export command",
+            "messageBody": "Export all of Mark\u0027s data into a given file in /data/bookmarks/.\nFirst increment of the export command.\n",
+            "insertions": 176,
+            "deletions": 0
+          },
           {
             "hash": "e0774765f3cb914bcb775a0fb5cbcb6f7cde1d2b",
             "messageTitle": "Fix: Suggested changes from code review",
@@ -488,6 +502,118 @@
             "messageBody": "Allow partial matches when searching by Name.\n",
             "insertions": 6,
             "deletions": 2
+          },
+          {
+            "hash": "079856232e5381044cd96fe315c6381d311bf91a",
+            "messageTitle": "Add: Import command",
+            "messageBody": "Replace all of Mark\u0027s bookmarks with bookmarks from a given file.\n",
+            "insertions": 113,
+            "deletions": 0
+          }
+        ]
+      },
+      {
+        "insertions": 325,
+        "deletions": 34,
+        "date": "2019-10-09",
+        "commitResults": [
+          {
+            "hash": "eebc20ea89855113068479683330d8dbde4f815a",
+            "messageTitle": "Add: Tests for import and export",
+            "messageBody": "Allow a Storage to be specified when asserting command success or\ncommand failure using the CommandTestUtil methods.\n",
+            "insertions": 325,
+            "deletions": 34
+          }
+        ]
+      },
+      {
+        "insertions": 4,
+        "deletions": 4,
+        "date": "2019-10-10",
+        "commitResults": [
+          {
+            "hash": "f618a3c1838a8504fc4523d452d63418a75c21cc",
+            "messageTitle": "Fix: Suggested changes from code review",
+            "messageBody": "Avoid throwing raw exception type, and use requireAllNonNull to reduce\nnumber of statements.\n",
+            "insertions": 4,
+            "deletions": 4
+          }
+        ]
+      },
+      {
+        "insertions": 140,
+        "deletions": 27,
+        "date": "2019-10-11",
+        "commitResults": [
+          {
+            "hash": "bda41e8c27c3bf6ffb5b81a2f5f0a28cc13808bd",
+            "messageTitle": "Add: Import without replacing existing bookmarks",
+            "messageBody": "Modify import functionality: add imported bookmarks to Mark instead of\nreplacing existing bookmarks. Duplicate bookmarks are skipped and\nshown in the command result.\n",
+            "insertions": 122,
+            "deletions": 17
+          },
+          {
+            "hash": "c23984ef2ddc298dde881f6d0c7b187b6632c189",
+            "messageTitle": "Fix: Suggestions from code review",
+            "messageBody": "Add logging for ExportCommand and improve ImportCommand log messages.\nAppend the file extension (.json) to the given filename when parsing\nexport and import commands.\nReplace usage of Paths#get(...) with Path#of(...).\n",
+            "insertions": 13,
+            "deletions": 4
+          },
+          {
+            "hash": "03ab5885e7ae0f02fefe5a7046d5e80bf60690fb",
+            "messageTitle": "Fix: Invalid tests and checkstyle errors",
+            "messageBody": "Remove unused import statements and update parser tests to include\nfile extension.\nTo Do: Abstract the conversion of a filename to a Path into a separate\nmethod.\n",
+            "insertions": 5,
+            "deletions": 6
+          }
+        ]
+      },
+      {
+        "insertions": 121,
+        "deletions": 74,
+        "date": "2019-10-12",
+        "commitResults": [
+          {
+            "hash": "cf05dcdd0ead14678ca8a01f4f1565a34698161a",
+            "messageTitle": "Fix: Broken tests",
+            "messageBody": "Modify ImportCommandTest to account for folder structure not being\nimported yet. Modify AddFolderCommandTest to account for additional\nstorage parameter in Command#execute().\n\nBug to fix: Folder structure is ignored during import\n",
+            "insertions": 54,
+            "deletions": 13
+          },
+          {
+            "hash": "afceee6382c1d8ed6b9899c1ee94179ed6314a4f",
+            "messageTitle": "Refactor: StorageStub to separate class",
+            "messageBody": "Move StorageStub from CommandTestUtil to seedu.mark.storage in test\nmodule, to match ModelStub.\n",
+            "insertions": 67,
+            "deletions": 61
+          }
+        ]
+      },
+      {
+        "insertions": 278,
+        "deletions": 96,
+        "date": "2019-10-13",
+        "commitResults": [
+          {
+            "hash": "178d9f60116a22bccc7688b79d16e6d97b4cf178",
+            "messageTitle": "Refactor: bookmark-importing logic into MarkImporter",
+            "messageBody": "Move the \"add bookmarks/folders to the model\" logic into a separate\nclass for better OOP. Modify Model to handle the addition of multiple\nbookmarks or folders.\n\nTo-Do: implement folder addition.\n",
+            "insertions": 214,
+            "deletions": 89
+          },
+          {
+            "hash": "33c27042b6c1217c15fac0a1f5c41672175d07bc",
+            "messageTitle": "Add: Test for MarkImporter#equals()",
+            "messageBody": "Fix equals() method and add a JUnit test for it.\n",
+            "insertions": 57,
+            "deletions": 0
+          },
+          {
+            "hash": "02a0ae2fa93fde7bf568e319279ca448f2981fc3",
+            "messageTitle": "Fix: Checkstyle error (import statement order)",
+            "messageBody": "And update variable name in ImportCommand#equals()\n",
+            "insertions": 7,
+            "deletions": 7
           }
         ]
       }
@@ -1047,6 +1173,223 @@
             "deletions": 33
           }
         ]
+      },
+      {
+        "insertions": 4,
+        "deletions": 0,
+        "date": "2019-10-08",
+        "commitResults": [
+          {
+            "hash": "a4b2dbe079fbc6694a088bf2f88935a542b4a3af",
+            "messageTitle": "create reminder class",
+            "messageBody": "",
+            "insertions": 4,
+            "deletions": 0
+          }
+        ]
+      },
+      {
+        "insertions": 198,
+        "deletions": 33,
+        "date": "2019-10-09",
+        "commitResults": [
+          {
+            "hash": "6d346741b545220bec3e64bbb73b896e29392c51",
+            "messageTitle": "add Note class and attribute for Reminder class",
+            "messageBody": "",
+            "insertions": 20,
+            "deletions": 0
+          },
+          {
+            "hash": "5126d2fd0fd94d47037f5a6580b58fa9423a0610",
+            "messageTitle": "add comment",
+            "messageBody": "",
+            "insertions": 9,
+            "deletions": 0
+          },
+          {
+            "hash": "14f72fc5b7bec23678892e82e4612df43c863e46",
+            "messageTitle": "add methods for reminder",
+            "messageBody": "",
+            "insertions": 34,
+            "deletions": 3
+          },
+          {
+            "hash": "c53cdc6d05804fe96b7dde2aec4e4c8336e7752e",
+            "messageTitle": "formatting",
+            "messageBody": "",
+            "insertions": 2,
+            "deletions": 1
+          },
+          {
+            "hash": "43b4982cd5b1cf63bea183b691822b2db7053c71",
+            "messageTitle": "Apply suggestions from code review",
+            "messageBody": "Co-Authored-By: Na Nazhou \u003c42093424+Na-Nazhou@users.noreply.github.com\u003e",
+            "insertions": 1,
+            "deletions": 1
+          },
+          {
+            "hash": "a14b1f7ee65c990250a06ff0218e9fa2912d4467",
+            "messageTitle": "add test for reminder and note",
+            "messageBody": "",
+            "insertions": 14,
+            "deletions": 0
+          },
+          {
+            "hash": "f9f76851558936bea47dcab466668c1c30865dad",
+            "messageTitle": "formatting",
+            "messageBody": "",
+            "insertions": 4,
+            "deletions": 4
+          },
+          {
+            "hash": "d39a3740c697fe58c1f7084ee644500c763e1293",
+            "messageTitle": "add methods to Note",
+            "messageBody": "",
+            "insertions": 65,
+            "deletions": 5
+          },
+          {
+            "hash": "aaa1401e07ed12303c139a62aa361b881cf5c517",
+            "messageTitle": "add comment",
+            "messageBody": "",
+            "insertions": 6,
+            "deletions": 1
+          },
+          {
+            "hash": "9995efaf129ffbb1336ad552468dad5833463359",
+            "messageTitle": "add noteTest, still need to change",
+            "messageBody": "",
+            "insertions": 32,
+            "deletions": 7
+          },
+          {
+            "hash": "7ed239ad755858c7d9a8dba3140fa6d9c11ef165",
+            "messageTitle": "formatting",
+            "messageBody": "",
+            "insertions": 6,
+            "deletions": 4
+          },
+          {
+            "hash": "74fca3b1e5f6c9813d85f6694595620c52abb571",
+            "messageTitle": "formatting",
+            "messageBody": "",
+            "insertions": 2,
+            "deletions": 3
+          },
+          {
+            "hash": "19e382251382ee376a461e5a3c3e5db977e81c16",
+            "messageTitle": "formatting",
+            "messageBody": "",
+            "insertions": 0,
+            "deletions": 1
+          },
+          {
+            "hash": "6e622c4590ce553e77b0e4e5f16ba5492ff47a36",
+            "messageTitle": "formatting",
+            "messageBody": "",
+            "insertions": 2,
+            "deletions": 2
+          },
+          {
+            "hash": "c634a2140dbbd9077e21ac1b9e39a8f141a2e62b",
+            "messageTitle": "add new line at the end of NoteTest",
+            "messageBody": "",
+            "insertions": 1,
+            "deletions": 1
+          }
+        ]
+      },
+      {
+        "insertions": 6,
+        "deletions": 6,
+        "date": "2019-10-11",
+        "commitResults": [
+          {
+            "hash": "74f362bc5777b010cddf416bca90244c5fa5d654",
+            "messageTitle": "Update src/main/java/seedu/mark/model/reminder/Note.java",
+            "messageBody": "Co-Authored-By: Na Nazhou \u003c42093424+Na-Nazhou@users.noreply.github.com\u003e",
+            "insertions": 1,
+            "deletions": 1
+          },
+          {
+            "hash": "c2a440a06289b43b8b5b1f4954a5783de023f249",
+            "messageTitle": "Apply suggestions from code review",
+            "messageBody": "Co-Authored-By: Kappayolk \u003c45960468+kxyoke@users.noreply.github.com\u003e",
+            "insertions": 2,
+            "deletions": 2
+          },
+          {
+            "hash": "26ad60a88269476bf9427a59bd4b5c8e51e34b68",
+            "messageTitle": "apply suggestion",
+            "messageBody": "",
+            "insertions": 3,
+            "deletions": 3
+          }
+        ]
+      },
+      {
+        "insertions": 309,
+        "deletions": 61,
+        "date": "2019-10-12",
+        "commitResults": [
+          {
+            "hash": "b9ed372bea1da4e9d71a300baf34e0e90299c632",
+            "messageTitle": "add ReminderTest",
+            "messageBody": "",
+            "insertions": 276,
+            "deletions": 26
+          },
+          {
+            "hash": "df412efa70298e657552333dd80650d3d92fe8af",
+            "messageTitle": "checkstyle",
+            "messageBody": "",
+            "insertions": 32,
+            "deletions": 30
+          },
+          {
+            "hash": "8111ffd5adfc4b6c5c9de0cd3394772326217ed1",
+            "messageTitle": "fix typo and test",
+            "messageBody": "",
+            "insertions": 1,
+            "deletions": 5
+          }
+        ]
+      },
+      {
+        "insertions": 13,
+        "deletions": 9,
+        "date": "2019-10-13",
+        "commitResults": [
+          {
+            "hash": "6ae696aa25bc167948884f773b4b5431cad04543",
+            "messageTitle": "Apply suggestions from code review",
+            "messageBody": "Co-Authored-By: Na Nazhou \u003c42093424+Na-Nazhou@users.noreply.github.com\u003e",
+            "insertions": 7,
+            "deletions": 7
+          },
+          {
+            "hash": "296325a4e1236f6ea0eaf93f84a2a4356f616ab7",
+            "messageTitle": "import typicalbookmark",
+            "messageBody": "",
+            "insertions": 4,
+            "deletions": 1
+          },
+          {
+            "hash": "dea60b93bb44149233317e3123713b03ffe779f6",
+            "messageTitle": "apply suggestion",
+            "messageBody": "",
+            "insertions": 1,
+            "deletions": 1
+          },
+          {
+            "hash": "675499ca43880633064a6111bca94e240c63590e",
+            "messageTitle": "Update src/main/java/seedu/mark/model/reminder/Reminder.java",
+            "messageBody": "Co-Authored-By: Kappayolk \u003c45960468+kxyoke@users.noreply.github.com\u003e",
+            "insertions": 1,
+            "deletions": 0
+          }
+        ]
       }
     ],
     "Na-Nazhou": [
@@ -1313,6 +1656,20 @@
             "messageBody": "",
             "insertions": 74,
             "deletions": 66
+          }
+        ]
+      },
+      {
+        "insertions": 7,
+        "deletions": 1,
+        "date": "2019-10-14",
+        "commitResults": [
+          {
+            "hash": "7d98b3a45d63242a44ba1cd4dd89a96888ee78b5",
+            "messageTitle": "Fix tab switch NPE",
+            "messageBody": "",
+            "insertions": 7,
+            "deletions": 1
           }
         ]
       }
@@ -1648,8 +2005,8 @@
         ]
       },
       {
-        "insertions": 152,
-        "deletions": 155,
+        "insertions": 153,
+        "deletions": 156,
         "date": "2019-10-13",
         "commitResults": [
           {
@@ -1672,54 +2029,61 @@
             "messageBody": "",
             "insertions": 145,
             "deletions": 141
+          },
+          {
+            "hash": "8a0e6690dbbb47dc24cc21e28f3873a1d7f171ab",
+            "messageTitle": "Fix #98",
+            "messageBody": "",
+            "insertions": 1,
+            "deletions": 1
           }
         ]
       }
     ]
   },
   "authorFinalContributionMap": {
-    "dorcastan": 2986,
-    "openorclose": 1574,
-    "TSAI-HSIAO-HAN": 144,
-    "Na-Nazhou": 1092,
-    "kxyoke": 1117
+    "dorcastan": 4051,
+    "openorclose": 1569,
+    "TSAI-HSIAO-HAN": 565,
+    "Na-Nazhou": 1083,
+    "kxyoke": 1113
   },
   "authorFileTypeContributionMap": {
     "dorcastan": {
       "docs": 160,
-      "tests": 1646,
-      "functional": 1174,
+      "tests": 2257,
+      "functional": 1628,
       "other": 6
     },
     "openorclose": {
       "docs": 334,
-      "tests": 531,
-      "functional": 709
+      "tests": 529,
+      "functional": 706
     },
     "TSAI-HSIAO-HAN": {
       "docs": 144,
-      "tests": 0,
-      "functional": 0
+      "tests": 236,
+      "functional": 185
     },
     "Na-Nazhou": {
       "docs": 187,
-      "tests": 372,
-      "functional": 532,
+      "tests": 361,
+      "functional": 534,
       "other": 1
     },
     "kxyoke": {
       "docs": 375,
-      "tests": 128,
-      "functional": 608,
+      "tests": 125,
+      "functional": 607,
       "other": 6
     }
   },
   "authorContributionVariance": {
-    "dorcastan": 1016728.44,
-    "openorclose": 74095.55,
-    "TSAI-HSIAO-HAN": 2788.377,
-    "Na-Nazhou": 21315.008,
-    "kxyoke": 22559.744
+    "dorcastan": 982486.1,
+    "openorclose": 72340.086,
+    "TSAI-HSIAO-HAN": 6970.47,
+    "Na-Nazhou": 20812.984,
+    "kxyoke": 22123.871
   },
   "authorDisplayNameMap": {
     "dorcastan": "CS2103T-T13-4 DORCA ... A TAN",
