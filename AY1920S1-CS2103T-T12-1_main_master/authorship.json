@@ -18842,21 +18842,21 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import static java.util.Objects.requireNonNull;"
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "gabrielseow"
+          "gitId": "-"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_NAME;"
+        "content": "import seedu.address.model.Model;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "seahlynn"
+          "gitId": "ambhinav"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;"
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 6,
@@ -18868,28 +18868,28 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+        "content": "import static java.util.Objects.requireNonNull;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.Model;"
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_NAME;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.task.Task;"
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
         "content": ""
       },
@@ -19001,16 +19001,16 @@
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "gabrielseow"
         },
-        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New task added: %1$s\";"
+        "content": "    private static final String MESSAGE_SUCCESS \u003d \"New task added: %1$s\";"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "gabrielseow"
         },
-        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"This task already exists in the address book\";"
+        "content": "    private static final String MESSAGE_DUPLICATE_TASK \u003d \"This task already exists in the address book\";"
       },
       {
         "lineNumber": 28,
@@ -19224,10 +19224,900 @@
       }
     ],
     "authorContributionMap": {
-      "ambhinav": 12,
-      "seahlynn": 1,
-      "-": 34,
-      "gabrielseow": 10
+      "ambhinav": 10,
+      "-": 32,
+      "gabrielseow": 15
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/commands/AddTaskToMemberCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_ID;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEMBERS;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.member.Member;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.member.MemberId;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.member.MemberName;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.task.Task;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": " * Adds a task to member to be responsible for"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "public class AddTaskToMemberCommand extends Command {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"assign\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Adds a task indicated \""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"by the index number used in the displayed task list, to the member indicated \""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"by the member ID. \\n\""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_TASK_INDEX + \"TASK_INDEX\""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_MEMBER_ID + \"MEMBER_ID \\n\""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" \""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_TASK_INDEX + \" 2 \""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_MEMBER_ID + \" JD\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String MESSAGE_ASSIGN_TASK_SUCCESS \u003d \"Set task for member: %1$s\";"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"This task already exists under member.\";"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    private final Index taskId;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    private final MemberId memberId;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * @param taskId of the task in the filtered task list to be added to member"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * @param memberId of the member involved"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public AddTaskToMemberCommand(Index taskId, MemberId memberId) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        requireNonNull(memberId);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        this.taskId \u003d taskId;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        this.memberId \u003d memberId;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        List\u003cTask\u003e lastShownTaskList \u003d model.getFilteredTasksList();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        List\u003cMember\u003e lastShownMemberList \u003d model.getFilteredMembersList();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (taskId.getZeroBased() \u003e\u003d lastShownTaskList.size()) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        boolean contains \u003d false;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Member involvedMember \u003d null;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        for (int i \u003d 0; i \u003c lastShownMemberList.size(); i++) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            if (lastShownMemberList.get(i).getId() \u003d\u003d memberId) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                contains \u003d true;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                involvedMember \u003d lastShownMemberList.get(i);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (!contains) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_ID);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Task taskToAdd \u003d lastShownTaskList.get(taskId.getZeroBased());"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Member updatedMember \u003d createUpdatedMember(involvedMember, taskToAdd);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        for (int i \u003d 0; i \u003c involvedMember.getMemberTasks().size(); i++) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            if (involvedMember.getMemberTasks().get(i).isSameTask(taskToAdd)) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                throw new CommandException(MESSAGE_DUPLICATE_TASK);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        model.setMember(involvedMember, updatedMember);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        model.updateFilteredMembersList(PREDICATE_SHOW_ALL_MEMBERS);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, updatedMember));"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * Creates and returns a {@code Task} with the details of {@code taskToUpdate}"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * where TaskStatus is updated to \u0027In Progress\"."
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    private static Member createUpdatedMember(Member involvedMember, Task taskToAdd) throws CommandException {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        assert taskToAdd !\u003d null;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        assert involvedMember !\u003d null;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        MemberName name \u003d involvedMember.getName();"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        MemberId id \u003d involvedMember.getId();"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Set\u003cTag\u003e tags \u003d involvedMember.getTags();"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Member updatedMember \u003d new Member(name, id, tags);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        updatedMember.setTask(taskToAdd);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return updatedMember;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (!(other instanceof AddTaskToMemberCommand)) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        AddTaskToMemberCommand e \u003d (AddTaskToMemberCommand) other;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return memberId.equals(e.memberId)"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                \u0026\u0026 taskId.equals(e.taskId);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "seahlynn": 126
     }
   },
   {
@@ -20256,280 +21146,280 @@
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import static java.util.Objects.requireNonNull;"
+        "content": "\u003c\u003c\u003c\u003c\u003c\u003c\u003c HEAD"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
+        "content": "\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;"
+        "content": "import static java.util.Objects.requireNonNull;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import java.util.List;"
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import java.util.Set;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.commons.core.Messages;"
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.commons.core.index.Index;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+        "content": "\u003e\u003e\u003e\u003e\u003e\u003e\u003e d2e10e7a9051df4792c19bd6fab68b1beb71392e"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.Model;"
+        "content": "import seedu.address.commons.core.Messages;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.tag.Tag;"
+        "content": "import seedu.address.commons.core.index.Index;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.task.Name;"
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.task.Task;"
+        "content": "import seedu.address.model.Model;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.model.task.TaskStatus;"
+        "content": "import seedu.address.model.tag.Tag;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "import seedu.address.model.task.Name;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": " * Edits the details of an existing task in the address book."
+        "content": "import seedu.address.model.task.TaskStatus;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "public class DoingTaskCommand extends Command {"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"doing-task\";"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "import static java.util.Objects.requireNonNull;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Marks a task as \u003cIn Progress\u003e \""
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            + \"by the index number used in the displayed task list.\\n\""
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            + PREFIX_TASK_INDEX + \"TASK_INDEX\\n\""
+        "content": "/**"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \";"
+        "content": " * Edits the details of an existing task in the address book."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public static final String MESSAGE_DOING_TASK_SUCCESS \u003d \"Updated Task to \u003cIn Progress\u003e: %1$s\";"
+        "content": "public class DoingTaskCommand extends Command {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public static final String MESSAGE_TASK_ALREADY_IN_PROGRESS \u003d \"This task is already \u003cIn Progress\u003e\";"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"This task already exists in the address book.\";"
+        "content": "    public static final String COMMAND_WORD \u003d \"doing-task\";"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "    public static final String UPDATED_STATUS \u003d TaskStatus.DOING.getDisplayName();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    private final Index index;"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    /**"
+        "content": "            + \": Marks a task as \u003c\" + UPDATED_STATUS + \"\u003e \""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     * @param index of the task in the filtered task list to edit"
+        "content": "            + \"by the index number used in the displayed task list.\\n\""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     */"
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public DoingTaskCommand(Index index) {"
+        "content": "            + PREFIX_TASK_INDEX + \"TASK_INDEX\\n\""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        requireNonNull(index);"
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \";"
       },
       {
         "lineNumber": 43,
@@ -20543,49 +21433,49 @@
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        this.index \u003d index;"
+        "content": "    public static final String MESSAGE_DOING_TASK_SUCCESS \u003d \"Updated Task to \u003c\""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    }"
+        "content": "            + UPDATED_STATUS + \"\u003e: %1$s\";"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_TASK_ALREADY_IN_PROGRESS \u003d \"This task is already \u003c\""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    @Override"
+        "content": "            + UPDATED_STATUS + \"\u003e: %1$s\";"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"This task already exists in the address book.\";"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        requireNonNull(model);"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        List\u003cTask\u003e lastShownList \u003d model.getFilteredTasksList();"
+        "content": "    private final Index index;"
       },
       {
         "lineNumber": 51,
@@ -20599,294 +21489,294 @@
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);"
+        "content": "     * @param index of the task in the filtered task list to edit"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "    public DoingTaskCommand(Index index) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        Task taskToUpdate \u003d lastShownList.get(index.getZeroBased());"
+        "content": "        requireNonNull(index);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        Task updatedTask \u003d createUpdatedTask(taskToUpdate);"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        this.index \u003d index;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        if (!taskToUpdate.isSameTask(updatedTask) \u0026\u0026 model.hasTask(updatedTask)) {"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            throw new CommandException(MESSAGE_DUPLICATE_TASK);"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        model.setTask(taskToUpdate, updatedTask);"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        model.updateFilteredTasksList(PREDICATE_SHOW_ALL_TASKS);"
+        "content": "        List\u003cTask\u003e lastShownList \u003d model.getFilteredTasksList();"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_DOING_TASK_SUCCESS, updatedTask));"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    }"
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     * Creates and returns a {@code Task} with the details of {@code taskToUpdate}"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     * where TaskStatus is updated to \u0027In Progress\"."
+        "content": "        Task taskToUpdate \u003d lastShownList.get(index.getZeroBased());"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     */"
+        "content": "        Task updatedTask \u003d createUpdatedTask(taskToUpdate);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    private static Task createUpdatedTask(Task taskToUpdate) throws CommandException {"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        assert taskToUpdate !\u003d null;"
+        "content": "        if (!taskToUpdate.isSameTask(updatedTask) \u0026\u0026 model.hasTask(updatedTask)) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_TASK);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        Name name \u003d taskToUpdate.getName();"
+        "content": "        }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        TaskStatus taskStatus \u003d taskToUpdate.getTaskStatus();"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        Set\u003cTag\u003e tags \u003d taskToUpdate.getTags();"
+        "content": "        model.setTask(taskToUpdate, updatedTask);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        if (taskStatus \u003d\u003d TaskStatus.DOING) {"
+        "content": "        model.updateFilteredTasksList(PREDICATE_SHOW_ALL_TASKS);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            throw new CommandException(MESSAGE_TASK_ALREADY_IN_PROGRESS);"
+        "content": "        return new CommandResult(String.format(MESSAGE_DOING_TASK_SUCCESS, updatedTask));"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        return new Task(name, TaskStatus.DOING, tags);"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "     * Creates and returns a {@code Task} with the details of {@code taskToUpdate}"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    @Override"
+        "content": "     * where TaskStatus is updated to \u0027In Progress\"."
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "     */"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        // short circuit if same object"
+        "content": "    private static Task createUpdatedTask(Task taskToUpdate) throws CommandException {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "        assert taskToUpdate !\u003d null;"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            return true;"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        }"
+        "content": "        Name name \u003d taskToUpdate.getName();"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        TaskStatus taskStatus \u003d taskToUpdate.getTaskStatus();"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        // instanceof handles nulls"
+        "content": "        Set\u003cTag\u003e tags \u003d taskToUpdate.getTags();"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        if (!(other instanceof DoingTaskCommand)) {"
+        "content": "        if (taskStatus \u003d\u003d TaskStatus.DOING) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            return false;"
+        "content": "            throw new CommandException(String.format(MESSAGE_TASK_ALREADY_IN_PROGRESS, taskToUpdate));"
       },
       {
         "lineNumber": 94,
@@ -20900,38 +21790,136 @@
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        return new Task(name, TaskStatus.DOING, tags);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        // state check"
+        "content": "    }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        DoingTaskCommand e \u003d (DoingTaskCommand) other;"
+        "content": ""
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        return index.equals(e.index);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 100,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (!(other instanceof DoingTaskCommand)) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        DoingTaskCommand e \u003d (DoingTaskCommand) other;"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return index.equals(e.index);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
         "author": {
           "gitId": "gabrielseow"
         },
@@ -20939,7 +21927,800 @@
       }
     ],
     "authorContributionMap": {
-      "gabrielseow": 100
+      "gabrielseow": 114
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/commands/DoneTaskCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_STATUS;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TAG;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.commons.util.CollectionUtil;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.task.Name;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.task.Task;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.task.TaskStatus;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": " * Edits the details of an existing task in the address book."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "public class DoneTaskCommand extends Command {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"done-task\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public static final String UPDATED_STATUS \u003d TaskStatus.DONE.getDisplayName();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + \": Marks a task as \u003c\" + UPDATED_STATUS + \"\u003e \""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + \"by the index number used in the displayed task list.\\n\""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + PREFIX_TASK_INDEX + \"TASK_INDEX\\n\""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public static final String MESSAGE_DONE_TASK_SUCCESS \u003d \"Updated Task to \u003c\""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + UPDATED_STATUS + \"\u003e: %1$s\";"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public static final String MESSAGE_TASK_ALREADY_COMPLETED \u003d \"This task is already \u003c\""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            + UPDATED_STATUS + \"\u003e: %1$s\";"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"This task already exists in the address book.\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    private final Index index;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * @param index of the task in the filtered task list to edit"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * @param editTaskDescriptor details to edit the task with"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public DoneTaskCommand(Index index) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        requireNonNull(index);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        List\u003cTask\u003e lastShownList \u003d model.getFilteredTasksList();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Task taskToUpdate \u003d lastShownList.get(index.getZeroBased());"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Task updatedTask \u003d createUpdatedTask(taskToUpdate);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (!taskToUpdate.isSameTask(updatedTask) \u0026\u0026 model.hasTask(updatedTask)) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_TASK);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        model.setTask(taskToUpdate, updatedTask);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        model.updateFilteredTasksList(PREDICATE_SHOW_ALL_TASKS);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, updatedTask));"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * Creates and returns a {@code Task} with the details of {@code taskToUpdate}"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * where TaskStatus is updated to DONE."
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    private static Task createUpdatedTask(Task taskToUpdate) throws CommandException {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        assert taskToUpdate !\u003d null;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Name name \u003d taskToUpdate.getName();"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        TaskStatus taskStatus \u003d taskToUpdate.getTaskStatus();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Set\u003cTag\u003e tags \u003d taskToUpdate.getTags();"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (taskStatus \u003d\u003d TaskStatus.DONE) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            throw new CommandException(String.format(MESSAGE_TASK_ALREADY_COMPLETED, taskToUpdate));"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return new Task(name, TaskStatus.DONE, tags);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        if (!(other instanceof DoneTaskCommand)) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        DoneTaskCommand e \u003d (DoneTaskCommand) other;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return index.equals(e.index);"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "gabrielseow": 112
     }
   },
   {
@@ -24682,6 +26463,841 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/RemoveTaskFromMemberCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_ID;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEMBERS;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.member.Member;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.member.MemberId;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.member.MemberName;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import seedu.address.model.task.Task;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": " * Removes a task that member was responsible for"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "public class RemoveTaskFromMemberCommand extends Command {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"fire\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Removes a task indicated \""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"by the index number used in the displayed task list, to the member indicated \""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"by the member ID. \\n\""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_TASK_INDEX + \"TASK_INDEX\""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_MEMBER_ID + \"MEMBER_ID \\n\""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" \""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_TASK_INDEX + \" 2 \""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            + PREFIX_MEMBER_ID + \" JD\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String MESSAGE_REMOVE_TASK_SUCCESS \u003d \"Removes task for member: %1$s\";"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public static final String MESSAGE_INVALID_TASK_ID \u003d \"This task does not exist under member.\";"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    private final Index taskId;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    private final MemberId memberId;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * @param taskId of the task in the filtered task list to be added to member"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * @param memberId of the member involved"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public RemoveTaskFromMemberCommand(Index taskId, MemberId memberId) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        requireNonNull(memberId);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        this.taskId \u003d taskId;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        this.memberId \u003d memberId;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        List\u003cTask\u003e lastShownTaskList \u003d model.getFilteredTasksList();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        List\u003cMember\u003e lastShownMemberList \u003d model.getFilteredMembersList();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (taskId.getZeroBased() \u003e\u003d lastShownTaskList.size()) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        boolean contains \u003d false;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Member involvedMember \u003d null;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        for (int i \u003d 0; i \u003c lastShownMemberList.size(); i++) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            if (lastShownMemberList.get(i).getId() \u003d\u003d memberId) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                contains \u003d true;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                involvedMember \u003d lastShownMemberList.get(i);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (!contains) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_ID);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Member updatedMember \u003d createUpdatedMember(involvedMember, taskId.getZeroBased());"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        model.setMember(involvedMember, updatedMember);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        model.updateFilteredMembersList(PREDICATE_SHOW_ALL_MEMBERS);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_REMOVE_TASK_SUCCESS, updatedMember));"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * Creates and returns a {@code Task} with the details of {@code taskToUpdate}"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * where TaskStatus is updated to \u0027In Progress\"."
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    private static Member createUpdatedMember(Member involvedMember, int taskId) throws CommandException {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        assert involvedMember !\u003d null;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        MemberName name \u003d involvedMember.getName();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        MemberId id \u003d involvedMember.getId();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Set\u003cTag\u003e tags \u003d involvedMember.getTags();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        Member updatedMember \u003d new Member(name, id, tags);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        updatedMember.removeTask(taskId);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return updatedMember;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        if (!(other instanceof RemoveTaskFromMemberCommand)) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        RemoveTaskFromMemberCommand e \u003d (RemoveTaskFromMemberCommand) other;"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return memberId.equals(e.memberId)"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                \u0026\u0026 taskId.equals(e.taskId);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "seahlynn": 118
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/commands/SetDeadlineCommand.java",
     "fileType": "functional",
     "lines": [
@@ -25881,12 +28497,33 @@
       {
         "lineNumber": 59,
         "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003c\u003c\u003c\u003c\u003c\u003c\u003c HEAD"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 62,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003e\u003e\u003e\u003e\u003e\u003e\u003e d2e10e7a9051df4792c19bd6fab68b1beb71392e"
+      },
+      {
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
@@ -25897,255 +28534,7 @@
       "ambhinav": 15,
       "seahlynn": 1,
       "-": 36,
-      "gabrielseow": 8
-    }
-  },
-  {
-    "path": "src/main/java/seedu/address/logic/parser/AddTaskCommandParserStub.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "package seedu.address.logic.parser;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "/*import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_STATUS;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TAG;*/"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import java.util.HashSet;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "//import java.util.stream.Stream;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import seedu.address.logic.commands.AddTaskCommand;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import seedu.address.model.tag.Tag;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import seedu.address.model.task.Name;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import seedu.address.model.task.Task;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "import seedu.address.model.task.TaskStatus;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": " * Parses input arguments and creates a new AddTaskCommand object"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "public class AddTaskCommandParserStub implements Parser\u003cAddTaskCommand\u003e {"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "     * Parses the given {@code String} of arguments in the context of the EditCommand"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "     * and returns an EditCommand object for execution."
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "seahlynn"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "    public AddTaskCommand parse(String args) throws ParseException {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "        Name taskStubName \u003d new Name(\"finish homework \");"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "        Task task \u003d new Task(taskStubName, TaskStatus.UNBEGUN, new HashSet\u003cTag\u003e());"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "        return new AddTaskCommand(task);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "gabrielseow"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "seahlynn": 11,
-      "gabrielseow": 23
+      "gabrielseow": 11
     }
   },
   {
@@ -28317,91 +30706,91 @@
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.logic.commands.EditCommand;"
+        "content": "import seedu.address.logic.commands.DoneTaskCommand;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "import seedu.address.logic.commands.ExitCommand;"
+        "content": "import seedu.address.logic.commands.SetDeadlineCommand;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.FindCommand;"
+        "content": "import seedu.address.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.HelpCommand;"
+        "content": "import seedu.address.logic.commands.ExitCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ListCommand;"
+        "content": "import seedu.address.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "seahlynn"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.SetDeadlineCommand;"
+        "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "import seedu.address.logic.commands.SetDeadlineCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": " */"
+        "content": "//Remove this line once stubbing not required"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "gabrielseow"
         },
-        "content": "public class ProjectDasboardParser {"
+        "content": "import seedu.address.logic.parser.stub.*;"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
         "content": ""
       },
@@ -28410,28 +30799,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "/**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": " */"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "ambhinav"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "public class ProjectDasboardParser {"
       },
       {
         "lineNumber": 31,
@@ -28452,360 +30841,416 @@
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     *"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "gabrielseow"
+          "gitId": "-"
         },
-        "content": "        case AddTaskCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "gabrielseow"
+          "gitId": "-"
         },
-        "content": "            return new AddTaskCommandParser().parse(arguments);"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        case AddTaskCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        case DeleteTaskCommand.COMMAND_WORD:"
+        "content": "            return new AddTaskCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "gabrielseow"
+          "gitId": "-"
         },
-        "content": "            return new DeleteTaskCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        case DeleteTaskCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        case DoingTaskCommand.COMMAND_WORD:"
+        "content": "            return new DeleteTaskCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            return new DoingTaskCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        case DoingTaskCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        case SetDeadlineCommand.COMMAND_WORD:"
+        "content": "            return new DoingTaskCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "            return new SetDeadlineCommandParserStub().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        case SetDeadlineCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": "            return new SetDeadlineCommandParserStub().parse(arguments);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        case DoneTaskCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": "            return new DoneTaskCommandParserStub().parse(arguments);"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "//        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": "//            return new ClearCommand();"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "            return new ListCommand();"
+        "content": "//"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "//        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": "//            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "            return new ExitCommand();"
+        "content": "//"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "//        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": "//            return new ListCommand();"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "            return new HelpCommand();"
+        "content": "//"
       },
       {
         "lineNumber": 78,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//        case ExitCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//            return new ExitCommand();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//        case HelpCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//            return new HelpCommand();"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//        case EditCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//            return new EditCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
         "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
@@ -28815,12 +31260,12 @@
     "authorContributionMap": {
       "ambhinav": 1,
       "seahlynn": 1,
-      "-": 69,
-      "gabrielseow": 13
+      "-": 52,
+      "gabrielseow": 38
     }
   },
   {
-    "path": "src/main/java/seedu/address/logic/parser/SetDeadlineCommandParserStub.java",
+    "path": "src/main/java/seedu/address/logic/parser/stub/AddTaskCommandParserStub.java",
     "fileType": "functional",
     "lines": [
       {
@@ -28828,7 +31273,7 @@
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "package seedu.address.logic.parser;"
+        "content": "package seedu.address.logic.parser.stub;"
       },
       {
         "lineNumber": 2,
@@ -28842,6 +31287,261 @@
         "author": {
           "gitId": "seahlynn"
         },
+        "content": "/*import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_STATUS;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TAG;*/"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "//import java.util.stream.Stream;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.commands.AddTaskCommand;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.parser.Parser;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.task.Name;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.task.Task;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.task.TaskStatus;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": " * Parses input arguments and creates a new AddTaskCommand object"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "public class AddTaskCommandParserStub implements Parser\u003cAddTaskCommand\u003e {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditCommand"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * and returns an EditCommand object for execution."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public AddTaskCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Name taskStubName \u003d new Name(\"finish homework \");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Task task \u003d new Task(taskStubName, TaskStatus.UNBEGUN, new HashSet\u003cTag\u003e());"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return new AddTaskCommand(task);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "seahlynn": 11,
+      "gabrielseow": 24
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/stub/DoneTaskCommandParserStub.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "package seedu.address.logic.parser.stub;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "gabrielseow"
+        },
         "content": "/*import static java.util.Objects.requireNonNull;"
       },
       {
@@ -28854,9 +31554,312 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "seahlynn"
+          "gitId": "gabrielseow"
         },
         "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;*/"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003c\u003c\u003c\u003c\u003c\u003c\u003c HEAD:src/main/java/seedu/address/logic/parser/stub/DoneTaskCommandParserStub.java"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Collection;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "/*import java.util.Collection;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003e\u003e\u003e\u003e\u003e\u003e\u003e d2e10e7a9051df4792c19bd6fab68b1beb71392e:src/main/java/seedu/address/logic/parser/SetDeadlineCommandParserStub.java"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import java.util.Set;*/"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.commands.DoneTaskCommand;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003c\u003c\u003c\u003c\u003c\u003c\u003c HEAD:src/main/java/seedu/address/logic/parser/stub/DoneTaskCommandParserStub.java"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.logic.parser.Parser;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "//import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "\u003e\u003e\u003e\u003e\u003e\u003e\u003e d2e10e7a9051df4792c19bd6fab68b1beb71392e:src/main/java/seedu/address/logic/parser/SetDeadlineCommandParserStub.java"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": " * Parses input arguments and creates a new EditCommand object"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "public class DoneTaskCommandParserStub implements Parser\u003cDoneTaskCommand\u003e {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditCommand"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * and returns an EditCommand object for execution."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    public DoneTaskCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        Index stubIndex1 \u003d Index.fromOneBased(3);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return new DoneTaskCommand(stubIndex1);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "gabrielseow": 42
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/stub/SetDeadlineCommandParserStub.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "package seedu.address.logic.parser.stub;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;"
       },
       {
         "lineNumber": 6,
@@ -28882,9 +31885,9 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "seahlynn"
+          "gitId": "gabrielseow"
         },
-        "content": "/*import java.util.Collection;"
+        "content": "import java.util.Collection;"
       },
       {
         "lineNumber": 10,
@@ -28903,9 +31906,9 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "seahlynn"
+          "gitId": "gabrielseow"
         },
-        "content": "import java.util.Set;*/"
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 13,
@@ -28938,124 +31941,243 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "seahlynn"
+          "gitId": "gabrielseow"
         },
-        "content": "//import seedu.address.model.tag.Tag;"
+        "content": "import seedu.address.logic.parser.Parser;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "import seedu.address.model.tag.Tag;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": " * Parses input arguments and creates a new EditCommand object"
+        "content": "/**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": " */"
+        "content": " * Parses input arguments and creates a new EditCommand object"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "public class SetDeadlineCommandParserStub implements Parser\u003cSetDeadlineCommand\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "public class SetDeadlineCommandParserStub implements Parser\u003cSetDeadlineCommand\u003e {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the EditCommand"
+        "content": "    private static int count \u003d 1;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     * and returns an EditCommand object for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditCommand"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "     */"
+        "content": "     * and returns an EditCommand object for execution."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    public SetDeadlineCommand parse(String args) throws ParseException {"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        Index stubIndex1 \u003d Index.fromOneBased(2);"
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        LocalDateTime stubDateTime1 \u003d LocalDateTime.parse(\"2015-02-20T06:30:00\");"
+        "content": "    public SetDeadlineCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        return new SetDeadlineCommand(stubIndex1, stubDateTime1);"
+        "content": "        Index stubIndex1 \u003d Index.fromOneBased(2);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "    }"
+        "content": "        LocalDateTime stubDateTime \u003d null;"
       },
       {
         "lineNumber": 34,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        LocalDateTime stubDateTime0 \u003d LocalDateTime.parse(\"2015-02-20T06:30:00\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        LocalDateTime stubDateTime1 \u003d LocalDateTime.parse(\"1997-10-24T09:55:55\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        LocalDateTime stubDateTime2 \u003d LocalDateTime.now();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        switch (count % 3) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        case 0:"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            stubDateTime \u003d stubDateTime0;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        case 1:"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            stubDateTime \u003d stubDateTime1;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        case 2:"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            stubDateTime \u003d stubDateTime2;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        count ++;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return new SetDeadlineCommand(stubIndex1, stubDateTime);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
         "author": {
           "gitId": "gabrielseow"
         },
@@ -29063,8 +32185,7 @@
       }
     ],
     "authorContributionMap": {
-      "seahlynn": 5,
-      "gabrielseow": 29
+      "gabrielseow": 51
     }
   },
   {
@@ -33662,675 +36783,808 @@
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "import java.util.Collections;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "import java.util.HashSet;"
+        "content": "import java.util.Collections;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "import java.util.Objects;"
+        "content": "import java.util.HashSet;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "import java.util.Set;"
+        "content": "import java.util.Objects;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "import seedu.address.model.tag.Tag;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "import seedu.address.model.tag.Tag;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": " * Represents a Member in the address book."
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
+        "content": "/**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": " */"
+        "content": " * Represents a Member in the address book."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "public class Member {"
+        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    // Identity fields"
+        "content": " */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    private final MemberName name;"
+        "content": "public class Member {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    private final MemberId id;"
+        "content": "    // Identity fields"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "    private final MemberName name;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    private final Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
+        "content": "    private final MemberId id;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "    private ArrayList\u003cTask\u003e memberTasks \u003d null;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * Every field must be present and not null."
+        "content": "    private final Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public Member(MemberName name, MemberId id, Set\u003cTag\u003e tags) {"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        requireAllNonNull(name, tags);"
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        this.name \u003d name;"
+        "content": "     * Every field must be present and not null."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        this.id \u003d id;"
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        this.tags.addAll(tags);"
+        "content": "    public Member(MemberName name, MemberId id, Set\u003cTag\u003e tags) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": "        requireAllNonNull(name, tags);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "        this.name \u003d name;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    // TODO add multiple constructors so that users can add additional info later"
+        "content": "        this.id \u003d id;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "        this.tags.addAll(tags);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public MemberId getId() {"
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return id;"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": "    // TODO add multiple constructors so that users can add additional info later"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "    public void setTask(Task task) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public MemberName getName() {"
+        "content": "        this.memberTasks.add(task);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return name;"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "    public void removeTask(int taskId) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    /**"
+        "content": "        this.memberTasks.remove(taskId);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * if modification is attempted."
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     */"
+        "content": "    public boolean hasTasks() {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public Set\u003cTag\u003e getTags() {"
+        "content": "        return !memberTasks.isEmpty();"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return Collections.unmodifiableSet(tags);"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "    public ArrayList\u003cTask\u003e getMemberTasks() {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    /**"
+        "content": "        return this.memberTasks;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * Returns true if both tasks of the same name have at least one other identity field that is the same."
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * This defines a weaker notion of equality between two persons."
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     */"
+        "content": "    public MemberId getId() {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public boolean isSameMember(Member otherMember) {"
+        "content": "        return id;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        if (otherMember \u003d\u003d this) {"
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "            return true;"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        }"
+        "content": "    public MemberName getName() {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "        return name;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        // TODO change the logic to check for the identity fields of status and member"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        // basically the name cannot be the same, that\u0027s it"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return otherMember !\u003d null"
+        "content": "    /**"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "                \u0026\u0026 otherMember.getName().equals(getName());"
+        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": "     * if modification is attempted."
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    /**"
+        "content": "    public Set\u003cTag\u003e getTags() {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * Returns true if both persons have the same identity and data fields."
+        "content": "        return Collections.unmodifiableSet(tags);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     * This defines a stronger notion of equality between two persons."
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    @Override"
+        "content": "    /**"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "     * Returns true if both tasks of the same name have at least one other identity field that is the same."
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "     * This defines a weaker notion of equality between two persons."
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "            return true;"
+        "content": "     */"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        }"
+        "content": "    public boolean isSameMember(Member otherMember) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "        if (otherMember \u003d\u003d this) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        if (!(other instanceof Member)) {"
+        "content": "            return true;"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "            return false;"
+        "content": "        }"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "        // TODO change the logic to check for the identity fields of status and member"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        Member otherMember \u003d (Member) other;"
+        "content": "        // basically the name cannot be the same, that\u0027s it"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return otherMember.getName().equals(getName())"
+        "content": "        return otherMember !\u003d null"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "                \u0026\u0026 (otherMember.getId() \u003d\u003d getId())"
+        "content": "                \u0026\u0026 otherMember.getName().equals(getName());"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "                \u0026\u0026 otherMember.getTags().equals(getTags());"
+        "content": "    }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    @Override"
+        "content": "     * Returns true if both persons have the same identity and data fields."
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public int hashCode() {"
+        "content": "     * This defines a stronger notion of equality between two persons."
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        // use this method for custom fields hashing instead of implementing your own"
+        "content": "     */"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return Objects.hash(name, tags);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": ""
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    @Override"
+        "content": "            return true;"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    public String toString() {"
+        "content": "        }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        builder.append(getName())"
+        "content": "        if (!(other instanceof Member)) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "                .append(\"Member ID: \" + getId())"
+        "content": "            return false;"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "                .append(\" Tags: \");"
+        "content": "        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        getTags().forEach(builder::append);"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "        return builder.toString();"
+        "content": "        Member otherMember \u003d (Member) other;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "seahlynn"
         },
-        "content": "    }"
+        "content": "        return otherMember.getName().equals(getName())"
       },
       {
         "lineNumber": 101,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                \u0026\u0026 (otherMember.getId() \u003d\u003d getId())"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                \u0026\u0026 otherMember.getTags().equals(getTags());"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return Objects.hash(name, tags);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        builder.append(getName())"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                .append(\"Member ID: \" + getId())"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "                .append(\" Tags: \");"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        getTags().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "seahlynn"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 120,
         "author": {
           "gitId": "seahlynn"
         },
@@ -34338,7 +37592,7 @@
       }
     ],
     "authorContributionMap": {
-      "seahlynn": 101
+      "seahlynn": 120
     }
   },
   {
@@ -39621,107 +42875,107 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.commons.exceptions.IllegalValueException;"
+        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": "import seedu.address.model.tag.Tag;"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": "import seedu.address.model.task.Name;"
+        "content": "import seedu.address.commons.exceptions.IllegalValueException;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "import seedu.address.model.task.Task;"
+        "content": "import seedu.address.model.tag.Tag;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "import seedu.address.model.task.TaskStatus;"
+        "content": "import seedu.address.model.task.Name;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "ambhinav"
         },
-        "content": ""
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "ambhinav"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.task.TaskStatus;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": " * Jackson-friendly version of {@link Task}."
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "class JsonAdaptedTask {"
+        "content": " * Jackson-friendly version of {@link Task}."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "    public static final String MISSING_FIELD_MESSAGE_FORMAT \u003d \"Task\u0027s %s field is missing!\";"
+        "content": "class JsonAdaptedTask {"
       },
       {
         "lineNumber": 24,
@@ -39733,390 +42987,453 @@
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "ambhinav"
         },
-        "content": "    private final String name;"
+        "content": "    public static final String MISSING_FIELD_MESSAGE_FORMAT \u003d \"Task\u0027s %s field is missing!\";"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": "    private final TaskStatus taskStatus;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final List\u003cJsonAdaptedTag\u003e tagged \u003d new ArrayList\u003c\u003e();"
+        "content": "    private final String name;"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "ambhinav"
         },
-        "content": ""
+        "content": "    private final TaskStatus taskStatus;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    private final List\u003cJsonAdaptedTag\u003e tagged \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "gabrielseow"
         },
-        "content": "     * Constructs a {@code JsonAdaptedTask} with the given task details."
+        "content": "    private final LocalDateTime deadline;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "    @JsonCreator"
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "    public JsonAdaptedTask(@JsonProperty(\"name\") String name, @JsonProperty(\"status\") TaskStatus taskStatus,"
+        "content": "     * Constructs a {@code JsonAdaptedTask} with the given task details."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "                           @JsonProperty(\"tagged\") List\u003cJsonAdaptedTag\u003e tagged) {"
+        "content": "     */"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.name \u003d name;"
+        "content": "    @JsonCreator"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "        this.taskStatus \u003d taskStatus;"
+        "content": "    public JsonAdaptedTask(@JsonProperty(\"name\") String name, @JsonProperty(\"status\") TaskStatus taskStatus,"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "        if (tagged !\u003d null) {"
+        "content": "                           @JsonProperty(\"tagged\") List\u003cJsonAdaptedTag\u003e tagged,"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "            this.tagged.addAll(tagged);"
+        "content": "                           @JsonProperty(\"deadline\") LocalDateTime deadline) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        this.name \u003d name;"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "ambhinav"
         },
-        "content": "    }"
+        "content": "        this.taskStatus \u003d taskStatus;"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        this.deadline \u003d deadline;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        if (tagged !\u003d null) {"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": "     * Converts a given {@code Task} into this class for Jackson use."
+        "content": "            this.tagged.addAll(tagged);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": "    public JsonAdaptedTask(Task source) {"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        name \u003d source.getName().fullName;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "        taskStatus \u003d source.getTaskStatus();"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        tagged.addAll(source.getTags().stream()"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .map(JsonAdaptedTag::new)"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .collect(Collectors.toList()));"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 48,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "     * Converts this Jackson-friendly adapted task object into the model\u0027s {@code Task} object."
+        "content": "     * Converts a given {@code Task} into this class for Jackson use."
       },
       {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted task."
-      },
-      {
-        "lineNumber": 57,
+        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 50,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "    public Task toModelType() throws IllegalValueException {"
+        "content": "    public JsonAdaptedTask(Task source) {"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        final List\u003cTag\u003e personTags \u003d new ArrayList\u003c\u003e();"
+        "content": "        name \u003d source.getName().fullName;"
       },
       {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        for (JsonAdaptedTag tag : tagged) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            personTags.add(tag.toModelType());"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (name \u003d\u003d null) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 67,
+        "lineNumber": 52,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "        if (taskStatus \u003d\u003d null) {"
+        "content": "        taskStatus \u003d source.getTaskStatus();"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 53,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "gabrielseow"
         },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
+        "content": "        deadline \u003d source.getDeadline();"
       },
       {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "                    TaskStatus.class.getSimpleName()));"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 71,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!Name.isValidName(name)) {"
+        "content": "        tagged.addAll(source.getTags().stream()"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);"
+        "content": "                .map(JsonAdaptedTag::new)"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "                .collect(Collectors.toList()));"
       },
       {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        final Name modelName \u003d new Name(name);"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "        final TaskStatus modelTaskStatus \u003d TaskStatus.valueOf(taskStatus.name());"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        final Set\u003cTag\u003e modelTags \u003d new HashSet\u003c\u003e(personTags);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "        return new Task(modelName, modelTaskStatus, modelTags);"
-      },
-      {
-        "lineNumber": 78,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "     * Converts this Jackson-friendly adapted task object into the model\u0027s {@code Task} object."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted task."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "    public Task toModelType() throws IllegalValueException {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final List\u003cTag\u003e personTags \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        for (JsonAdaptedTag tag : tagged) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            personTags.add(tag.toModelType());"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (name \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "        if (taskStatus \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "                    TaskStatus.class.getSimpleName()));"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!Name.isValidName(name)) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
         "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final Name modelName \u003d new Name(name);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "        final TaskStatus modelTaskStatus \u003d TaskStatus.valueOf(taskStatus.name());"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        //No need to clone deadline to modelDeadline since LocalDateTime is immutable"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final Set\u003cTag\u003e modelTags \u003d new HashSet\u003c\u003e(personTags);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        final Task modelTask \u003d new Task(modelName, modelTaskStatus, modelTags);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        modelTask.setDeadline(deadline);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "gabrielseow"
+        },
+        "content": "        return modelTask;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
@@ -40124,8 +43441,9 @@
       }
     ],
     "authorContributionMap": {
-      "ambhinav": 23,
-      "-": 57
+      "ambhinav": 22,
+      "-": 56,
+      "gabrielseow": 11
     }
   },
   {
@@ -43991,143 +47309,157 @@
         "author": {
           "gitId": "gabrielseow"
         },
-        "content": "        }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": "    }"
+        "content": "            deadline.setText(\"No Deadline\");"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "gabrielseow"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "        // short circuit if same object"
+        "content": "    @Override"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "            return true;"
+        "content": "        // short circuit if same object"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return true;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "        // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "ambhinav"
-        },
-        "content": "        if (!(other instanceof TaskCard)) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
         "content": "        }"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "        if (!(other instanceof TaskCard)) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        // state check"
+        "content": "        }"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "ambhinav"
+          "gitId": "-"
         },
-        "content": "        TaskCard card \u003d (TaskCard) other;"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "        return id.getText().equals(card.id.getText())"
+        "content": "        // state check"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "ambhinav"
         },
-        "content": "                \u0026\u0026 task.equals(card.task);"
+        "content": "        TaskCard card \u003d (TaskCard) other;"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return id.getText().equals(card.id.getText())"
       },
       {
         "lineNumber": 73,
+        "author": {
+          "gitId": "ambhinav"
+        },
+        "content": "                \u0026\u0026 task.equals(card.task);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
@@ -44137,7 +47469,7 @@
     "authorContributionMap": {
       "ambhinav": 15,
       "-": 54,
-      "gabrielseow": 4
+      "gabrielseow": 6
     }
   },
   {
