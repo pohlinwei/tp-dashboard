@@ -11842,12 +11842,19 @@
       {
         "lineNumber": 14,
         "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String MESSAGE_INVALID_PARAMETER \u003d \"Please enter correct input for %2$s! \\n%1$s\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
@@ -11856,7 +11863,8 @@
     ],
     "authorContributionMap": {
       "-": 11,
-      "whneo97": 4
+      "whneo97": 4,
+      "chen-xi-cx": 1
     }
   },
   {
@@ -16450,6 +16458,1149 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/AverageCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.time.DayOfWeek;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.time.LocalDate;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.time.LocalTime;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.time.temporal.TemporalAdjuster;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.time.temporal.TemporalAdjusters;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.Collection;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.Map;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.StringJoiner;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.TreeMap;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.stream.Collectors;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.AverageType;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.calendar.DateTime;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.record.RecordType;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": " * Shows daily/weekly/monthly average of different record types."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "public class AverageCommand extends Command {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"average\";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Shows daily/weekly/monthly average of different \""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            + \"record types.\\n\""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            + \"Parameters: a/AVERAGE_TYPE rt/RECORD_TYPE [n/COUNT]\\n\""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" a/daily r/bloodsugar n/5\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String MESSAGE_INVALID_COUNT \u003d \"n/COUNT\";"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String MESSAGE_INVALID_AVGTYPE \u003d \"a/AVERAGE_TYPE\";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String MESSAGE_INVALID_RECORDTYPE \u003d \"r/RECORD_TYPE\";"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final String MESSAGE_NO_RECORD \u003d \"Sorry! You do not have any %1$s record.\";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private static final Map\u003cAverageType, TemporalAdjuster\u003e TIMEADJUSTERS \u003d Map.of("
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            AverageType.DAILY, TemporalAdjusters.ofDateAdjuster(date -\u003e date),"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            AverageType.WEEKLY, TemporalAdjusters.previousOrSame(DayOfWeek.of(1)),"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            AverageType.MONTHLY, TemporalAdjusters.firstDayOfMonth()"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    );"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private final AverageType averageType;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private final RecordType recordType;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private final int count;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private final Collection\u003cDummyRecord\u003e recordBook;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public AverageCommand(AverageType averageType, RecordType recordType, int count) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        requireNonNull(averageType);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        requireNonNull(recordType);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        this.averageType \u003d averageType;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        this.recordType \u003d recordType;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        this.count \u003d count;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        this.recordBook \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        // sample data"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        // TODO: Remove this after integration"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 10, 1), LocalTime.of(12, 24)), 1));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 10, 2), LocalTime.of(12, 24)), 2));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 10, 8), LocalTime.of(12, 24)), 3));"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 10, 9), LocalTime.of(12, 24)), 4));"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 9, 15), LocalTime.of(12, 24)), 5));"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 9, 14), LocalTime.of(12, 24)), 6));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 7, 13), LocalTime.of(12, 24)), 7));"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.BLOODSUGAR,"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 6, 12), LocalTime.of(12, 24)), 8));"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        recordBook.add(new DummyRecord(RecordType.MEDICALEXPENSES,"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                new DateTime(LocalDate.of(2019, 10, 11), LocalTime.of(12, 24)), 9));"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        // Remove irrelevant record types"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        Collection\u003cDummyRecord\u003e filteredRecords \u003d recordBook"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .stream().filter(ele -\u003e this.recordType.equals(ele.getRecordType()))"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .collect(Collectors.toList());"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        // Group records according to average type"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        Map\u003cLocalDate, List\u003cDummyRecord\u003e\u003e groupByTimeRecords \u003d filteredRecords.stream()"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .collect(Collectors.groupingBy(record -\u003e record.getDateTime()"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .getDate().with(TIMEADJUSTERS.get(this.averageType))));"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        // Calculate averages for each grouping in groupByTimeRecords"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        Map\u003cLocalDate, Double\u003e averages \u003d groupByTimeRecords.entrySet().stream()"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .collect(Collectors.toMap(Map.Entry::getKey, ele -\u003e ele.getValue()"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .stream().map(record -\u003e record.getValue()).mapToDouble(Double::doubleValue).average().getAsDouble()));"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        // Sort by descending date"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        Map\u003cLocalDate, Double\u003e averagesTreeMap \u003d new TreeMap\u003c\u003e(Collections.reverseOrder());"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        averagesTreeMap.putAll(averages);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        StringJoiner result \u003d new StringJoiner(System.lineSeparator());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        averagesTreeMap.entrySet().stream()"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .limit(count)"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                .forEach(ele -\u003e result.add(\"average for \" + this.recordType + \" \""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                + ele.getKey() + \" is \" + ele.getValue()));"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        if (result.toString().isEmpty()) {"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            throw new CommandException(String.format(MESSAGE_NO_RECORD, this.recordType));"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        return new CommandResult(String.format(result.toString()));"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                || (other instanceof AverageCommand // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                \u0026\u0026 averageType.equals(((AverageCommand) other).averageType) // state check"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                \u0026\u0026 recordType.equals(((AverageCommand) other).recordType)"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                \u0026\u0026 count \u003d\u003d ((AverageCommand) other).count);"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     * A dummy class to replace actual implementation of Record class"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static class DummyRecord {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        private final RecordType recordType;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        private final DateTime dateTime;"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        private final double value;"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        public DummyRecord(RecordType recordType, DateTime dateTime, double value) {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            this.recordType \u003d recordType;"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            this.dateTime \u003d dateTime;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            this.value \u003d value;"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        public RecordType getRecordType() {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            return recordType;"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        public DateTime getDateTime() {"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            return dateTime;"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        public double getValue() {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            return value;"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "chen-xi-cx": 162
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/commands/BioCommand.java",
     "fileType": "functional",
     "lines": [
@@ -19530,6 +20681,71 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/exceptions/AverageType.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "package seedu.address.logic.commands.exceptions;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": " * Type of average that can be computed."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "public enum AverageType {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    DAILY, WEEKLY, MONTHLY"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "chen-xi-cx": 8
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/parser/AddCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -20289,544 +21505,572 @@
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "whneo97"
+          "gitId": "chen-xi-cx"
         },
-        "content": "import seedu.address.logic.commands.BioCommand;"
+        "content": "import seedu.address.logic.commands.AverageCommand;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "whneo97"
         },
-        "content": "import seedu.address.logic.commands.ClearCommand;"
+        "content": "import seedu.address.logic.commands.BioCommand;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.Command;"
+        "content": "import seedu.address.logic.commands.ClearCommand;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.DeleteCommand;"
+        "content": "import seedu.address.logic.commands.Command;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.EditCommand;"
+        "content": "import seedu.address.logic.commands.DeleteCommand;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ExitCommand;"
+        "content": "import seedu.address.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.FindCommand;"
+        "content": "import seedu.address.logic.commands.ExitCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.HelpCommand;"
+        "content": "import seedu.address.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ListCommand;"
+        "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.commands.ListCommand;"
+      },
+      {
+        "lineNumber": 21,
         "author": {
           "gitId": "ZhangHuafan"
         },
         "content": "import seedu.address.logic.commands.RecmFoodCommand;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": "/**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": " */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+      },
+      {
+        "lineNumber": 49,
         "author": {
           "gitId": "whneo97"
         },
         "content": "        switch (commandWord.toLowerCase()) {"
       },
       {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ClearCommand();"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "whneo97"
+          "gitId": "-"
         },
-        "content": "        case BioCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "whneo97"
         },
-        "content": "            return new BioCommand();"
+        "content": "        case BioCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "whneo97"
         },
-        "content": ""
+        "content": "            return new BioCommand();"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "whneo97"
         },
-        "content": "        case AchvmCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "whneo97"
         },
-        "content": "            return new AchvmCommand();"
+        "content": "        case AchvmCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "whneo97"
         },
-        "content": ""
+        "content": "            return new AchvmCommand();"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "whneo97"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case AverageCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            return new AverageCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
         "author": {
           "gitId": "ZhangHuafan"
         },
         "content": "        case RecmFoodCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 85,
         "author": {
           "gitId": "ZhangHuafan"
         },
         "content": "            return new RecmFoodCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 86,
         "author": {
           "gitId": "ZhangHuafan"
         },
         "content": ""
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
         "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
@@ -20836,7 +22080,8 @@
     "authorContributionMap": {
       "ZhangHuafan": 4,
       "-": 75,
-      "whneo97": 9
+      "whneo97": 9,
+      "chen-xi-cx": 4
     }
   },
   {
@@ -22288,6 +23533,701 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/parser/AverageCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETER;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_AVGTYPE;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNT;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORDTYPE;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import java.util.stream.Stream;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.commands.AverageCommand;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.AverageType;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.record.RecordType;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": " * Parses input arguments and creates a new AverageCommand object"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "public class AverageCommandParser implements Parser\u003cAverageCommand\u003e {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private static final String DEFAULT_COUNT_STRING \u003d \"5\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private static final String COUNT_REGEX \u003d \"[1-9]\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the AverageCommand"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     * and returns a AverageCommand object for execution."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public AverageCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_AVGTYPE, PREFIX_RECORDTYPE, PREFIX_COUNT);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_AVGTYPE, PREFIX_RECORDTYPE)"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AverageCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        AverageType averageType;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        switch (argMultimap.getValue(PREFIX_AVGTYPE).get().toUpperCase()) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"DAILY\":"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            //fallthrough"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"WEEKLY\":"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            //fallthrough"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"MONTHLY\":"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            averageType \u003d AverageType.valueOf(argMultimap.getValue(PREFIX_AVGTYPE).get().toUpperCase());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER, AverageCommand.MESSAGE_USAGE,"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                    AverageCommand.MESSAGE_INVALID_AVGTYPE));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        RecordType recordType;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        switch (argMultimap.getValue(PREFIX_RECORDTYPE).get().toUpperCase()) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"DIET\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            //fallthrough"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"EXERCISE\":"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            //fallthrough"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"BLOODSUGAR\":"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            //fallthrough"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"HEIGHTANDWEIGHT\":"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            //fallthrough"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        case \"MEDICALEXPENSES\":"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            recordType \u003d RecordType.valueOf(argMultimap.getValue(PREFIX_RECORDTYPE).get().toUpperCase());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER, AverageCommand.MESSAGE_USAGE,"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                    AverageCommand.MESSAGE_INVALID_RECORDTYPE));"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        String strCount;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        if (arePrefixesPresent(argMultimap, PREFIX_COUNT)) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            strCount \u003d argMultimap.getValue(PREFIX_COUNT).get();"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            strCount \u003d DEFAULT_COUNT_STRING;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        if (!strCount.matches(COUNT_REGEX)) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER, AverageCommand.MESSAGE_USAGE,"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                    AverageCommand.MESSAGE_INVALID_COUNT));"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        int count \u003d Integer.parseInt(strCount);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        return new AverageCommand(averageType, recordType, count);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     * {@code ArgumentMultimap}."
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "chen-xi-cx": 98
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/parser/CliSyntax.java",
     "fileType": "functional",
     "lines": [
@@ -22441,19 +24381,33 @@
       {
         "lineNumber": 22,
         "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final Prefix PREFIX_AVGTYPE \u003d new Prefix(\"a/\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public static final Prefix PREFIX_COUNT \u003d new Prefix(\"n/\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
           "gitId": "ZhangHuafan"
         },
         "content": "    public static final Prefix PREFIX_FOOD \u003d new Prefix(\"f/\");"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
@@ -22463,7 +24417,8 @@
     "authorContributionMap": {
       "ZhangHuafan": 1,
       "-": 15,
-      "scwaterbear": 8
+      "scwaterbear": 8,
+      "chen-xi-cx": 2
     }
   },
   {
@@ -38937,12 +40892,19 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "scwaterbear"
+          "gitId": "chen-xi-cx"
         },
-        "content": "    BLOODSUGAR, BMI;"
+        "content": "    BLOODSUGAR, BMI, DIET, EXERCISE, HEIGHTANDWEIGHT, MEDICALEXPENSES"
       },
       {
         "lineNumber": 8,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
         "author": {
           "gitId": "scwaterbear"
         },
@@ -38950,7 +40912,8 @@
       }
     ],
     "authorContributionMap": {
-      "scwaterbear": 8
+      "scwaterbear": 7,
+      "chen-xi-cx": 2
     }
   },
   {
@@ -61257,6 +63220,190 @@
       "ZhangHuafan": 12,
       "-": 171,
       "scwaterbear": 101
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/logic/commands/AverageCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.logic.commands.AverageCommand.MESSAGE_NO_RECORD;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import static seedu.address.testutil.Assert.assertThrows;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.AverageType;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.ModelManager;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "import seedu.address.model.record.RecordType;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "public class AverageCommandTest {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    private Model model \u003d new ModelManager();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    public void execute_zeroRecordType_throwsCommandException() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        AverageCommand command \u003d new AverageCommand(AverageType.DAILY,"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                RecordType.HEIGHTANDWEIGHT, 5);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "        assertThrows(CommandException.class, String.format(MESSAGE_NO_RECORD,"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "                RecordType.HEIGHTANDWEIGHT), () -\u003e command.execute(model));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chen-xi-cx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "chen-xi-cx": 25
     }
   },
   {

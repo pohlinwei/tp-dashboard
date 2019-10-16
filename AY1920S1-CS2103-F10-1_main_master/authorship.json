@@ -18074,6 +18074,891 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/autocomplete/AutoCompleteWord.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.autocomplete;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * Represents an autocomplete word in application"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class AutoCompleteWord {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private String suggestedWord;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public AutoCompleteWord(String suggestedWord) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.suggestedWord \u003d suggestedWord;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public String getSuggestedWord() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return suggestedWord;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 16
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/autocomplete/AutoCompleteWordHandler.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.autocomplete;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.collections.FXCollections;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * A handler that initialises autocomplete word bank and updates list of autocomplete words to be shown"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class AutoCompleteWordHandler {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(AutoCompleteWordHandler.class);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private ObservableList\u003cAutoCompleteWord\u003e oListAutoCompleteWords;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private ObservableList\u003cAutoCompleteWord\u003e oListAutoCompleteWordBank;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public AutoCompleteWordHandler() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.oListAutoCompleteWordBank \u003d FXCollections.observableArrayList();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        // Add command suggestion words"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        addCommandWordsToBank();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        /*// Add variable suggestion words"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        addPrefixToBank();*/"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.oListAutoCompleteWords \u003d FXCollections.observableArrayList(oListAutoCompleteWordBank);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * Add command words to list of all suggested words"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public void addCommandWordsToBank() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListAutoCompleteWordBank.add(new CommandWord(\"list\"));"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListAutoCompleteWordBank.add(new CommandWord(\"find\"));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListAutoCompleteWordBank.add(new CommandWord(\"delete\"));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListAutoCompleteWordBank.add(new CommandWord(\"add\"));"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListAutoCompleteWordBank.add(new CommandWord(\"import\"));"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /*public void addPrefixToBank() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListACWordBank.add(new PrefixWord(\"import\", \"r/\"));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListACWordBank.add(new PrefixWord(\"import\", \"c/\"));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }*/"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public ObservableList\u003cAutoCompleteWord\u003e getOListAutoCompleteWords() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return oListAutoCompleteWords;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * Update list of autocomplete words to be suggested according to current phrase in command box textfield"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * @param currentPhraseInCommandBox string in command box textfield"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public void updateList(String currentPhraseInCommandBox) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        oListAutoCompleteWords.clear();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        for (AutoCompleteWord autoCompleteWord : oListAutoCompleteWordBank) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            if (autoCompleteWord.getSuggestedWord().contains(currentPhraseInCommandBox)) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                oListAutoCompleteWords.add(autoCompleteWord);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        logger.info(\"Current number of suggested word is \" + oListAutoCompleteWords.size());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 67
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/autocomplete/CommandWord.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.autocomplete;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * Represents an autocomplete command word(eg: find, sort, delete) in application"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class CommandWord extends AutoCompleteWord {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public CommandWord(String suggestionWord) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        super(suggestionWord);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 10
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/autocomplete/KeyWord.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.autocomplete;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * Represents a key word(eg: patient ic, patient name) in application"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class KeyWord extends AutoCompleteWord {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public KeyWord(String suggestionWord) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        super(suggestionWord);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 10
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/autocomplete/PrefixWord.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.autocomplete;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * Represents a prefix word(eg: n/, t/) in application"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class PrefixWord extends AutoCompleteWord {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private String associatedCommandWord;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public PrefixWord(String associatedCommandWord, String suggestionWord) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        super(suggestionWord);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.associatedCommandWord \u003d associatedCommandWord;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public String getAssociatedCommandWord() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return associatedCommandWord;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 17
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/commons/exceptions/CopyException.java",
     "fileType": "functional",
     "lines": [
@@ -39898,6 +40783,3187 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/ui/AutoCompleteCard.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.scene.control.Label;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.scene.layout.Region;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import seedu.address.autocomplete.AutoCompleteWord;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * An UI component that displays information of a {@code AutoCompleteWord}."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class AutoCompleteCard extends UiPart\u003cRegion\u003e {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private static final String FXML \u003d \"AutoCompleteListCard.fxml\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * Note: Certain keywords such as \"location\" and \"resources\" are reserved keywords in JavaFX."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * As a consequence, UI elements\u0027 variable names cannot be set to such keywords"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * or an exception will be thrown by JavaFX during runtime."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * @see \u003ca href\u003d\"https://github.com/se-edu/addressbook-level4/issues/336\"\u003eThe issue on AddressBook level 4\u003c/a\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public final AutoCompleteWord acWord;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private Label suggestedWord;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public AutoCompleteCard(AutoCompleteWord acWord) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.acWord \u003d acWord;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        suggestedWord.setText(acWord.getSuggestedWord());"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        if (!(other instanceof AutoCompleteCard)) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        AutoCompleteCard card \u003d (AutoCompleteCard) other;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return acWord.equals(card.acWord);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 50
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/ui/AutoCompletePanel.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "package seedu.address.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.scene.control.ListCell;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.scene.control.ListView;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import javafx.scene.layout.Region;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import seedu.address.autocomplete.AutoCompleteWord;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import seedu.address.autocomplete.AutoCompleteWordHandler;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " * Panel containing the list of suggested words."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "public class AutoCompletePanel extends UiPart\u003cRegion\u003e {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(AutoCompletePanel.class);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private static final String FXML \u003d \"AutoCompletePanel.fxml\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private int selectedIndex \u003d 0;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private AutoCompleteWordHandler autoCompleteWordHandler;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private ListView\u003cAutoCompleteWord\u003e autoCompleteWordListView;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public AutoCompletePanel() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompleteWordHandler \u003d new AutoCompleteWordHandler();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompleteWordListView.setItems(autoCompleteWordHandler.getOListAutoCompleteWords());"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompleteWordListView.setCellFactory(listView -\u003e new AutoCompleteListViewCell());"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * Custom {@code ListCell} that displays the graphics of a {@code AutoCompleteWord} using a {@code AutoCompleteCard}"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    class AutoCompleteListViewCell extends ListCell\u003cAutoCompleteWord\u003e {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        protected void updateItem(AutoCompleteWord autoCompleteWord, boolean empty) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            super.updateItem(autoCompleteWord, empty);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            if (empty || autoCompleteWord \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                setGraphic(null);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                setText(null);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                setGraphic(new AutoCompleteCard(autoCompleteWord).getRoot());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public AutoCompleteWord getSelected() {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return autoCompleteWordListView.getSelectionModel().getSelectedItem();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public void setSelected(int index) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompleteWordListView.getSelectionModel().select(index);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.selectedIndex \u003d index;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public int getSelectedIndex() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return selectedIndex;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public int getTotalItems() {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        return autoCompleteWordListView.getItems().size();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * Delegate update list to autocomplete handler"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * @param currentPhraseInCommandBox current String in command"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public void updateListView(String currentPhraseInCommandBox) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        logger.info(\"Updated list\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompleteWordHandler.updateList(currentPhraseInCommandBox);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 76
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/ui/CommandBox.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.address.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.TextField;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.Region;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * The UI component that is responsible for receiving user command inputs."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class CommandBox extends UiPart\u003cRegion\u003e {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private static final String ERROR_STYLE_CLASS \u003d \"error\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String FXML \u003d \"CommandBox.fxml\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(getClass());"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final CommandExecutor commandExecutor;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private final AutoCompletePanel autoCompletePanel;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private TextField commandTextField;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public CommandBox(CommandExecutor commandExecutor, AutoCompletePanel autoCompletePanel) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(FXML);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.commandExecutor \u003d commandExecutor;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        this.autoCompletePanel \u003d autoCompletePanel;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // calls #setStyleToDefault() whenever there is a change to the text of the command box."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        commandTextField.textProperty().addListener((unused1, unused2, unused3) -\u003e setStyleToDefault());"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Handles the Enter button pressed event."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void handleCommandEntered() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            commandExecutor.execute(commandTextField.getText());"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            commandTextField.setText(\"\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (CommandException | ParseException e) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            setStyleToIndicateCommandFailure();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the command box style to use the default style."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setStyleToDefault() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the command box style to indicate a failed command."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setStyleToIndicateCommandFailure() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        ObservableList\u003cString\u003e styleClass \u003d commandTextField.getStyleClass();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (styleClass.contains(ERROR_STYLE_CLASS)) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        styleClass.add(ERROR_STYLE_CLASS);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Represents a function that can execute commands."
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FunctionalInterface"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public interface CommandExecutor {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * Executes the command and returns the result."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * @see seedu.address.logic.Logic#execute(String)"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        CommandResult execute(String commandText) throws CommandException, ParseException;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public void setOnButtonPressedListener() {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        commandTextField.setOnKeyPressed(event -\u003e {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            int newIndex;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            switch (event.getCode()) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            case UP:"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                newIndex \u003d (autoCompletePanel.getSelectedIndex() - 1);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                if (newIndex \u003c 0) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    newIndex \u003d 0;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                autoCompletePanel.setSelected(newIndex);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                commandTextField.positionCaret(commandTextField.getText().length());"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            case DOWN:"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                newIndex \u003d (autoCompletePanel.getSelectedIndex() + 1);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                if (newIndex \u003e autoCompletePanel.getTotalItems() - 1) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    newIndex \u003d autoCompletePanel.getTotalItems() - 1;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                autoCompletePanel.setSelected(newIndex);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            case SHIFT:"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    commandTextField.setText(autoCompletePanel.getSelected().getSuggestedWord());"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    commandTextField.positionCaret(commandTextField.getText().length());"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                } catch (NullPointerException e) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    logger.info(\"Nothing is selected thus shift key does not work\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                autoCompletePanel.updateListView(commandTextField.getText() + event.getText());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 41,
+      "-": 74
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/ui/MainWindow.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.address.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.event.ActionEvent;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.MenuItem;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.TextInputControl;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.input.KeyCombination;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.input.KeyEvent;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.StackPane;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.stage.Stage;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.commons.core.GuiSettings;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.Logic;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * The Main Window. Provides the basic application layout containing"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * a menu bar and space where other JavaFX elements can be placed."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class MainWindow extends UiPart\u003cStage\u003e {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String FXML \u003d \"MainWindow.fxml\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(getClass());"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Stage primaryStage;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Logic logic;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    // Independent Ui parts residing in this Ui container"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private PersonListPanel personListPanel;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private AutoCompletePanel autoCompletePanel;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private ResultDisplay resultDisplay;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private HelpWindow helpWindow;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private CommandBox commandBox;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane commandBoxPlaceholder;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private MenuItem helpMenuItem;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane personListPanelPlaceholder;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    private StackPane autoCompletePanelPlaceholder;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane resultDisplayPlaceholder;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane statusbarPlaceholder;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public MainWindow(Stage primaryStage, Logic logic) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(FXML, primaryStage);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // Set dependencies"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.primaryStage \u003d primaryStage;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.logic \u003d logic;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // Configure the UI"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setWindowDefaultSize(logic.getGuiSettings());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setAccelerators();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        helpWindow \u003d new HelpWindow();"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Stage getPrimaryStage() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return primaryStage;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setAccelerators() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setAccelerator(helpMenuItem, KeyCombination.valueOf(\"F1\"));"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the accelerator of a MenuItem."
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param keyCombination the KeyCombination value of the accelerator"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        menuItem.setAccelerator(keyCombination);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        /*"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * TODO: the code below can be removed once the bug reported here"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * https://bugs.openjdk.java.net/browse/JDK-8131666"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * is fixed in later version of SDK."
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * According to the bug report, TextInputControl (TextField, TextArea) will"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * consume function-key events. Because CommandBox contains a TextField, and"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * not work when the focus is in them because the key event is consumed by"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * the TextInputControl(s)."
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * For now, we add following event filter to capture such key events and open"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * help window purposely so to support accelerators even when focus is"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * in CommandBox or ResultDisplay."
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -\u003e {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (event.getTarget() instanceof TextInputControl \u0026\u0026 keyCombination.match(event)) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                menuItem.getOnAction().handle(new ActionEvent());"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                event.consume();"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Fills up all the placeholders of this window."
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void fillInnerParts() {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        personListPanel \u003d new PersonListPanel(logic.getFilteredPersonList());"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        resultDisplay \u003d new ResultDisplay();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        StatusBarFooter statusBarFooter \u003d new StatusBarFooter(logic.getAddressBookFilePath());"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompletePanel \u003d new AutoCompletePanel();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        autoCompletePanelPlaceholder.getChildren().add(autoCompletePanel.getRoot());"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        commandBox \u003d new CommandBox(this::executeCommand, autoCompletePanel);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the default size based on {@code guiSettings}."
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setWindowDefaultSize(GuiSettings guiSettings) {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.setHeight(guiSettings.getWindowHeight());"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.setWidth(guiSettings.getWindowWidth());"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (guiSettings.getWindowCoordinates() !\u003d null) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            primaryStage.setX(guiSettings.getWindowCoordinates().getX());"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            primaryStage.setY(guiSettings.getWindowCoordinates().getY());"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Opens the help window or focuses on it if it\u0027s already opened."
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void handleHelp() {"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!helpWindow.isShowing()) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            helpWindow.show();"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            helpWindow.focus();"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void show() {"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.show();"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Closes the application."
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void handleExit() {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        GuiSettings guiSettings \u003d new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                (int) primaryStage.getX(), (int) primaryStage.getY());"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logic.setGuiSettings(guiSettings);"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        helpWindow.hide();"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.hide();"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public PersonListPanel getPersonListPanel() {"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return personListPanel;"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Executes the command and returns the result."
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @see seedu.address.logic.Logic#execute(String)"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            CommandResult commandResult \u003d logic.execute(commandText);"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.info(\"Result: \" + commandResult.getFeedbackToUser());"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (commandResult.isShowHelp()) {"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                handleHelp();"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (commandResult.isExit()) {"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                handleExit();"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return commandResult;"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (CommandException | ParseException e) {"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.info(\"Invalid command: \" + commandText);"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     * Set listeners for all individual components in main window"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    public void setAllListeners() {"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        commandBox.setOnButtonPressedListener();"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 17,
+      "-": 191
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/ui/PersonCard.java",
     "fileType": "functional",
     "lines": [
@@ -40860,6 +44926,1395 @@
     "authorContributionMap": {
       "crazoter": 6,
       "-": 43
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/ui/UiManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.address.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.application.Platform;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.Alert;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.Alert.AlertType;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.image.Image;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.stage.Stage;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.MainApp;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.commons.util.StringUtil;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.Logic;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * The manager of the UI component."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class UiManager implements Ui {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String ALERT_DIALOG_PANE_FIELD_ID \u003d \"alertDialogPane\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(UiManager.class);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String ICON_APPLICATION \u003d \"/images/address_book_32.png\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Logic logic;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private MainWindow mainWindow;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public UiManager(Logic logic) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.logic \u003d logic;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void start(Stage primaryStage) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logger.info(\"Starting UI...\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        //Set the application icon."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.getIcons().add(getImage(ICON_APPLICATION));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            mainWindow \u003d new MainWindow(primaryStage, logic);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            mainWindow.show(); //This should be called before creating other UI parts"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            mainWindow.fillInnerParts();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            // Main window listener"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            mainWindow.setAllListeners();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (Throwable e) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.severe(StringUtil.getDetails(e));"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            showFatalErrorDialogAndShutdown(\"Fatal error during initializing\", e);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Image getImage(String imagePath) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new Image(MainApp.class.getResourceAsStream(imagePath));"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Shows an alert dialog on {@code owner} with the given parameters."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * This method only returns after the user has closed the alert dialog."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                                               String contentText) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final Alert alert \u003d new Alert(type);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.getDialogPane().getStylesheets().add(\"view/DarkTheme.css\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.initOwner(owner);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.setTitle(title);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.setHeaderText(headerText);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.setContentText(contentText);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.showAndWait();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Shows an error alert dialog with {@code title} and error message, {@code e},"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * and exits the application after the user has closed the alert dialog."
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void showFatalErrorDialogAndShutdown(String title, Throwable e) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logger.severe(title + \" \" + e.getMessage() + StringUtil.getDetails(e));"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Platform.exit();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.exit(1);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 2,
+      "-": 86
+    }
+  },
+  {
+    "path": "src/main/resources/view/AutoCompleteListCard.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.control.Label?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.layout.ColumnConstraints?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "  \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    \u003ccolumnConstraints\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "      \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" minWidth\u003d\"10\" prefWidth\u003d\"150\" /\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    \u003c/columnConstraints\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    \u003cVBox alignment\u003d\"CENTER_LEFT\" minHeight\u003d\"25\" GridPane.columnIndex\u003d\"0\"\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "      \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        \u003cInsets top\u003d\"5\" right\u003d\"5\" bottom\u003d\"5\" left\u003d\"15\" /\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "      \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "      \u003cHBox spacing\u003d\"5\" alignment\u003d\"CENTER\"\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "        \u003cLabel fx:id\u003d\"suggestedWord\" text\u003d\"\\$first\" styleClass\u003d\"cell_small_label\" /\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "      \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "    \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "  \u003c/GridPane\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c/HBox\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 24
+    }
+  },
+  {
+    "path": "src/main/resources/view/AutoCompletePanel.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.control.ListView?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003cVBox xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "  \u003cListView fx:id\u003d\"autoCompleteWordListView\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "\u003c/VBox\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 8
+    }
+  },
+  {
+    "path": "src/main/resources/view/MainWindow.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import java.net.URL?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.Scene?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.Menu?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.MenuBar?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.MenuItem?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.image.Image?\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003cfx:root type\u003d\"javafx.stage.Stage\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         title\u003d\"Address App\" minWidth\u003d\"450\" minHeight\u003d\"600\" onCloseRequest\u003d\"#handleExit\"\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cicons\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cImage url\u003d\"@/images/address_book_32.png\"/\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/icons\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cscene\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cScene\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003cstylesheets\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cURL value\u003d\"@DarkTheme.css\"/\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cURL value\u003d\"@Extensions.css\"/\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003c/stylesheets\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "            \u003c!--Menu bar--\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003cVBox\u003e"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cMenuBar fx:id\u003d\"menuBar\" VBox.vgrow\u003d\"NEVER\"\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"File\"\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cMenuItem mnemonicParsing\u003d\"false\" onAction\u003d\"#handleExit\" text\u003d\"Exit\"/\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/Menu\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"Help\"\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cMenuItem fx:id\u003d\"helpMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleHelp\" text\u003d\"Help\"/\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/Menu\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/MenuBar\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003c!--Command Box--\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cStackPane VBox.vgrow\u003d\"NEVER\" fx:id\u003d\"commandBoxPlaceholder\" styleClass\u003d\"pane-with-border\"\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cInsets top\u003d\"5\" right\u003d\"10\" bottom\u003d\"5\" left\u003d\"10\"/\u003e"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/StackPane\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003c!--Auto Complete Panel--\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003cVBox fx:id\u003d\"autoCompletePanel\" styleClass\u003d\"pane-with-border\" minWidth\u003d\"340\" prefWidth\u003d\"340\""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                      VBox.vgrow\u003d\"ALWAYS\"\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                        \u003cInsets top\u003d\"10\" right\u003d\"10\" bottom\u003d\"10\" left\u003d\"10\"/\u003e"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                    \u003cStackPane fx:id\u003d\"autoCompletePanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\"/\u003e"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003c!--Result Displayer--\u003e"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cStackPane VBox.vgrow\u003d\"NEVER\" fx:id\u003d\"resultDisplayPlaceholder\" styleClass\u003d\"pane-with-border\""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                           minHeight\u003d\"100\" prefHeight\u003d\"100\" maxHeight\u003d\"100\"\u003e"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cInsets top\u003d\"5\" right\u003d\"10\" bottom\u003d\"5\" left\u003d\"10\"/\u003e"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/StackPane\u003e"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003c!--List Of Person Cards--\u003e"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                \u003cVBox fx:id\u003d\"personList\" styleClass\u003d\"pane-with-border\" minWidth\u003d\"340\" prefWidth\u003d\"340\""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "francislow"
+        },
+        "content": "                      VBox.vgrow\u003d\"ALWAYS\"\u003e"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        \u003cInsets top\u003d\"10\" right\u003d\"10\" bottom\u003d\"10\" left\u003d\"10\"/\u003e"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    \u003cStackPane fx:id\u003d\"personListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\"/\u003e"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u003cStackPane fx:id\u003d\"statusbarPlaceholder\" VBox.vgrow\u003d\"NEVER\"/\u003e"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003c/Scene\u003e"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/scene\u003e"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c/fx:root\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "francislow": 15,
+      "-": 58
     }
   },
   {

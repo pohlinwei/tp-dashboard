@@ -13998,6 +13998,386 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/DeleteEventCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.model.event.Event;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": " * Deletes a event identified using it\u0027s displayed index from the address book."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "public class DeleteEventCommand extends Command {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"delete_ev\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            + \": Deletes the event identified by the index number used in the displayed event list.\\n\""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer)\\n\""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public static final String MESSAGE_DELETE_EVENT_SUCCESS \u003d \"Deleted Event: %1$s\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    private final Index targetIndex;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public DeleteEventCommand(Index targetIndex) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        this.targetIndex \u003d targetIndex;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        List\u003cEvent\u003e lastShownList \u003d model.getFilteredEventList();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        Event eventToDelete \u003d lastShownList.get(targetIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        model.deleteEvent(eventToDelete);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "                || (other instanceof DeleteEventCommand // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "                \u0026\u0026 targetIndex.equals(((DeleteEventCommand) other).targetIndex)); // state check"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "eshwarkp": 53
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/commands/EditEventCommand.java",
     "fileType": "functional",
     "lines": [
@@ -14249,9 +14629,9 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "shihaoyap"
+          "gitId": "calvincxz"
         },
-        "content": " * Edits the details of an existing event in the address book."
+        "content": " * Edits the details of an existing event in the event book."
       },
       {
         "lineNumber": 37,
@@ -15077,7 +15457,7 @@
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": "        private Set\u003cTag\u003e tags \u003d new HashSet\u003c\u003e();"
+        "content": "        private Set\u003cTag\u003e tags;"
       },
       {
         "lineNumber": 155,
@@ -15956,7 +16336,514 @@
       }
     ],
     "authorContributionMap": {
-      "shihaoyap": 279
+      "calvincxz": 1,
+      "shihaoyap": 278
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/commands/FetchEventCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import java.util.function.Predicate;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.model.event.Event;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " * Fetches the details of an existing event in the event book."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "public class FetchEventCommand extends Command {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"fetch_ev\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Displays the details of the event identified \""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            + \"by the index number used in the displayed event list. \""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            + \"Existing values will be overwritten by the input values.\\n\""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"fetched Event: %1$s\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    private final Index index;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    private Predicate\u003cEvent\u003e predicateToShowIndexedEvent;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     * @param index of the event in the filtered event list to fetch"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public FetchEventCommand(Index index) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        requireNonNull(index);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        List\u003cEvent\u003e lastShownList \u003d model.getFilteredEventList();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        Event eventToFetch \u003d lastShownList.get(index.getZeroBased());"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        predicateToShowIndexedEvent \u003d event -\u003e event.equals(eventToFetch);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        model.updateFilteredEventList(predicateToShowIndexedEvent);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, eventToFetch));"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        if (!(other instanceof FetchEventCommand)) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        FetchEventCommand e \u003d (FetchEventCommand) other;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        return index.equals(e.index);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "calvincxz": 71
     }
   },
   {
@@ -16318,9 +17205,9 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "calvincxz"
         },
-        "content": " * Lists all persons in the address book to the user."
+        "content": " * Lists all events in the event book to the user."
       },
       {
         "lineNumber": 10,
@@ -16422,7 +17309,8 @@
       }
     ],
     "authorContributionMap": {
-      "DivineDX": 23
+      "calvincxz": 1,
+      "DivineDX": 22
     }
   },
   {
@@ -17022,14 +17910,14 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "shihaoyap"
+          "gitId": "eshwarkp"
         },
         "content": "import seedu.address.logic.commands.AddEventCommand;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "eshwarkp"
         },
         "content": "import seedu.address.logic.commands.AllCommands;"
       },
@@ -17050,541 +17938,541 @@
       {
         "lineNumber": 14,
         "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.logic.commands.DeleteEventCommand;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.logic.commands.EditCommand;"
       },
       {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "shihaoyap"
-        },
-        "content": "import seedu.address.logic.commands.EditEventCommand;"
-      },
-      {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "eshwarkp"
         },
-        "content": "import seedu.address.logic.commands.ExitCommand;"
+        "content": "import seedu.address.logic.commands.EditEventCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.FindCommand;"
+        "content": "import seedu.address.logic.commands.ExitCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "calvincxz"
         },
-        "content": "import seedu.address.logic.commands.FindEventCommand;"
+        "content": "import seedu.address.logic.commands.FetchEventCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.HelpCommand;"
+        "content": "import seedu.address.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "eshwarkp"
         },
-        "content": "import seedu.address.logic.commands.ListCommand;"
+        "content": "import seedu.address.logic.commands.FindEventCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ListEventCommand;"
+        "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "eshwarkp"
         },
-        "content": ""
+        "content": "import seedu.address.logic.commands.ListEventCommand;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     *"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "calvincxz"
+          "gitId": "-"
         },
-        "content": "    public AllCommands parseCommand(String userInput) throws ParseException {"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "calvincxz"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "    public AllCommands parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "shihaoyap"
+          "gitId": "-"
         },
-        "content": "        case AddEventCommand.COMMAND_WORD:"
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "shihaoyap"
+          "gitId": "-"
         },
-        "content": "            return new AddEventCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": ""
+        "content": "        case AddEventCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "shihaoyap"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": "            return new AddEventCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "shihaoyap"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "shihaoyap"
+          "gitId": "-"
         },
-        "content": "        case EditEventCommand.COMMAND_WORD:"
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "shihaoyap"
+          "gitId": "-"
         },
-        "content": "            return new EditEventCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": ""
+        "content": "        case EditEventCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "shihaoyap"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": "            return new EditEventCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "shihaoyap"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "eshwarkp"
         },
-        "content": ""
+        "content": "        case DeleteEventCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "eshwarkp"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": "            return new DeleteEventCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "eshwarkp"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "-"
         },
-        "content": "        case FindEventCommand.COMMAND_WORD:"
+        "content": "            return new ClearCommand();"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "DivineDX"
-        },
-        "content": "            return new FindEventCommandParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "DivineDX"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        case FetchEventCommand.COMMAND_WORD:"
+      },
+      {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "calvincxz"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": "            return new FetchEventCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "calvincxz"
         },
-        "content": "            return new ListCommand();"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "-"
         },
-        "content": "        case ListEventCommand.COMMAND_WORD:"
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "DivineDX"
+          "gitId": "-"
         },
-        "content": "            return new ListEventCommand();"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "DivineDX"
         },
-        "content": ""
+        "content": "        case FindEventCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "DivineDX"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": "            return new FindEventCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "DivineDX"
         },
-        "content": "            return new ExitCommand();"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "DivineDX"
         },
-        "content": ""
+        "content": "        case ListEventCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "DivineDX"
         },
-        "content": "        default:"
+        "content": "            return new ListEventCommand();"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "DivineDX"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 91,
@@ -17598,14 +18486,71 @@
         "author": {
           "gitId": "-"
         },
+        "content": "        case HelpCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new HelpCommand();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "calvincxz": 1,
-      "DivineDX": 9,
+      "eshwarkp": 9,
+      "calvincxz": 5,
+      "DivineDX": 6,
       "-": 74,
-      "shihaoyap": 8
+      "shihaoyap": 6
     }
   },
   {
@@ -17770,6 +18715,218 @@
     "authorContributionMap": {
       "-": 15,
       "shihaoyap": 7
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/DeleteEventCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.logic.commands.DeleteEventCommand;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": " * Parses input arguments and creates a new DeleteEventCommand object"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "public class DeleteEventCommandParser implements Parser\u003cDeleteEventCommand\u003e {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the DeleteCommand"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "     * and returns a DeleteEventCommand object for execution."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    public DeleteEventCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            Index index \u003d ParserUtil.parseIndex(args);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            return new DeleteEventCommand(index);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "            throw new ParseException("
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE), pe);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "eshwarkp"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "eshwarkp": 29
     }
   },
   {
@@ -18437,6 +19594,211 @@
     ],
     "authorContributionMap": {
       "shihaoyap": 94
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/FetchEventCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.logic.commands.FetchEventCommand;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " * Parses input arguments and creates a new FetchEventCommand object"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "public class FetchEventCommandParser {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the FetchEventCommand"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     * and returns a FetchEventCommand object for execution."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public FetchEventCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            Index index \u003d ParserUtil.parseIndex(args);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            return new FetchEventCommand(index);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "            throw new ParseException("
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FetchEventCommand.MESSAGE_USAGE), pe);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "calvincxz": 28
     }
   },
   {
@@ -20007,7 +21369,7 @@
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": "            throw new ParseException(Name.MESSAGE_CONSTRAINTS);"
+        "content": "            throw new ParseException(EventVenue.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 172,
@@ -20112,7 +21474,7 @@
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": "            throw new ParseException(Name.MESSAGE_CONSTRAINTS);"
+        "content": "            throw new ParseException(EventHoursNeeded.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 187,
@@ -20217,7 +21579,7 @@
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": "            throw new ParseException(Name.MESSAGE_CONSTRAINTS);"
+        "content": "            throw new ParseException(EventStartDate.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 202,
@@ -20329,7 +21691,7 @@
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": "            throw new ParseException(Name.MESSAGE_CONSTRAINTS);"
+        "content": "            throw new ParseException(EventEndDate.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 218,
@@ -20441,7 +21803,7 @@
         "author": {
           "gitId": "shihaoyap"
         },
-        "content": "            throw new ParseException(Name.MESSAGE_CONSTRAINTS);"
+        "content": "            throw new ParseException(EventManpowerNeeded.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 234,
@@ -44005,6 +45367,414 @@
     }
   },
   {
+    "path": "src/test/java/seedu/address/logic/commands/FetchEventCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.model.ModelManager;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "import seedu.address.model.UserPrefs;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " * Contains integration tests (interaction with the Model) and unit tests for"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " * {@code FetchEventCommandTest}."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "class FetchEventCommandTest {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    private Model model \u003d new ModelManager(getTypicalAddressBook(), getTypicalEventBook(), new UserPrefs());"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    void execute() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        FetchEventCommand firstCommand \u003d new FetchEventCommand(INDEX_FIRST_PERSON);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        FetchEventCommand secondCommand \u003d new FetchEventCommand(INDEX_SECOND_PERSON);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        assertTrue(firstCommand.equals(firstCommand));"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        FetchEventCommand firstCommandCopy \u003d new FetchEventCommand(INDEX_FIRST_PERSON);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        assertTrue(firstCommand.equals(firstCommandCopy));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // different types -\u003e returns false"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        assertFalse(firstCommand.equals(1));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        assertFalse(firstCommand.equals(null));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        // different person -\u003e returns false"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        assertFalse(firstCommand.equals(secondCommand));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     * Updates {@code model}\u0027s filtered list to show no one."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    private void showNoPerson(Model model) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        model.updateFilteredPersonList(p -\u003e false);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "        assertTrue(model.getFilteredPersonList().isEmpty());"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "calvincxz"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "calvincxz": 57
+    }
+  },
+  {
     "path": "src/test/java/seedu/address/logic/parser/CommandParserTestUtil.java",
     "fileType": "tests",
     "lines": [
@@ -50142,7 +51912,7 @@
         "author": {
           "gitId": "calvincxz"
         },
-        "content": " * A utility class to help with building Person objects."
+        "content": " * A utility class to help with building Event objects."
       },
       {
         "lineNumber": 21,
@@ -50177,7 +51947,7 @@
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public static final String DEFAULT_NAME \u003d \"Alice Pauline\";"
+        "content": "    public static final String DEFAULT_NAME \u003d \"Party\";"
       },
       {
         "lineNumber": 26,
@@ -50359,301 +52129,301 @@
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "     * Initializes the PersonBuilder with the data of {@code personToCopy}."
+        "content": "    /**"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "     */"
+        "content": "     * Initializes the PersonBuilder with the data of {@code personToCopy}."
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    /*public EventBuilder(Event personToCopy) {"
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        name \u003d personToCopy.getName();"
+        "content": "    /*public EventBuilder(Event personToCopy) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        phone \u003d personToCopy.getPhone();"
+        "content": "        name \u003d personToCopy.getName();"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        email \u003d personToCopy.getEmail();"
+        "content": "        phone \u003d personToCopy.getPhone();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        address \u003d personToCopy.getAddress();"
+        "content": "        email \u003d personToCopy.getEmail();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        tags \u003d new HashSet\u003c\u003e(personToCopy.getTags());"
+        "content": "        address \u003d personToCopy.getAddress();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        tags \u003d new HashSet\u003c\u003e(personToCopy.getTags());"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    /*"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "     * Sets the {@code Name} of the {@code Person} that we are building."
+        "content": "    /*"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "     * Sets the {@code Name} of the {@code Person} that we are building."
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public PersonBuilder withName(String name) {"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        this.name \u003d new Name(name);"
+        "content": "    public PersonBuilder withName(String name) {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return this;"
+        "content": "        this.name \u003d new Name(name);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        return this;"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public PersonBuilder withTags(String ... tags) {"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        this.tags \u003d SampleDataUtil.getTagSet(tags);"
+        "content": "    public PersonBuilder withTags(String ... tags) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return this;"
+        "content": "        this.tags \u003d SampleDataUtil.getTagSet(tags);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        return this;"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public PersonBuilder withAddress(String address) {"
+        "content": ""
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        this.address \u003d new Address(address);"
+        "content": "    public PersonBuilder withAddress(String address) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return this;"
+        "content": "        this.address \u003d new Address(address);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        return this;"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public PersonBuilder withPhone(String phone) {"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        this.phone \u003d new Phone(phone);"
+        "content": "    public PersonBuilder withPhone(String phone) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return this;"
+        "content": "        this.phone \u003d new Phone(phone);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        return this;"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public PersonBuilder withEmail(String email) {"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        this.email \u003d new Email(email);"
+        "content": "    public PersonBuilder withEmail(String email) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return this;"
+        "content": "        this.email \u003d new Email(email);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        return this;"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    */"
+        "content": "    }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public Event build() {"
+        "content": "    */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return new Event(id, name, venue, hoursNeeded, manpowerNeeded, startDate, endDate, tags);"
+        "content": "    public Event build() {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    }"
+        "content": "        return new Event(id, name, venue, hoursNeeded, manpowerNeeded, startDate, endDate, tags);"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "calvincxz"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 94,
@@ -50674,11 +52444,18 @@
         "author": {
           "gitId": "calvincxz"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "calvincxz"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "calvincxz": 96
+      "calvincxz": 97
     }
   },
   {
@@ -50816,7 +52593,7 @@
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "    public static final Event AAA \u003d new EventBuilder().build();"
+        "content": "    public static final Event A \u003d new EventBuilder().build();"
       },
       {
         "lineNumber": 20,
@@ -50935,7 +52712,7 @@
         "author": {
           "gitId": "calvincxz"
         },
-        "content": "        return new ArrayList\u003c\u003e(Arrays.asList(AAA));"
+        "content": "        return new ArrayList\u003c\u003e(Arrays.asList(A));"
       },
       {
         "lineNumber": 37,
