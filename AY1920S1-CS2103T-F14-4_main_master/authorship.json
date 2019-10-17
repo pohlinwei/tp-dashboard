@@ -10976,6 +10976,807 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/commons/core/Version.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.address.commons.core;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.regex.Matcher;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import com.fasterxml.jackson.annotation.JsonValue;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Represents a version with major, minor and patch number"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Version implements Comparable\u003cVersion\u003e {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String VERSION_REGEX \u003d \"V(\\\\d+)\\\\.(\\\\d+)\\\\.(\\\\d+)(ea)?\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String EXCEPTION_STRING_NOT_VERSION \u003d \"String is not a valid Version. %s\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final Pattern VERSION_PATTERN \u003d Pattern.compile(VERSION_REGEX);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final int major;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final int minor;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final int patch;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final boolean isEarlyAccess;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Version(int major, int minor, int patch, boolean isEarlyAccess) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.major \u003d major;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.minor \u003d minor;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.patch \u003d patch;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.isEarlyAccess \u003d isEarlyAccess;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int getMajor() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return major;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int getMinor() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return minor;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int getPatch() {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return patch;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean isEarlyAccess() {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return isEarlyAccess;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Parses a version number string in the format V1.2.3."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param versionString version number string"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return a Version object"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @JsonCreator"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static Version fromString(String versionString) throws IllegalArgumentException {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Matcher versionMatcher \u003d VERSION_PATTERN.matcher(versionString);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!versionMatcher.find()) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new IllegalArgumentException(String.format(EXCEPTION_STRING_NOT_VERSION, versionString));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new Version(Integer.parseInt(versionMatcher.group(1)),"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Integer.parseInt(versionMatcher.group(2)),"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Integer.parseInt(versionMatcher.group(3)),"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                versionMatcher.group(4) !\u003d null);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @JsonValue"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return String.format(\"V%d.%d.%d%s\", major, minor, patch, isEarlyAccess ? \"ea\" : \"\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int compareTo(Version other) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (major !\u003d other.major) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return major - other.major;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (minor !\u003d other.minor) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return minor - other.minor;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (patch !\u003d other.patch) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return patch - other.patch;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (isEarlyAccess \u003d\u003d other.isEarlyAccess()) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return 0;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (isEarlyAccess) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return -1;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return 1;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object obj) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (obj \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!(obj instanceof Version)) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final Version other \u003d (Version) obj;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return compareTo(other) \u003d\u003d 0;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String hash \u003d String.format(\"%03d%03d%03d\", major, minor, patch);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!isEarlyAccess) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            hash \u003d \"1\" + hash;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return Integer.parseInt(hash);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "cheeyou": 1,
+      "-": 112
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/model/Description.java",
     "fileType": "functional",
     "lines": [
@@ -11279,7 +12080,247 @@
     }
   },
   {
-    "path": "src/main/java/seedu/address/model/Duration.java",
+    "path": "src/main/java/seedu/address/model/DriverManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "package seedu.address.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "import seedu.address.model.person.Driver;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * Represents the in-memory driver model of the address book data."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "public class DriverManager extends ModelManager {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public DriverManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super(addressBook, userPrefs);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public DriverManager() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        this(new AddressBook(), new UserPrefs());"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public boolean hasDriver(Driver driver) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return super.hasPerson(driver);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void deleteDriver(Driver target) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super.deletePerson(target);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void addDriver(Driver driver) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super.addPerson(driver);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void setDriver(Driver driver, Driver editedDriver) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super.setPerson(driver, editedDriver);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "cheeyou": 33
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/EventTime.java",
     "fileType": "functional",
     "lines": [
       {
@@ -11301,378 +12342,378 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "import java.time.LocalTime;"
+        "content": "import java.time.Duration;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
+        "content": "import java.time.LocalTime;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import java.time.format.DateTimeParseException;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import java.util.Objects;"
+        "content": "import java.time.format.DateTimeParseException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "import java.util.Objects;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tysng"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tysng"
         },
-        "content": " * A Duration contains a start time and an end time."
+        "content": "/**"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tysng"
         },
-        "content": " */"
+        "content": " * A EventTime contains a start time and an end time."
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tysng"
         },
-        "content": "public class Duration implements Comparable\u003cDuration\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "public class EventTime implements Comparable\u003cEventTime\u003e {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private static final DateTimeFormatter COMPACT_TIME_FORMAT \u003d DateTimeFormatter.ofPattern(\"HHmm\");"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private static final DateTimeFormatter DISPLAY_TIME_FORMAT \u003d DateTimeFormatter.ofPattern(\"h:mma\");"
+        "content": "    private static final DateTimeFormatter COMPACT_TIME_FORMAT \u003d DateTimeFormatter.ofPattern(\"HHmm\");"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    private static final DateTimeFormatter DISPLAY_TIME_FORMAT \u003d DateTimeFormatter.ofPattern(\"h:mma\");"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private LocalTime start;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private LocalTime end;"
+        "content": "    private LocalTime start;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    private LocalTime end;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private Duration(LocalTime start, LocalTime end) {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        this.start \u003d start;"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        this.end \u003d end;"
+        "content": "    public EventTime(LocalTime start, LocalTime end) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "        this.start \u003d start;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        this.end \u003d end;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Builds duration from two text representations of time."
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * \u003cp\u003e"
+        "content": "    public EventTime(LocalTime start, Duration duration) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * This methods appends zeros to the front of the input, if"
+        "content": "        this.start \u003d start;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * the input is less than 4 digits. For example, \"900\" will be changed into \"0900\"."
+        "content": "        this.end \u003d start.plus(duration);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     *"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param startTime start time"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param endTime end time"
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @return the duration with the specified start and end time"
+        "content": "     * Builds duration from two text representations of time."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": "     * \u003cp\u003e"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public static Duration parse(String startTime, String endTime) throws DateTimeParseException {"
+        "content": "     * This methods appends zeros to the front of the input, if"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        // append front with zero"
+        "content": "     * the input is less than 4 digits. For example, \"900\" will be changed into \"0900\"."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        String first \u003d String.format(\"%04d\", Integer.parseInt(startTime));"
+        "content": "     *"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        String second \u003d String.format(\"%04d\", Integer.parseInt(endTime));"
+        "content": "     * @param startTime start time"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     * @param endTime end time"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return new Duration(LocalTime.parse(first, COMPACT_TIME_FORMAT), LocalTime.parse(second, COMPACT_TIME_FORMAT));"
+        "content": "     * @return the duration with the specified start and end time"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public static EventTime parse(String startTime, String endTime) throws DateTimeParseException {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "        // append front with zero"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Checks whether the two durations overlap."
+        "content": "        String first \u003d String.format(\"%04d\", Integer.parseInt(startTime));"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param other the other duration"
+        "content": "        String second \u003d String.format(\"%04d\", Integer.parseInt(endTime));"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @return whether they overlap"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": "        return new EventTime(LocalTime.parse(first, COMPACT_TIME_FORMAT), LocalTime.parse(second, COMPACT_TIME_FORMAT));"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public boolean overlaps(Duration other) {"
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration early \u003d this.compareTo(other) \u003e 0 ? other : this;"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration late \u003d this.compareTo(other) \u003e 0 ? this : other;"
+        "content": "    /**"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     * Checks whether the two durations overlap."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return early.getEnd().compareTo(late.getStart()) \u003e 0;"
+        "content": "     * @param other the other duration"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "     * @return true if they overlap"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public LocalTime getEnd() {"
+        "content": "    public boolean overlaps(EventTime other) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return end;"
+        "content": "        EventTime early \u003d this.compareTo(other) \u003e 0 ? other : this;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "        EventTime late \u003d this.compareTo(other) \u003e 0 ? this : other;"
       },
       {
         "lineNumber": 57,
@@ -11686,255 +12727,332 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public LocalTime getStart() {"
+        "content": "        return early.getEnd().compareTo(late.getStart()) \u003e 0;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return start;"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public LocalTime getEnd() {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "        return end;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Outputs the duration as a string, in HH:mm format."
+        "content": "    }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @return the duration in string"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": "    public LocalTime getStart() {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public String to24HrString() {"
+        "content": "        return start;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return String.format(\"%s - %s\", start.toString(), end.toString());"
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public Duration getDuration() {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "        return Duration.between(this.start, this.end);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public String toString() {"
+        "content": "    }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return String.format(\"%s - %s\", start.format(DISPLAY_TIME_FORMAT), end.format(DISPLAY_TIME_FORMAT));"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     * Outputs the duration as a string, in HH:mm format."
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "     * @return the duration in string"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public boolean equals(Object obj) {"
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return obj \u003d\u003d this // short circuit if same object"
+        "content": "    public String to24HrString() {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                || (obj instanceof Duration // instanceof handles nulls"
+        "content": "        return String.format(\"%s - %s\", start.toString(), end.toString());"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 this.start.equals(((Duration) obj).start)"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 this.end.equals(((Duration) obj).end)); // state check"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "        return String.format(\"%s - %s\", start.format(DISPLAY_TIME_FORMAT), end.format(DISPLAY_TIME_FORMAT));"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public int hashCode() {"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return Objects.hash(this.start, this.end);"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public boolean equals(Object obj) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "        return obj \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public int compareTo(Duration o) {"
+        "content": "                || (obj instanceof EventTime // instanceof handles nulls"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return !this.getStart().equals(o.getStart())"
+        "content": "                \u0026\u0026 this.start.equals(((EventTime) obj).start)"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                ? this.getStart().compareTo(o.getStart())"
+        "content": "                \u0026\u0026 this.end.equals(((EventTime) obj).end)); // state check"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                : this.getEnd().compareTo(o.getEnd());"
+        "content": "    }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 94,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return Objects.hash(this.start, this.end);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public int compareTo(EventTime o) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return !this.getStart().equals(o.getStart())"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                ? this.getStart().compareTo(o.getStart())"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                : this.getEnd().compareTo(o.getEnd());"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
         "author": {
           "gitId": "tysng"
         },
@@ -11942,7 +13060,7 @@
       }
     ],
     "authorContributionMap": {
-      "tysng": 94
+      "tysng": 105
     }
   },
   {
@@ -12750,6 +13868,843 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/model/person/Driver.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "package seedu.address.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * Represents a Driver available for work."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * Gurantees: details are present and not null, field values are validated, id is immutable."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "public class Driver extends Person {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    //Identity fields"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    private static int idCount \u003d 1;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    private final int id;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    //data fields"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    private Schedule schedule;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Every field must be present and not null."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public Driver (Name name, Phone phone, Email email, Address address, Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super(name, phone, email, address, tags);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        schedule \u003d new Schedule();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        id \u003d idCount;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        idCount++;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public int getId() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return id;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public int getIdCount() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return idCount;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public Schedule getSchedule() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return schedule;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Returns a string representation of the driver, with identity fields visible to the user."
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @return string representation of driver"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        StringBuilder driverBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        driverBuilder.append(\" Driver stats: \\n\")"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                    .append(\" id: \")"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                    .append(getId())"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                    .append(super.toString());"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return driverBuilder.toString();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "cheeyou": 57
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/model/person/DriverList.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "package seedu.address.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * A list of drivers that enforces uniqueness between its elements and does not allow nulls."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * as to ensure that the person with exactly the same fields will be removed."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * \u003cp\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * Supports a minimal set of list operations."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " * @see Person#isSamePerson(Person)"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "public class DriverList extends UniquePersonList {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Check the presence of a Driver in the DriverList."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public boolean containsDriver(Driver toCheck) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return contains(toCheck);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Adds a Driver to the DriverList"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @param toAdd driver to be added to DriverList"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void addDriver(Driver toAdd) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super.add(toAdd);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Removes a Driver from the DriverList"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @param toRemove Driver to be removed from DriverList"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void removeDriver(Driver toRemove) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super.remove(toRemove);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Replaces an existing Driver from the DriverList with another Driver"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @param target       Driver to be replaced"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @param editedDriver new Driver"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void setDriver(Driver target, Driver editedDriver) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        super.setPerson((Person) target, (Person) editedDriver);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Replace the entire DriverList with a new DriverList"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @param replacement new DriverList"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public void setDrivers(DriverList replacement) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        setPersons(replacement);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "cheeyou": 60
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/model/person/Schedule.java",
     "fileType": "functional",
     "lines": [
@@ -12772,35 +14727,35 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "import java.util.NavigableSet;"
+        "content": "import java.time.Duration;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import java.util.TreeSet;"
+        "content": "import java.util.Iterator;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "import java.util.NavigableSet;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import seedu.address.model.Duration;"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import seedu.address.model.person.exceptions.SchedulingException;"
+        "content": "import java.util.TreeSet;"
       },
       {
         "lineNumber": 8,
@@ -12814,77 +14769,77 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "import seedu.address.model.EventTime;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tysng"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.person.exceptions.SchedulingException;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tysng"
         },
-        "content": " * Manages the availability of the owner."
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tysng"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tysng"
         },
-        "content": "public class Schedule {"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public static final String MESSAGE_SCHEDULE_CONFLICT \u003d \"The duration conflicts with the existing schedule.\";"
+        "content": " * Manages the availability of the owner."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public static final String MESSAGE_OUTSIDE_WORKING_HOURS \u003d \"The person does not work during the specified time.\";"
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public static final String MESSAGE_EMPTY_SCHEDULE \u003d \"No task assigned\";"
+        "content": "public class Schedule {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_SCHEDULE_CONFLICT \u003d \"The duration conflicts with the existing schedule.\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private static final String START_WORK_TIME \u003d \"0900\";"
+        "content": "    public static final String MESSAGE_OUTSIDE_WORKING_HOURS \u003d \"The person does not work during the specified time.\";"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private static final String END_WORK_TIME \u003d \"1800\";"
+        "content": "    public static final String MESSAGE_EMPTY_SCHEDULE \u003d \"No task assigned\";"
       },
       {
         "lineNumber": 20,
@@ -12898,14 +14853,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private NavigableSet\u003cDuration\u003e schedule;"
+        "content": "    private static final String START_WORK_TIME \u003d \"0900\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private Duration workingHours;"
+        "content": "    private static final String END_WORK_TIME \u003d \"1800\";"
       },
       {
         "lineNumber": 23,
@@ -12919,182 +14874,182 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    private NavigableSet\u003cEventTime\u003e schedule;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "    private EventTime workingHours;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Constructs a schedule within the working hours."
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public Schedule() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        this.schedule \u003d new TreeSet\u003c\u003e();"
+        "content": "     * Constructs a schedule within the working hours."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        this.workingHours \u003d Duration.parse(START_WORK_TIME, END_WORK_TIME);"
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    public Schedule() {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        this.schedule \u003d new TreeSet\u003c\u003e();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "        this.workingHours \u003d EventTime.parse(START_WORK_TIME, END_WORK_TIME);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Blocks off the owner\u0027s schedule with the given duration."
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     *"
+        "content": "        EventTime beforeWorkingHours \u003d EventTime.parse(\"0000\", START_WORK_TIME);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param duration incoming task"
+        "content": "        EventTime afterWorkingHours \u003d EventTime.parse(END_WORK_TIME, \"2359\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @throws SchedulingException when the duration is outside working hours, or conflicts with the existing schedule"
+        "content": "        schedule.add(beforeWorkingHours);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": "        schedule.add(afterWorkingHours);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public void add(Duration duration) throws SchedulingException {"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if (!isInWorkingHours(duration)) {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            throw new SchedulingException(MESSAGE_OUTSIDE_WORKING_HOURS);"
+        "content": "    /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "     * Blocks off the owner\u0027s schedule with the given duration."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if (!isAvailable(duration)) {"
+        "content": "     * @param eventTime incoming task"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            throw new SchedulingException(MESSAGE_SCHEDULE_CONFLICT);"
+        "content": "     * @throws SchedulingException when the duration is outside working hours, or conflicts with the existing schedule"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public void add(EventTime eventTime) throws SchedulingException {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if (!schedule.add(duration)) {"
+        "content": "        if (!isInWorkingHours(eventTime)) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            throw new SchedulingException(\"An unknown error has occurred.\");"
+        "content": "            throw new SchedulingException(MESSAGE_OUTSIDE_WORKING_HOURS);"
       },
       {
         "lineNumber": 50,
@@ -13108,77 +15063,77 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        if (!isAvailable(eventTime)) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "            throw new SchedulingException(MESSAGE_SCHEDULE_CONFLICT);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Removes the scheduled event."
+        "content": "        }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param duration an existing event in the owner\u0027s schedule"
+        "content": "        if (!schedule.add(eventTime)) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @return true when the event exists in the schedule, and removed successfully"
+        "content": "            throw new SchedulingException(\"An unknown error has occurred.\");"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public boolean remove(Duration duration) {"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return schedule.remove(duration);"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    // check within"
       },
       {
         "lineNumber": 62,
@@ -13192,119 +15147,119 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private boolean isInWorkingHours(Duration duration) {"
+        "content": "     * Finds the earliest available EventTime has the same length of proposed, and fits in the schedule."
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return (duration.getEnd().compareTo(duration.getStart()) \u003e 0)"
+        "content": "     *"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 (duration.getStart().compareTo(workingHours.getStart()) \u003e\u003d 0)"
+        "content": "     * @param proposed a proposed time slot"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 (duration.getEnd().compareTo(workingHours.getEnd()) \u003c\u003d 0);"
+        "content": "     * @return Optional of the earliest EventTime that can fit in the schedule; if the proposed time is already the"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "     * earliest, return an Optional of the proposed time; if no slot available, return an empty Optional."
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public Optional\u003cEventTime\u003e findFirstAvailableSlot(EventTime proposed) {"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "        Duration length \u003d proposed.getDuration();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Checks whether the incoming duration clashes with the existing schedule."
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     *"
+        "content": "        if (!this.isInWorkingHours(proposed)) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param duration task duration"
+        "content": "            return Optional.empty();"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @return true if the duration clashes"
+        "content": "        }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private boolean isAvailable(Duration duration) {"
+        "content": "        EventTime lastCandidate \u003d schedule.ceiling(proposed);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration previous \u003d schedule.floor(duration);"
+        "content": "        NavigableSet\u003cEventTime\u003e candidates \u003d schedule.headSet(lastCandidate, true);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration next \u003d schedule.ceiling(duration);"
+        "content": "        Iterator\u003cEventTime\u003e iter \u003d candidates.iterator();"
       },
       {
         "lineNumber": 80,
@@ -13318,119 +15273,119 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if ((previous !\u003d null) \u0026\u0026 (duration.overlaps(previous))) {"
+        "content": "        EventTime prev \u003d null;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            return false;"
+        "content": "        if (iter.hasNext()) {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "            prev \u003d iter.next();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if ((next !\u003d null) \u0026\u0026 (duration.overlaps(next))) {"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            return false;"
+        "content": "        while (iter.hasNext()) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "            EventTime head \u003d iter.next();"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "            boolean canFit \u003d Duration.between(prev.getEnd(), head.getStart()).compareTo(length) \u003e\u003d 0;"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return true;"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "            if (canFit) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "                return Optional.of(new EventTime(prev.getEnd(), length));"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "            }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return this.schedule.stream()"
+        "content": "            prev \u003d head;"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                .map(Duration::to24HrString)"
+        "content": "        }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                .reduce((str1, str2) -\u003e str1 + \", \" + str2)"
+        "content": ""
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                .orElse(MESSAGE_EMPTY_SCHEDULE);"
+        "content": "        return Optional.empty();"
       },
       {
         "lineNumber": 98,
@@ -13444,17 +15399,360 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "}"
+        "content": ""
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 101,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * Removes the scheduled event."
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param eventTime an existing event in the owner\u0027s schedule"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @return true when the event exists in the schedule, and removed successfully"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public boolean remove(EventTime eventTime) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return schedule.remove(eventTime);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private boolean isInWorkingHours(EventTime eventTime) {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return (eventTime.getEnd().compareTo(eventTime.getStart()) \u003e 0)"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                \u0026\u0026 (eventTime.getStart().compareTo(workingHours.getStart()) \u003e\u003d 0)"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                \u0026\u0026 (eventTime.getEnd().compareTo(workingHours.getEnd()) \u003c\u003d 0);"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * Checks whether the incoming duration clashes with the existing schedule."
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param eventTime task duration"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @return true if the duration clashes"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private boolean isAvailable(EventTime eventTime) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime previous \u003d schedule.floor(eventTime);"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime next \u003d schedule.ceiling(eventTime);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if ((previous !\u003d null) \u0026\u0026 (eventTime.overlaps(previous))) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if ((next !\u003d null) \u0026\u0026 (eventTime.overlaps(next))) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return this.schedule"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                .subSet(EventTime.parse(\"0000\", START_WORK_TIME), false,"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                        EventTime.parse(END_WORK_TIME, \"2359\"), false).stream()"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                .map(EventTime::to24HrString)"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                .reduce((str1, str2) -\u003e str1 + \", \" + str2)"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                .orElse(MESSAGE_EMPTY_SCHEDULE);"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 150,
         "author": {
           "gitId": "tysng"
         },
@@ -13462,7 +15760,7 @@
       }
     ],
     "authorContributionMap": {
-      "tysng": 101
+      "tysng": 150
     }
   },
   {
@@ -15895,7 +18193,1389 @@
     }
   },
   {
-    "path": "src/test/java/seedu/address/model/DurationTest.java",
+    "path": "src/test/java/seedu/address/logic/parser/ParserUtilTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.testutil.Assert.assertThrows;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Arrays;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.model.person.Address;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.model.person.Email;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.model.person.Name;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.model.person.Phone;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class ParserUtilTest {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String INVALID_NAME \u003d \"R@chel\";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String INVALID_PHONE \u003d \"+651234\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String INVALID_ADDRESS \u003d \" \";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String INVALID_EMAIL \u003d \"example.com\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String INVALID_TAG \u003d \"#friend\";"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String VALID_NAME \u003d \"Rachel Walker\";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String VALID_PHONE \u003d \"123456\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String VALID_ADDRESS \u003d \"123 Main Street #0505\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String VALID_EMAIL \u003d \"rachel@example.com\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String VALID_TAG_1 \u003d \"friend\";"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String VALID_TAG_2 \u003d \"neighbour\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String WHITESPACE \u003d \" \\t\\r\\n\";"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseIndex_invalidInput_throwsParseException() {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parseIndex(\"10 a\"));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseIndex_outOfRangeInput_throwsParseException() {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            -\u003e ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseIndex_validInput_success() throws Exception {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // No whitespaces"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex(\"1\"));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // Leading and trailing whitespaces"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex(\"  1  \"));"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseName_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e ParserUtil.parseName(null));"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseName_invalidValue_throwsParseException() {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parseName(INVALID_NAME));"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Name expectedName \u003d new Name(VALID_NAME);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String nameWithWhitespace \u003d WHITESPACE + VALID_NAME + WHITESPACE;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Name expectedName \u003d new Name(VALID_NAME);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parsePhone_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e ParserUtil.parsePhone(null));"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parsePhone_invalidValue_throwsParseException() {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parsePhone(INVALID_PHONE));"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Phone expectedPhone \u003d new Phone(VALID_PHONE);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String phoneWithWhitespace \u003d WHITESPACE + VALID_PHONE + WHITESPACE;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Phone expectedPhone \u003d new Phone(VALID_PHONE);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseAddress_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e ParserUtil.parseAddress(null));"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseAddress_invalidValue_throwsParseException() {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parseAddress(INVALID_ADDRESS));"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Address expectedAddress \u003d new Address(VALID_ADDRESS);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String addressWithWhitespace \u003d WHITESPACE + VALID_ADDRESS + WHITESPACE;"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Address expectedAddress \u003d new Address(VALID_ADDRESS);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseEmail_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e ParserUtil.parseEmail(null));"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseEmail_invalidValue_throwsParseException() {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parseEmail(INVALID_EMAIL));"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Email expectedEmail \u003d new Email(VALID_EMAIL);"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String emailWithWhitespace \u003d WHITESPACE + VALID_EMAIL + WHITESPACE;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Email expectedEmail \u003d new Email(VALID_EMAIL);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTag_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e ParserUtil.parseTag(null));"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTag_invalidValue_throwsParseException() {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parseTag(INVALID_TAG));"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Tag expectedTag \u003d new Tag(VALID_TAG_1);"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String tagWithWhitespace \u003d WHITESPACE + VALID_TAG_1 + WHITESPACE;"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Tag expectedTag \u003d new Tag(VALID_TAG_1);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTags_null_throwsNullPointerException() {"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(NullPointerException.class, () -\u003e ParserUtil.parseTags(null));"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTags_collectionWithInvalidTags_throwsParseException() {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, () -\u003e ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Set\u003cTag\u003e actualTagSet \u003d ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Set\u003cTag\u003e expectedTagSet \u003d new HashSet\u003cTag\u003e(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertEquals(expectedTagSet, actualTagSet);"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "cheeyou": 4,
+      "-": 192
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/model/EventTimeTest.java",
     "fileType": "tests",
     "lines": [
       {
@@ -15959,7 +19639,7 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "class DurationTest {"
+        "content": "class EventTimeTest {"
       },
       {
         "lineNumber": 10,
@@ -15987,7 +19667,7 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration \u003d Duration.parse(\"920\", \"1600\");"
+        "content": "        EventTime eventTime \u003d EventTime.parse(\"920\", \"1600\");"
       },
       {
         "lineNumber": 14,
@@ -16001,28 +19681,28 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(9, duration.getStart().getHour());"
+        "content": "        assertEquals(9, eventTime.getStart().getHour());"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(20, duration.getStart().getMinute());"
+        "content": "        assertEquals(20, eventTime.getStart().getMinute());"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(16, duration.getEnd().getHour());"
+        "content": "        assertEquals(16, eventTime.getEnd().getHour());"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(0, duration.getEnd().getMinute());"
+        "content": "        assertEquals(0, eventTime.getEnd().getMinute());"
       },
       {
         "lineNumber": 19,
@@ -16057,14 +19737,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration1 \u003d Duration.parse(\"0010\", \"0101\");"
+        "content": "        EventTime eventTime1 \u003d EventTime.parse(\"0010\", \"0101\");"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration2 \u003d Duration.parse(\"0100\", \"0200\");"
+        "content": "        EventTime eventTime2 \u003d EventTime.parse(\"0100\", \"0200\");"
       },
       {
         "lineNumber": 25,
@@ -16078,14 +19758,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertTrue(duration1.overlaps(duration2));"
+        "content": "        assertTrue(eventTime1.overlaps(eventTime2));"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertTrue(duration2.overlaps(duration1));"
+        "content": "        assertTrue(eventTime2.overlaps(eventTime1));"
       },
       {
         "lineNumber": 28,
@@ -16120,14 +19800,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration1 \u003d Duration.parse(\"0001\", \"1900\");"
+        "content": "        EventTime eventTime1 \u003d EventTime.parse(\"0001\", \"1900\");"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration2 \u003d Duration.parse(\"0030\", \"0200\");"
+        "content": "        EventTime eventTime2 \u003d EventTime.parse(\"0030\", \"0200\");"
       },
       {
         "lineNumber": 34,
@@ -16141,14 +19821,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertTrue(duration1.overlaps(duration2));"
+        "content": "        assertTrue(eventTime1.overlaps(eventTime2));"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertTrue(duration2.overlaps(duration1));"
+        "content": "        assertTrue(eventTime2.overlaps(eventTime1));"
       },
       {
         "lineNumber": 37,
@@ -16183,14 +19863,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration1 \u003d Duration.parse(\"0010\", \"0100\");"
+        "content": "        EventTime eventTime1 \u003d EventTime.parse(\"0010\", \"0100\");"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration2 \u003d Duration.parse(\"0100\", \"0200\");"
+        "content": "        EventTime eventTime2 \u003d EventTime.parse(\"0100\", \"0200\");"
       },
       {
         "lineNumber": 43,
@@ -16204,14 +19884,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertFalse(duration1.overlaps(duration2));"
+        "content": "        assertFalse(eventTime1.overlaps(eventTime2));"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertFalse(duration2.overlaps(duration1));"
+        "content": "        assertFalse(eventTime2.overlaps(eventTime1));"
       },
       {
         "lineNumber": 46,
@@ -16246,14 +19926,14 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration1 \u003d Duration.parse(\"0000\", \"1100\");"
+        "content": "        EventTime eventTime1 \u003d EventTime.parse(\"0000\", \"1100\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration duration2 \u003d Duration.parse(\"0000\", \"1100\");"
+        "content": "        EventTime eventTime2 \u003d EventTime.parse(\"0000\", \"1100\");"
       },
       {
         "lineNumber": 52,
@@ -16267,7 +19947,7 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(duration1, duration2);"
+        "content": "        assertEquals(eventTime1, eventTime2);"
       },
       {
         "lineNumber": 54,
@@ -16325,283 +20005,563 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import seedu.address.model.Duration;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "tysng"
         },
-        "content": "import seedu.address.model.person.exceptions.SchedulingException;"
+        "content": "import seedu.address.model.EventTime;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "import seedu.address.model.person.exceptions.SchedulingException;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "tysng"
         },
-        "content": "class ScheduleTest {"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Test"
+        "content": "class ScheduleTest {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    void add_outsideWorkingHours_throwsSchedulingException() {"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Schedule schedule \u003d new Schedule();"
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration outsideWorkingHours \u003d Duration.parse(\"0200\", \"0400\");"
+        "content": "     * Gets a sample schedule with two events."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     * @return sample schedule"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Exception thrown \u003d assertThrows(SchedulingException.class, () -\u003e schedule.add(outsideWorkingHours));"
+        "content": "     */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(Schedule.MESSAGE_OUTSIDE_WORKING_HOURS, thrown.getMessage());"
+        "content": "    Schedule sampleSchedule() {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "        Schedule schedule \u003d new Schedule();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        schedule.add(EventTime.parse(\"900\", \"1000\"));"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Test"
+        "content": "        schedule.add(EventTime.parse(\"1200\", \"1500\"));"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    void add_conflictingTask_throwsSchedulingException() {"
+        "content": "        return schedule;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Schedule schedule \u003d new Schedule();"
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration conflict \u003d Duration.parse(\"0930\", \"1130\");"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    @Test"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        schedule.add(Duration.parse(\"0900\", \"1000\"));"
+        "content": "    void add_outsideWorkingHours_throwsSchedulingException() {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        schedule.add(Duration.parse(\"1100\", \"1400\"));"
+        "content": "        Schedule schedule \u003d new Schedule();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        EventTime outsideWorkingHours \u003d EventTime.parse(\"0200\", \"0400\");"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Exception thrown \u003d assertThrows(SchedulingException.class, () -\u003e schedule.add(conflict));"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(Schedule.MESSAGE_SCHEDULE_CONFLICT, thrown.getMessage());"
+        "content": "        Exception thrown \u003d assertThrows(SchedulingException.class, () -\u003e schedule.add(outsideWorkingHours));"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "        assertEquals(Schedule.MESSAGE_OUTSIDE_WORKING_HOURS, thrown.getMessage());"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    void remove_isSuccessful() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Schedule schedule \u003d new Schedule();"
+        "content": "    void add_conflictingTask_throwsSchedulingException() {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        Duration slot \u003d Duration.parse(\"0900\", \"1000\");"
+        "content": "        Schedule schedule \u003d new Schedule();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        EventTime conflict \u003d EventTime.parse(\"0930\", \"1130\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        schedule.add(slot);"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        schedule.remove(slot);"
+        "content": "        schedule.add(EventTime.parse(\"0900\", \"1000\"));"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        schedule.add(EventTime.parse(\"1100\", \"1400\"));"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        assertEquals(Schedule.MESSAGE_EMPTY_SCHEDULE, schedule.toString());"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        Exception thrown \u003d assertThrows(SchedulingException.class, () -\u003e schedule.add(conflict));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "        assertEquals(Schedule.MESSAGE_SCHEDULE_CONFLICT, thrown.getMessage());"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 45,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    void remove_isSuccessful() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Schedule schedule \u003d new Schedule();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime slot \u003d EventTime.parse(\"0900\", \"1000\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        schedule.add(slot);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        schedule.remove(slot);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assertEquals(Schedule.MESSAGE_EMPTY_SCHEDULE, schedule.toString());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    void findFirstAvailableSlot_lateButAvail_returnsEarlySlot() {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Schedule sample \u003d sampleSchedule();"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime oneHourTask \u003d EventTime.parse(\"1500\", \"1600\");"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assertEquals(EventTime.parse(\"1000\", \"1100\"), sample.findFirstAvailableSlot(oneHourTask).get());"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    void findFirstAvailableSlot_schedulingConflict_returnsAvailableSlot() {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Schedule sample \u003d sampleSchedule();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime oneHourTask \u003d EventTime.parse(\"1400\", \"1500\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assertEquals(EventTime.parse(\"1000\", \"1100\"), sample.findFirstAvailableSlot(oneHourTask).get());"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    void findFirstAvailableSlot_alreadyEarliest_returnsItself() {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Schedule sample \u003d sampleSchedule();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime threeHourTask \u003d EventTime.parse(\"1500\", \"1800\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assertEquals(threeHourTask, sample.findFirstAvailableSlot(threeHourTask).get());"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    void findFirstAvailableSlot_notAvailable_returnsEmpty() {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Schedule sample \u003d sampleSchedule();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        EventTime fourHourTask \u003d EventTime.parse(\"1400\", \"1800\");"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assertTrue(sample.findFirstAvailableSlot(fourHourTask).isEmpty());"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
         "author": {
           "gitId": "tysng"
         },
@@ -16609,7 +20569,7 @@
       }
     ],
     "authorContributionMap": {
-      "tysng": 45
+      "tysng": 85
     }
   }
 ]
