@@ -15209,107 +15209,107 @@
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    static \u003cT\u003e T deserializeObjectFromJsonFile(Path jsonFile, TypeReference\u003cT\u003e typeReferenceClass)"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            throws IOException {"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        return fromJsonString(FileUtil.readFromFile(jsonFile), typeReferenceClass);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 58,
-        "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "     * Returns the Json object from the given file or {@code Optional.empty()} object if the file is not found."
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "     * If any values are missing from the file, default values will be used, as long as the file is a valid json file."
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param filePath cannot be null."
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class given here."
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": "     * @throws DataConversionException if the file format is not as expected."
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": "    public static \u003cT\u003e Optional\u003cT\u003e readJsonFile("
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
         "content": "            Path filePath, Class\u003cT\u003e classOfObjectToDeserialize) throws DataConversionException {"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
         "content": "        requireNonNull(filePath);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!Files.exists(filePath)) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.info(\"Json file \" + filePath + \" not found\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return Optional.empty();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 68,
@@ -15323,850 +15323,619 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!Files.exists(filePath)) {"
+        "content": "        T jsonFile;"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Json file \" + filePath + \" not found\");"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "            return Optional.empty();"
+        "content": "        try {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            jsonFile \u003d deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "        T jsonFile;"
+        "content": "            logger.warning(\"Error reading from jsonFile file \" + filePath + \": \" + e);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new DataConversionException(e);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "            jsonFile \u003d deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        return Optional.of(jsonFile);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Error reading from jsonFile file \" + filePath + \": \" + e);"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new DataConversionException(e);"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     * Saves the Json object to the specified file."
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "        return Optional.of(jsonFile);"
+        "content": "     * Overwrites existing file if it exists, creates a new file if it doesn\u0027t."
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "-"
+          "gitId": "CowSaysBaa"
         },
-        "content": "    }"
+        "content": "     *"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "     * Returns the Json object from the given file or {@code Optional.empty()} object if the file is not found."
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "     * If any values are missing from the file, default values will be used, as long as the file is a valid json file."
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "     * @param filePath cannot be null."
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "     * @param typeReferenceClass Json file has to correspond to the structure in the class given here."
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "     * @throws DataConversionException if the file format is not as expected."
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    public static \u003cT\u003e Optional\u003cT\u003e readJsonFile("
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            Path filePath, TypeReference\u003cT\u003e typeReferenceClass) throws DataConversionException {"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        requireNonNull(filePath);"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        if (!Files.exists(filePath)) {"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            logger.info(\"Json file \" + filePath + \" not found\");"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            return Optional.empty();"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        T jsonFile;"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            jsonFile \u003d deserializeObjectFromJsonFile(filePath, typeReferenceClass);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            logger.warning(\"Error reading from jsonFile file \" + filePath + \": \" + e);"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            throw new DataConversionException(e);"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        return Optional.of(jsonFile);"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Saves the Json object to the specified file."
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Overwrites existing file if it exists, creates a new file if it doesn\u0027t."
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "CowSaysBaa"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "-"
-        },
         "content": "     * @param jsonFile cannot be null"
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param filePath cannot be null"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
         "content": "     * @throws IOException if there was an error during writing to the file"
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
         "content": "    public static \u003cT\u003e void saveJsonFile(T jsonFile, Path filePath) throws IOException {"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
         "content": "        requireNonNull(filePath);"
       },
       {
-        "lineNumber": 124,
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": "        requireNonNull(jsonFile);"
       },
       {
-        "lineNumber": 125,
+        "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
         "content": "        serializeObjectToJsonFile(filePath, jsonFile);"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 128,
+        "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
         "content": "     * Converts a given string representation of a JSON data to instance of a class"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 99,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param \u003cT\u003e The generic type to create an instance of"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
         "content": "     * @return The instance of T with the specified values in the JSON string"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
         "content": "    public static \u003cT\u003e T fromJsonString(String json, Class\u003cT\u003e instanceClass) throws IOException {"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
         "content": "        return objectMapper.readValue(json, instanceClass);"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 107,
         "author": {
           "gitId": "geshuming"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 141,
+        "lineNumber": 108,
         "author": {
           "gitId": "geshuming"
         },
         "content": "     * Converts a given string representation of a JSON data to instance of a class"
       },
       {
-        "lineNumber": 142,
+        "lineNumber": 109,
         "author": {
           "gitId": "geshuming"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 143,
+        "lineNumber": 110,
         "author": {
           "gitId": "geshuming"
         },
         "content": "     * @param \u003cT\u003e The generic type to create an instance of"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 111,
         "author": {
           "gitId": "geshuming"
         },
         "content": "     * @return The instance of T with the specified values in the JSON string"
       },
       {
-        "lineNumber": 145,
+        "lineNumber": 112,
         "author": {
           "gitId": "geshuming"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 146,
+        "lineNumber": 113,
         "author": {
           "gitId": "geshuming"
         },
         "content": "    public static \u003cT\u003e T fromJsonString(String json, TypeReference\u003cT\u003e typeReferenceClass) throws IOException {"
       },
       {
-        "lineNumber": 147,
+        "lineNumber": 114,
         "author": {
           "gitId": "geshuming"
         },
         "content": "        return objectMapper.readValue(json, typeReferenceClass);"
       },
       {
-        "lineNumber": 148,
+        "lineNumber": 115,
         "author": {
           "gitId": "geshuming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 149,
+        "lineNumber": 116,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 150,
+        "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
         "content": "     * Converts a given instance of a class into its JSON data string representation"
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 119,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 153,
+        "lineNumber": 120,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param instance The T object to be converted into the JSON string"
       },
       {
-        "lineNumber": 154,
+        "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
         "content": "     * @param \u003cT\u003e      The generic type to create an instance of"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 122,
         "author": {
           "gitId": "-"
         },
         "content": "     * @return JSON data representation of the given class instance, in string"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 157,
+        "lineNumber": 124,
         "author": {
           "gitId": "-"
         },
         "content": "    public static \u003cT\u003e String toJsonString(T instance) throws JsonProcessingException {"
       },
       {
-        "lineNumber": 158,
+        "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
         "content": "        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);"
       },
       {
-        "lineNumber": 159,
+        "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 160,
+        "lineNumber": 127,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 128,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 129,
         "author": {
           "gitId": "-"
         },
         "content": "     * Contains methods that retrieve logging level from serialized string."
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
         "content": "    private static class LevelDeserializer extends FromStringDeserializer\u003cLevel\u003e {"
       },
       {
-        "lineNumber": 165,
+        "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
         "content": "        protected LevelDeserializer(Class\u003c?\u003e vc) {"
       },
       {
-        "lineNumber": 167,
+        "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
         "content": "            super(vc);"
       },
       {
-        "lineNumber": 168,
+        "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 169,
+        "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 170,
+        "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
         "content": "        @Override"
       },
       {
-        "lineNumber": 171,
+        "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
         "content": "        protected Level _deserialize(String value, DeserializationContext ctxt) {"
       },
       {
-        "lineNumber": 172,
+        "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
         "content": "            return getLoggingLevel(value);"
       },
       {
-        "lineNumber": 173,
+        "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 174,
+        "lineNumber": 141,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 175,
+        "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
         "content": "        /**"
       },
       {
-        "lineNumber": 176,
+        "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
         "content": "         * Gets the logging level that matches loggingLevelString"
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
         "content": "         * \u003cp\u003e"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
         "content": "         * Returns null if there are no matches"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
         "content": "         */"
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
         "content": "        private Level getLoggingLevel(String loggingLevelString) {"
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
         "content": "            return Level.parse(loggingLevelString);"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
         "content": "        @Override"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
         "content": "        public Class\u003cLevel\u003e handledType() {"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
         "content": "            return Level.class;"
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 155,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 189,
+        "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 190,
+        "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
@@ -16174,7 +15943,7 @@
       }
     ],
     "authorContributionMap": {
-      "geshuming": 45,
+      "geshuming": 12,
       "-": 139,
       "CowSaysBaa": 6
     }
@@ -29045,77 +28814,77 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import java.net.URISyntaxException;"
+        "content": "import static java.util.Objects.requireNonNull;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import java.nio.file.Path;"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import java.nio.file.Paths;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import java.util.List;"
+        "content": "import java.io.InputStream;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import java.util.Optional;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import java.util.logging.Logger;"
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "import java.util.logging.Logger;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import com.fasterxml.jackson.core.type.TypeReference;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "import com.fasterxml.jackson.core.type.TypeReference;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import seedu.module.commons.core.LogsCenter;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import seedu.module.commons.exceptions.DataConversionException;"
+        "content": "import seedu.module.commons.core.LogsCenter;"
       },
       {
         "lineNumber": 14,
@@ -29185,133 +28954,133 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    private static Path filePath;"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    /**"
+        "content": "     * Returns an ArchivedModuleList read from the Json file corresponding to the"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     * Returns an ArchivedModuleList read from the Json file corresponding to the"
+        "content": "     * {@code resourceFileName}."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     * {@code resourceFileName}."
+        "content": "     *"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     *"
+        "content": "     * @param resourceFileName the String representation of the filePath of the resource"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     * @param resourceFileName the String representation of the filePath of the resource"
+        "content": "     * file. The file must be in the ClassLoader\u0027s resource folder."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     * file. The file must be in the ClassLoader\u0027s resource folder."
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     */"
+        "content": "    public static ArchivedModuleList readArchivedModules(String resourceFileName) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    public static ArchivedModuleList readArchivedModules(String resourceFileName) {"
+        "content": "        List\u003cJsonAdaptedArchivedModule\u003e jsonArchivedModules;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        Optional\u003cList\u003cJsonAdaptedArchivedModule\u003e\u003e jsonArchivedModules \u003d Optional.empty();"
+        "content": "        ArchivedModuleList archivedModules \u003d new ArchivedModuleList();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        ArchivedModuleList archivedModules \u003d new ArchivedModuleList();"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "        logger.fine(\"Attempting to read archived modules.\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        filePath \u003d getresourceFilePath(resourceFileName);"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "        if (filePath \u003d\u003d null) {"
+        "content": "        // @@author akosicki"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            logger.warning(\"Resource file: \" + resourceFileName + \" not found.\");"
+        "content": "        // Code Snippet below is used to read a resource file as a String"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            logger.warning(\"Returning an empty ArchivedModuleList.\");"
+        "content": "        // Reused from https://stackoverflow.com/a/18897411 with minor modifications"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            return archivedModules;"
+        "content": "        InputStream jsonFileInputStream \u003d JsonArchivedModuleList.class.getClassLoader()"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        }"
+        "content": "            .getResourceAsStream(resourceFileName);"
       },
       {
         "lineNumber": 42,
@@ -29325,234 +29094,178 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        try {"
+        "content": "        requireNonNull(jsonFileInputStream);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            jsonArchivedModules \u003d JsonUtil.readJsonFile(filePath,"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "                new TypeReference\u003cList\u003cJsonAdaptedArchivedModule\u003e\u003e(){});"
+        "content": "        Scanner sc \u003d new Scanner(jsonFileInputStream);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        } catch (DataConversionException e) {"
+        "content": "        String jsonString \u003d sc.useDelimiter(\"\\\\A\").next();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            logger.warning(\"Failed to fetch data of archived modules. Error: \" + e);"
+        "content": "        sc.close();"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            logger.warning(\"Returning an empty ArchivedModuleList.\");"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "            return archivedModules;"
+        "content": "        // @@author"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        // jsonArchivedModules is guaranteed not to be empty due to getresourceFileName"
+        "content": "            jsonArchivedModules \u003d JsonUtil.fromJsonString(jsonString,"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        List\u003cJsonAdaptedArchivedModule\u003e modules \u003d jsonArchivedModules.get();"
+        "content": "                new TypeReference\u003cList\u003cJsonAdaptedArchivedModule\u003e\u003e(){});"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        for (JsonAdaptedArchivedModule jsonAdaptedArchivedModule : modules) {"
+        "content": "            logger.warning(\"Failed to fetch data of archived modules. Error: \" + e);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            ArchivedModule module \u003d jsonAdaptedArchivedModule.toModelType();"
+        "content": "            logger.warning(\"Returning an empty ArchivedModuleList.\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "            return archivedModules;"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "            archivedModules.add(module);"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "        for (JsonAdaptedArchivedModule jsonAdaptedArchivedModule : jsonArchivedModules) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        return archivedModules;"
+        "content": "            ArchivedModule module \u003d jsonAdaptedArchivedModule.toModelType();"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "            archivedModules.add(module);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     * Returns a {@code Path} corresponding to the resource file name, or"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     * {@code null} if the resource file does not exist."
+        "content": "        return archivedModules;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    private static Path getresourceFilePath(String resourceFileName) {"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            return Paths.get(JsonArchivedModuleList.class.getClassLoader()"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "                .getResource(resourceFileName).toURI());"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        } catch (URISyntaxException | NullPointerException e) {"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "            return null;"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "geshuming"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 68,
         "author": {
           "gitId": "geshuming"
         },
@@ -29560,7 +29273,8 @@
       }
     ],
     "authorContributionMap": {
-      "geshuming": 76
+      "geshuming": 66,
+      "-": 2
     }
   },
   {
@@ -42981,7 +42695,7 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    public void deserializeObjectArrayFromJsonFile_noExceptionThrown() throws IOException {"
+        "content": "    public void fromJsonString_noExceptionThrown() throws IOException {"
       },
       {
         "lineNumber": 47,
@@ -43002,14 +42716,14 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        List\u003cSerializableTestClass\u003e serializableTestClassList \u003d JsonUtil"
+        "content": "        List\u003cSerializableTestClass\u003e serializableTestClassList \u003d JsonUtil.fromJsonString("
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "                .deserializeObjectFromJsonFile(SERIALIZATION_FILE, new TypeReference\u003cList\u003cSerializableTestClass\u003e\u003e(){});"
+        "content": "            FileUtil.readFromFile(SERIALIZATION_FILE), new TypeReference\u003cList\u003cSerializableTestClass\u003e\u003e(){});"
       },
       {
         "lineNumber": 51,
@@ -60072,49 +59786,49 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import static seedu.module.storage.JsonArchivedModuleList.readArchivedModules;"
+        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "import static seedu.module.storage.JsonArchivedModuleList.readArchivedModules;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import seedu.module.model.module.ArchivedModule;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "import seedu.module.model.module.ArchivedModuleList;"
+        "content": "import seedu.module.model.module.ArchivedModule;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "import seedu.module.model.module.ArchivedModuleList;"
       },
       {
         "lineNumber": 11,
@@ -60149,49 +59863,49 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    // To trigger URISyntaxException"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    private static final String INVALID_ARCHIVED_MODULES_FILE_PATH_FORMAT \u003d \"data/archivedModules.json:\";"
+        "content": "    @Test"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "    public void readArchivedModules_validArchivedModulesFilePath_returnArchivedModules() {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    @Test"
+        "content": "        ArchivedModuleList jsonArchivedModuleList \u003d readArchivedModules(VALID_ARCHIVED_MODULES_FILE_PATH);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    public void readArchivedModules_validArchivedModulesFilePath_returnArchivedModules() {"
+        "content": "        ArchivedModuleList expectedArchivedModuleList \u003d new ArchivedModuleList();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        ArchivedModuleList jsonArchivedModuleList \u003d readArchivedModules(VALID_ARCHIVED_MODULES_FILE_PATH);"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        ArchivedModuleList expectedArchivedModuleList \u003d new ArchivedModuleList();"
+        "content": "        expectedArchivedModuleList.add(new ArchivedModule(\"CS2103T\", \"Software Engineering\", \"Lorem Ipsum\"));"
       },
       {
         "lineNumber": 22,
@@ -60205,143 +59919,59 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        expectedArchivedModuleList.add(new ArchivedModule(\"CS2103T\", \"Software Engineering\", \"Lorem Ipsum\"));"
+        "content": "        assertEquals(jsonArchivedModuleList, expectedArchivedModuleList);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        assertEquals(jsonArchivedModuleList, expectedArchivedModuleList);"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    }"
+        "content": "    @Test"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "    public void readArchivedModules_invalidArchivedModulesFilePath_throwsNullPointerException() {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    @Test"
+        "content": "        assertThrows(java.lang.NullPointerException.class, ()"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "    public void readArchivedModules_invalidArchivedModulesFilePath_returnEmptyArchivedModules() {"
+        "content": "            -\u003e readArchivedModules(INVALID_ARCHIVED_MODULES_FILE_PATH));"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "        ArchivedModuleList jsonArchivedModuleList \u003d readArchivedModules(INVALID_ARCHIVED_MODULES_FILE_PATH);"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        ArchivedModuleList expectedArchivedModuleList \u003d new ArchivedModuleList();"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        assertEquals(jsonArchivedModuleList, expectedArchivedModuleList);"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    public void readArchivedModules_invalidArchivedModulesFilePathFormat_returnEmptyArchivedModules() {"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        ArchivedModuleList jsonArchivedModuleList \u003d readArchivedModules(INVALID_ARCHIVED_MODULES_FILE_PATH_FORMAT);"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        ArchivedModuleList expectedArchivedModuleList \u003d new ArchivedModuleList();"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "        assertEquals(jsonArchivedModuleList, expectedArchivedModuleList);"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 43,
         "author": {
           "gitId": "geshuming"
         },
@@ -60349,7 +59979,7 @@
       }
     ],
     "authorContributionMap": {
-      "geshuming": 43
+      "geshuming": 31
     }
   },
   {
