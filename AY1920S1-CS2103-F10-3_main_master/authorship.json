@@ -20430,7 +20430,7 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        // \u0026\u0026 targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check"
+        "content": "                // \u0026\u0026 targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check"
       },
       {
         "lineNumber": 64,
@@ -23434,374 +23434,479 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.category.Category;"
+        "content": "import seedu.revision.model.answerable.Saq;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import seedu.revision.model.category.Category;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses input arguments and creates a new AddCommand object"
+        "content": "/**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses input arguments and creates a new AddCommand object"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddCommandParser implements Parser\u003cAddCommand\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class AddCommandParser implements Parser\u003cAddCommand\u003e {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the AddCommand"
+        "content": "    /**"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "     * and returns an AddCommand object for execution."
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddCommand"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * and returns an AddCommand object for execution."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    public AddCommand parse(String args) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d"
+        "content": "    public AddCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION_TYPE, PREFIX_QUESTION, PREFIX_CORRECT, PREFIX_WRONG,"
+        "content": "        ArgumentMultimap argMultimap \u003d"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "                PREFIX_DIFFICULTY, PREFIX_CATEGORY);"
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION_TYPE, PREFIX_QUESTION, PREFIX_CORRECT, PREFIX_WRONG,"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "                PREFIX_DIFFICULTY, PREFIX_CATEGORY);"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_CORRECT, PREFIX_WRONG, PREFIX_CATEGORY,"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "                PREFIX_DIFFICULTY) || !argMultimap.getPreamble().isEmpty()) {"
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_CORRECT, PREFIX_WRONG, PREFIX_CATEGORY,"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+        "content": "                PREFIX_DIFFICULTY) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        QuestionType questionType \u003d ParserUtil.parseType(argMultimap.getValue(PREFIX_QUESTION_TYPE).get());"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Question question \u003d ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());"
+        "content": "        QuestionType questionType \u003d ParserUtil.parseType(argMultimap.getValue(PREFIX_QUESTION_TYPE).get());"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Set\u003cAnswer\u003e correctAnswerSet \u003d ParserUtil.parseAnswers(argMultimap.getAllValues(PREFIX_CORRECT));"
+        "content": "        Question question \u003d ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Set\u003cAnswer\u003e wrongAnswerSetSet \u003d ParserUtil.parseAnswers(argMultimap.getAllValues(PREFIX_WRONG));"
+        "content": "        Set\u003cAnswer\u003e correctAnswerSet \u003d ParserUtil.parseAnswers(argMultimap.getAllValues(PREFIX_CORRECT));"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Difficulty difficulty \u003d ParserUtil.parseDifficulty(argMultimap.getValue(PREFIX_DIFFICULTY).get());"
+        "content": "        Set\u003cAnswer\u003e wrongAnswerSetSet \u003d ParserUtil.parseAnswers(argMultimap.getAllValues(PREFIX_WRONG));"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Set\u003cCategory\u003e categories \u003d ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));"
+        "content": "        Difficulty difficulty \u003d ParserUtil.parseDifficulty(argMultimap.getValue(PREFIX_DIFFICULTY).get());"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        Set\u003cCategory\u003e categories \u003d ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        Answerable answerable;"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        if (questionType.getType().equals(\"mcq\")) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        switch (questionType.getType()) {"
+        "content": "            if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_CORRECT, PREFIX_WRONG, PREFIX_CATEGORY,"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        case \"mcq\":"
+        "content": "                    PREFIX_DIFFICULTY) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "            answerable \u003d new Mcq(question, correctAnswerSet, wrongAnswerSetSet, difficulty, categories);"
+        "content": "                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "            return new AddCommand(answerable);"
+        "content": "            }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "//        case \"saq\":"
+        "content": "        } else if (questionType.getType().equals(\"saq\")) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "//            //TODO: Implement Saq"
+        "content": "            if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_CORRECT, PREFIX_CATEGORY,"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "//            answerable \u003d new Saq(question, correctAnsweSet, difficulty, category, tagList);"
+        "content": "                    PREFIX_DIFFICULTY) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "//            return new AddCommand(answerable);"
+        "content": "                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        default:"
+        "content": "            }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+        "content": "        } else {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        Answerable answerable;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
+        "content": "        switch (questionType.getType()) {"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     * {@code ArgumentMultimap}."
+        "content": "        case \"mcq\":"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     */"
+        "content": "            answerable \u003d new Mcq(question, correctAnswerSet, wrongAnswerSetSet, difficulty, categories);"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+        "content": "            return new AddCommand(answerable);"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+        "content": "        case \"saq\":"
       },
       {
         "lineNumber": 72,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            //TODO: Implement Saq properly i.e. remove need to add wrongAnswerSet"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            answerable \u003d new Saq(question, correctAnswerSet, wrongAnswerSetSet, difficulty, categories);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            return new AddCommand(answerable);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * {@code ArgumentMultimap}."
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
@@ -23809,7 +23914,7 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 39,
+      "wilfredbtan": 54,
       "-": 35
     }
   },
@@ -26017,145 +26122,201 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "/**"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses input arguments and creates a new DeleteCommand object"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "public class DeleteCommandParser implements Parser\u003cDeleteCommand\u003e {"
+        "content": " * Parses input arguments and creates a new DeleteCommand object"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "public class DeleteCommandParser implements Parser\u003cDeleteCommand\u003e {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the DeleteCommand"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     * and returns a DeleteCommand object for execution."
+        "content": "    private ArrayList\u003cIndex\u003e indexArray;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    public DeleteCommand parse(String args) throws ParseException {"
+        "content": "     * Parses the given {@code String} of arguments in the context of the DeleteCommand"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "     * and returns a DeleteCommand object for execution."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "            Index index \u003d ParserUtil.parseIndex(args);"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteCommand(index);"
+        "content": "     */"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (ParseException pe) {"
+        "content": "    public DeleteCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException("
+        "content": "        try {"
       },
       {
         "lineNumber": 25,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            indexArray \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            String[] rawIndices \u003d args.strip().split(\" \");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            for (String index : rawIndices) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                indexArray.add(ParserUtil.parseIndex(index.strip()));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            return new DeleteCommand(indexArray);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException("
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
         "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
@@ -26163,8 +26324,8 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 5,
-      "-": 24
+      "wilfredbtan": 14,
+      "-": 23
     }
   },
   {
@@ -33180,14 +33341,14 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    private final Question question;"
+        "content": "    protected final Question question;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    private final Difficulty difficulty;"
+        "content": "    protected final Difficulty difficulty;"
       },
       {
         "lineNumber": 20,
@@ -33201,21 +33362,21 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    private final Set\u003cAnswer\u003e correctAnswerSet;"
+        "content": "    protected final Set\u003cAnswer\u003e correctAnswerSet;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    private final Set\u003cAnswer\u003e wrongAnswerSet;"
+        "content": "    protected final Set\u003cAnswer\u003e wrongAnswerSet;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "jxofficial"
+          "gitId": "wilfredbtan"
         },
-        "content": "    private final Set\u003cCategory\u003e categories \u003d new HashSet\u003c\u003e();"
+        "content": "    protected final Set\u003cCategory\u003e categories \u003d new HashSet\u003c\u003e();"
       },
       {
         "lineNumber": 24,
@@ -33458,114 +33619,114 @@
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "  "
+        "content": "    public boolean isCorrect(String answer) {"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    /**"
+        "content": "        if (correctAnswerSet.contains(answer)) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     * Returns true if both answerables with the same question have at least one other identity field that is the same."
+        "content": "            return true;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     * This defines a weaker notion of equality between two answerables."
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     */"
+        "content": "        return false;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    public boolean isSameAnswerable(Answerable otherAnswerable) {"
+        "content": "    }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        if (otherAnswerable \u003d\u003d this) {"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "            return true;"
+        "content": "  "
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "     * Returns true if both answerables with the same question have at least one other identity field that is the same."
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        return otherAnswerable !\u003d null"
+        "content": "     * This defines a weaker notion of equality between two answerables."
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherAnswerable.getQuestion().equals(getQuestion())"
+        "content": "     */"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "                \u0026\u0026 otherAnswerable.getCorrectAnswerSet().equals(getCorrectAnswerSet())"
+        "content": "    public boolean isSameAnswerable(Answerable otherAnswerable) {"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "                \u0026\u0026 otherAnswerable.getWrongAnswerSet().equals(getWrongAnswerSet())"
+        "content": "        if (otherAnswerable \u003d\u003d this) {"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherAnswerable.getDifficulty().equals(getDifficulty());"
+        "content": "            return true;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 74,
@@ -33577,306 +33738,355 @@
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    /**"
+        "content": "        return otherAnswerable !\u003d null"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     * Returns true if both Answerables have the same identity and data fields."
+        "content": "                \u0026\u0026 otherAnswerable.getQuestion().equals(getQuestion())"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     * This defines a stronger notion of equality between two Answerables."
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public boolean equals(Object other) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (other \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        if (!(other instanceof Answerable)) {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        Answerable otherAnswerable \u003d (Answerable) other;"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        return otherAnswerable.getQuestion().equals(getQuestion())"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
         "content": "                \u0026\u0026 otherAnswerable.getCorrectAnswerSet().equals(getCorrectAnswerSet())"
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 78,
         "author": {
           "gitId": "wilfredbtan"
         },
         "content": "                \u0026\u0026 otherAnswerable.getWrongAnswerSet().equals(getWrongAnswerSet())"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 79,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "                \u0026\u0026 otherAnswerable.getDifficulty().equals(getDifficulty())"
+        "content": "                \u0026\u0026 otherAnswerable.getDifficulty().equals(getDifficulty());"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "     * Returns true if both Answerables have the same identity and data fields."
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "     * This defines a stronger notion of equality between two Answerables."
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        if (!(other instanceof Answerable)) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "jxofficial"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherAnswerable.getCategories().equals(getCategories());"
+        "content": "        }"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        Answerable otherAnswerable \u003d (Answerable) other;"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    @Override"
+        "content": "        return otherAnswerable.getQuestion().equals(getQuestion())"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    public int hashCode() {"
+        "content": "                \u0026\u0026 otherAnswerable.getCorrectAnswerSet().equals(getCorrectAnswerSet())"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        // use this method for custom fields hashing instead of implementing your own"
+        "content": "                \u0026\u0026 otherAnswerable.getWrongAnswerSet().equals(getWrongAnswerSet())"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        return Objects.hash(question, correctAnswerSet, wrongAnswerSet, difficulty, categories);"
+        "content": "                \u0026\u0026 otherAnswerable.getDifficulty().equals(getDifficulty())"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "jxofficial"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 otherAnswerable.getCategories().equals(getCategories());"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "    public String toString() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+        "content": "    public int hashCode() {"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        builder.append(\"Question: \")"
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "                .append(getQuestion())"
+        "content": "        return Objects.hash(question, correctAnswerSet, wrongAnswerSet, difficulty, categories);"
       },
       {
         "lineNumber": 108,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "                .append(\" Answers: \")"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "                .append(\"Correct Answers: \" + getCorrectAnswerSet())"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "                .append(\"Wrong Answers: \" + getWrongAnswerSet())"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "                .append(\" Difficulty: \")"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "                .append(getDifficulty())"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "jxofficial"
-        },
-        "content": "                .append(\" Categories: \");"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "jxofficial"
-        },
-        "content": "        getCategories().forEach(builder::append);"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return builder.toString();"
-      },
-      {
-        "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        builder.append(\"Question: \")"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(getQuestion())"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Answers: \")"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\"Correct Answers: \" + getCorrectAnswerSet())"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\"Wrong Answers: \" + getWrongAnswerSet())"
+      },
+      {
         "lineNumber": 118,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Difficulty: \")"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(getDifficulty())"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "jxofficial"
+        },
+        "content": "                .append(\" Categories: \");"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "jxofficial"
+        },
+        "content": "        getCategories().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
@@ -33884,8 +34094,8 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 52,
-      "jxofficial": 8,
+      "wilfredbtan": 60,
+      "jxofficial": 7,
       "-": 58
     }
   },
@@ -34321,122 +34531,346 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import java.util.Set;"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import static seedu.revision.commons.util.CollectionUtil.requireAllNonNull;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import static seedu.revision.commons.util.CollectionUtil.requireAllNonNull;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": " * Represents a Answerable in the Test Bank."
+        "content": "/**"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
+        "content": " * Represents a Answerable in the Test Bank."
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": " */"
+        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "public class Mcq extends Answerable {"
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "public class Mcq extends Answerable {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     * Every field must be present and not null."
+        "content": "    /**"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     */"
+        "content": "     * Every field must be present and not null."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    public Mcq(Question question, Set\u003cAnswer\u003e correctAnswerSet, Set\u003cAnswer\u003e wrongAnswerSet,"
+        "content": "     */"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "               Difficulty difficulty, Set\u003cCategory\u003e categories) {"
+        "content": "    public Mcq(Question question, Set\u003cAnswer\u003e correctAnswerSet, Set\u003cAnswer\u003e wrongAnswerSet,"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        super(question, correctAnswerSet, wrongAnswerSet, difficulty, categories);"
+        "content": "               Difficulty difficulty, Set\u003cCategory\u003e categories) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    }"
+        "content": "        super(question, correctAnswerSet, wrongAnswerSet, difficulty, categories);"
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    //TODO: Update functionality"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    public boolean isCorrect() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        String correctAnswers;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        String wrongAnswers;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        if (wrongAnswerSet.isEmpty()) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            correctAnswers \u003d \"Correct Answers: \" + Arrays.toString(correctAnswerSet.toArray());"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            wrongAnswers \u003d \"\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            correctAnswers \u003d \"Correct Answers: \" + Arrays.toString(correctAnswerSet.toArray());"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "            wrongAnswers \u003d \"Wrong Answers: \" + Arrays.toString(wrongAnswerSet.toArray());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        builder.append(\"Question: \")"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(getQuestion())"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Answers: \")"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(correctAnswers)"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(wrongAnswers)"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Difficulty: \")"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(getDifficulty())"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Categories: \");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        getCategories().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
         "author": {
           "gitId": "wilfredbtan"
         },
@@ -34444,7 +34878,7 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 22
+      "wilfredbtan": 54
     }
   },
   {
@@ -34907,108 +35341,206 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import java.util.Set;"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": " * Represents a Answerable in the Test Bank."
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
+        "content": " * Represents a Answerable in the Test Bank."
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": " */"
+        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "public class Saq extends Answerable {"
+        "content": " */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "public class Saq extends Answerable {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     * Every field must be present and not null."
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "     */"
+        "content": "     * Every field must be present and not null."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    public Saq(Question question, Set\u003cAnswer\u003e correctAnswerSet, Set\u003cAnswer\u003e wrongAnswerSet, Difficulty difficulty,"
+        "content": "     */"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "               Set\u003cCategory\u003e categories) {"
+        "content": "    public Saq(Question question, Set\u003cAnswer\u003e correctAnswerSet, Set\u003cAnswer\u003e wrongAnswerSet, Difficulty difficulty,"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        super(question, correctAnswerSet, wrongAnswerSet, difficulty, categories);"
+        "content": "               Set\u003cCategory\u003e categories) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "    }"
+        "content": "        super(question, correctAnswerSet, wrongAnswerSet, difficulty, categories);"
       },
       {
         "lineNumber": 20,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        builder.append(\"Question: \")"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(getQuestion())"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Answers: \")"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\"Correct Answers: \" + Arrays.toString(correctAnswerSet.toArray()))"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Difficulty: \")"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(getDifficulty())"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "                .append(\" Categories: \");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        getCategories().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
         "author": {
           "gitId": "wilfredbtan"
         },
@@ -35016,7 +35548,7 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 20
+      "wilfredbtan": 34
     }
   },
   {
@@ -57644,35 +58176,35 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
         "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
       },
       {
-        "lineNumber": 5,
+        "lineNumber": 4,
         "author": {
           "gitId": "wilfredbtan"
         },
         "content": "import static seedu.revision.logic.commands.CommandTestUtil.assertCommandFailure;"
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 5,
         "author": {
           "gitId": "wilfredbtan"
         },
         "content": "import static seedu.revision.logic.commands.CommandTestUtil.assertCommandSuccess;"
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 6,
         "author": {
           "gitId": "wilfredbtan"
         },
         "content": "import static seedu.revision.logic.commands.CommandTestUtil.showAnswerableAtIndex;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "import static seedu.revision.testutil.TypicalAnswerables.getTypicalAddressBook;"
       },
       {
         "lineNumber": 8,
@@ -57693,252 +58225,252 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import static seedu.revision.testutil.TypicalAnswerables.getTypicalAddressBook;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "import seedu.revision.commons.core.Messages;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.commons.core.index.Index;"
+        "content": "import seedu.revision.commons.core.Messages;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.Model;"
+        "content": "import seedu.revision.commons.core.index.Index;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.ModelManager;"
+        "content": "import seedu.revision.model.Model;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.UserPrefs;"
+        "content": "import seedu.revision.model.ModelManager;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.answerable.Answerable;"
+        "content": "import seedu.revision.model.UserPrefs;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import seedu.revision.model.answerable.Answerable;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": " * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for"
+        "content": "/**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": " * {@code DeleteCommand}."
+        "content": " * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * {@code DeleteCommand}."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "public class DeleteCommandTest {"
+        "content": " */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class DeleteCommandTest {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "    private Model model \u003d new ModelManager(getTypicalAddressBook(), new UserPrefs());"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private Model model \u003d new ModelManager(getTypicalAddressBook(), new UserPrefs());"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void execute_validIndexUnfilteredList_success() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        Answerable answerableToDelete \u003d model.getFilteredAnswerableList().get(INDEX_FIRST_ANSWERABLE.getZeroBased());"
+        "content": "    public void execute_validIndexUnfilteredList_success() {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(INDEX_FIRST_ANSWERABLE);"
+        "content": "        ArrayList\u003cAnswerable\u003e answerablesToDelete \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        answerablesToDelete.add(model.getFilteredAnswerableList().get(INDEX_FIRST_ANSWERABLE.getZeroBased()));"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        String expectedMessage \u003d String.format(DeleteCommand.MESSAGE_DELETE_ANSWERABLE_SUCCESS, answerableToDelete);"
+        "content": "        ArrayList\u003cIndex\u003e indexToDelete \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        indexToDelete.add(INDEX_FIRST_ANSWERABLE);"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        ModelManager expectedModel \u003d new ModelManager(model.getAddressBook(), new UserPrefs());"
+        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(indexToDelete);"
       },
       {
         "lineNumber": 37,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        expectedModel.deleteAnswerable(answerableToDelete);"
-      },
-      {
-        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        String expectedMessage \u003d"
+      },
+      {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);"
+        "content": "                String.format(DeleteCommand.MESSAGE_DELETE_ANSWERABLE_SUCCESS, answerablesToDelete.toString());"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        ModelManager expectedModel \u003d new ModelManager(model.getAddressBook(), new UserPrefs());"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    @Test"
+        "content": "        expectedModel.deleteAnswerable(model.getFilteredAnswerableList().get(INDEX_FIRST_ANSWERABLE.getZeroBased()));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void execute_invalidIndexUnfilteredList_throwsCommandException() {"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        Index outOfBoundIndex \u003d Index.fromOneBased(model.getFilteredAnswerableList().size() + 1);"
+        "content": "        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(outOfBoundIndex);"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
@@ -57950,44 +58482,44 @@
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANSWERABLE_DISPLAYED_INDEX);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public void execute_invalidIndexUnfilteredList_throwsCommandException() {"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        Index outOfBoundIndex \u003d Index.fromOneBased(model.getFilteredAnswerableList().size() + 1);"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    @Test"
+        "content": "        ArrayList\u003cIndex\u003e indexToDelete \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    public void execute_validIndexFilteredList_success() {"
+        "content": "        indexToDelete.add(outOfBoundIndex);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        showAnswerableAtIndex(model, INDEX_FIRST_ANSWERABLE);"
+        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(indexToDelete);"
       },
       {
         "lineNumber": 53,
@@ -58001,168 +58533,168 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Answerable answerableToDelete \u003d model.getFilteredAnswerableList().get(INDEX_FIRST_ANSWERABLE.getZeroBased());"
+        "content": "        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANSWERABLE_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 55,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(INDEX_FIRST_ANSWERABLE);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        String expectedMessage \u003d String.format(DeleteCommand.MESSAGE_DELETE_ANSWERABLE_SUCCESS, answerableToDelete);"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Model expectedModel \u003d new ModelManager(model.getAddressBook(), new UserPrefs());"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        expectedModel.deleteAnswerable(answerableToDelete);"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        showNoAnswerable(expectedModel);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);"
-      },
-      {
-        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "    /*"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void execute_invalidIndexFilteredList_throwsCommandException() {"
+        "content": "    public void execute_validIndexFilteredList_success() {"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 59,
         "author": {
           "gitId": "wilfredbtan"
         },
         "content": "        showAnswerableAtIndex(model, INDEX_FIRST_ANSWERABLE);"
       },
       {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        Answerable answerableToDelete \u003d model.getFilteredAnswerableList().get(INDEX_FIRST_ANSWERABLE.getZeroBased());"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        ArrayList\u003cIndex\u003e indexToDelete \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        indexToDelete.add(INDEX_FIRST_ANSWERABLE);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(indexToDelete);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        String expectedMessage \u003d String.format(DeleteCommand.MESSAGE_DELETE_ANSWERABLE_SUCCESS, answerableToDelete);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(model.getRevisionTool(), new UserPrefs());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        expectedModel.deleteAnswerable(answerableToDelete);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        showNoAnswerable(expectedModel);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);"
+      },
+      {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        Index outOfBoundIndex \u003d INDEX_SECOND_ANSWERABLE;"
+        "content": "    */"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        // ensures that outOfBoundIndex is still in bounds of revision tool list"
+        "content": "    @Test"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        assertTrue(outOfBoundIndex.getZeroBased() \u003c model.getAddressBook().getAnswerableList().size());"
+        "content": "    public void execute_invalidIndexFilteredList_throwsCommandException() {"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        showAnswerableAtIndex(model, INDEX_FIRST_ANSWERABLE);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(outOfBoundIndex);"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        Index outOfBoundIndex \u003d INDEX_SECOND_ANSWERABLE;"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANSWERABLE_DISPLAYED_INDEX);"
+        "content": "        // ensures that outOfBoundIndex is still in bounds of revision tool list"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    }"
+        "content": "        assertTrue(outOfBoundIndex.getZeroBased() \u003c model.getAddressBook().getAnswerableList().size());"
       },
       {
         "lineNumber": 78,
@@ -58174,215 +58706,257 @@
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    @Test"
+        "content": "        ArrayList\u003cIndex\u003e indexToDelete \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    public void equals() {"
+        "content": "        indexToDelete.add(outOfBoundIndex);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        DeleteCommand deleteFirstCommand \u003d new DeleteCommand(INDEX_FIRST_ANSWERABLE);"
+        "content": "        DeleteCommand deleteCommand \u003d new DeleteCommand(indexToDelete);"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        DeleteCommand deleteSecondCommand \u003d new DeleteCommand(INDEX_SECOND_ANSWERABLE);"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANSWERABLE_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "        // same object -\u003e returns true"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));"
+        "content": "    /*"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Test"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "        // same values -\u003e returns true"
+        "content": "    public void equals() {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        DeleteCommand deleteFirstCommandCopy \u003d new DeleteCommand(INDEX_FIRST_ANSWERABLE);"
+        "content": "        ArrayList\u003cIndex\u003e firstDelete \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));"
+        "content": "        ArrayList\u003cIndex\u003e secondDelete \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        firstDelete.add(INDEX_FIRST_ANSWERABLE);"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        // different types -\u003e returns false"
+        "content": "        secondDelete.add(INDEX_SECOND_ANSWERABLE);"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        assertFalse(deleteFirstCommand.equals(1));"
+        "content": "        DeleteCommand deleteFirstCommand \u003d new DeleteCommand(firstDelete);"
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        DeleteCommand deleteSecondCommand \u003d new DeleteCommand(secondDelete);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "        // null -\u003e returns false"
+        "content": "        // same object -\u003e returns true"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertFalse(deleteFirstCommand.equals(null));"
+        "content": "        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // same values -\u003e returns true"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        // different answerable -\u003e returns false"
+        "content": "        DeleteCommand deleteFirstCommandCopy \u003d new DeleteCommand(firstDelete);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));"
+        "content": "        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        // different types -\u003e returns false"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        assertFalse(deleteFirstCommand.equals(1));"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        // null -\u003e returns false"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Updates {@code model}\u0027s filtered list to show no one."
+        "content": "        assertFalse(deleteFirstCommand.equals(null));"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "     */"
+        "content": "        // different answerable -\u003e returns false"
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "    private void showNoAnswerable(Model model) {"
+        "content": "        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));"
       },
       {
         "lineNumber": 105,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        model.updateFilteredAnswerableList(p -\u003e false);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        assertTrue(model.getFilteredAnswerableList().isEmpty());"
-      },
-      {
-        "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    */"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Updates {@code model}\u0027s filtered list to show no one."
+      },
+      {
         "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "    private void showNoAnswerable(Model model) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        model.updateFilteredAnswerableList(p -\u003e false);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        assertTrue(model.getFilteredAnswerableList().isEmpty());"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
@@ -58390,8 +58964,8 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 37,
-      "-": 72
+      "wilfredbtan": 60,
+      "-": 55
     }
   },
   {
@@ -61929,156 +62503,156 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "import java.util.Arrays;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.util.List;"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.util.stream.Collectors;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import java.util.stream.Collectors;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "import seedu.revision.logic.commands.AddCommand;"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.ClearCommand;"
+        "content": "import seedu.revision.commons.core.index.Index;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.DeleteCommand;"
+        "content": "import seedu.revision.logic.commands.AddCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.EditCommand;"
+        "content": "import seedu.revision.logic.commands.ClearCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.ExitCommand;"
+        "content": "import seedu.revision.logic.commands.DeleteCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.FindCommand;"
+        "content": "import seedu.revision.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.HelpCommand;"
+        "content": "import seedu.revision.logic.commands.ExitCommand;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.ListCommand;"
+        "content": "import seedu.revision.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.revision.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.answerable.Answerable;"
+        "content": "import seedu.revision.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.model.answerable.predicates.QuestionContainsKeywordsPredicate;"
+        "content": "import seedu.revision.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.testutil.EditAnswerableDescriptorBuilder;"
+        "content": "import seedu.revision.model.answerable.Answerable;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.testutil.AnswerableBuilder;"
+        "content": "import seedu.revision.model.answerable.predicates.QuestionContainsKeywordsPredicate;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.testutil.AnswerableUtil;"
+        "content": "import seedu.revision.testutil.EditAnswerableDescriptorBuilder;"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import seedu.revision.testutil.AnswerableBuilder;"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "public class AddressBookParserTest {"
+        "content": "import seedu.revision.testutil.AnswerableUtil;"
       },
       {
         "lineNumber": 32,
@@ -62092,7 +62666,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    private final AddressBookParser parser \u003d new AddressBookParser();"
+        "content": "public class AddressBookParserTest {"
       },
       {
         "lineNumber": 34,
@@ -62106,458 +62680,486 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "    private final AddressBookParser parser \u003d new AddressBookParser();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_add() throws Exception {"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        Answerable answerable \u003d new AnswerableBuilder().build();"
+        "content": "    @Test"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        AddCommand command \u003d (AddCommand) parser.parseCommand(AnswerableUtil.getAddCommand(answerable));"
+        "content": "    public void parseCommand_add() throws Exception {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        assertEquals(new AddCommand(answerable), command);"
+        "content": "        Answerable answerable \u003d new AnswerableBuilder().build();"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    }"
+        "content": "        AddCommand command \u003d (AddCommand) parser.parseCommand(AnswerableUtil.getAddCommand(answerable));"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "        assertEquals(new AddCommand(answerable), command);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_clear() throws Exception {"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + \" 3\") instanceof ClearCommand);"
+        "content": "    public void parseCommand_clear() throws Exception {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + \" 3\") instanceof ClearCommand);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_delete() throws Exception {"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        DeleteCommand command \u003d (DeleteCommand) parser.parseCommand("
+        "content": "    @Test"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "                DeleteCommand.COMMAND_WORD + \" \" + INDEX_FIRST_ANSWERABLE.getOneBased());"
+        "content": "    public void parseCommand_delete() throws Exception {"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        assertEquals(new DeleteCommand(INDEX_FIRST_ANSWERABLE), command);"
+        "content": "        DeleteCommand command \u003d (DeleteCommand) parser.parseCommand("
       },
       {
         "lineNumber": 53,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        DeleteCommand.COMMAND_WORD + \" \" + INDEX_FIRST_ANSWERABLE.getOneBased());"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        ArrayList\u003cIndex\u003e indexToDelete \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        indexToDelete.add(INDEX_FIRST_ANSWERABLE);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        assertEquals(new DeleteCommand(indexToDelete), command);"
+      },
+      {
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void parseCommand_edit() throws Exception {"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        Answerable answerable \u003d new AnswerableBuilder().build();"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        EditCommand.EditAnswerableDescriptor descriptor \u003d new EditAnswerableDescriptorBuilder(answerable).build();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        EditCommand command \u003d (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + \" \""
+        "content": "    @Test"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "                + INDEX_FIRST_ANSWERABLE.getOneBased() + \" \" + AnswerableUtil.getEditAnswerableDescriptorDetails(descriptor));"
+        "content": "    public void parseCommand_edit() throws Exception {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "        assertEquals(new EditCommand(INDEX_FIRST_ANSWERABLE, descriptor), command);"
+        "content": "        Answerable answerable \u003d new AnswerableBuilder().build();"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    }"
+        "content": "        EditCommand.EditAnswerableDescriptor descriptor \u003d new EditAnswerableDescriptorBuilder(answerable).build();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        EditCommand command \u003d (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + \" \""
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    @Test"
+        "content": "                + INDEX_FIRST_ANSWERABLE.getOneBased() + \" \" + AnswerableUtil.getEditAnswerableDescriptorDetails(descriptor));"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    public void parseCommand_exit() throws Exception {"
+        "content": "        assertEquals(new EditCommand(INDEX_FIRST_ANSWERABLE, descriptor), command);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);"
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + \" 3\") instanceof ExitCommand);"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    @Test"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void parseCommand_exit() throws Exception {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_find() throws Exception {"
+        "content": "        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + \" 3\") instanceof ExitCommand);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "        List\u003cString\u003e keywords \u003d Arrays.asList(\"foo\", \"bar\", \"baz\");"
+        "content": "    }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "        FindCommand command \u003d (FindCommand) parser.parseCommand("
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "                FindCommand.COMMAND_WORD + \" \" + keywords.stream().collect(Collectors.joining(\" \")));"
+        "content": "    @Test"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "wilfredbtan"
+          "gitId": "-"
         },
-        "content": "        assertEquals(new FindCommand(new QuestionContainsKeywordsPredicate(keywords)), command);"
+        "content": "    public void parseCommand_find() throws Exception {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        List\u003cString\u003e keywords \u003d Arrays.asList(\"foo\", \"bar\", \"baz\");"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        FindCommand command \u003d (FindCommand) parser.parseCommand("
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "                FindCommand.COMMAND_WORD + \" \" + keywords.stream().collect(Collectors.joining(\" \")));"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "    public void parseCommand_help() throws Exception {"
+        "content": "        assertEquals(new FindCommand(new QuestionContainsKeywordsPredicate(keywords)), command);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);"
+        "content": "    }"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + \" 3\") instanceof HelpCommand);"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    @Test"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void parseCommand_help() throws Exception {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_list() throws Exception {"
+        "content": "        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + \" 3\") instanceof HelpCommand);"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);"
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + \" 3\") instanceof ListCommand);"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    @Test"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void parseCommand_list() throws Exception {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_unrecognisedInput_throwsParseException() {"
+        "content": "        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + \" 3\") instanceof ListCommand);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()"
+        "content": "    }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "            -\u003e parser.parseCommand(\"\"));"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    @Test"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void parseCommand_unrecognisedInput_throwsParseException() {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parseCommand_unknownCommand_throwsParseException() {"
+        "content": "            -\u003e parser.parseCommand(\"\"));"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -\u003e parser.parseCommand(\"unknownCommand\"));"
+        "content": "    }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parseCommand_unknownCommand_throwsParseException() {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -\u003e parser.parseCommand(\"unknownCommand\"));"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
@@ -62565,7 +63167,7 @@
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 29,
+      "wilfredbtan": 33,
       "-": 71
     }
   },
@@ -63977,147 +64579,147 @@
         "author": {
           "gitId": "wilfredbtan"
         },
-        "content": "import seedu.revision.logic.commands.DeleteCommand;"
+        "content": "import seedu.revision.commons.core.index.Index;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": ""
+        "content": "import seedu.revision.logic.commands.DeleteCommand;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": " * As we are only doing white-box testing, our test cases do not cover path variations"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": " * outside of the DeleteCommand code. For example, inputs \"1\" and \"1 abc\" take the"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": " * same path through the DeleteCommand, and therefore we test only one of them."
+        "content": "/**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": " * The path variation for those two cases occur inside the ParserUtil, and"
+        "content": " * As we are only doing white-box testing, our test cases do not cover path variations"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": " * therefore should be covered by the ParserUtilTest."
+        "content": " * outside of the DeleteCommand code. For example, inputs \"1\" and \"1 abc\" take the"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * same path through the DeleteCommand, and therefore we test only one of them."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "public class DeleteCommandParserTest {"
+        "content": " * The path variation for those two cases occur inside the ParserUtil, and"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": " * therefore should be covered by the ParserUtilTest."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "    private DeleteCommandParser parser \u003d new DeleteCommandParser();"
+        "content": " */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class DeleteCommandParserTest {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parse_validArgs_returnsDeleteCommand() {"
+        "content": "    private DeleteCommandParser parser \u003d new DeleteCommandParser();"
       },
       {
         "lineNumber": 25,
-        "author": {
-          "gitId": "wilfredbtan"
-        },
-        "content": "        assertParseSuccess(parser, \"1\", new DeleteCommand(INDEX_FIRST_ANSWERABLE));"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parse_invalidArgs_throwsParseException() {"
+        "content": "    public void parse_validArgs_returnsDeleteCommand() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        ArrayList\u003cIndex\u003e indexToDelete \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "wilfredbtan"
+        },
+        "content": "        indexToDelete.add(INDEX_FIRST_ANSWERABLE);"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "wilfredbtan"
         },
-        "content": "        assertParseFailure(parser, \"a\", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));"
+        "content": "        assertParseSuccess(parser, \"1\", new DeleteCommand(indexToDelete));"
       },
       {
         "lineNumber": 31,
@@ -64131,12 +64733,47 @@
         "author": {
           "gitId": "-"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void parse_invalidArgs_throwsParseException() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertParseFailure(parser, \"a\", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "wilfredbtan": 7,
-      "-": 25
+      "wilfredbtan": 11,
+      "-": 26
     }
   },
   {

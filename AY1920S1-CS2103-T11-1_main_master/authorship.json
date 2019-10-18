@@ -17058,6 +17058,1702 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/UpdateCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.util.CollectionUtil;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Email;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Name;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Password;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Person;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Phone;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Username;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " * Updates the details of an existing person in the address book."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "public class UpdateCommand extends Command {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"update\";"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Updates the details of the person identified \""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"by the index number used in the displayed person list. \""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"Existing values will be overwritten by the input values.\\n\""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"[\" + PREFIX_NAME + \"NAME] \""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"[\" + PREFIX_PHONE + \"PHONE] \""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"[\" + PREFIX_EMAIL + \"EMAIL] \""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"[\" + PREFIX_USERNAME + \"USERNAME] \""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"[\" + PREFIX_PASSWORD + \"PASSWORD] \""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"[\" + PREFIX_TAG + \"TAG]...\\n\""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + PREFIX_PHONE + \"91234567 \""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            + PREFIX_EMAIL + \"johndoe@example.com\";"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public static final String MESSAGE_UPDATE_PERSON_SUCCESS \u003d \"Updated Person: %1$s\";"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public static final String MESSAGE_NOT_UPDATED \u003d \"At least one field to update must be provided.\";"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public static final String MESSAGE_DUPLICATE_PERSON \u003d \"This person already exists in the address book.\";"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private final Index index;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private final UpdatePersonDescriptor updatePersonDescriptor;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * @param index of the person in the filtered person list to update"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * @param updatePersonDescriptor details to update the person with"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdateCommand(Index index, UpdatePersonDescriptor updatePersonDescriptor) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        requireNonNull(index);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        requireNonNull(updatePersonDescriptor);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        this.updatePersonDescriptor \u003d new UpdatePersonDescriptor(updatePersonDescriptor);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        List\u003cPerson\u003e lastShownList \u003d model.getFilteredPersonList();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person personToUpdate \u003d lastShownList.get(index.getZeroBased());"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person updatedPerson \u003d createUpdatedPerson(personToUpdate, updatePersonDescriptor);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (!personToUpdate.isSamePerson(updatedPerson) \u0026\u0026 model.hasPerson(updatedPerson)) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_PERSON);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        model.setPerson(personToUpdate, updatedPerson);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_UPDATE_PERSON_SUCCESS, updatedPerson));"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Creates and returns a {@code Person} with the details of {@code personToUpdate}"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * updated with {@code updatePersonDescriptor}."
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private static Person createUpdatedPerson(Person personToUpdate, UpdatePersonDescriptor updatePersonDescriptor) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assert personToUpdate !\u003d null;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Name updatedName \u003d updatePersonDescriptor.getName().orElse(personToUpdate.getName());"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Phone updatedPhone \u003d updatePersonDescriptor.getPhone().orElse(personToUpdate.getPhone());"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Email updatedEmail \u003d updatePersonDescriptor.getEmail().orElse(personToUpdate.getEmail());"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Username updatedUsername \u003d updatePersonDescriptor.getUsername().orElse(personToUpdate.getUsername());"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Password updatedPassword \u003d updatePersonDescriptor.getPassword().orElse(personToUpdate.getPassword());"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Set\u003cTag\u003e updatedTags \u003d updatePersonDescriptor.getTags().orElse(personToUpdate.getTags());"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags, updatedUsername, updatedPassword);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (!(other instanceof UpdateCommand)) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand e \u003d (UpdateCommand) other;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return index.equals(e.index)"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                \u0026\u0026 updatePersonDescriptor.equals(e.updatePersonDescriptor);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Stores the details to update the person with. Each non-empty field value will replace the"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * corresponding field value of the person."
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public static class UpdatePersonDescriptor {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        private Name name;"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        private Phone phone;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        private Email email;"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        private Username username;"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        private Password password;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        private Set\u003cTag\u003e tags;"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public UpdatePersonDescriptor() {}"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * Copy constructor."
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * A defensive copy of {@code tags} is used internally."
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public UpdatePersonDescriptor(UpdatePersonDescriptor toCopy) {"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            setName(toCopy.name);"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            setPhone(toCopy.phone);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            setEmail(toCopy.email);"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            setUsername(toCopy.username);"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            setPassword(toCopy.password);"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            setTags(toCopy.tags);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * Returns true if at least one field is updated."
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public boolean isAnyFieldUpdated() {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return CollectionUtil.isAnyNonNull(name, phone, email, username, password, tags);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public void setName(Name name) {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            this.name \u003d name;"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public Optional\u003cName\u003e getName() {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return Optional.ofNullable(name);"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public void setPhone(Phone phone) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            this.phone \u003d phone;"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public Optional\u003cPhone\u003e getPhone() {"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return Optional.ofNullable(phone);"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public void setEmail(Email email) {"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            this.email \u003d email;"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public Optional\u003cEmail\u003e getEmail() {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return Optional.ofNullable(email);"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public void setUsername(Username username) {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            this.username \u003d username;"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public Optional\u003cUsername\u003e getUsername() {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return Optional.ofNullable(username);"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public void setPassword(Password password) {"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            this.password \u003d password;"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public Optional\u003cPassword\u003e getPassword() {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return Optional.ofNullable(password);"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * Sets {@code tags} to this object\u0027s {@code tags}."
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * A defensive copy of {@code tags} is used internally."
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public void setTags(Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            this.tags \u003d (tags !\u003d null) ? new HashSet\u003c\u003e(tags) : null;"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * if modification is attempted."
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         * Returns {@code Optional#empty()} if {@code tags} is null."
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public Optional\u003cSet\u003cTag\u003e\u003e getTags() {"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return (tags !\u003d null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            // short circuit if same object"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            if (!(other instanceof UpdatePersonDescriptor)) {"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                return false;"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            // state check"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            UpdatePersonDescriptor e \u003d (UpdatePersonDescriptor) other;"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return getName().equals(e.getName())"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                    \u0026\u0026 getPhone().equals(e.getPhone())"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                    \u0026\u0026 getUsername().equals(e.getUsername())"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                    \u0026\u0026 getPassword().equals(e.getPassword())"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                    \u0026\u0026 getEmail().equals(e.getEmail())"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                    \u0026\u0026 getTags().equals(e.getTags());"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "madanalogy": 241
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/parser/AddCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -21734,6 +23430,617 @@
     ],
     "authorContributionMap": {
       "Yoshi275": 50
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/UpdateCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PASSWORD;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_USERNAME;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Collection;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " * Parses input arguments and creates a new UpdateCommand object"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "public class UpdateCommandParser implements Parser\u003cUpdateCommand\u003e {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the UpdateCommand"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * and returns an UpdateCommand object for execution."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdateCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        requireNonNull(args);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_USERNAME,"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                        PREFIX_PASSWORD, PREFIX_TAG);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index index;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE), pe);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor updatePersonDescriptor \u003d new UpdatePersonDescriptor();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            updatePersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            updatePersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            updatePersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_USERNAME).isPresent()) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            updatePersonDescriptor.setUsername(ParserUtil.parseUsername(argMultimap.getValue(PREFIX_USERNAME).get()));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_PASSWORD).isPresent()) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            updatePersonDescriptor.setPassword(ParserUtil.parsePassword(argMultimap.getValue(PREFIX_PASSWORD).get()));"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        parseTagsForUpdate(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(updatePersonDescriptor::setTags);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (!updatePersonDescriptor.isAnyFieldUpdated()) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return new UpdateCommand(index, updatePersonDescriptor);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Parses {@code Collection\u003cString\u003e tags} into a {@code Set\u003cTag\u003e} if {@code tags} is non-empty."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * If {@code tags} contain only one element which is an empty string, it will be parsed into a"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * {@code Set\u003cTag\u003e} containing zero tags."
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private Optional\u003cSet\u003cTag\u003e\u003e parseTagsForUpdate(Collection\u003cString\u003e tags) throws ParseException {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assert tags !\u003d null;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        if (tags.isEmpty()) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            return Optional.empty();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Collection\u003cString\u003e tagSet \u003d tags.size() \u003d\u003d 1 \u0026\u0026 tags.contains(\"\") ? Collections.emptySet() : tags;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return Optional.of(ParserUtil.parseTags(tagSet));"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "madanalogy": 86
     }
   },
   {
@@ -51158,9 +53465,9 @@
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "madanalogy"
         },
-        "content": "import seedu.address.testutil.EditPersonDescriptorBuilder;"
+        "content": "import seedu.address.testutil.UpdatePersonDescriptorBuilder;"
       },
       {
         "lineNumber": 27,
@@ -51459,16 +53766,16 @@
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "madanalogy"
         },
-        "content": "    public static final EditCommand.EditPersonDescriptor DESC_AMY;"
+        "content": "    public static final UpdateCommand.UpdatePersonDescriptor DESC_AMY;"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "madanalogy"
         },
-        "content": "    public static final EditCommand.EditPersonDescriptor DESC_BOB;"
+        "content": "    public static final UpdateCommand.UpdatePersonDescriptor DESC_BOB;"
       },
       {
         "lineNumber": 71,
@@ -51487,9 +53794,9 @@
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "madanalogy"
         },
-        "content": "        DESC_AMY \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)"
+        "content": "        DESC_AMY \u003d new UpdatePersonDescriptorBuilder().withName(VALID_NAME_AMY)"
       },
       {
         "lineNumber": 74,
@@ -51515,9 +53822,9 @@
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "madanalogy"
         },
-        "content": "        DESC_BOB \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)"
+        "content": "        DESC_BOB \u003d new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB)"
       },
       {
         "lineNumber": 78,
@@ -52053,9 +54360,9 @@
       }
     ],
     "authorContributionMap": {
-      "madanalogy": 16,
+      "madanalogy": 21,
       "Yoshi275": 17,
-      "-": 120
+      "-": 115
     }
   },
   {
@@ -54131,457 +56438,6 @@
     }
   },
   {
-    "path": "src/test/java/seedu/address/logic/commands/EditPersonDescriptorTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package seedu.address.logic.commands;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_BOB;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_USERNAME_BOB;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.testutil.EditPersonDescriptorBuilder;"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class EditPersonDescriptorTest {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void equals() {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // same values -\u003e returns true"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        EditPersonDescriptor descriptorWithSameValues \u003d new EditPersonDescriptor(DESC_AMY);"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(DESC_AMY.equals(descriptorWithSameValues));"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // same object -\u003e returns true"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(DESC_AMY.equals(DESC_AMY));"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // null -\u003e returns false"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(null));"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different types -\u003e returns false"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(5));"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different values -\u003e returns false"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(DESC_BOB));"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different name -\u003e returns false"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        EditPersonDescriptor editedAmy \u003d new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(editedAmy));"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different phone -\u003e returns false"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        editedAmy \u003d new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(editedAmy));"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different email -\u003e returns false"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        editedAmy \u003d new EditPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(editedAmy));"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        // different username -\u003e returns false"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        editedAmy \u003d new EditPersonDescriptorBuilder(DESC_AMY).withUsername(VALID_USERNAME_BOB).build();"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(editedAmy));"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        // different password -\u003e returns false"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        editedAmy \u003d new EditPersonDescriptorBuilder(DESC_AMY).withPassword(VALID_PASSWORD_BOB).build();"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(editedAmy));"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different tags -\u003e returns false"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        editedAmy \u003d new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(DESC_AMY.equals(editedAmy));"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "madanalogy": 8,
-      "-": 55
-    }
-  },
-  {
     "path": "src/test/java/seedu/address/logic/commands/ListCommandTest.java",
     "fileType": "tests",
     "lines": [
@@ -55144,6 +57000,1677 @@
     ],
     "authorContributionMap": {
       "Yoshi275": 39
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/logic/commands/UpdateCommandTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTITY;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTITY;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.AddressBook;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.ModelManager;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.UserPrefs;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Person;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.testutil.PersonBuilder;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.testutil.UpdatePersonDescriptorBuilder;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " * Contains integration tests and unit tests for UpdateCommand."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "public class UpdateCommandTest {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private Model model \u003d new ModelManager(getTypicalAddressBook(), new UserPrefs());"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_allFieldsSpecifiedUnfilteredList_success() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person updatedPerson \u003d new PersonBuilder().build();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder(updatedPerson).build();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(INDEX_FIRST_ENTITY, descriptor);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String expectedMessage \u003d String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, updatedPerson);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedModel.setPerson(model.getFilteredPersonList().get(0), updatedPerson);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_someFieldsSpecifiedUnfilteredList_success() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index indexLastPerson \u003d Index.fromOneBased(model.getFilteredPersonList().size());"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person lastPerson \u003d model.getFilteredPersonList().get(indexLastPerson.getZeroBased());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        PersonBuilder personInList \u003d new PersonBuilder(lastPerson);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person updatedPerson \u003d personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withTags(VALID_TAG_HUSBAND).build();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB)"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(indexLastPerson, descriptor);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String expectedMessage \u003d String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, updatedPerson);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedModel.setPerson(lastPerson, updatedPerson);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_noFieldSpecifiedUnfilteredList_success() {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(INDEX_FIRST_ENTITY, new UpdatePersonDescriptor());"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person updatedPerson \u003d model.getFilteredPersonList().get(INDEX_FIRST_ENTITY.getZeroBased());"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String expectedMessage \u003d String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, updatedPerson);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_filteredList_success() {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        showPersonAtIndex(model, INDEX_FIRST_ENTITY);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person personInFilteredList \u003d model.getFilteredPersonList().get(INDEX_FIRST_ENTITY.getZeroBased());"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person updatedPerson \u003d new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(INDEX_FIRST_ENTITY,"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB).build());"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String expectedMessage \u003d String.format(UpdateCommand.MESSAGE_UPDATE_PERSON_SUCCESS, updatedPerson);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Model expectedModel \u003d new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedModel.setPerson(model.getFilteredPersonList().get(0), updatedPerson);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_duplicatePersonUnfilteredList_failure() {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person firstPerson \u003d model.getFilteredPersonList().get(INDEX_FIRST_ENTITY.getZeroBased());"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder(firstPerson).build();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(INDEX_SECOND_ENTITY, descriptor);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_DUPLICATE_PERSON);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_duplicatePersonFilteredList_failure() {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        showPersonAtIndex(model, INDEX_FIRST_ENTITY);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // update person in filtered list into a duplicate in address book"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Person personInList \u003d model.getAddressBook().getPersonList().get(INDEX_SECOND_ENTITY.getZeroBased());"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(INDEX_FIRST_ENTITY,"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                new UpdatePersonDescriptorBuilder(personInList).build());"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_DUPLICATE_PERSON);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_invalidPersonIndexUnfilteredList_failure() {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index outOfBoundIndex \u003d Index.fromOneBased(model.getFilteredPersonList().size() + 1);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB).build();"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(outOfBoundIndex, descriptor);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandFailure(updateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Update filtered list where index is larger than size of filtered list,"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * but smaller than size of address book"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void execute_invalidPersonIndexFilteredList_failure() {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        showPersonAtIndex(model, INDEX_FIRST_ENTITY);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index outOfBoundIndex \u003d INDEX_SECOND_ENTITY;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // ensures that outOfBoundIndex is still in bounds of address book list"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertTrue(outOfBoundIndex.getZeroBased() \u003c model.getAddressBook().getPersonList().size());"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand updateCommand \u003d new UpdateCommand(outOfBoundIndex,"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                new UpdatePersonDescriptorBuilder().withName(VALID_NAME_BOB).build());"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertCommandFailure(updateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        final UpdateCommand standardCommand \u003d new UpdateCommand(INDEX_FIRST_ENTITY, DESC_AMY);"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor copyDescriptor \u003d new UpdatePersonDescriptor(DESC_AMY);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand commandWithSameValues \u003d new UpdateCommand(INDEX_FIRST_ENTITY, copyDescriptor);"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertTrue(standardCommand.equals(commandWithSameValues));"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertTrue(standardCommand.equals(standardCommand));"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(standardCommand.equals(null));"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // different types -\u003e returns false"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(standardCommand.equals(new ClearCommand()));"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // different index -\u003e returns false"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(standardCommand.equals(new UpdateCommand(INDEX_SECOND_ENTITY, DESC_AMY)));"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // different descriptor -\u003e returns false"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(standardCommand.equals(new UpdateCommand(INDEX_FIRST_ENTITY, DESC_BOB)));"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "madanalogy": 172
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/logic/commands/UpdatePersonDescriptorTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_BOB;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_USERNAME_BOB;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.testutil.UpdatePersonDescriptorBuilder;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "public class UpdatePersonDescriptorTest {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptorWithSameValues \u003d new UpdatePersonDescriptor(DESC_AMY);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertTrue(DESC_AMY.equals(descriptorWithSameValues));"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertTrue(DESC_AMY.equals(DESC_AMY));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(null));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // different types -\u003e returns false"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(5));"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // different values -\u003e returns false"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(DESC_BOB));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // different name -\u003e returns false"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor updatedAmy \u003d new UpdatePersonDescriptorBuilder(DESC_AMY)"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withName(VALID_NAME_BOB).build();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(updatedAmy));"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // different phone -\u003e returns false"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        updatedAmy \u003d new UpdatePersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(updatedAmy));"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // different email -\u003e returns false"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        updatedAmy \u003d new UpdatePersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(updatedAmy));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // different username -\u003e returns false"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        updatedAmy \u003d new UpdatePersonDescriptorBuilder(DESC_AMY).withUsername(VALID_USERNAME_BOB).build();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(updatedAmy));"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // different password -\u003e returns false"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        updatedAmy \u003d new UpdatePersonDescriptorBuilder(DESC_AMY).withPassword(VALID_PASSWORD_BOB).build();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(updatedAmy));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // different tags -\u003e returns false"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        updatedAmy \u003d new UpdatePersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertFalse(DESC_AMY.equals(updatedAmy));"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "madanalogy": 23,
+      "-": 41
     }
   },
   {
@@ -60549,6 +64076,1576 @@
     }
   },
   {
+    "path": "src/test/java/seedu/address/logic/parser/UpdateCommandParserTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.INVALID_PASSWORD_DESC;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.INVALID_USERNAME_DESC;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.PASSWORD_DESC_AMY;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.PASSWORD_DESC_BOB;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.USERNAME_DESC_AMY;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_AMY;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_BOB;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_USERNAME_AMY;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTITY;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTITY;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ENTITY;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Email;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Name;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Password;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Phone;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Username;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.testutil.UpdatePersonDescriptorBuilder;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "public class UpdateCommandParserTest {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private static final String TAG_EMPTY \u003d \" \" + PREFIX_TAG;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private static final String MESSAGE_INVALID_FORMAT \u003d"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private UpdateCommandParser parser \u003d new UpdateCommandParser();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_missingParts_failure() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // no index specified"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // no field specified"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\", UpdateCommand.MESSAGE_NOT_UPDATED);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // no index and no field specified"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"\", MESSAGE_INVALID_FORMAT);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_invalidPreamble_failure() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // negative index"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"-5\" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // zero index"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"0\" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // invalid arguments being parsed as preamble"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1 some random string\", MESSAGE_INVALID_FORMAT);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // invalid prefix being parsed as preamble"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1 i/ string\", MESSAGE_INVALID_FORMAT);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_invalidValue_failure() {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_USERNAME_DESC, Username.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_PASSWORD_DESC, Password.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // invalid phone followed by valid email"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being updated,"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // parsing it together with a valid tag results in error"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // multiple invalid values, but only the first invalid value is captured"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseFailure(parser, \"1\" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                Name.MESSAGE_CONSTRAINTS);"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_allFieldsSpecified_success() {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index targetIndex \u003d INDEX_SECOND_ENTITY;"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String userInput \u003d targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                + USERNAME_DESC_AMY + PASSWORD_DESC_BOB;"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withName(VALID_NAME_AMY)"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withUsername(VALID_USERNAME_AMY).withPassword(VALID_PASSWORD_BOB)"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_someFieldsSpecified_success() {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index targetIndex \u003d INDEX_FIRST_ENTITY;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String userInput \u003d targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withEmail(VALID_EMAIL_AMY).build();"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_oneFieldSpecified_success() {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // name"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index targetIndex \u003d INDEX_THIRD_ENTITY;"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String userInput \u003d targetIndex.getOneBased() + NAME_DESC_AMY;"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withName(VALID_NAME_AMY).build();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // phone"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        userInput \u003d targetIndex.getOneBased() + PHONE_DESC_AMY;"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // email"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        userInput \u003d targetIndex.getOneBased() + EMAIL_DESC_AMY;"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // username"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        userInput \u003d targetIndex.getOneBased() + USERNAME_DESC_AMY;"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptorBuilder().withUsername(VALID_USERNAME_AMY).build();"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // password"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        userInput \u003d targetIndex.getOneBased() + PASSWORD_DESC_AMY;"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptorBuilder().withPassword(VALID_PASSWORD_AMY).build();"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // tags"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        userInput \u003d targetIndex.getOneBased() + TAG_DESC_FRIEND;"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_multipleRepeatedFields_acceptsLast() {"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index targetIndex \u003d INDEX_FIRST_ENTITY;"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String userInput \u003d targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                + TAG_DESC_FRIEND + PHONE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_invalidValueFollowedByValidValue_success() {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // no other valid values specified"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index targetIndex \u003d INDEX_FIRST_ENTITY;"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String userInput \u003d targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        // other valid values specified"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        userInput \u003d targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB;"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "                .build();"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public void parse_resetTags_success() {"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Index targetIndex \u003d INDEX_THIRD_ENTITY;"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        String userInput \u003d targetIndex.getOneBased() + TAG_EMPTY;"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdatePersonDescriptor descriptor \u003d new UpdatePersonDescriptorBuilder().withTags().build();"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        UpdateCommand expectedCommand \u003d new UpdateCommand(targetIndex, descriptor);"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        assertParseSuccess(parser, userInput, expectedCommand);"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "madanalogy": 223
+    }
+  },
+  {
     "path": "src/test/java/seedu/address/model/AddressBookTest.java",
     "fileType": "tests",
     "lines": [
@@ -65683,695 +70780,6 @@
     }
   },
   {
-    "path": "src/test/java/seedu/address/testutil/EditPersonDescriptorBuilder.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package seedu.address.testutil;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import java.util.Set;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import java.util.stream.Collectors;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import java.util.stream.Stream;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.model.person.Email;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.model.person.Name;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "import seedu.address.model.person.Password;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.model.person.Person;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.model.person.Phone;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "import seedu.address.model.person.Username;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import seedu.address.model.tag.Tag;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " * A utility class to help with building EditPersonDescriptor objects."
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class EditPersonDescriptorBuilder {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    private EditPersonDescriptor descriptor;"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor \u003d new EditPersonDescriptor();"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.descriptor \u003d new EditPersonDescriptor(descriptor);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}\u0027s details"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder(Person person) {"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor \u003d new EditPersonDescriptor();"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setName(person.getName());"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setPhone(person.getPhone());"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setEmail(person.getEmail());"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        descriptor.setUsername(person.getUsername());"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        descriptor.setPassword(person.getPassword());"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setTags(person.getTags());"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building."
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder withName(String name) {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setName(new Name(name));"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this;"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building."
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder withPhone(String phone) {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setPhone(new Phone(phone));"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this;"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building."
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder withEmail(String email) {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setEmail(new Email(email));"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this;"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "     * Sets the {@code Username} of the {@code EditPersonDescriptor} that we are building."
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "    public EditPersonDescriptorBuilder withUsername(String username) {"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        descriptor.setUsername(new Username(username));"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        return this;"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "     * Sets the {@code Password} of the {@code EditPersonDescriptor} that we are building."
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "    public EditPersonDescriptorBuilder withPassword(String password) {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "madanalogy"
-        },
-        "content": "        descriptor.setPassword(new Password(password));"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this;"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Parses the {@code tags} into a {@code Set\u003cTag\u003e} and set it to the {@code EditPersonDescriptor}"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * that we are building."
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptorBuilder withTags(String... tags) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Set\u003cTag\u003e tagSet \u003d Stream.of(tags).map(Tag::new).collect(Collectors.toSet());"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        descriptor.setTags(tagSet);"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return this;"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public EditPersonDescriptor build() {"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return descriptor;"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "madanalogy": 15,
-      "-": 82
-    }
-  },
-  {
     "path": "src/test/java/seedu/address/testutil/IncidentBuilder.java",
     "fileType": "tests",
     "lines": [
@@ -69650,6 +74058,694 @@
     "authorContributionMap": {
       "madanalogy": 19,
       "-": 62
+    }
+  },
+  {
+    "path": "src/test/java/seedu/address/testutil/UpdatePersonDescriptorBuilder.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "package seedu.address.testutil;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.stream.Collectors;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import java.util.stream.Stream;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.logic.commands.UpdateCommand.UpdatePersonDescriptor;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Email;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Name;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Password;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Person;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Phone;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.person.Username;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " * A utility class to help with building UpdatePersonDescriptor objects."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "public class UpdatePersonDescriptorBuilder {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    private UpdatePersonDescriptor descriptor;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptor();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder(UpdatePersonDescriptor descriptor) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        this.descriptor \u003d new UpdatePersonDescriptor(descriptor);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Returns an {@code UpdatePersonDescriptor} with fields containing {@code person}\u0027s details"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder(Person person) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor \u003d new UpdatePersonDescriptor();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setName(person.getName());"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setPhone(person.getPhone());"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setEmail(person.getEmail());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setUsername(person.getUsername());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setPassword(person.getPassword());"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setTags(person.getTags());"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Sets the {@code Name} of the {@code UpdatePersonDescriptor} that we are building."
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder withName(String name) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setName(new Name(name));"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return this;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Sets the {@code Phone} of the {@code UpdatePersonDescriptor} that we are building."
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder withPhone(String phone) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setPhone(new Phone(phone));"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return this;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Sets the {@code Email} of the {@code UpdatePersonDescriptor} that we are building."
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder withEmail(String email) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setEmail(new Email(email));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return this;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Sets the {@code Username} of the {@code UpdatePersonDescriptor} that we are building."
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder withUsername(String username) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setUsername(new Username(username));"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return this;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Sets the {@code Password} of the {@code UpdatePersonDescriptor} that we are building."
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder withPassword(String password) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setPassword(new Password(password));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return this;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * Parses the {@code tags} into a {@code Set\u003cTag\u003e} and set it to the {@code UpdatePersonDescriptor}"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     * that we are building."
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptorBuilder withTags(String... tags) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        Set\u003cTag\u003e tagSet \u003d Stream.of(tags).map(Tag::new).collect(Collectors.toSet());"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        descriptor.setTags(tagSet);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return this;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    public UpdatePersonDescriptor build() {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "        return descriptor;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "madanalogy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "madanalogy": 97
     }
   }
 ]

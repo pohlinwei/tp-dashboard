@@ -48921,857 +48921,843 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.contacts.ContactsParser;"
+        "content": "import seedu.address.logic.parser.diary.DiaryParser;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.diary.DiaryParser;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "import seedu.address.logic.parser.expense.ExpenseManagerParser;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "import seedu.address.logic.parser.expense.edit.EditExpenditureParser;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "eizon05"
         },
         "content": "import seedu.address.logic.parser.inventory.InventoryViewParser;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.itinerary.dayview.DayViewParser;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "teoha"
         },
         "content": "import seedu.address.logic.parser.itinerary.dayview.edit.EditDayParser;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.itinerary.eventview.EventViewParser;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "teoha"
         },
         "content": "import seedu.address.logic.parser.itinerary.eventview.edit.EditEventParser;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "teoha"
         },
         "content": "import seedu.address.logic.parser.itinerary.overallview.ItineraryViewParser;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.navbar.NavbarCommand;"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.navbar.NavbarViewParser;"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.preferences.PreferencesParser;"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.trips.TripManagerParser;"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.trips.edit.EditTripParser;"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.model.appstatus.PageStatus;"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.model.appstatus.PageType;"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": ""
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": " * Parses user input."
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": " */"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "public class TravelPalParser {"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    /**"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     */"
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d"
+        "content": "            Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\", Pattern.DOTALL);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\", Pattern.DOTALL);"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    /** Message to display when the command for the page has not been implemented. */"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    /** Message to display when the command for the page has not been implemented. */"
+        "content": "    private static final String UNKNOWN_PAGE_MESSAGE \u003d \"The commands for the page have not been implemented yet!\";"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private static final String UNKNOWN_PAGE_MESSAGE \u003d \"The commands for the page have not been implemented yet!\";"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    /** Logger associated with TravelPalParser instance. */"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    /** Logger associated with TravelPalParser instance. */"
+        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(TravelPalParser.class);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(TravelPalParser.class);"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    /**"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "     *"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     *"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     * @param pageStatus the PageStatus instance with which to parse this input"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     * @param pageStatus the PageStatus instance with which to parse this input"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     */"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "     */"
+        "content": "    public Command parseCommand(String userInput, PageStatus pageStatus) throws ParseException {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    public Command parseCommand(String userInput, PageStatus pageStatus) throws ParseException {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\").toUpperCase();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\").toUpperCase();"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
         "content": ""
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 66,
         "author": {
           "gitId": "eizon05"
         },
         "content": "        PageParser\u003cCommand\u003e commonParser;"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 67,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        try {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        try {"
+        "content": "            Command commonCommand \u003d new CommonParser().parse(commandWord, arguments);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            Command commonCommand \u003d new CommonParser().parse(commandWord, arguments);"
+        "content": "            return commonCommand;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return commonCommand;"
+        "content": "        } catch (ParseException ex) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        } catch (ParseException ex) {"
+        "content": "            logger.info(\"User command executed was not a common command\");"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            logger.info(\"User command executed was not a common command\");"
+        "content": "        }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "        PageType currentPage \u003d pageStatus.getPageType();"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        PageType currentPage \u003d pageStatus.getPageType();"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "        switch (currentPage) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        switch (currentPage) {"
+        "content": "        case PREFERENCES:"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case PREFERENCES:"
+        "content": "            return new PreferencesParser().parse(commandWord, arguments);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new PreferencesParser().parse(commandWord, arguments);"
+        "content": "        case TRIP_MANAGER:"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case TRIP_MANAGER:"
+        "content": "            return new TripManagerParser().parse(commandWord, arguments);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new TripManagerParser().parse(commandWord, arguments);"
+        "content": "        case ADD_TRIP:"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case ADD_TRIP:"
+        "content": "            return new EditTripParser().parse(commandWord, arguments);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new EditTripParser().parse(commandWord, arguments);"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
         "content": "        case ADD_DAY:"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 85,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new EditDayParser().parse(commandWord, arguments);"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 86,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case ADD_EVENT:"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 87,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new EditEventParser().parse(commandWord, arguments);"
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 88,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case ITINERARY:"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 89,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            return parseNavbarPageCommand(commandWord, arguments, new ItineraryViewParser(), NavbarCommand.ITINERARY);"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 90,
         "author": {
           "gitId": "teoha"
         },
         "content": "        case OVERALL_VIEW:"
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 91,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            return parseNavbarPageCommand(commandWord, arguments, new DayViewParser(), NavbarCommand.DAYS);"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 92,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case EVENT_PAGE:"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 93,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            return new EventViewParser().parse(commandWord, arguments);"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 94,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case PRETRIP_INVENTORY:"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 95,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return parseNavbarPageCommand(commandWord, arguments, new InventoryViewParser(), NavbarCommand.DAYS);"
+        "content": "            return parseNavbarPageCommand(commandWord, arguments, new InventoryViewParser(), NavbarCommand.INVENTORY);"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 96,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case EXPENSE_MANAGER:"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 97,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "            return parseNavbarPageCommand(commandWord, arguments, new ExpenseManagerParser(), NavbarCommand.DAYS);"
+        "content": "            return parseNavbarPageCommand(commandWord, arguments, new ExpenseManagerParser(), NavbarCommand.EXPENSE);"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 98,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        case ADD_EXPENDITURE:"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 99,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "            return parseNavbarPageCommand(commandWord, arguments, new EditExpenditureParser(), NavbarCommand.DAYS);"
+        "content": "            return new EditExpenditureParser().parse(commandWord, arguments);"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 100,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case DIARY:"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 101,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            return parseNavbarPageCommand(commandWord, arguments, new DiaryParser(), NavbarCommand.DIARY);"
       },
       {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "        case CONTACTS_MANAGER:"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "            return parseNavbarPageCommand(commandWord, arguments, new ContactsParser(), NavbarCommand.DAYS);"
-      },
-      {
-        "lineNumber": 105,
+        "lineNumber": 102,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        case BOOKINGS:"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 103,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return parseNavbarPageCommand(commandWord, arguments, new BookingsParser(), NavbarCommand.DAYS);"
+        "content": "            return parseNavbarPageCommand(commandWord, arguments, new BookingsParser(), NavbarCommand.BOOKINGS);"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 104,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        case CONTACTS_MANAGER:"
+      },
+      {
+        "lineNumber": 105,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 106,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            throw new ParseException(UNKNOWN_PAGE_MESSAGE);"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 107,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 108,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 109,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": ""
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 110,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 111,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * Tries to use the {@link NavbarViewParser} to parse the {@code commandWord} and {@code arguments},"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 112,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * failing which, the {@code altPageParser} is used."
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 113,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * This method, with {@link NavbarCommand} and {@link NavbarViewParser} handles parsing for pages"
       },
       {
-        "lineNumber": 116,
+        "lineNumber": 114,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * where it is possible to execute navbar navigation commands."
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 115,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 116,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * @param commandWord The String command word to parse."
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 117,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * @param arguments The String arguments to parse."
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 118,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * @param altPageParser The alternative {@link PageParser} to use if NavbarViewParser fails."
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 119,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * @param precludedPage The {@link NavbarCommand} page to preclude from navigating to."
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 120,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * @return The parsed {@link Command}."
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 121,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     * @throws ParseException If the alternate page parser fails to parse the given commandWord or arguments."
       },
       {
-        "lineNumber": 124,
+        "lineNumber": 122,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 125,
+        "lineNumber": 123,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    private Command parseNavbarPageCommand(String commandWord, String arguments,"
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 124,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            PageParser altPageParser, NavbarCommand precludedPage) throws ParseException {"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 125,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 128,
+        "lineNumber": 126,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            NavbarViewParser navbarViewParser \u003d new NavbarViewParser(precludedPage);"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 127,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            Command command \u003d navbarViewParser.parse(commandWord, arguments);"
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 128,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            return command;"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 129,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        } catch (ParseException ex) {"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 130,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            logger.info(\"User command executed was not a navbar command.\");"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 131,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "            return altPageParser.parse(commandWord, arguments);"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 132,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 133,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 134,
         "author": {
           "gitId": "ang-zeyu"
         },
@@ -49781,7 +49767,7 @@
     "authorContributionMap": {
       "teoha": 6,
       "eizon05": 2,
-      "arjunwangty": 5,
+      "arjunwangty": 3,
       "ang-zeyu": 123
     }
   },
@@ -50867,7 +50853,7 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            + DeletePhotoCommand.COMMAND_WORD + \" \""
+        "content": "            + DeletePhotoCommand.COMMAND_WORD + \" | \""
       },
       {
         "lineNumber": 29,
@@ -54116,33 +54102,12 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "    DELETE,"
+        "content": "    DELETE"
       },
       {
         "lineNumber": 11,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    HOME,"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    DAYS,"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    ITINERARY"
-      },
-      {
-        "lineNumber": 14,
         "author": {
           "gitId": "arjunwangty"
         },
@@ -54150,7 +54115,8 @@
       }
     ],
     "authorContributionMap": {
-      "arjunwangty": 14
+      "arjunwangty": 10,
+      "ang-zeyu": 1
     }
   },
   {
@@ -54218,332 +54184,241 @@
         "author": {
           "gitId": "arjunwangty"
         },
-        "content": "import seedu.address.logic.commands.sidebar.EnterDayPageCommand;"
+        "content": "import seedu.address.logic.parser.PageParser;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "arjunwangty"
         },
-        "content": "import seedu.address.logic.commands.sidebar.EnterItineraryPageCommand;"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.commands.sidebar.EnterTripManagerCommand;"
+        "content": "import seedu.address.logic.parser.navbar.NavbarViewParser;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "arjunwangty"
         },
-        "content": "import seedu.address.logic.parser.PageParser;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "arjunwangty"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterDayPageParser;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterItineraryPageParser;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterTripManagerParser;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "arjunwangty"
-        },
         "content": "/**"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 14,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": " * Parses commands related to the expense manager page."
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 15,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": " */"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 16,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "public class ExpenseManagerParser implements PageParser {"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 17,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "    private static final String MESSAGE_COMMAND_TYPES \u003d \" Available command types: \\n\""
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 18,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            + EnterCreateExpenditureCommand.COMMAND_WORD + \" \""
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 19,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            + DeleteExpenditureCommand.COMMAND_WORD + \" \""
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 20,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterTripManagerCommand.COMMAND_WORD + \" \""
+        "content": "            + EnterEditExpenditureCommand.COMMAND_WORD + \" | \""
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 21,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterEditExpenditureCommand.COMMAND_WORD + \" \""
+        "content": "            + NavbarViewParser.MESSAGE_COMMAND_TYPES;"
       },
       {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            + EnterDayPageCommand.COMMAND_WORD + \" \""
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            + EnterItineraryPageCommand.COMMAND_WORD;"
-      },
-      {
-        "lineNumber": 29,
+        "lineNumber": 22,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": ""
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 23,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 24,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "    public Command parse(String command, String arguments) throws ParseException {"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 25,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        ExpenseManagerCommand commandType;"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 26,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 27,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            commandType \u003d ExpenseManagerCommand.valueOf(command);"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 28,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        } catch (IllegalArgumentException ex) {"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 29,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 30,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 31,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": ""
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 32,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        switch (commandType) {"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 33,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        case CREATE:"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 34,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            return new EnterCreateExpenditureParser().parse(arguments);"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 35,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        case DELETE:"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 36,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            return new DeleteExpenditureParser().parse(arguments);"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 37,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        case EDIT:"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 38,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            return new EnterEditExpenditureParser().parse(arguments);"
       },
       {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "        case HOME:"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            return new EnterTripManagerParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "        case DAYS:"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            return new EnterDayPageParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "        case ITINERARY:"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            return new EnterItineraryPageParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 52,
+        "lineNumber": 39,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 40,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 41,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 42,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 43,
         "author": {
           "gitId": "arjunwangty"
         },
@@ -54551,122 +54426,8 @@
       }
     ],
     "authorContributionMap": {
-      "arjunwangty": 56
-    }
-  },
-  {
-    "path": "src/main/java/seedu/address/logic/parser/expense/ExpenseParser.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "package seedu.address.logic.parser.expense;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "import seedu.address.logic.commands.Command;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "import seedu.address.logic.parser.PageParser;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": " * Placeholder javadoc."
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "eizon05"
-        },
-        "content": "public class ExpenseParser implements PageParser\u003cCommand\u003e {"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "    public Command parse(String command, String arguments) throws ParseException {"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "        throw new UnsupportedOperationException(getClass().getSimpleName() + \" parser not implemented yet.\");"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "eizon05": 1,
-      "ang-zeyu": 14
+      "arjunwangty": 40,
+      "ang-zeyu": 3
     }
   },
   {
@@ -56332,24 +56093,17 @@
         "author": {
           "gitId": "eizon05"
         },
-        "content": "    INVENTORY,"
+        "content": "    ADD,"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "    ADD,"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "eizon05"
-        },
         "content": "    DELETE"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 9,
         "author": {
           "gitId": "eizon05"
         },
@@ -56357,7 +56111,7 @@
       }
     ],
     "authorContributionMap": {
-      "eizon05": 10
+      "eizon05": 9
     }
   },
   {
@@ -56430,149 +56184,149 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "eizon05"
+          "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.navbar.NavbarViewParser;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "eizon05"
         },
-        "content": " * Parses the commands related to the itinerary view page."
+        "content": "/**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "eizon05"
         },
-        "content": " */"
+        "content": " * Parses the commands related to the itinerary view page."
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "public class InventoryViewParser implements PageParser\u003cCommand\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "    private static final String MESSAGE_COMMAND_TYPES \u003d \" Available command types: \\n\""
+        "content": "public class InventoryViewParser implements PageParser\u003cCommand\u003e {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "            + AddInventoryCommand.COMMAND_WORD + \" \""
+        "content": "    private static final String MESSAGE_COMMAND_TYPES \u003d \" Available command types: \\n\""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "            + DeleteInventoryCommand.COMMAND_WORD + \" \";"
+        "content": "            + AddInventoryCommand.COMMAND_WORD + \" \""
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "eizon05"
+          "gitId": "ang-zeyu"
         },
-        "content": "    @Override"
+        "content": "            + DeleteInventoryCommand.COMMAND_WORD + \" | \""
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "eizon05"
+          "gitId": "ang-zeyu"
         },
-        "content": "    public Command parse(String command, String arguments) throws ParseException {"
+        "content": "            + NavbarViewParser.MESSAGE_COMMAND_TYPES;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "eizon05"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "        InventoryViewCommand commandType;"
+        "content": "    public Command parse(String command, String arguments) throws ParseException {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "            commandType \u003d InventoryViewCommand.valueOf(command);"
+        "content": "        InventoryViewCommand commandType;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "        } catch (IllegalArgumentException ex) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
+        "content": "            commandType \u003d InventoryViewCommand.valueOf(command);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "        }"
+        "content": "        } catch (IllegalArgumentException ex) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "eizon05"
         },
-        "content": ""
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "        switch (commandType) {"
+        "content": "        }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "        case INVENTORY:"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "eizon05"
         },
-        "content": "            return new EnterInventoryParser().parse(arguments);"
+        "content": "        switch (commandType) {"
       },
       {
         "lineNumber": 31,
@@ -56639,7 +56393,8 @@
       }
     ],
     "authorContributionMap": {
-      "eizon05": 39
+      "eizon05": 36,
+      "ang-zeyu": 3
     }
   },
   {
@@ -57541,40 +57296,12 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "    DELETE,"
+        "content": "    DELETE"
       },
       {
         "lineNumber": 11,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "    HOME,"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "    DAYS,"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    ITINERARY,"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    EXPENSE"
-      },
-      {
-        "lineNumber": 15,
         "author": {
           "gitId": "teoha"
         },
@@ -57582,9 +57309,8 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 10,
-      "arjunwangty": 2,
-      "ang-zeyu": 3
+      "teoha": 7,
+      "ang-zeyu": 4
     }
   },
   {
@@ -57657,390 +57383,264 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterDayPageCommand;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterExpenseManagerCommand;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterItineraryPageCommand;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterTripManagerCommand;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.PageParser;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 11,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 12,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.sidebar.EnterDayPageParser;"
+        "content": "import seedu.address.logic.parser.navbar.NavbarViewParser;"
       },
       {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterExpenseManagerParser;"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterItineraryPageParser;"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterTripManagerParser;"
-      },
-      {
-        "lineNumber": 20,
+        "lineNumber": 13,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": ""
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 14,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 15,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": " * Parser class responsible for directing commands belonging to the day view."
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 16,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": " */"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 17,
         "author": {
           "gitId": "eizon05"
         },
         "content": "public class DayViewParser implements PageParser\u003cCommand\u003e {"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 18,
         "author": {
           "gitId": "teoha"
         },
         "content": "    private static final String MESSAGE_COMMAND_TYPES \u003d \" Available command types: \\n\""
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 19,
         "author": {
           "gitId": "teoha"
         },
         "content": "            + EnterCreateDayCommand.COMMAND_WORD + \" \""
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 20,
         "author": {
           "gitId": "teoha"
         },
         "content": "            + DeleteDayCommand.COMMAND_WORD + \" \""
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 21,
         "author": {
           "gitId": "teoha"
         },
         "content": "            + EnterDayCommand.COMMAND_WORD + \" \""
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 22,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterEditDayCommand.COMMAND_WORD + \" \""
+        "content": "            + EnterEditDayCommand.COMMAND_WORD + \" | \""
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 23,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterTripManagerCommand.COMMAND_WORD + \" \""
+        "content": "            + NavbarViewParser.MESSAGE_COMMAND_TYPES;"
       },
       {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            + EnterDayPageCommand.COMMAND_WORD + \" \""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            + EnterItineraryPageCommand.COMMAND_WORD + \" \""
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            + EnterExpenseManagerCommand.COMMAND_WORD;"
-      },
-      {
-        "lineNumber": 34,
+        "lineNumber": 24,
         "author": {
           "gitId": "teoha"
         },
         "content": ""
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 25,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 26,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    public Command parse(String command, String arguments) throws ParseException {"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 27,
         "author": {
           "gitId": "teoha"
         },
         "content": "        DayViewCommand commandType;"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 28,
         "author": {
           "gitId": "teoha"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 29,
         "author": {
           "gitId": "teoha"
         },
         "content": "            commandType \u003d DayViewCommand.valueOf(command);"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 30,
         "author": {
           "gitId": "teoha"
         },
         "content": "        } catch (IllegalArgumentException ex) {"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 31,
         "author": {
           "gitId": "teoha"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 32,
         "author": {
           "gitId": "teoha"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 33,
         "author": {
           "gitId": "teoha"
         },
         "content": ""
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 34,
         "author": {
           "gitId": "teoha"
         },
         "content": "        switch (commandType) {"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 35,
         "author": {
           "gitId": "teoha"
         },
         "content": "        case CREATE:"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 36,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new EnterCreateDayParser().parse(arguments);"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 37,
         "author": {
           "gitId": "teoha"
         },
         "content": "        case DELETE:"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 38,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new DeleteDayParser().parse(arguments);"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 39,
         "author": {
           "gitId": "teoha"
         },
         "content": "        case GOTO:"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 40,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new EnterDayParser().parse(arguments);"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 41,
         "author": {
           "gitId": "teoha"
         },
         "content": "        case EDIT:"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 42,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new EnterEditDayParser().parse(arguments);"
       },
       {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "        case HOME:"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            return new EnterTripManagerParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "        case DAYS:"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            return new EnterDayPageParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "        case ITINERARY:"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            return new EnterItineraryPageParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "        case EXPENSE:"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            return new EnterExpenseManagerParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 61,
+        "lineNumber": 43,
         "author": {
           "gitId": "teoha"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 44,
         "author": {
           "gitId": "teoha"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 45,
         "author": {
           "gitId": "teoha"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 46,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 47,
         "author": {
           "gitId": "ang-zeyu"
         },
@@ -58048,10 +57648,9 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 43,
+      "teoha": 28,
       "eizon05": 1,
-      "arjunwangty": 6,
-      "ang-zeyu": 15
+      "ang-zeyu": 18
     }
   },
   {
@@ -62534,54 +62133,12 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "    HOME,"
+        "content": "    GOTO"
       },
       {
         "lineNumber": 8,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "    DAYS,"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "    ITINERARY,"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    GOTO,"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    HEAD,"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "    EXPENSE,"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "eizon05"
-        },
-        "content": "    INVENTORY"
-      },
-      {
-        "lineNumber": 14,
         "author": {
           "gitId": "teoha"
         },
@@ -62589,10 +62146,8 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 7,
-      "eizon05": 1,
-      "arjunwangty": 3,
-      "ang-zeyu": 3
+      "teoha": 4,
+      "ang-zeyu": 4
     }
   },
   {
@@ -62637,341 +62192,215 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.commands.sidebar.EnterDayPageCommand;"
+        "content": "import seedu.address.logic.commands.itinerary.days.EnterDayCommand;"
       },
       {
         "lineNumber": 7,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterExpenseManagerCommand;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterItineraryPageCommand;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.commands.sidebar.EnterTripManagerCommand;"
-      },
-      {
-        "lineNumber": 10,
         "author": {
           "gitId": "teoha"
         },
         "content": "import seedu.address.logic.parser.PageParser;"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 8,
         "author": {
           "gitId": "teoha"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "eizon05"
-        },
-        "content": "import seedu.address.logic.parser.inventory.InventoryViewParser;"
-      },
-      {
-        "lineNumber": 13,
+        "lineNumber": 9,
         "author": {
           "gitId": "teoha"
         },
         "content": "import seedu.address.logic.parser.itinerary.dayview.EnterDayParser;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 10,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.sidebar.EnterDayPageParser;"
+        "content": "import seedu.address.logic.parser.navbar.NavbarViewParser;"
       },
       {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterExpenseManagerParser;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterItineraryPageParser;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "import seedu.address.logic.parser.sidebar.EnterTripManagerParser;"
-      },
-      {
-        "lineNumber": 18,
+        "lineNumber": 11,
         "author": {
           "gitId": "teoha"
         },
         "content": ""
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 12,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 13,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": " * Parses the commands related to the itinerary view page."
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 14,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": " */"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 15,
         "author": {
           "gitId": "eizon05"
         },
         "content": "public class ItineraryViewParser implements PageParser\u003cCommand\u003e {"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 16,
         "author": {
           "gitId": "teoha"
         },
         "content": "    private static final String MESSAGE_COMMAND_TYPES \u003d \" Available command types: \\n\""
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 17,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterTripManagerCommand.COMMAND_WORD + \" \""
+        "content": "            + EnterDayCommand.COMMAND_WORD + \" | \""
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 18,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterDayPageCommand.COMMAND_WORD + \" \""
+        "content": "            + NavbarViewParser.MESSAGE_COMMAND_TYPES;"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 19,
         "author": {
-          "gitId": "arjunwangty"
+          "gitId": "ang-zeyu"
         },
-        "content": "            + EnterItineraryPageCommand.COMMAND_WORD + \" \""
+        "content": ""
       },
       {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            + EnterExpenseManagerCommand.COMMAND_WORD;"
-      },
-      {
-        "lineNumber": 28,
+        "lineNumber": 20,
         "author": {
           "gitId": "teoha"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 21,
         "author": {
           "gitId": "teoha"
         },
         "content": "    public Command parse(String command, String arguments) throws ParseException {"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 22,
         "author": {
           "gitId": "teoha"
         },
         "content": "        ItineraryViewCommand commandType;"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 23,
         "author": {
           "gitId": "teoha"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 24,
         "author": {
           "gitId": "teoha"
         },
         "content": "            commandType \u003d ItineraryViewCommand.valueOf(command);"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 25,
         "author": {
           "gitId": "teoha"
         },
         "content": "        } catch (IllegalArgumentException ex) {"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 26,
         "author": {
           "gitId": "teoha"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 27,
         "author": {
           "gitId": "teoha"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 28,
         "author": {
           "gitId": "teoha"
         },
         "content": ""
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 29,
         "author": {
           "gitId": "teoha"
         },
         "content": "        switch (commandType) {"
       },
       {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "        case HOME:"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            return new EnterTripManagerParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "        case DAYS:"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            return new EnterDayPageParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "        case ITINERARY:"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            return new EnterItineraryPageParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "        case EXPENSE:"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "arjunwangty"
-        },
-        "content": "            return new EnterExpenseManagerParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 46,
+        "lineNumber": 30,
         "author": {
           "gitId": "teoha"
         },
         "content": "        case GOTO:"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 31,
         "author": {
           "gitId": "teoha"
         },
         "content": "            return new EnterDayParser().parse(arguments);"
       },
       {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "eizon05"
-        },
-        "content": "        case INVENTORY:"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "eizon05"
-        },
-        "content": "            return new InventoryViewParser().parse(command, arguments);"
-      },
-      {
-        "lineNumber": 50,
+        "lineNumber": 32,
         "author": {
           "gitId": "teoha"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 33,
         "author": {
           "gitId": "teoha"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 34,
         "author": {
           "gitId": "teoha"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 35,
         "author": {
           "gitId": "teoha"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 36,
         "author": {
           "gitId": "teoha"
         },
@@ -62979,10 +62408,9 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 39,
-      "eizon05": 4,
-      "arjunwangty": 6,
-      "ang-zeyu": 5
+      "teoha": 25,
+      "eizon05": 1,
+      "ang-zeyu": 10
     }
   },
   {
@@ -63057,10 +62485,31 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    DIARY"
+        "content": "    DIARY,"
       },
       {
         "lineNumber": 11,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    INVENTORY,"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    BOOKINGS,"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    EXPENSE"
+      },
+      {
+        "lineNumber": 14,
         "author": {
           "gitId": "ang-zeyu"
         },
@@ -63068,7 +62517,7 @@
       }
     ],
     "authorContributionMap": {
-      "ang-zeyu": 11
+      "ang-zeyu": 14
     }
   },
   {
@@ -63157,140 +62606,140 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.sidebar.EnterDayPageParser;"
+        "content": "import seedu.address.logic.parser.inventory.EnterInventoryParser;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.sidebar.EnterItineraryPageParser;"
+        "content": "import seedu.address.logic.parser.sidebar.EnterDayPageParser;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.parser.sidebar.EnterTripManagerParser;"
+        "content": "import seedu.address.logic.parser.sidebar.EnterExpenseManagerParser;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.sidebar.EnterItineraryPageParser;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "/**"
+        "content": "import seedu.address.logic.parser.sidebar.EnterTripManagerParser;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": " * Wrapping {@link PageParser} used in {@link TravelPalParser} for {@link PageParser} that support"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": " * the common TravelPal side navbar navigation operations."
+        "content": "/**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": " */"
+        "content": " * Wrapping {@link PageParser} used in {@link TravelPalParser} for {@link PageParser} that support"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "public class NavbarViewParser implements PageParser {"
+        "content": " * the common TravelPal side navbar navigation operations."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    /** Concatenation of all NavbarCommand enum types. */"
+        "content": "public class NavbarViewParser implements PageParser {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    public static final String MESSAGE_COMMAND_TYPES \u003d \"Available navigation commands :\""
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            + Arrays.stream(NavbarCommand.values())"
+        "content": "    /** Concatenation of all NavbarCommand enum types. */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "                    .map(navbarCommandEnum -\u003e navbarCommandEnum.toString())"
+        "content": "    public static final String MESSAGE_COMMAND_TYPES \u003d \"Available navigation commands :\""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "                    .reduce(\"\", (firstType, secondType) -\u003e {"
+        "content": "            + Arrays.stream(NavbarCommand.values())"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "                        return firstType + \" \" + secondType;"
+        "content": "                    .map(navbarCommandEnum -\u003e navbarCommandEnum.toString().toLowerCase())"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "                    })"
+        "content": "                    .reduce(\"\", (firstType, secondType) -\u003e {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            + \"\\n\";"
+        "content": "                        return firstType + \" \" + secondType;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "                    })"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private static final String MESSAGE_NAVIGATE_SAME_PAGE \u003d \"You are already at %1$s page!\";"
+        "content": "            + \"\\n\";"
       },
       {
         "lineNumber": 32,
@@ -63304,7 +62753,7 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private NavbarCommand precludedPage;"
+        "content": "    private static final String MESSAGE_NAVIGATE_SAME_PAGE \u003d \"You are already at %1$s page!\";"
       },
       {
         "lineNumber": 34,
@@ -63318,213 +62767,269 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    public NavbarViewParser(NavbarCommand precludedPage) {"
+        "content": "    private NavbarCommand precludedPage;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        this.precludedPage \u003d precludedPage;"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    }"
+        "content": "    public NavbarViewParser(NavbarCommand precludedPage) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "        this.precludedPage \u003d precludedPage;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    public Command parse(String command, String arguments) throws ParseException {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        NavbarCommand commandType;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        try {"
+        "content": "    public Command parse(String command, String arguments) throws ParseException {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            commandType \u003d NavbarCommand.valueOf(command);"
+        "content": "        NavbarCommand commandType;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            if (commandType \u003d\u003d precludedPage) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "                throw new IllegalArgumentException(String.format(MESSAGE_NAVIGATE_SAME_PAGE, precludedPage));"
+        "content": "            commandType \u003d NavbarCommand.valueOf(command);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            }"
+        "content": "            if (commandType \u003d\u003d precludedPage) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        } catch (IllegalArgumentException ex) {"
+        "content": "                throw new IllegalArgumentException(String.format(MESSAGE_NAVIGATE_SAME_PAGE, precludedPage));"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
+        "content": "            }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        }"
+        "content": "        } catch (IllegalArgumentException ex) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        switch (commandType) {"
+        "content": "        }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case HOME:"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new EnterTripManagerParser().parse(arguments);"
+        "content": "        switch (commandType) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case DAYS:"
+        "content": "        case HOME:"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new EnterDayPageParser().parse(arguments);"
+        "content": "            return new EnterTripManagerParser().parse(arguments);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case ITINERARY:"
+        "content": "        case DAYS:"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new EnterItineraryPageParser().parse(arguments);"
+        "content": "            return new EnterDayPageParser().parse(arguments);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        case DIARY:"
+        "content": "        case ITINERARY:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            return new EnterDiaryParser().parse(arguments);"
+        "content": "            return new EnterItineraryPageParser().parse(arguments);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        //Add your navbar command type here, and in the enum."
+        "content": "        case DIARY:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        default:"
+        "content": "            return new EnterDiaryParser().parse(arguments);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
+        "content": "        case EXPENSE:"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        }"
+        "content": "            return new EnterExpenseManagerParser().parse(arguments);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    }"
+        "content": "        case INVENTORY:"
       },
       {
         "lineNumber": 65,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            return new EnterInventoryParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        case BOOKINGS:"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            //add your bookings parser here"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        //Add your navbar command type here, and in the enum."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_TYPE, MESSAGE_COMMAND_TYPES));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
         "author": {
           "gitId": "ang-zeyu"
         },
@@ -63532,7 +63037,7 @@
       }
     ],
     "authorContributionMap": {
-      "ang-zeyu": 65
+      "ang-zeyu": 73
     }
   },
   {
@@ -105288,9 +104793,9 @@
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "-"
         },
-        "content": "    private void handleHelp() {"
+        "content": "    public void handleHelp() {"
       },
       {
         "lineNumber": 179,
@@ -106493,9 +105998,9 @@
     "authorContributionMap": {
       "teoha": 17,
       "eizon05": 4,
-      "-": 117,
+      "-": 118,
       "arjunwangty": 13,
-      "ang-zeyu": 198
+      "ang-zeyu": 197
     }
   },
   {
@@ -108349,9 +107854,9 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "import javafx.scene.layout.Region;"
+        "content": "import javafx.scene.layout.VBox;"
       },
       {
         "lineNumber": 5,
@@ -108363,271 +107868,278 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "import seedu.address.logic.commands.sidebar.EnterDayPageCommand;"
+        "content": "import seedu.address.logic.commands.inventory.EnterInventoryCommand;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "teoha"
         },
-        "content": "import seedu.address.logic.commands.sidebar.EnterTripManagerCommand;"
+        "content": "import seedu.address.logic.commands.sidebar.EnterDayPageCommand;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "teoha"
         },
-        "content": "import seedu.address.ui.MainWindow;"
+        "content": "import seedu.address.logic.commands.sidebar.EnterTripManagerCommand;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "teoha"
         },
-        "content": "import seedu.address.ui.UiPart;"
+        "content": "import seedu.address.ui.MainWindow;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "teoha"
         },
-        "content": ""
+        "content": "import seedu.address.ui.UiPart;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "teoha"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": " * Abstraction of a vertical sidebar displayed on the left side."
+        "content": "/**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": " */"
+        "content": " * Abstraction of a vertical sidebar displayed on the left side."
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "public class NavigationSidebarLeft extends UiPart\u003cRegion\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "public class NavigationSidebarLeft extends UiPart\u003cVBox\u003e {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    private static final String FXML \u003d \"/components/SidebarLeft.fxml\";"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "    private MainWindow mainWindow;"
+        "content": "    private static final String FXML \u003d \"components/SidebarLeft.fxml\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "teoha"
         },
-        "content": ""
+        "content": "    private MainWindow mainWindow;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    public NavigationSidebarLeft(MainWindow mainWindow) {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "teoha"
         },
-        "content": "        super(FXML);"
+        "content": "    public NavigationSidebarLeft(MainWindow mainWindow) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "teoha"
         },
-        "content": "        this.mainWindow \u003d mainWindow;"
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    }"
+        "content": "        this.mainWindow \u003d mainWindow;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "teoha"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    void handleEnterTripManager() {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "teoha"
         },
-        "content": "        mainWindow.executeGuiCommand(EnterTripManagerCommand.COMMAND_WORD);"
+        "content": "    void handleEnterTripManager() {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    }"
+        "content": "        mainWindow.executeGuiCommand(EnterTripManagerCommand.COMMAND_WORD);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "teoha"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    void handleEnterOverallView() {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "teoha"
         },
-        "content": "        mainWindow.executeGuiCommand(EnterDayPageCommand.COMMAND_WORD);"
+        "content": "    void handleEnterOverallView() {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "teoha"
         },
-        "content": "    }"
+        "content": "        mainWindow.executeGuiCommand(EnterDayPageCommand.COMMAND_WORD);"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "teoha"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private void handleEnterBookingsManager() {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    private void handleEnterBookingsManager() {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "teoha"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private void handleEnterInventoryManager(){"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    private void handleEnterInventoryManager() {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    }"
+        "content": "        mainWindow.executeGuiCommand(EnterInventoryCommand.COMMAND_WORD);"
       },
       {
         "lineNumber": 43,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "teoha"
         },
         "content": ""
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 45,
         "author": {
           "gitId": "teoha"
         },
@@ -108635,8 +108147,8 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 31,
-      "ang-zeyu": 13
+      "teoha": 28,
+      "ang-zeyu": 17
     }
   },
   {
@@ -108667,9 +108179,9 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "import javafx.scene.layout.Region;"
+        "content": "import javafx.scene.layout.VBox;"
       },
       {
         "lineNumber": 5,
@@ -108744,9 +108256,9 @@
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "public class NavigationSidebarRight extends UiPart\u003cRegion\u003e {"
+        "content": "public class NavigationSidebarRight extends UiPart\u003cVBox\u003e {"
       },
       {
         "lineNumber": 16,
@@ -108758,9 +108270,9 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "    private static final String FXML \u003d \"/components/SidebarRight.fxml\";"
+        "content": "    private static final String FXML \u003d \"components/SidebarRight.fxml\";"
       },
       {
         "lineNumber": 18,
@@ -108865,94 +108377,101 @@
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private void handleEnterContactsManager() {"
+        "content": "    private void handleOpenHelp() {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    }"
+        "content": "        mainWindow.handleHelp();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private void handleEnterExpenditureManager() {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 37,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "    private void handleEnterExpenditureManager() {"
+      },
+      {
+        "lineNumber": 38,
         "author": {
           "gitId": "arjunwangty"
         },
         "content": "        mainWindow.executeGuiCommand(EnterExpenseManagerCommand.COMMAND_WORD);"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 39,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 40,
         "author": {
           "gitId": "teoha"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "    @FXML"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "    private void handleEnterDiary() {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "        mainWindow.executeGuiCommand(EnterDiaryCommand.COMMAND_WORD);"
+        "content": "    private void handleEnterDiary() {"
       },
       {
         "lineNumber": 43,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "        mainWindow.executeGuiCommand(EnterDiaryCommand.COMMAND_WORD);"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "teoha"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 45,
         "author": {
           "gitId": "ang-zeyu"
         },
         "content": ""
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 46,
         "author": {
           "gitId": "ang-zeyu"
         },
@@ -108960,9 +108479,9 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 24,
+      "teoha": 21,
       "arjunwangty": 2,
-      "ang-zeyu": 19
+      "ang-zeyu": 23
     }
   },
   {
@@ -128911,173 +128430,397 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+        "content": "\u003c?import javafx.scene.image.Image?\u003e"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "\u003c?import javafx.scene.text.Font?\u003e"
+        "content": "\u003c?import javafx.scene.image.ImageView?\u003e"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "teoha"
         },
-        "content": "\u003cVBox maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" style\u003d\"-fx-background-color: #3e4d52#3e4d52;\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "teoha"
         },
-        "content": "   \u003cchildren\u003e"
+        "content": "\u003c?import javafx.scene.text.Font?\u003e"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "      \u003cButton layoutX\u003d\"10.0\" layoutY\u003d\"10.0\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterOverallView\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"OverallView\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003cfont\u003e"
+        "content": "\u003cVBox alignment\u003d\"CENTER\" spacing\u003d\"10.0\" styleClass\u003d\"Sidebar\" stylesheets\u003d\"@Sidebar.css\" translateX\u003d\"-10.0\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "teoha"
         },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+        "content": "   \u003cchildren\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003c/font\u003e"
+        "content": "      \u003cButton contentDisplay\u003d\"GRAPHIC_ONLY\" graphicTextGap\u003d\"0.0\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterOverallView\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "teoha"
         },
-        "content": "      \u003c/Button\u003e"
+        "content": "         \u003cfont\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "teoha"
         },
-        "content": "      \u003cButton layoutX\u003d\"10.0\" layoutY\u003d\"10.0\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterTripManager\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Trip Manager\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "teoha"
         },
-        "content": "         \u003cfont\u003e"
+        "content": "         \u003c/font\u003e"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+        "content": "         \u003cgraphic\u003e"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003c/font\u003e"
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "      \u003c/Button\u003e"
+        "content": "               \u003cimage\u003e"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "      \u003cButton mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterBookingsManager\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Bookings\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/overall_view_icon.png\" /\u003e"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003cfont\u003e"
+        "content": "               \u003c/image\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+        "content": "            \u003c/ImageView\u003e"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003c/font\u003e\u003c/Button\u003e"
+        "content": "         \u003c/graphic\u003e"
       },
       {
         "lineNumber": 22,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "      \u003cButton layoutX\u003d\"10.0\" layoutY\u003d\"10.0\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterInventoryManager\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Inventory\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "         \u003cfont\u003e"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "         \u003c/font\u003e"
-      },
-      {
-        "lineNumber": 26,
         "author": {
           "gitId": "teoha"
         },
         "content": "      \u003c/Button\u003e"
       },
       {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003cButton contentDisplay\u003d\"GRAPHIC_ONLY\" graphicTextGap\u003d\"0.0\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterTripManager\" text\u003d\"Trip Manager\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003c/font\u003e"
+      },
+      {
         "lineNumber": 27,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003cgraphic\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/trip_manager_icon.png\" /\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003c/ImageView\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/graphic\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "      \u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003cButton contentDisplay\u003d\"GRAPHIC_ONLY\" graphicTextGap\u003d\"0.0\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterBookingsManager\" text\u003d\"Bookings\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/font\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003cgraphic\u003e"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/bookings_icon.png\" /\u003e"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003c/ImageView\u003e"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/graphic\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003cButton contentDisplay\u003d\"GRAPHIC_ONLY\" graphicTextGap\u003d\"0.0\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterInventoryManager\" text\u003d\"Inventory\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003c/font\u003e"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003cgraphic\u003e"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/inventory_icon.png\" /\u003e"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003c/ImageView\u003e"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/graphic\u003e"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "      \u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 59,
         "author": {
           "gitId": "teoha"
         },
         "content": "   \u003c/children\u003e"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 60,
         "author": {
           "gitId": "teoha"
         },
@@ -129085,8 +128828,8 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 25,
-      "ang-zeyu": 3
+      "teoha": 22,
+      "ang-zeyu": 38
     }
   },
   {
@@ -129117,173 +128860,390 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+        "content": "\u003c?import javafx.scene.image.Image?\u003e"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "\u003c?import javafx.scene.text.Font?\u003e"
+        "content": "\u003c?import javafx.scene.image.ImageView?\u003e"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "teoha"
         },
-        "content": "\u003cVBox maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" style\u003d\"-fx-background-color: #3e4d52#3e4d52;\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "teoha"
         },
-        "content": "   \u003cchildren\u003e"
+        "content": "\u003c?import javafx.scene.text.Font?\u003e"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "      \u003cButton fx:id\u003d\"itineraryLabel\" layoutX\u003d\"10.0\" layoutY\u003d\"10.0\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterItinerary\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Itinerary\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003cfont\u003e"
+        "content": "\u003cVBox alignment\u003d\"CENTER\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" spacing\u003d\"10.0\" styleClass\u003d\"Sidebar\" stylesheets\u003d\"@Sidebar.css\" translateX\u003d\"10.0\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "teoha"
         },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+        "content": "   \u003cchildren\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003c/font\u003e"
+        "content": "      \u003cButton fx:id\u003d\"itineraryLabel\" contentDisplay\u003d\"GRAPHIC_ONLY\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterItinerary\" text\u003d\"Itinerary\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "teoha"
         },
-        "content": "      \u003c/Button\u003e"
+        "content": "         \u003cfont\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "ang-zeyu"
+          "gitId": "teoha"
         },
-        "content": "      \u003cButton fx:id\u003d\"contactsLabel\" layoutX\u003d\"10.0\" layoutY\u003d\"10.0\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterContactsManager\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Contacts\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "teoha"
         },
-        "content": "         \u003cfont\u003e"
+        "content": "         \u003c/font\u003e"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+        "content": "         \u003cgraphic\u003e"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003c/font\u003e"
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "      \u003c/Button\u003e"
+        "content": "               \u003cimage\u003e"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ang-zeyu"
         },
-        "content": "      \u003cButton fx:id\u003d\"expenditureLabel\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterExpenditureManager\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Expenditure\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/schedule_icon.png\" /\u003e"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003cfont\u003e"
+        "content": "               \u003c/image\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+        "content": "            \u003c/ImageView\u003e"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "teoha"
+          "gitId": "ang-zeyu"
         },
-        "content": "         \u003c/font\u003e\u003c/Button\u003e"
+        "content": "         \u003c/graphic\u003e"
       },
       {
         "lineNumber": 22,
-        "author": {
-          "gitId": "ang-zeyu"
-        },
-        "content": "      \u003cButton fx:id\u003d\"diaryLabel\" layoutX\u003d\"10.0\" layoutY\u003d\"10.0\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterDiary\" prefHeight\u003d\"40.0\" prefWidth\u003d\"141.0\" style\u003d\"-fx-background-color: #79a0ab#79a0ab;\" stylesheets\u003d\"@../DarkTheme.css\" text\u003d\"Diary\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "         \u003cfont\u003e"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "teoha"
-        },
-        "content": "         \u003c/font\u003e"
-      },
-      {
-        "lineNumber": 26,
         "author": {
           "gitId": "teoha"
         },
         "content": "      \u003c/Button\u003e"
       },
       {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003cButton fx:id\u003d\"expenditureLabel\" contentDisplay\u003d\"GRAPHIC_ONLY\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterExpenditureManager\" text\u003d\"Expenditure\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003c/font\u003e"
+      },
+      {
         "lineNumber": 27,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003cgraphic\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/expense_icon.png\" /\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003c/ImageView\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/graphic\u003e\u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003cButton fx:id\u003d\"diaryLabel\" contentDisplay\u003d\"GRAPHIC_ONLY\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleEnterDiary\" text\u003d\"Diary\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/font\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003cgraphic\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"60.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/diary_icon.png\" /\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003c/ImageView\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/graphic\u003e"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "      \u003cButton fx:id\u003d\"contactsLabel\" contentDisplay\u003d\"GRAPHIC_ONLY\" maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" mnemonicParsing\u003d\"false\" onMouseClicked\u003d\"#handleOpenHelp\" text\u003d\"Help\" textFill\u003d\"WHITE\" wrapText\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "            \u003cFont size\u003d\"6.0\" /\u003e"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "         \u003c/font\u003e"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003cgraphic\u003e"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003cImageView fitHeight\u003d\"60.0\" fitWidth\u003d\"80.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "                  \u003cImage url\u003d\"@../../images/navbar_icons/help_icon.png\" /\u003e"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "               \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "            \u003c/ImageView\u003e"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "ang-zeyu"
+        },
+        "content": "         \u003c/graphic\u003e"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "teoha"
+        },
+        "content": "      \u003c/Button\u003e"
+      },
+      {
+        "lineNumber": 58,
         "author": {
           "gitId": "teoha"
         },
         "content": "   \u003c/children\u003e"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 59,
         "author": {
           "gitId": "teoha"
         },
@@ -129291,8 +129251,8 @@
       }
     ],
     "authorContributionMap": {
-      "teoha": 24,
-      "ang-zeyu": 4
+      "teoha": 21,
+      "ang-zeyu": 38
     }
   },
   {
