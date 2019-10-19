@@ -22900,7 +22900,7 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_DELETE_DAY_SUCCESS, targetIndex));"
+        "content": "        return new CommandResult(String.format(MESSAGE_DELETE_DAY_SUCCESS, targetIndex.getOneBased()));"
       },
       {
         "lineNumber": 44,
@@ -25154,14 +25154,14 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        Email updatedEmail \u003d editContactDescriptor.getEmail().orElse(contactToEdit.getEmail().get());"
+        "content": "        Email updatedEmail \u003d editContactDescriptor.getEmail().orElse(contactToEdit.getEmail().orElse(null));"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        Address updatedAddress \u003d editContactDescriptor.getAddress().orElse(contactToEdit.getAddress().get());"
+        "content": "        Address updatedAddress \u003d editContactDescriptor.getAddress().orElse(contactToEdit.getAddress().orElse(null));"
       },
       {
         "lineNumber": 100,
@@ -29670,7 +29670,7 @@
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -29691,14 +29691,14 @@
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        }"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -29719,7 +29719,7 @@
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -29796,70 +29796,70 @@
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "     * {@code ArgumentMultimap}."
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "     */"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -30244,117 +30244,166 @@
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)"
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 129,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
-      },
-      {
-        "lineNumber": 130,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
         "content": "        Name name \u003d ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
         "content": "        Phone phone \u003d ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());"
       },
       {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Email email \u003d ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
-      },
-      {
-        "lineNumber": 137,
+        "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
         "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            Email email \u003d ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
       },
       {
         "lineNumber": 139,
         "author": {
-          "gitId": "OneArmyj"
+          "gitId": "KxxMxxx"
         },
-        "content": "        Contact contact \u003d new Contact(name, phone, email, address, tagList);"
+        "content": "                Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
       },
       {
         "lineNumber": 140,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "                return new AddContactCommand(new Contact(name, phone, email, address, tagList));"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        return new AddContactCommand(contact);"
+        "content": "            } else {"
       },
       {
         "lineNumber": 142,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                return new AddContactCommand(new Contact(name, phone, email, null, tagList));"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return new AddContactCommand(new Contact(name, phone, null, address, tagList));"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return new AddContactCommand(new Contact(name, phone, null, null, tagList));"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 144,
+        "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
@@ -30362,9 +30411,9 @@
       }
     ],
     "authorContributionMap": {
-      "OneArmyj": 7,
+      "OneArmyj": 6,
       "KxxMxxx": 93,
-      "-": 44
+      "-": 52
     }
   },
   {
@@ -55117,16 +55166,16 @@
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "OneArmyj"
+          "gitId": "KxxMxxx"
         },
-        "content": "        email \u003d source.getEmail().isPresent() ? source.getEmail().get().value : \"\";"
+        "content": "        email \u003d source.getEmail().isPresent() ? source.getEmail().get().value : null;"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "OneArmyj"
+          "gitId": "KxxMxxx"
         },
-        "content": "        address \u003d source.getAddress().isPresent() ? source.getAddress().get().value : \"\";"
+        "content": "        address \u003d source.getAddress().isPresent() ? source.getAddress().get().value : null;"
       },
       {
         "lineNumber": 57,
@@ -55355,16 +55404,16 @@
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        if (email \u003d\u003d null) {"
+        "content": "        if (email !\u003d null \u0026\u0026 !Email.isValidEmail(email)) {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));"
+        "content": "            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 91,
@@ -55376,124 +55425,82 @@
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        if (!Email.isValidEmail(email)) {"
+        "content": "        final Email modelEmail \u003d email !\u003d null ? new Email(email) : null;"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "        if (address !\u003d null \u0026\u0026 !Address.isValidAddress(address)) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Email modelEmail \u003d new Email(email);"
+        "content": "            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        if (address \u003d\u003d null) {"
+        "content": "        final Address modelAddress \u003d address !\u003d null ? new Address(address) : null;"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (!Address.isValidAddress(address)) {"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        final Address modelAddress \u003d new Address(address);"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "-"
-        },
         "content": "        final Set\u003cTag\u003e modelTags \u003d new HashSet\u003c\u003e(personTags);"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 100,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "        return new Contact(modelName, modelPhone, modelEmail, modelAddress, modelTags);"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
@@ -55501,8 +55508,9 @@
       }
     ],
     "authorContributionMap": {
-      "OneArmyj": 19,
-      "-": 90
+      "OneArmyj": 17,
+      "KxxMxxx": 6,
+      "-": 80
     }
   },
   {
@@ -76888,231 +76896,231 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // missing email prefix"
+        "content": "        // all prefixes missing"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + VALID_NAME_BOB"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + VALID_EMAIL_BOB + ADDRESS_DESC_BOB, expectedMessage);"
+        "content": "                + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB, expectedMessage);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // missing address prefix"
+        "content": ""
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
+        "content": "    @Test"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + EMAIL_DESC_BOB + VALID_ADDRESS_BOB, expectedMessage);"
+        "content": "    public void parse_invalidValue_failure() {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        // invalid name"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // all prefixes missing"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + INVALID_NAME_DESC"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + VALID_NAME_BOB"
+        "content": "                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB, expectedMessage);"
+        "content": "                Name.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        // invalid phone"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    @Test"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + INVALID_PHONE_DESC"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    public void parse_invalidValue_failure() {"
+        "content": "                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // invalid name"
+        "content": ""
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + INVALID_NAME_DESC"
+        "content": "        // invalid email"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                Name.MESSAGE_CONSTRAINTS);"
+        "content": "                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "                Email.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // invalid phone"
+        "content": ""
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + INVALID_PHONE_DESC"
+        "content": "        // invalid address"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // invalid email"
+        "content": "                Address.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
+        "content": ""
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,"
+        "content": "        // invalid tag"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                Email.MESSAGE_CONSTRAINTS);"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // invalid address"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
+        "content": "        // two invalid values, only first invalid value reported"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + INVALID_NAME_DESC"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                Address.MESSAGE_CONSTRAINTS);"
+        "content": "                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC, Name.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 136,
@@ -77126,101 +77134,45 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // invalid tag"
+        "content": "        // non-empty preamble"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB"
+        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + PREAMBLE_NON_EMPTY"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);"
+        "content": "                        + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "                        + TAG_DESC_FRIEND,"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        // two invalid values, only first invalid value reported"
+        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + INVALID_NAME_DESC"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC, Name.MESSAGE_CONSTRAINTS);"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "        // non-empty preamble"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "        assertParseFailure(parser, AddContactCommand.SECOND_COMMAND_WORD + \" \" + PREAMBLE_NON_EMPTY"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "                        + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "                        + TAG_DESC_FRIEND,"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 143,
         "author": {
           "gitId": "KxxMxxx"
         },
@@ -77228,7 +77180,7 @@
       }
     ],
     "authorContributionMap": {
-      "KxxMxxx": 151
+      "KxxMxxx": 143
     }
   },
   {
@@ -87697,28 +87649,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    public void toModelType_nullEmail_throwsIllegalValueException() {"
+        "content": "    public void toModelType_invalidAddress_throwsIllegalValueException() {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "OneArmyj"
         },
-        "content": "        JsonAdaptedContact contact \u003d new JsonAdaptedContact(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,"
+        "content": "        JsonAdaptedContact contact \u003d"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "OneArmyj"
         },
-        "content": "                VALID_TAGS);"
+        "content": "                new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "        String expectedMessage \u003d String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());"
+        "content": "        String expectedMessage \u003d Address.MESSAGE_CONSTRAINTS;"
       },
       {
         "lineNumber": 86,
@@ -87753,171 +87705,59 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    public void toModelType_invalidAddress_throwsIllegalValueException() {"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        JsonAdaptedContact contact \u003d"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "                new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        String expectedMessage \u003d Address.MESSAGE_CONSTRAINTS;"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void toModelType_nullAddress_throwsIllegalValueException() {"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        JsonAdaptedContact contact \u003d new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "                VALID_TAGS);"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        String expectedMessage \u003d String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        assertThrows(IllegalValueException.class, expectedMessage, contact::toModelType);"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    public void toModelType_invalidTags_throwsIllegalValueException() {"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": "        List\u003cJsonAdaptedTag\u003e invalidTags \u003d new ArrayList\u003c\u003e(VALID_TAGS);"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
         "content": "        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 93,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "        JsonAdaptedContact contact \u003d"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 94,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "                new JsonAdaptedContact(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 95,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "        assertThrows(IllegalValueException.class, contact::toModelType);"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
@@ -87925,8 +87765,8 @@
       }
     ],
     "authorContributionMap": {
-      "OneArmyj": 39,
-      "-": 75
+      "OneArmyj": 33,
+      "-": 65
     }
   },
   {
