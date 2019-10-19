@@ -18327,817 +18327,824 @@
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": ""
+        "content": "        logic.executeAllTasks();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        ui \u003d new UiManager(logic);"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        ui \u003d new UiManager(logic);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "     * Returns a {@code ModelManager} with the data from {@code storage}\u0027s fund book and {@code userPrefs}. \u003cbr\u003e"
+        "content": "    /**"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * The data from the sample fund book will be used instead if {@code storage}\u0027s fund book is not found,"
+        "content": "     * Returns a {@code ModelManager} with the data from {@code storage}\u0027s fund book and {@code userPrefs}. \u003cbr\u003e"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * or an empty fund book will be used instead if errors occur when reading {@code storage}\u0027s fund book."
+        "content": "     * The data from the sample fund book will be used instead if {@code storage}\u0027s fund book is not found,"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "     */"
+        "content": "     * or an empty fund book will be used instead if errors occur when reading {@code storage}\u0027s fund book."
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {"
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "        Optional\u003cReadOnlyFundBook\u003e addressBookOptional;"
+        "content": "    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        ReadOnlyFundBook initialData;"
+        "content": "        Optional\u003cReadOnlyFundBook\u003e addressBookOptional;"
       },
       {
         "lineNumber": 79,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        ReadOnlyFundBook initialData;"
+      },
+      {
+        "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 81,
         "author": {
           "gitId": "nexolute"
         },
         "content": "            addressBookOptional \u003d storage.readFundBook();"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
         "content": "            if (!addressBookOptional.isPresent()) {"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 83,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                logger.info(\"Data file not found. Will be starting with a sample fund book\");"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 85,
         "author": {
           "gitId": "nexolute"
         },
         "content": "            initialData \u003d addressBookOptional.orElseGet(SampleDataUtil::getSampleFundBook);"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
         "content": "        } catch (DataConversionException e) {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "            logger.warning(\"Data file not in the correct format. Will be starting with an empty fund book\");"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            initialData \u003d new FundBook();"
+        "content": "            logger.warning(\"Data file not in the correct format. Will be starting with an empty fund book\");"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            initialData \u003d new FundBook();"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty fund book\");"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            initialData \u003d new FundBook();"
+        "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty fund book\");"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "        }"
+        "content": "            initialData \u003d new FundBook();"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new ModelManager(initialData, userPrefs);"
+        "content": ""
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return new ModelManager(initialData, userPrefs);"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void initLogging(Config config) {"
+        "content": ""
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "        LogsCenter.init(config);"
+        "content": "    private void initLogging(Config config) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        LogsCenter.init(config);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns a {@code Config} using the file at {@code configFilePath}. \u003cbr\u003e"
+        "content": "    /**"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": "     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead"
+        "content": "     * Returns a {@code Config} using the file at {@code configFilePath}. \u003cbr\u003e"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "     * if {@code configFilePath} is null."
+        "content": "     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * if {@code configFilePath} is null."
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "    protected Config initConfig(Path configFilePath) {"
+        "content": "     */"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "        Config initializedConfig;"
+        "content": "    protected Config initConfig(Path configFilePath) {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
-        "content": "        Path configFilePathUsed;"
+        "content": "        Config initializedConfig;"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        Path configFilePathUsed;"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
-        "content": "        configFilePathUsed \u003d Config.DEFAULT_CONFIG_FILE;"
+        "content": ""
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        configFilePathUsed \u003d Config.DEFAULT_CONFIG_FILE;"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (configFilePath !\u003d null) {"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Custom Config file specified \" + configFilePath);"
+        "content": "        if (configFilePath !\u003d null) {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
-        "content": "            configFilePathUsed \u003d configFilePath;"
+        "content": "            logger.info(\"Custom Config file specified \" + configFilePath);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            configFilePathUsed \u003d configFilePath;"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"Using config file : \" + configFilePathUsed);"
+        "content": ""
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        logger.info(\"Using config file : \" + configFilePathUsed);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "-"
         },
-        "content": "            Optional\u003cConfig\u003e configOptional \u003d ConfigUtil.readConfig(configFilePathUsed);"
+        "content": "        try {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedConfig \u003d configOptional.orElse(new Config());"
+        "content": "            Optional\u003cConfig\u003e configOptional \u003d ConfigUtil.readConfig(configFilePathUsed);"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (DataConversionException e) {"
+        "content": "            initializedConfig \u003d configOptional.orElse(new Config());"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Config file at \" + configFilePathUsed + \" is not in the correct format. \""
+        "content": "        } catch (DataConversionException e) {"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
-        "content": "                    + \"Using default config properties\");"
+        "content": "            logger.warning(\"Config file at \" + configFilePathUsed + \" is not in the correct format. \""
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedConfig \u003d new Config();"
+        "content": "                    + \"Using default config properties\");"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            initializedConfig \u003d new Config();"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "-"
         },
-        "content": "        //Update config file in case it was missing to begin with or there are new/unused fields"
+        "content": ""
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        //Update config file in case it was missing to begin with or there are new/unused fields"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "-"
         },
-        "content": "            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);"
+        "content": "        try {"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
-        "content": "        return initializedConfig;"
+        "content": "        }"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return initializedConfig;"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns a {@code UserPrefs} using the file at {@code storage}\u0027s user prefs file path,"
+        "content": "    /**"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
-        "content": "     * or a new {@code UserPrefs} with default configuration if errors occur when"
+        "content": "     * Returns a {@code UserPrefs} using the file at {@code storage}\u0027s user prefs file path,"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
-        "content": "     * reading from the file."
+        "content": "     * or a new {@code UserPrefs} with default configuration if errors occur when"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * reading from the file."
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "-"
         },
-        "content": "    protected UserPrefs initPrefs(UserPrefsStorage storage) {"
+        "content": "     */"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
-        "content": "        Path prefsFilePath \u003d storage.getUserPrefsFilePath();"
+        "content": "    protected UserPrefs initPrefs(UserPrefsStorage storage) {"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"Using prefs file : \" + prefsFilePath);"
+        "content": "        Path prefsFilePath \u003d storage.getUserPrefsFilePath();"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        logger.info(\"Using prefs file : \" + prefsFilePath);"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "        UserPrefs initializedPrefs;"
+        "content": ""
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        UserPrefs initializedPrefs;"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
-        "content": "            Optional\u003cUserPrefs\u003e prefsOptional \u003d storage.readUserPrefs();"
+        "content": "        try {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedPrefs \u003d prefsOptional.orElse(new UserPrefs());"
+        "content": "            Optional\u003cUserPrefs\u003e prefsOptional \u003d storage.readUserPrefs();"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (DataConversionException e) {"
+        "content": "            initializedPrefs \u003d prefsOptional.orElse(new UserPrefs());"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"UserPrefs file at \" + prefsFilePath + \" is not in the correct format. \""
+        "content": "        } catch (DataConversionException e) {"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "                    + \"Using default user prefs\");"
+        "content": "            logger.warning(\"UserPrefs file at \" + prefsFilePath + \" is not in the correct format. \""
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "            initializedPrefs \u003d new UserPrefs();"
+        "content": "                    + \"Using default user prefs\");"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            initializedPrefs \u003d new UserPrefs();"
       },
       {
         "lineNumber": 154,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 155,
         "author": {
           "gitId": "nexolute"
         },
         "content": "            logger.warning(\"Problem while reading from the file. Will be starting with an empty fund book\");"
       },
       {
-        "lineNumber": 155,
+        "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
         "content": "            initializedPrefs \u003d new UserPrefs();"
       },
       {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
         "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": "        //Update prefs file in case it was missing to begin with or there are new/unused fields"
+        "content": ""
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "        //Update prefs file in case it was missing to begin with or there are new/unused fields"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "            storage.saveUserPrefs(initializedPrefs);"
+        "content": "        try {"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            storage.saveUserPrefs(initializedPrefs);"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            logger.warning(\"Failed to save config file : \" + StringUtil.getDetails(e));"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "        return initializedPrefs;"
+        "content": ""
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return initializedPrefs;"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void start(Stage primaryStage) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void start(Stage primaryStage) {"
+      },
+      {
+        "lineNumber": 171,
         "author": {
           "gitId": "nexolute"
         },
         "content": "        logger.info(\"Starting IchiFund \" + MainApp.VERSION);"
       },
       {
-        "lineNumber": 171,
+        "lineNumber": 172,
         "author": {
           "gitId": "-"
         },
         "content": "        ui.start(primaryStage);"
       },
       {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
         "lineNumber": 173,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void stop() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void stop() {"
+      },
+      {
+        "lineNumber": 177,
         "author": {
           "gitId": "nexolute"
         },
         "content": "        logger.info(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d [ Stopping IchiFund ] \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\");"
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 178,
         "author": {
           "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 179,
         "author": {
           "gitId": "-"
         },
         "content": "            storage.saveUserPrefs(model.getUserPrefs());"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 180,
         "author": {
           "gitId": "-"
         },
         "content": "        } catch (IOException e) {"
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 181,
         "author": {
           "gitId": "-"
         },
         "content": "            logger.severe(\"Failed to save preferences \" + StringUtil.getDetails(e));"
       },
       {
-        "lineNumber": 181,
+        "lineNumber": 182,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 183,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
@@ -19145,7 +19152,7 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 42,
+      "nexolute": 43,
       "-": 141
     }
   },
@@ -25457,7 +25464,7 @@
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
         "content": "    /**"
       },
@@ -25466,138 +25473,138 @@
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * Returns the FundBook."
+        "content": "     * Executes all the tasks."
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * @see seedu.ichifund.model.Model#getFundBook()"
+        "content": "    void executeAllTasks();"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 33,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "    ReadOnlyFundBook getFundBook();"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /** Returns an unmodifiable view of the filtered list of persons */"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    ObservableList\u003cPerson\u003e getFilteredPersonList();"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "    /** Returns an unmodifiable view of the filtered list of transactions */"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "    ObservableList\u003cTransaction\u003e getFilteredTransactionList();"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "    /** Returns an unmodifiable view of the filtered list of persons */"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "    ObservableList\u003cBudget\u003e getFilteredBudgetList();"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 34,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * Returns the user prefs\u0027 fund book file path."
+        "content": "     * Returns the FundBook."
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * @see seedu.ichifund.model.Model#getFundBook()"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    ReadOnlyFundBook getFundBook();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /** Returns an unmodifiable view of the filtered list of persons */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    ObservableList\u003cPerson\u003e getFilteredPersonList();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    /** Returns an unmodifiable view of the filtered list of transactions */"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    ObservableList\u003cTransaction\u003e getFilteredTransactionList();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    /** Returns an unmodifiable view of the filtered list of persons */"
+      },
+      {
         "lineNumber": 47,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    Path getFundBookFilePath();"
+        "content": "    ObservableList\u003cBudget\u003e getFilteredBudgetList();"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
         "content": ""
       },
@@ -25611,9 +25618,9 @@
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "     * Returns the user prefs\u0027 GUI settings."
+        "content": "     * Returns the user prefs\u0027 fund book file path."
       },
       {
         "lineNumber": 51,
@@ -25625,9 +25632,9 @@
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    GuiSettings getGuiSettings();"
+        "content": "    Path getFundBookFilePath();"
       },
       {
         "lineNumber": 53,
@@ -25648,7 +25655,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "     * Set the user prefs\u0027 GUI settings."
+        "content": "     * Returns the user prefs\u0027 GUI settings."
       },
       {
         "lineNumber": 56,
@@ -25662,10 +25669,45 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    void setGuiSettings(GuiSettings guiSettings);"
+        "content": "    GuiSettings getGuiSettings();"
       },
       {
         "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Set the user prefs\u0027 GUI settings."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void setGuiSettings(GuiSettings guiSettings);"
+      },
+      {
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
@@ -25673,7 +25715,7 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 16,
+      "nexolute": 21,
       "weiyang13": 4,
       "-": 38
     }
@@ -25785,528 +25827,591 @@
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.Model;"
+        "content": "import seedu.ichifund.logic.tasks.TaskManager;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.ReadOnlyFundBook;"
+        "content": "import seedu.ichifund.model.Model;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.budget.Budget;"
+        "content": "import seedu.ichifund.model.ReadOnlyFundBook;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.person.Person;"
+        "content": "import seedu.ichifund.model.budget.Budget;"
       },
       {
         "lineNumber": 19,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.person.Person;"
+      },
+      {
+        "lineNumber": 20,
         "author": {
           "gitId": "weiyang13"
         },
         "content": "import seedu.ichifund.model.transaction.Transaction;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 21,
         "author": {
           "gitId": "nexolute"
         },
         "content": "import seedu.ichifund.storage.Storage;"
       },
       {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": " * The main LogicManager of the app."
+        "content": "/**"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * The main LogicManager of the app."
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "public class LogicManager implements Logic {"
+        "content": " */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String FILE_OPS_ERROR_MESSAGE \u003d \"Could not save data to file: \";"
+        "content": "public class LogicManager implements Logic {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final Logger logger \u003d LogsCenter.getLogger(LogicManager.class);"
+        "content": "    public static final String FILE_OPS_ERROR_MESSAGE \u003d \"Could not save data to file: \";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(LogicManager.class);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final Model model;"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final Storage storage;"
+        "content": "    private final Model model;"
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Storage storage;"
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "nexolute"
         },
         "content": "    private final IchiFundParser ichiFundParser;"
       },
       {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    public LogicManager(Model model, Storage storage) {"
+        "content": "    private final TaskManager taskManager;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.model \u003d model;"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.storage \u003d storage;"
+        "content": "    public LogicManager(Model model, Storage storage) {"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "        ichiFundParser \u003d new IchiFundParser();"
+        "content": "        this.model \u003d model;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this.storage \u003d storage;"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": ""
+        "content": "        ichiFundParser \u003d new IchiFundParser();"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    @Override"
+        "content": "        taskManager \u003d new TaskManager();"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(String commandText) throws CommandException, ParseException {"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        logger.info(\"----------------[USER COMMAND][\" + commandText + \"]\");"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        CommandResult commandResult;"
+        "content": "    public CommandResult execute(String commandText) throws CommandException, ParseException {"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "        Command command \u003d ichiFundParser.parseCommand(commandText);"
+        "content": "        logger.info(\"----------------[USER COMMAND][\" + commandText + \"]\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        commandResult \u003d command.execute(model);"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        CommandResult commandResult;"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "        try {"
+        "content": "        Command command \u003d ichiFundParser.parseCommand(commandText);"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "            storage.saveFundBook(model.getFundBook());"
+        "content": "        commandResult \u003d command.execute(model);"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "        } catch (IOException ioe) {"
+        "content": "        taskManager.executeAll(model);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": ""
+        "content": "            storage.saveFundBook(model.getFundBook());"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        return commandResult;"
+        "content": "        } catch (IOException ioe) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "    public ReadOnlyFundBook getFundBook() {"
+        "content": "        return commandResult;"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "        return model.getFundBook();"
+        "content": "    }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
         "content": "    @Override"
       },
       {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public void executeAllTasks() {"
+      },
+      {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    public ObservableList\u003cPerson\u003e getFilteredPersonList() {"
+        "content": "        taskManager.executeAll(model);"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "        return model.getFilteredPersonList();"
+        "content": "    }"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 66,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public ReadOnlyFundBook getFundBook() {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return model.getFundBook();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ObservableList\u003cPerson\u003e getFilteredPersonList() {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return model.getFilteredPersonList();"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "weiyang13"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 76,
         "author": {
           "gitId": "weiyang13"
         },
         "content": "    public ObservableList\u003cTransaction\u003e getFilteredTransactionList() {"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 77,
         "author": {
           "gitId": "weiyang13"
         },
         "content": "        return model.getFilteredTransactionList();"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 78,
         "author": {
           "gitId": "weiyang13"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 79,
         "author": {
           "gitId": "weiyang13"
         },
         "content": ""
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 80,
         "author": {
           "gitId": "nexolute"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 81,
         "author": {
           "gitId": "nexolute"
         },
         "content": "    public ObservableList\u003cBudget\u003e getFilteredBudgetList() {"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 82,
         "author": {
           "gitId": "nexolute"
         },
         "content": "        return model.getFilteredBudgetList();"
       },
       {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "    public Path getFundBookFilePath() {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "nexolute"
-        },
-        "content": "        return model.getFundBookFilePath();"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public GuiSettings getGuiSettings() {"
-      },
-      {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "        return model.getGuiSettings();"
+        "content": "    }"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    @Override"
+        "content": "    public Path getFundBookFilePath() {"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
+        "content": "        return model.getFundBookFilePath();"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "        model.setGuiSettings(guiSettings);"
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public GuiSettings getGuiSettings() {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return model.getGuiSettings();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        model.setGuiSettings(guiSettings);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
@@ -26314,9 +26419,9 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 26,
-      "weiyang13": 5,
-      "-": 59
+      "nexolute": 35,
+      "weiyang13": 6,
+      "-": 58
     }
   },
   {
@@ -30418,371 +30523,371 @@
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import static seedu.ichifund.logic.parser.CliSyntax.PREFIX_DESCRIPTION;"
+        "content": "import static seedu.ichifund.logic.parser.CliSyntax.PREFIX_CATEGORY;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "import static seedu.ichifund.logic.parser.CliSyntax.PREFIX_DESCRIPTION;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.logic.commands.Command;"
+        "content": "import static seedu.ichifund.logic.parser.CliSyntax.PREFIX_MONTH;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.logic.commands.CommandResult;"
+        "content": "import static seedu.ichifund.logic.parser.CliSyntax.PREFIX_YEAR;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.logic.commands.exceptions.CommandException;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.Model;"
+        "content": "import seedu.ichifund.logic.commands.Command;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.budget.Budget;"
+        "content": "import seedu.ichifund.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "import seedu.ichifund.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "/**"
+        "content": "import seedu.ichifund.model.Model;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "nexolute"
         },
-        "content": " * Adds a budget to IchiFund."
+        "content": "import seedu.ichifund.model.budget.Budget;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "nexolute"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "public class AddBudgetCommand extends Command {"
+        "content": "/**"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": " * Adds a budget to IchiFund."
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"badd\";"
+        "content": " */"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "public class AddBudgetCommand extends Command {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Adds a budget to IchiFund. \""
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            + \"Parameters: \""
+        "content": "    public static final String COMMAND_WORD \u003d \"badd\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            + PREFIX_DESCRIPTION + \"DESCRIPTION \""
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            + PREFIX_AMOUNT + \"AMOUNT\\n\""
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Adds a budget to IchiFund.\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" \""
+        "content": "            + \"Parameters: \""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            + PREFIX_DESCRIPTION + \"Saving for my future \""
+        "content": "            + PREFIX_DESCRIPTION + \"DESCRIPTION \""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            + PREFIX_AMOUNT + \"200.00\";"
+        "content": "            + PREFIX_AMOUNT + \"AMOUNT \""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "            + \"[\" + PREFIX_CATEGORY + \"CATEGORY] \""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New budget added: %1$s\";"
+        "content": "            + \"[\" + PREFIX_MONTH + \"MONTH \""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public static final String MESSAGE_DUPLICATE_BUDGET \u003d \"This budget already exists in IchiFund\";"
+        "content": "            + PREFIX_YEAR + \"YEAR]\\n\""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "            + \"Example: \""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private final Budget toAdd;"
+        "content": "            + COMMAND_WORD + \" \""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "            + PREFIX_DESCRIPTION + \"Saving for my future \""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    /**"
+        "content": "            + PREFIX_AMOUNT + \"200.00\";"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * Creates an AddBudgetCommand to add the specified {@code Budget}"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     */"
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New budget added: %1$s\";"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public AddBudgetCommand(Budget budget) {"
+        "content": "    public static final String MESSAGE_DUPLICATE_BUDGET \u003d \"This budget already exists in IchiFund\";"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        requireNonNull(budget);"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        toAdd \u003d budget;"
+        "content": "    private final Budget toAdd;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @Override"
+        "content": "     * Creates an AddBudgetCommand to add the specified {@code Budget}"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    public AddBudgetCommand(Budget budget) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "        requireNonNull(budget);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        if (model.hasBudget(toAdd)) {"
+        "content": "        toAdd \u003d budget;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            throw new CommandException(MESSAGE_DUPLICATE_BUDGET);"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        model.addBudget(toAdd);"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "        if (model.hasBudget(toAdd)) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @Override"
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_BUDGET);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "        }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                || (other instanceof AddBudgetCommand // instanceof handles nulls"
+        "content": "        model.addBudget(toAdd);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u0026\u0026 toAdd.equals(((AddBudgetCommand) other).toAdd));"
+        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));"
       },
       {
         "lineNumber": 58,
@@ -30796,11 +30901,60 @@
         "author": {
           "gitId": "nexolute"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                || (other instanceof AddBudgetCommand // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u0026\u0026 toAdd.equals(((AddBudgetCommand) other).toAdd));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "nexolute"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "nexolute": 59
+      "nexolute": 66
     }
   },
   {
@@ -44447,6 +44601,733 @@
     }
   },
   {
+    "path": "src/main/java/seedu/ichifund/logic/tasks/Task.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "package seedu.ichifund.logic.tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.Model;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * Represents a task with hidden internal logic and the ability to be executed."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * Note that {@code Task} is different from {@code Command} in that task are not"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * immediately triggered by user interaction."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " *"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * For instance, when a transaction is added, a task would be triggered to refresh"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * the budget information."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * Executes the task."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * @param model {@code Model} which the task should operate on."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public abstract void execute(Model model);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "nexolute": 23
+    }
+  },
+  {
+    "path": "src/main/java/seedu/ichifund/logic/tasks/TaskManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "package seedu.ichifund.logic.tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.logic.tasks.budget.ComputeBudgetTask;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.Model;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * Manages all the task to be executed."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "public class TaskManager {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    private final List\u003cTask\u003e tasks;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public TaskManager() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        tasks \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        tasks.add(new ComputeBudgetTask());"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public void executeAll(Model model) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        tasks.forEach(task -\u003e task.execute(model));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "nexolute": 25
+    }
+  },
+  {
+    "path": "src/main/java/seedu/ichifund/logic/tasks/budget/ComputeBudgetTask.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "package seedu.ichifund.logic.tasks.budget;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import java.util.function.Predicate;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import java.util.stream.Collectors;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.logic.tasks.Task;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.Model;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.amount.Amount;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.budget.Budget;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.budget.ComputedBudget;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.transaction.Transaction;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * Compute all the budget spending."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "public class ComputeBudgetTask extends Task {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public void execute(Model model) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        ObservableList\u003cBudget\u003e budgetList \u003d model.getFundBook().getBudgetList();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        for (Budget budget : budgetList) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            List\u003cAmount\u003e filteredAmounts \u003d model.getFundBook().getTransactionList()"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    .filtered(createPredicateForBudget(budget))"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    .stream()"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    .map(Transaction::getAmount)"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    .collect(Collectors.toList());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            Amount spending \u003d Amount.addAll(filteredAmounts);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            model.setBudget(budget, new ComputedBudget(budget, spending));"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    /***"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * Create a predicate according to the criteria set within the budget."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * @param budget The budget that will serve as a context to create the predicate."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * @return A predicate according to the budget criteria."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    private Predicate\u003cTransaction\u003e createPredicateForBudget(Budget budget) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        Predicate\u003cTransaction\u003e predicate \u003d Transaction::isExpenditure;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (budget.getCategory() !\u003d null) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            predicate \u003d predicate.and(transaction -\u003e transaction.isIn(budget.getCategory()));"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (budget.getMonth() !\u003d null \u0026\u0026 budget.getYear() !\u003d null) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            predicate \u003d predicate.and(transaction -\u003e transaction.isIn(budget.getMonth()));"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            predicate \u003d predicate.and(transaction -\u003e transaction.isIn(budget.getYear()));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return predicate;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "nexolute": 52
+    }
+  },
+  {
     "path": "src/main/java/seedu/ichifund/model/Description.java",
     "fileType": "functional",
     "lines": [
@@ -55484,6 +56365,610 @@
     "authorContributionMap": {
       "nexolute": 143,
       "weiyang13": 2
+    }
+  },
+  {
+    "path": "src/main/java/seedu/ichifund/model/budget/ComputedBudget.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "package seedu.ichifund.model.budget;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import static seedu.ichifund.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.Description;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.amount.Amount;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.date.Month;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.date.Year;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "import seedu.ichifund.model.transaction.Category;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * Represents a Budget that has been computed in the fund book."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " * Guarantees: details are present and not null, field values are validated, immutable."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "public class ComputedBudget extends Budget {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    // Identity fields"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    private final Amount spending;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * Description, amount, and spending must be present and not null."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public ComputedBudget(Description description, Amount amount, Month month,"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                          Year year, Category category, Amount spending) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        super(description, amount, month, year, category);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        requireAllNonNull(spending);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        this.spending \u003d spending;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public ComputedBudget(Budget budget, Amount spending) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        super(budget.getDescription(), budget.getAmount(), budget.getMonth(),"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                budget.getYear(), budget.getCategory());"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        requireAllNonNull(spending);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        this.spending \u003d spending;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public Amount getSpending() {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return spending;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * Returns true if both budgets have the same description and spending."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * This defines a weaker notion of equality between two computed budgets."
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public boolean isSameComputedBudget(ComputedBudget otherBudget) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (otherBudget \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return otherBudget !\u003d null \u0026\u0026 otherBudget.isSameBudget(otherBudget)"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u0026\u0026 otherBudget.getSpending().equals(getSpending());"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * Returns true if both budgets have the same identity and data fields."
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     * This defines a stronger notion of equality between two budgets."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (!(other instanceof ComputedBudget)) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        ComputedBudget otherBudget \u003d (ComputedBudget) other;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return super.equals(otherBudget) \u0026\u0026 otherBudget.getSpending().equals(getSpending());"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return Objects.hash(getDescription(), getAmount(), getMonth(), getYear(), getCategory(), getSpending());"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return super.toString() + \" Spending: \" + getSpending();"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "nexolute": 85
     }
   },
   {
@@ -78495,409 +79980,549 @@
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import javafx.scene.layout.HBox;"
+        "content": "import javafx.scene.control.ProgressBar;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import javafx.scene.layout.Region;"
+        "content": "import javafx.scene.layout.HBox;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "import seedu.ichifund.model.budget.Budget;"
+        "content": "import javafx.scene.layout.Region;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "import seedu.ichifund.model.amount.Amount;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "/**"
+        "content": "import seedu.ichifund.model.budget.Budget;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "nexolute"
         },
-        "content": " * An UI component that displays information of a {@code Budget}."
+        "content": "import seedu.ichifund.model.budget.ComputedBudget;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "nexolute"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "public class BudgetCard extends UiPart\u003cRegion\u003e {"
+        "content": "/**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": " * An UI component that displays information of a {@code Budget}."
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private static final String FXML \u003d \"BudgetListCard.fxml\";"
+        "content": " */"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "public class BudgetCard extends UiPart\u003cRegion\u003e {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * Note: Certain keywords such as \"location\" and \"resources\" are reserved keywords in JavaFX."
+        "content": "    private static final String FXML \u003d \"BudgetListCard.fxml\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * As a consequence, UI elements\u0027 variable names cannot be set to such keywords"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * or an exception will be thrown by JavaFX during runtime."
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     *"
+        "content": "     * Note: Certain keywords such as \"location\" and \"resources\" are reserved keywords in JavaFX."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     * @see \u003ca href\u003d\"https://github.com/se-edu/addressbook-level4/issues/336\"\u003eThe issue on AddressBook level 4\u003c/a\u003e"
+        "content": "     * As a consequence, UI elements\u0027 variable names cannot be set to such keywords"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "     */"
+        "content": "     * or an exception will be thrown by JavaFX during runtime."
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public final Budget budget;"
+        "content": "     * @see \u003ca href\u003d\"https://github.com/se-edu/addressbook-level4/issues/336\"\u003eThe issue on AddressBook level 4\u003c/a\u003e"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private HBox cardPane;"
+        "content": "    public final Budget budget;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private Label id;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @FXML"
+        "content": "    private HBox cardPane;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private Label description;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @FXML"
+        "content": "    private Label id;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private Label amount;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @FXML"
+        "content": "    private Label description;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    private Label criterion;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "    private Label amount;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public BudgetCard(Budget budget, int displayedIndex) {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        super(FXML);"
+        "content": "    private Label criterion;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        this.budget \u003d budget;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        id.setText(displayedIndex + \". \");"
+        "content": "    private ProgressBar budgetProgress;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        description.setText(budget.getDescription().toString());"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        amount.setText(budget.getAmount().toString());"
+        "content": "    public BudgetCard(Budget budget, int displayedIndex) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        criterion.setText(budget.toCriterionString());"
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    }"
+        "content": "        this.budget \u003d budget;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "        id.setText(displayedIndex + \". \");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    @Override"
+        "content": "        description.setText(budget.getDescription().toString());"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "        criterion.setText(budget.toCriterionString());"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        // short circuit if same object"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "        if (budget instanceof ComputedBudget) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            return true;"
+        "content": "            Amount spending \u003d ((ComputedBudget) budget).getSpending();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        }"
+        "content": "            Amount limit \u003d budget.getAmount();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "            double ratio \u003d (double) spending.valueInCents / limit.valueInCents;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        // instanceof handles nulls"
+        "content": "            amount.setText(\"$\" + spending.toString() + \" / $\" + limit.toString());"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        if (!(other instanceof BudgetCard)) {"
+        "content": "            budgetProgress.setProgress(ratio);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            return false;"
+        "content": "            budgetProgress.setStyle(\"-fx-accent: \" + getBarColor(ratio));"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "            amount.setText(\"$\" + budget.getAmount().toString());"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        // state check"
+        "content": "            budgetProgress.setProgress(0.0);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        BudgetCard card \u003d (BudgetCard) other;"
+        "content": "        }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        return id.getText().equals(card.id.getText())"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u0026\u0026 budget.equals(card.budget);"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    }"
+        "content": "    private String getBarColor(double ratio) {"
       },
       {
         "lineNumber": 63,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return ratio \u003e 0.8 ? \"#ff7675\" : \"#00b894\";"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        if (!(other instanceof BudgetCard)) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        BudgetCard card \u003d (BudgetCard) other;"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        return id.getText().equals(card.id.getText())"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u0026\u0026 budget.equals(card.budget);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
         "author": {
           "gitId": "nexolute"
         },
@@ -78905,7 +80530,7 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 63
+      "nexolute": 83
     }
   },
   {
@@ -85905,199 +87530,283 @@
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003c?import javafx.scene.layout.ColumnConstraints?\u003e"
+        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "nexolute"
         },
-        "content": ""
+        "content": "\u003c?import javafx.scene.control.ProgressBar?\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
+        "content": "\u003c?import javafx.scene.layout.ColumnConstraints?\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        \u003ccolumnConstraints\u003e"
+        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" minWidth\u003d\"10\" prefWidth\u003d\"150\" /\u003e"
+        "content": "    \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        \u003c/columnConstraints\u003e"
+        "content": "        \u003ccolumnConstraints\u003e"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        \u003cVBox alignment\u003d\"CENTER_LEFT\" minHeight\u003d\"80\" GridPane.columnIndex\u003d\"0\"\u003e"
+        "content": "            \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" minWidth\u003d\"10\" prefWidth\u003d\"150\" /\u003e"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003cpadding\u003e"
+        "content": "        \u003c/columnConstraints\u003e"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u003cInsets top\u003d\"5\" right\u003d\"5\" bottom\u003d\"5\" left\u003d\"15\" /\u003e"
+        "content": "        \u003cHBox GridPane.columnIndex\u003d\"0\"\u003e"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003c/padding\u003e"
+        "content": "            \u003cVBox alignment\u003d\"CENTER_LEFT\"\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003cHBox spacing\u003d\"5\" alignment\u003d\"CENTER_LEFT\"\u003e"
+        "content": "                \u003cHBox alignment\u003d\"CENTER_LEFT\"\u003e"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
+        "content": "                    \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                    \u003cminWidth\u003e"
+        "content": "                        \u003cminWidth\u003e"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                        \u003c!-- Ensures that the label text is never truncated --\u003e"
+        "content": "                            \u003c!-- Ensures that the label text is never truncated --\u003e"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                        \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
+        "content": "                            \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                    \u003c/minWidth\u003e"
+        "content": "                        \u003c/minWidth\u003e"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u003c/Label\u003e"
+        "content": "                    \u003c/Label\u003e"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u003cLabel fx:id\u003d\"description\" text\u003d\"\\$description\" styleClass\u003d\"cell_big_label\" /\u003e"
+        "content": "                    \u003cLabel fx:id\u003d\"description\" text\u003d\"\\$description\" styleClass\u003d\"cell_big_label\" /\u003e"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003c/HBox\u003e"
+        "content": "                \u003c/HBox\u003e"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003cLabel fx:id\u003d\"amount\" text\u003d\"\\$amount\" /\u003e"
+        "content": "                \u003cLabel fx:id\u003d\"criterion\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$criterion\" /\u003e"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "            \u003cLabel fx:id\u003d\"criterion\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$criterion\" /\u003e"
+        "content": "            \u003c/VBox\u003e"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "        \u003c/VBox\u003e"
+        "content": "            \u003cRegion HBox.hgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "    \u003c/GridPane\u003e"
+        "content": "            \u003cVBox alignment\u003d\"CENTER_RIGHT\"\u003e"
       },
       {
         "lineNumber": 33,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u003cpadding\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    \u003cInsets top\u003d\"5\" /\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u003c/padding\u003e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u003cLabel fx:id\u003d\"amount\" text\u003d\"\\$amount\" /\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u003cProgressBar fx:id\u003d\"budgetProgress\" progress\u003d\"0\" prefWidth\u003d\"200\" prefHeight\u003d\"10\"\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    \u003cVBox.margin\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                        \u003cInsets top\u003d\"5\" /\u003e"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                    \u003c/VBox.margin\u003e"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                \u003c/ProgressBar\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "            \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "        \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "    \u003c/GridPane\u003e"
+      },
+      {
+        "lineNumber": 45,
         "author": {
           "gitId": "nexolute"
         },
@@ -86105,7 +87814,7 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 33
+      "nexolute": 45
     }
   },
   {
@@ -86217,7 +87926,7 @@
         "author": {
           "gitId": "nexolute"
         },
-        "content": "\u003cStackPane xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\" styleClass\u003d\"stack-pane\"\u003e"
+        "content": "\u003cStackPane xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 7,
@@ -86269,738 +87978,731 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+        "content": "\u003c?import javafx.scene.Scene?\u003e"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.Scene?\u003e"
+        "content": "\u003c?import javafx.scene.control.Menu?\u003e"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.control.Menu?\u003e"
+        "content": "\u003c?import javafx.scene.control.MenuBar?\u003e"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.control.MenuBar?\u003e"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
         "content": "\u003c?import javafx.scene.control.MenuItem?\u003e"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 8,
         "author": {
           "gitId": "nexolute"
         },
         "content": "\u003c?import javafx.scene.control.Tab?\u003e"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 9,
         "author": {
           "gitId": "nexolute"
         },
         "content": "\u003c?import javafx.scene.control.TabPane?\u003e"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
         "content": "\u003c?import javafx.scene.image.Image?\u003e"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 11,
         "author": {
           "gitId": "nexolute"
         },
         "content": "\u003c?import javafx.scene.layout.AnchorPane?\u003e"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
         "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
         "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 14,
         "author": {
           "gitId": "nexolute"
         },
         "content": "\u003c?import javafx.stage.Stage?\u003e"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "nexolute"
         },
         "content": "\u003cfx:root xmlns:fx\u003d\"http://javafx.com/fxml/1\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" height\u003d\"600.0\" minHeight\u003d\"600.0\" minWidth\u003d\"800.0\" onCloseRequest\u003d\"#handleExit\" resizable\u003d\"false\" title\u003d\"Address App\" type\u003d\"javafx.stage.Stage\" width\u003d\"800.0\"\u003e"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
         "content": "    \u003cicons\u003e"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "nexolute"
         },
         "content": "        \u003cImage url\u003d\"@/images/fund_book_32.png\" /\u003e"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
         "content": "    \u003c/icons\u003e"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": "    \u003cscene\u003e"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": "        \u003cScene\u003e"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
         "content": "            \u003cstylesheets\u003e"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                \u003cURL value\u003d\"@IchiTheme.css\" /\u003e"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
         "content": "            \u003c/stylesheets\u003e"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "nexolute"
         },
         "content": "            \u003cVBox prefHeight\u003d\"600.0\" prefWidth\u003d\"800.0\"\u003e"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
         "content": "                \u003cMenuBar fx:id\u003d\"menuBar\" VBox.vgrow\u003d\"NEVER\"\u003e"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
         "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"File\"\u003e"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
         "content": "                        \u003cMenuItem mnemonicParsing\u003d\"false\" onAction\u003d\"#handleExit\" text\u003d\"Exit\" /\u003e"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
         "content": "                    \u003c/Menu\u003e"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"View\"\u003e"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                        \u003cMenuItem fx:id\u003d\"showTransactionMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleShowTransaction\" text\u003d\"Show Transaction\" /\u003e"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                        \u003cMenuItem fx:id\u003d\"showRepeaterMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleShowRepeater\" text\u003d\"Show Repeater\" /\u003e"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                        \u003cMenuItem fx:id\u003d\"showBudgetMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleShowBudget\" text\u003d\"Show Budget\" /\u003e"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                        \u003cMenuItem fx:id\u003d\"showLoanMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleShowLoan\" text\u003d\"Show Loan\" /\u003e"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                        \u003cMenuItem fx:id\u003d\"showAnalyticsMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleShowAnalytics\" text\u003d\"Show Analytics\" /\u003e"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                    \u003c/Menu\u003e"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": "                    \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"Help\"\u003e"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
         "content": "                        \u003cMenuItem fx:id\u003d\"helpMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleHelp\" text\u003d\"Help\" /\u003e"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
         "content": "                    \u003c/Menu\u003e"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
         "content": "                \u003c/MenuBar\u003e"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 41,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u003cVBox styleClass\u003d\"padded-container\"\u003e"
+        "content": "                \u003cVBox\u003e"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 42,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                    \u003cStackPane fx:id\u003d\"commandBoxPlaceholder\" VBox.vgrow\u003d\"NEVER\" /\u003e"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 43,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                    \u003cStackPane fx:id\u003d\"resultDisplayPlaceholder\" maxHeight\u003d\"100\" minHeight\u003d\"100\" prefHeight\u003d\"100\" /\u003e"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 44,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                    \u003cTabPane fx:id\u003d\"mainTabPane\" side\u003d\"LEFT\" tabClosingPolicy\u003d\"UNAVAILABLE\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
+        "content": "                    \u003cTabPane fx:id\u003d\"mainTabPane\" tabClosingPolicy\u003d\"UNAVAILABLE\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 45,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                        \u003ctabs\u003e"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 46,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                            \u003cTab text\u003d\"Transaction\"\u003e"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
           "gitId": "nexolute"
         },
         "content": "                                \u003ccontent\u003e"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "nexolute"
+        },
+        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
+        "content": "                                        \u003cchildren\u003e"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003cchildren\u003e"
+        "content": "                                            \u003cVBox fx:id\u003d\"transactionList\" styleClass\u003d\"content-pane\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "                                            \u003cVBox fx:id\u003d\"transactionList\" styleClass\u003d\"pane-with-border\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
+        "content": "                                                \u003cStackPane fx:id\u003d\"transactionListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "weiyang13"
+          "gitId": "nexolute"
         },
-        "content": "                                                \u003cStackPane fx:id\u003d\"transactionListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+        "content": "                                            \u003c/VBox\u003e"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003c/VBox\u003e"
+        "content": "                                        \u003c/children\u003e"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003c/children\u003e"
+        "content": "                                    \u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003c/AnchorPane\u003e"
+        "content": "                                \u003c/content\u003e"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003c/content\u003e"
+        "content": "                            \u003c/Tab\u003e"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003c/Tab\u003e"
+        "content": "                            \u003cTab text\u003d\"Repeaters\"\u003e"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003cTab text\u003d\"Repeaters\"\u003e"
+        "content": "                                \u003ccontent\u003e"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003ccontent\u003e"
+        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
+        "content": "                                        \u003cchildren\u003e"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003cchildren\u003e"
+        "content": "                                            \u003cVBox fx:id\u003d\"repeaterList\" styleClass\u003d\"content-pane\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003cVBox fx:id\u003d\"repeaterList\" styleClass\u003d\"pane-with-border\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
+        "content": "                                                \u003cStackPane fx:id\u003d\"repeaterListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                                \u003cStackPane fx:id\u003d\"repeaterListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+        "content": "                                            \u003c/VBox\u003e"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003c/VBox\u003e"
+        "content": "                                        \u003c/children\u003e"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003c/children\u003e"
+        "content": "                                    \u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003c/AnchorPane\u003e"
+        "content": "                                \u003c/content\u003e"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003c/content\u003e"
+        "content": "                            \u003c/Tab\u003e"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003c/Tab\u003e"
+        "content": "                            \u003cTab text\u003d\"Budgets\"\u003e"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003cTab text\u003d\"Budgets\"\u003e"
+        "content": "                                \u003ccontent\u003e"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003ccontent\u003e"
+        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
+        "content": "                                        \u003cchildren\u003e"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003cchildren\u003e"
+        "content": "                                            \u003cVBox fx:id\u003d\"budgetList\" styleClass\u003d\"content-pane\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003cVBox fx:id\u003d\"budgetList\" styleClass\u003d\"pane-with-border\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
+        "content": "                                                \u003cStackPane fx:id\u003d\"budgetListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                                \u003cStackPane fx:id\u003d\"budgetListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+        "content": "                                            \u003c/VBox\u003e"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003c/VBox\u003e"
+        "content": "                                        \u003c/children\u003e"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003c/children\u003e"
+        "content": "                                    \u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003c/AnchorPane\u003e"
+        "content": "                                \u003c/content\u003e"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003c/content\u003e"
+        "content": "                            \u003c/Tab\u003e"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003c/Tab\u003e"
+        "content": "                            \u003cTab text\u003d\"Loan\"\u003e"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003cTab text\u003d\"Loan\"\u003e"
+        "content": "                                \u003ccontent\u003e"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003ccontent\u003e"
+        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
+        "content": "                                        \u003cchildren\u003e"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003cchildren\u003e"
+        "content": "                                            \u003cVBox fx:id\u003d\"loanList\" styleClass\u003d\"content-pane\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003cVBox fx:id\u003d\"loanList\" styleClass\u003d\"pane-with-border\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
+        "content": "                                                \u003cStackPane fx:id\u003d\"loanListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "nexolute"
+          "gitId": "-"
         },
-        "content": "                                                \u003cStackPane fx:id\u003d\"loanListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+        "content": "                                            \u003c/VBox\u003e"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "                                            \u003c/VBox\u003e"
+        "content": "                                        \u003c/children\u003e"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003c/children\u003e"
+        "content": "                                    \u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003c/AnchorPane\u003e"
+        "content": "                                \u003c/content\u003e"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003c/content\u003e"
+        "content": "                            \u003c/Tab\u003e"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003c/Tab\u003e"
+        "content": "                            \u003cTab text\u003d\"Analytics\"\u003e"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003cTab text\u003d\"Analytics\"\u003e"
+        "content": "                                \u003ccontent\u003e"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003ccontent\u003e"
+        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003cAnchorPane minHeight\u003d\"0.0\" minWidth\u003d\"0.0\"\u003e"
+        "content": "                                        \u003cchildren\u003e"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003cchildren\u003e"
+        "content": "                                            \u003cVBox fx:id\u003d\"analyticsBoard\" styleClass\u003d\"content-pane\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003cVBox fx:id\u003d\"analyticsBoard\" styleClass\u003d\"pane-with-border\" AnchorPane.bottomAnchor\u003d\"0.0\" AnchorPane.leftAnchor\u003d\"0.0\" AnchorPane.rightAnchor\u003d\"0.0\" AnchorPane.topAnchor\u003d\"0.0\"\u003e"
+        "content": "                                                \u003cStackPane fx:id\u003d\"analyticsBoardPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                                \u003cStackPane fx:id\u003d\"analyticsBoardPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
+        "content": "                                            \u003c/VBox\u003e"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                            \u003c/VBox\u003e"
+        "content": "                                        \u003c/children\u003e"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                        \u003c/children\u003e"
+        "content": "                                    \u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                    \u003c/AnchorPane\u003e"
+        "content": "                                \u003c/content\u003e"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                                \u003c/content\u003e"
+        "content": "                            \u003c/Tab\u003e"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                            \u003c/Tab\u003e"
+        "content": "                        \u003c/tabs\u003e"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                        \u003c/tabs\u003e"
+        "content": "                    \u003c/TabPane\u003e"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                    \u003c/TabPane\u003e"
+        "content": "                \u003c/VBox\u003e"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "nexolute"
         },
-        "content": "                \u003c/VBox\u003e"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "nexolute"
-        },
         "content": "                \u003cStackPane fx:id\u003d\"statusbarPlaceholder\" /\u003e"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
         "content": "            \u003c/VBox\u003e"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
         "content": "        \u003c/Scene\u003e"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
         "content": "    \u003c/scene\u003e"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
@@ -87008,9 +88710,9 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 76,
-      "weiyang13": 2,
-      "-": 31
+      "nexolute": 77,
+      "weiyang13": 1,
+      "-": 30
     }
   },
   {
@@ -87062,9 +88764,9 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "nexolute"
         },
-        "content": "    \u003cTextArea fx:id\u003d\"resultDisplay\" editable\u003d\"false\"  styleClass\u003d\"result-display\"/\u003e"
+        "content": "    \u003cTextArea fx:id\u003d\"resultDisplay\" editable\u003d\"false\" wrapText\u003d\"true\" /\u003e"
       },
       {
         "lineNumber": 8,
@@ -87075,8 +88777,8 @@
       }
     ],
     "authorContributionMap": {
-      "nexolute": 1,
-      "-": 7
+      "nexolute": 2,
+      "-": 6
     }
   },
   {
@@ -87102,227 +88804,150 @@
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+        "content": "\u003c?import javafx.scene.control.Label?\u003e"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003c?import javafx.scene.control.Label?\u003e"
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003c?import javafx.scene.layout.ColumnConstraints?\u003e"
+        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003c?import javafx.scene.layout.GridPane?\u003e"
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
+        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "weiyang13"
+          "gitId": "nexolute"
         },
-        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+        "content": "    \u003cVBox alignment\u003d\"CENTER_LEFT\"\u003e"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": ""
+        "content": "        \u003cHBox spacing\u003d\"5\" alignment\u003d\"CENTER_LEFT\"\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+        "content": "            \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "    \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
+        "content": "                \u003cminWidth\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "        \u003ccolumnConstraints\u003e"
+        "content": "                    \u003c!-- Ensures that the label text is never truncated --\u003e"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "            \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" minWidth\u003d\"10\" prefWidth\u003d\"150\" /\u003e"
+        "content": "                    \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "        \u003c/columnConstraints\u003e"
+        "content": "                \u003c/minWidth\u003e"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "        \u003cVBox alignment\u003d\"CENTER_LEFT\" minHeight\u003d\"80\" GridPane.columnIndex\u003d\"0\"\u003e"
+        "content": "            \u003c/Label\u003e"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "            \u003cpadding\u003e"
+        "content": "            \u003cLabel fx:id\u003d\"description\" text\u003d\"\\$description\" styleClass\u003d\"cell_big_label\" /\u003e"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "                \u003cInsets top\u003d\"5\" right\u003d\"5\" bottom\u003d\"5\" left\u003d\"15\" /\u003e"
+        "content": "        \u003c/HBox\u003e"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "            \u003c/padding\u003e"
+        "content": "        \u003cLabel fx:id\u003d\"amount\" text\u003d\"\\$amount\" /\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "            \u003cHBox spacing\u003d\"5\" alignment\u003d\"CENTER_LEFT\"\u003e"
+        "content": "        \u003cLabel fx:id\u003d\"date\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$date\" /\u003e"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "                \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
+        "content": "        \u003cLabel fx:id\u003d\"category\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$category\" /\u003e"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "                    \u003cminWidth\u003e"
+        "content": "        \u003cLabel fx:id\u003d\"transactionType\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$transactionType\" /\u003e"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "weiyang13"
         },
-        "content": "                        \u003c!-- Ensures that the label text is never truncated --\u003e"
+        "content": "    \u003c/VBox\u003e"
       },
       {
         "lineNumber": 24,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "                        \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "                    \u003c/minWidth\u003e"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "                \u003c/Label\u003e"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "                \u003cLabel fx:id\u003d\"description\" text\u003d\"\\$description\" styleClass\u003d\"cell_big_label\" /\u003e"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "            \u003c/HBox\u003e"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "            \u003cLabel fx:id\u003d\"amount\" text\u003d\"\\$amount\" /\u003e"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "            \u003cLabel fx:id\u003d\"date\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$date\" /\u003e"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "            \u003cLabel fx:id\u003d\"category\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$category\" /\u003e"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "            \u003cLabel fx:id\u003d\"transactionType\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$transactionType\" /\u003e"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "        \u003c/VBox\u003e"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "weiyang13"
-        },
-        "content": "    \u003c/GridPane\u003e"
-      },
-      {
-        "lineNumber": 35,
         "author": {
           "gitId": "weiyang13"
         },
@@ -87330,7 +88955,8 @@
       }
     ],
     "authorContributionMap": {
-      "weiyang13": 35
+      "nexolute": 1,
+      "weiyang13": 23
     }
   },
   {
