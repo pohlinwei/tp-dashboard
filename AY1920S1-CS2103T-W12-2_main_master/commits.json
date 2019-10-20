@@ -189,6 +189,34 @@
             "deletions": 4
           }
         ]
+      },
+      {
+        "insertions": 1513,
+        "deletions": 357,
+        "date": "2019-10-20",
+        "commitResults": [
+          {
+            "hash": "db2cadf51f1d58756bfd4d474985d354d6f069f5",
+            "messageTitle": "Budget command added allowing user to specify their budget for a specific month (#143)",
+            "messageBody": "* Budget command added which allows user to specify their budget for a specific month.\r\n\r\nMonth are uniquely identified by the following format: MM/yyyy.\r\nOther changes:\r\n1. Updated UGDG to include `budget` command.\r\n2. Updated prefix for money from `c/COST` to `v/VALUE`, UGDG are updated to reflect this change.\r\n3. Added classes to support `BudgetList` which stores `Budget` objects containing `Value` and `Calendar`.\r\n4. Added JUnit test cases for `budget` command and the supporting classes like `BudgetList`, `BudgetCommand`, `BudgetCommandParser` and `ThriftTest` itself.\r\n\r\n* Added saving/reading of monthly budgets into the data file.\r\n\r\n1. Setting budget now saves into the JSON file, similar to how `Transaction` is stored.\r\n2. Added JUnit tests for (de)/serializing of `Budget` objects.\r\n3. Fixed JUnit tests for `JsonSerializableThrift`.\r\n4. Added `StreamUtils` for converting `Iterator\u003cT\u003e` to `Stream\u003cT\u003e`. JUnit tests are also added for this new utility class.\r\n\r\n* Fixed missing EOF in test json file\r\n\r\n* THRIFT now shows the current month\u0027s transactions on startup.\r\n\r\n1. New `TransactionIsInMonthYearPredicateTest` file to check if a `Transaction` belongs to that month. JUnit tests are added as well.\r\n2. Current month\u0027s budget is shown in GUI.\r\n3. Current month\u0027s balance is shown in GUI.\r\n\r\n* Refreshes and displays the current month\u0027s transaction list after add/delete/update is executed\r\n\r\n* Supported dynamic updating of displayed month\u0027s budget and balance\r\n\r\n1. After parsing successfully either a Add/Budget/Delete/Update command, reflect the possible changes on the GUI.\r\n\r\n* Bugfix to now include `Undo` and `Redo` commands to trigger refreshing the GUI.\r\n\r\n* Fix checkstyle\r\n\r\n* When Add/Budget/Delete/Update a transaction, the balance will only be updated if the transaction belongs to the current month.\r\n\r\n* Allow budget to be $0 value and other bug fixes.\r\n\r\n1. Clone will now update the month balance accordingly.\r\n\r\n* Added JUnit tests to BudgetValue class\r\n\r\n* Resolved checkstyle violations and accidental changes to DG.\r\n\r\n* Fixed typo in DG\r\n\r\n* Fixed checkstyle\r\n",
+            "insertions": 1424,
+            "deletions": 211
+          },
+          {
+            "hash": "e8d77e3b5a3b9bc651f16e4e208292710df0bb0b",
+            "messageTitle": "Fixed a bug where the balance will be updated incorrectly if the transaction list is filtered (#161)",
+            "messageBody": "",
+            "insertions": 1,
+            "deletions": 1
+          },
+          {
+            "hash": "ebf1a29926dbef327e221682e24df63490ab86b0",
+            "messageTitle": "Refactored \"find\" command and removed \"clear\" command (#163)",
+            "messageBody": "* Removed \"clear\" command and refactored \"find\" command\r\n\r\n`find` command now searches a `Transaction`\u0027s `Remark` field for keyword match as well.\r\n\r\n* Added JUnit test and fixed existing ones\r\n",
+            "insertions": 88,
+            "deletions": 145
+          }
+        ]
       }
     ],
     "krusagiz": [
@@ -280,6 +308,20 @@
             "messageBody": "* Fixed Tag/Untag index selection bug\r\n\r\n* Added test case for getSingleValue\r\n\r\n* Fixed Checkstyle\r\n\r\n* Added space inside lambda\r\n",
             "insertions": 13,
             "deletions": 0
+          }
+        ]
+      },
+      {
+        "insertions": 5,
+        "deletions": 5,
+        "date": "2019-10-20",
+        "commitResults": [
+          {
+            "hash": "10f2082ebf0657b42f9cab88637fdd1926e3e241",
+            "messageTitle": "Tag/Untag Filtered List Bugfix (#164)",
+            "messageBody": "* Make Tag/Untag work on Filtered Lists\r\n\r\n* Removed redundant GUI update\r\n",
+            "insertions": 5,
+            "deletions": 5
           }
         ]
       }
@@ -422,6 +464,48 @@
             "messageBody": "* Add undo feature for update command\r\n\r\n* Resolve Value#equals bug\r\n\r\n* Add redo feature for update command\r\n\r\n* Resolves typo\r\n",
             "insertions": 91,
             "deletions": 5
+          }
+        ]
+      },
+      {
+        "insertions": 58,
+        "deletions": 0,
+        "date": "2019-10-19",
+        "commitResults": [
+          {
+            "hash": "cbf1a7b8d2fb314ae268754f19bed9f4c038243e",
+            "messageTitle": "Undo and redo features for clone command (#156)",
+            "messageBody": "* Adds undo and redo feature for clone command\r\n\r\n* Removes unused import\r\n",
+            "insertions": 58,
+            "deletions": 0
+          }
+        ]
+      },
+      {
+        "insertions": 234,
+        "deletions": 40,
+        "date": "2019-10-20",
+        "commitResults": [
+          {
+            "hash": "8fe15b372bb25dee1ae664a8b71feadc7e7f665e",
+            "messageTitle": "Fix the undo and redo features for update command (#158)",
+            "messageBody": "* Fixs bug #152\r\n\r\n* Makes use of requireAllNonNull method instead\r\n",
+            "insertions": 34,
+            "deletions": 33
+          },
+          {
+            "hash": "db35a940d33b81175e9f573b470069111fd2e5a4",
+            "messageTitle": "Undo and redo features for tag command (#159)",
+            "messageBody": "* Adds undo feature for tag command and its test\r\n\r\n* Adds redo feature for tag command and its test\r\n\r\n* Refactor code\r\n",
+            "insertions": 97,
+            "deletions": 4
+          },
+          {
+            "hash": "83f56ba985ebdfe6af6698dcfe2590f8f5753dc3",
+            "messageTitle": "Undo and redo feature for untag command (#160)",
+            "messageBody": "* Adds undo feature for untag command\r\n\r\n* Adds redo feature for untag command\r\n\r\n* Resolves checkstyle issues\r\n",
+            "insertions": 103,
+            "deletions": 3
           }
         ]
       }
@@ -607,34 +691,34 @@
     ]
   },
   "authorFinalContributionMap": {
-    "limerencee": 4832,
-    "krusagiz": 1002,
-    "lightz96": 2351,
-    "lye-jw": 943,
+    "limerencee": 6129,
+    "krusagiz": 988,
+    "lightz96": 2567,
+    "lye-jw": 915,
     "kensonoenqh": 105
   },
   "authorFileTypeContributionMap": {
     "limerencee": {
-      "docs": 137,
-      "tests": 2385,
-      "functional": 2308,
+      "docs": 199,
+      "tests": 2858,
+      "functional": 3070,
       "other": 2
     },
     "krusagiz": {
-      "docs": 238,
-      "tests": 369,
-      "functional": 395
+      "docs": 241,
+      "tests": 357,
+      "functional": 390
     },
     "lightz96": {
-      "docs": 450,
-      "tests": 1145,
-      "functional": 754,
+      "docs": 441,
+      "tests": 1345,
+      "functional": 779,
       "other": 2
     },
     "lye-jw": {
       "docs": 185,
-      "tests": 478,
-      "functional": 280
+      "tests": 463,
+      "functional": 267
     },
     "kensonoenqh": {
       "docs": 53,
@@ -643,11 +727,11 @@
     }
   },
   "authorContributionVariance": {
-    "limerencee": 1353200.5,
-    "krusagiz": 13553.388,
-    "lightz96": 86202.99,
-    "lye-jw": 10888.796,
-    "kensonoenqh": 140.13373
+    "limerencee": 1382064.5,
+    "krusagiz": 13258.099,
+    "lightz96": 84855.49,
+    "lye-jw": 10669.7705,
+    "kensonoenqh": 137.23651
   },
   "authorDisplayNameMap": {
     "limerencee": "CS2103T-W12-2 POH J ... A HAO",

@@ -45838,6 +45838,562 @@
     }
   },
   {
+    "path": "src/main/java/seedu/flashcard/logic/LogicManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.flashcard.logic;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.nio.file.Path;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.GuiSettings;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.commands.Command;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.logic.commands.ViewCommand;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.parser.FlashcardListParser;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.Model;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.ReadOnlyFlashcardList;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Flashcard;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.storage.Storage;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * The main logic manager of the system."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class LogicManager implements Logic {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String FILE_OPS_ERROR_MESSAGE \u003d \"Could not save data to file.\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(LogicManager.class);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Model model;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Storage storage;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final FlashcardListParser flashcardListParser;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public LogicManager(Model model, Storage storage) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.model \u003d model;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.storage \u003d storage;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardListParser \u003d new FlashcardListParser();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public CommandResult execute(String commandText) throws CommandException, ParseException {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logger.info(\"----------------[USER COMMAND][\" + commandText + \"]\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Command command \u003d flashcardListParser.parseCommand(commandText);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        CommandResult commandResult \u003d command.execute(model);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        if (!(command instanceof ViewCommand)) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            model.updateLastViewedFlashcard(null);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            storage.saveFlashcardList(model.getFlashcardList());"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new CommandException(FILE_OPS_ERROR_MESSAGE + e, e);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return commandResult;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ReadOnlyFlashcardList getFlashcardList() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return model.getFlashcardList();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ObservableList\u003cFlashcard\u003e getFilteredFlashcardList() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return model.getFilteredFlashcardList();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Path getFlashcardListFilePath() {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return model.getFlashcardListFilePath();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public GuiSettings getGuiSettings() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return model.getGuiSettings();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        model.setGuiSettings(guiSettings);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 74,
+      "jolynnn8D": 4
+    }
+  },
+  {
     "path": "src/main/java/seedu/flashcard/logic/commands/AddCommand.java",
     "fileType": "functional",
     "lines": [
@@ -48317,6 +48873,753 @@
       "lzw12345": 25,
       "-": 190,
       "jolynnn8D": 9
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/logic/commands/FlipCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "package seedu.flashcard.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.model.Model;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Answer;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Flashcard;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": " * Command to input an answer to the last viewed flashcard and see the correct answer."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "public class FlipCommand extends Command {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"flip\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Takes in an answer as a parameter \""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            + \"and displays the correct answer of the flashcard that is being viewed.\\n\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            + \"Parameters: ANSWER\\n\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \"1\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"Flashcard flipped\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    private static final String MESSAGE_NULL_VIEW_FLASHCARD \u003d \"There are no viewed flashcards\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public final Answer answer;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public FlipCommand(Answer answer) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.answer \u003d answer;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        Flashcard lastViewedFlashcard \u003d model.getLastViewedFlashcard();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        if (lastViewedFlashcard \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            throw new CommandException(MESSAGE_NULL_VIEW_FLASHCARD);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        Answer correctAnswer \u003d lastViewedFlashcard.getAnswer();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        if (answer.equals(correctAnswer)) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            lastViewedFlashcard.getScore().incrementCorrectAnswer();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            return new CommandResult(\"Your answer: \" + answer.toString() + \" is correct.\\n\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            lastViewedFlashcard.getScore().incrementWrongAnswer();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            return new CommandResult(\"Your answer: \" + answer.toString() + \" is incorrect.\\n\""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "                + \"The correct answer is: \" + correctAnswer.toString());"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "jolynnn8D": 47
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/logic/commands/ViewCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.flashcard.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.Model;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Flashcard;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Command to view the MCQ choices in a flashcard."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class ViewCommand extends Command {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"view\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        + \": View the flashcard identified by the index number used in the displayed flashcard list.\\n\""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        + \"Parameters: INDEX (must be a positive integer)\\n\""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        + \"Example: \" + COMMAND_WORD + \" 1\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String MESSAGE_INVALID_FLASHCARD_INDEX \u003d \"The index you entered is invalid!\";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS \u003d \"The flashcard is shown below.\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Index targetIndex;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ViewCommand(Index targetIndex) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(targetIndex);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.targetIndex \u003d targetIndex;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Showing a whole flashcard in the command bot."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param model list of flashcards"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return the execution result"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws CommandException error encountered during execution of command"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        List\u003cFlashcard\u003e lastShownList \u003d model.getFilteredFlashcardList();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new CommandException(MESSAGE_INVALID_FLASHCARD_INDEX);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Flashcard cardToView \u003d lastShownList.get(targetIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        model.updateLastViewedFlashcard(cardToView);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new CommandResult(cardToView.toString());"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return other \u003d\u003d this"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            || (other instanceof ViewCommand"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u0026\u0026 targetIndex.equals(((ViewCommand) other).targetIndex));"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 56,
+      "jolynnn8D": 1
     }
   },
   {
@@ -51456,502 +52759,530 @@
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "import seedu.flashcard.logic.commands.HelpCommand;"
+        "content": "import seedu.flashcard.logic.commands.FlipCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ListCardByTagCommand;"
+        "content": "import seedu.flashcard.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ListCommand;"
+        "content": "import seedu.flashcard.logic.commands.ListCardByTagCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ListTagCommand;"
+        "content": "import seedu.flashcard.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ViewCommand;"
+        "content": "import seedu.flashcard.logic.commands.ListTagCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.flashcard.logic.commands.ViewCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " * The major controlling panel of command parsers."
+        "content": "/**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * The major controlling panel of command parsers."
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "public class FlashcardListParser {"
+        "content": " */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "public class FlashcardListParser {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the original user input and calls corresponding commands or sub-parsers."
+        "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput the original user input."
+        "content": "     * Parses the original user input and calls corresponding commands or sub-parsers."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command being extracted out from the user input."
+        "content": "     * @param userInput the original user input."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException when the user input format does not fit the pattern."
+        "content": "     * @return the command being extracted out from the user input."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException when the user input format does not fit the pattern."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 60,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": "            return new FindCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 61,
         "author": {
           "gitId": "Akimatsu98"
         },
         "content": ""
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
         "content": "        case ListCardByTagCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": "            return new ListCardByTagCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "        case ListTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListTagCommand();"
+        "content": "        case ListTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListTagCommand();"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "        case DeleteTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteTagCommandParser().parse(arguments);"
+        "content": "        case DeleteTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new DeleteTagCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ViewCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ViewCommandParser().parse(arguments);"
+        "content": "        case ViewCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ViewCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKOWN_COMMAND);"
+        "content": "        case FlipCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "jolynnn8D"
         },
-        "content": "        }"
+        "content": "            return new FlipCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "jolynnn8D"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
         "author": {
           "gitId": "lzw12345"
         },
@@ -51961,7 +53292,178 @@
     "authorContributionMap": {
       "lzw12345": 42,
       "-": 44,
+      "jolynnn8D": 4,
       "Akimatsu98": 1
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/logic/parser/FlipCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "package seedu.flashcard.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.logic.commands.FlipCommand;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Answer;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": " * Parse input arguments to generate a {@Code FlipCommand}"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "public class FlipCommandParser implements Parser\u003cFlipCommand\u003e {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public FlipCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            Answer answer \u003d ParserUtil.parseAnswer(args);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            return new FlipCommand(answer);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT));"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "jolynnn8D": 23
     }
   },
   {
@@ -54039,6 +55541,2098 @@
     }
   },
   {
+    "path": "src/main/java/seedu/flashcard/model/Model.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.flashcard.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.nio.file.Path;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.function.Predicate;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.GuiSettings;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Flashcard;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * The interface of models containing the whole flashcard list."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * This is one of the communication windows of the model package to the outside."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public interface Model {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * {@code Predicate} that always evaluate to true"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Predicate\u003cFlashcard\u003e PREDICATE_SHOW_ALL_FLASHCARDS \u003d unused -\u003e true;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * {@code Predicate} that evaluates true for flashcards contains the given tag."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Predicate\u003cFlashcard\u003e getHasTagPredicate(Set\u003cTag\u003e tag);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Get the set of all tags in the system."
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Set\u003cTag\u003e getAllSystemTags();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Replaces user prefs data with the data in {@code userPrefs}"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void setUserPrefs(ReadOnlyUserPrefs userPrefs);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns user prefs datat with the data in {@code userPrefs}"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    ReadOnlyUserPrefs getUserPrefs();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Get the user prefs\u0027 GUI settings"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    GuiSettings getGuiSettings();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the user prefs\u0027 GUI settings"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void setGuiSettings(GuiSettings guiSettings);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Get the user prefs\u0027 flashcard list file path"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Path getFlashcardListFilePath();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the user prefs\u0027 flashcard list file path"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param flashcardListFilePath"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void setFlashcardListFilePath(Path flashcardListFilePath);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Replaces flashcard list data with the data in {@code flashcardList}"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void setFlashcardList(ReadOnlyFlashcardList flashcardList);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Get the flashcard list"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    ReadOnlyFlashcardList getFlashcardList();"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Check if a flashcard exists in the flashcard list"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    boolean hasFlashcard(Flashcard flashcard);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Deletes the given flashcard. This flashcard mush exist in the flashcard list"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void deleteFlashcard(Flashcard flashcard);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Adds the given flashcard."
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void addFlashcard(Flashcard flashcard);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Replaces the given flashcard {@code target} with {@code editedFlashcard}"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * {@code target} must exist in the flashcard list"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void setFlashcard(Flashcard target, Flashcard editedFlashcard);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns an unmodifiable view of the filtered flashcard list"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    ObservableList\u003cFlashcard\u003e getFilteredFlashcardList();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns true if the given tag ever appeared in the system."
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    boolean systemHasTag(Tag tag);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Removes the given tag from all flashcards in the system."
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void systemRemoveTag(Tag tag);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws NullPointerException is {@code predicate} is null"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void updateFilteredFlashcardList(Predicate\u003cFlashcard\u003e predicate);"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Updates the last viewed flashcard."
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    void updateLastViewedFlashcard(Flashcard flashcard);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Retrieves the last viewed flashcard."
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * @return Last viewed flashcard."
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    Flashcard getLastViewedFlashcard();"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 115,
+      "jolynnn8D": 11
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/model/ModelManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.flashcard.model;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import static seedu.flashcard.commons.util.CollectionUtil.requireAllNonNull;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.nio.file.Path;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.function.Predicate;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.collections.ObservableList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.collections.transformation.FilteredList;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.GuiSettings;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.flashcard.Flashcard;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Represents the in memory model of the flashcard list data"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class ModelManager implements Model {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(ModelManager.class);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final FlashcardList flashcardList;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final UserPrefs userPrefs;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final FilteredList\u003cFlashcard\u003e filteredFlashcards;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    private Flashcard viewedFlashcard;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Default initializer"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ModelManager() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this(new FlashcardList(), new UserPrefs());"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Initializes a MOdelManager with the given flashcard list and userPrefs"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ModelManager(ReadOnlyFlashcardList flashcardList, ReadOnlyUserPrefs userPrefs) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireAllNonNull(flashcardList, userPrefs);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logger.fine(\"Initializing with flashcard list: \" + flashcardList + \" and user prefs \" + userPrefs);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.flashcardList \u003d new FlashcardList(flashcardList);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.userPrefs \u003d new UserPrefs(userPrefs);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        filteredFlashcards \u003d new FilteredList\u003cFlashcard\u003e(this.flashcardList.getFlashcardList());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.viewedFlashcard \u003d null;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Predicate\u003cFlashcard\u003e getHasTagPredicate(Set\u003cTag\u003e tag) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(tag);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcard -\u003e flashcard.hasAnyTag(tag);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Set\u003cTag\u003e getAllSystemTags() {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcardList.getAllFlashcardTags();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(userPrefs);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.userPrefs.resetData(userPrefs);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ReadOnlyUserPrefs getUserPrefs() {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return userPrefs;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public GuiSettings getGuiSettings() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return userPrefs.getGuiSettings();"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setGuiSettings(GuiSettings guiSettings) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(guiSettings);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        userPrefs.setGuiSettings(guiSettings);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Path getFlashcardListFilePath() {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return userPrefs.getFlashcardListFilePath();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setFlashcardListFilePath(Path flashcardListFilePath) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(flashcardListFilePath);"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        userPrefs.setFlashcardListFilePath(flashcardListFilePath);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setFlashcardList(ReadOnlyFlashcardList flashcardList) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.flashcardList.resetData(flashcardList);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ReadOnlyFlashcardList getFlashcardList() {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcardList;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean hasFlashcard(Flashcard flashcard) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(flashcard);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcardList.hasFlashcard(flashcard);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void deleteFlashcard(Flashcard flashcard) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardList.removeFlashcard(flashcard);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void addFlashcard(Flashcard flashcard) {"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardList.addFlashcard(flashcard);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireAllNonNull(target, editedFlashcard);"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardList.setFlashcard(target, editedFlashcard);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ObservableList\u003cFlashcard\u003e getFilteredFlashcardList() {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return filteredFlashcards;"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean systemHasTag(Tag tag) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcardList.flashcardsHasTag(tag);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void systemRemoveTag(Tag tag) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardList.flashcardsRemoveTag(tag);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void updateFilteredFlashcardList(Predicate\u003cFlashcard\u003e predicate) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        requireNonNull(predicate);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        filteredFlashcards.setPredicate(predicate);"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public void updateLastViewedFlashcard(Flashcard flashcard) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.viewedFlashcard \u003d flashcard;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public Flashcard getLastViewedFlashcard() {"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        return this.viewedFlashcard;"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!(other instanceof ModelManager)) {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        ModelManager obj \u003d (ModelManager) other;"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcardList.equals(obj.flashcardList)"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u0026\u0026 userPrefs.equals(obj.userPrefs)"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                \u0026\u0026 filteredFlashcards.equals(obj.filteredFlashcards);"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 158,
+      "jolynnn8D": 12
+    }
+  },
+  {
     "path": "src/main/java/seedu/flashcard/model/flashcard/Answer.java",
     "fileType": "functional",
     "lines": [
@@ -54187,13 +57781,20 @@
         "author": {
           "gitId": "jolynnn8D"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
       "Oscar-B-Liang": 5,
       "-": 11,
-      "jolynnn8D": 5
+      "jolynnn8D": 6
     }
   },
   {
@@ -54712,913 +58313,983 @@
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "    private final Score score;"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "    public Flashcard(Word word, Set\u003cChoice\u003e choices, Definition definitions, Set\u003cTag\u003e tags, Answer answer) {"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireAllNonNull(word, definitions, tags);"
+        "content": "    public Flashcard(Word word, Set\u003cChoice\u003e choices, Definition definitions, Set\u003cTag\u003e tags, Answer answer) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.word \u003d word;"
+        "content": "        requireAllNonNull(word, definitions, tags);"
       },
       {
         "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.word \u003d word;"
+      },
+      {
+        "lineNumber": 31,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "        this.choices.addAll(choices);"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
         "content": "        this.definition \u003d definitions;"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
         "content": "        this.tags.addAll(tags);"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
         "content": "        this.answer \u003d answer;"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 35,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.score \u003d new Score();"
+      },
+      {
+        "lineNumber": 36,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 37,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": ""
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
         "content": "    public Word getWord() {"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
         "content": "        return word;"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 40,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 41,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": ""
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 42,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
         "content": "     * Returns an immutable definition, which throws {@code UnsupportedOperationException}"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
         "content": "     * if modification is attempted"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 45,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": "    public Definition getDefinition() {"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
         "content": "        return definition;"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 48,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 49,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Returns an immutable answer, which throws {@code UnsupportedOperationException}"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "     * if modification attempted"
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Returns an immutable answer, which throws {@code UnsupportedOperationException}"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Answer getAnswer() {"
+        "content": "     * if modification attempted"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        return answer;"
+        "content": "     */"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public Answer getAnswer() {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        return answer;"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
-        },
-        "content": "     * if modification is attempted"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "Oscar-B-Liang"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public Set\u003cTag\u003e getTags() {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return Collections.unmodifiableSet(tags);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
         "content": "    /**"
       },
       {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Returns an immutable score, which throws {@code UnsupportedOperationException}"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * if modification attempted"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public Score getScore() {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        return score;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "     * Returns true if this flashcard has the following tag."
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean hasTag(Tag tag) {"
+        "content": "     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        return getTags().contains(tag);"
+        "content": "     * if modification is attempted"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "-"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public Set\u003cTag\u003e getTags() {"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        return Collections.unmodifiableSet(tags);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "     * Returns an immutable choice set, which throws {@code UnsupportedOperationException}"
+        "content": "    }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "     * if modification is attempted"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "    public Set\u003cChoice\u003e getChoices() {"
+        "content": "     * Returns true if this flashcard has the following tag."
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "        return Collections.unmodifiableSet(choices);"
+        "content": "     */"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public boolean hasTag(Tag tag) {"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        return getTags().contains(tag);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns true if this flashcard has any one of the tags in the given tag sets."
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "    public boolean hasAnyTag(Set\u003cTag\u003e tags) {"
+        "content": "     * Returns an immutable choice set, which throws {@code UnsupportedOperationException}"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "        for (Tag tag : tags) {"
+        "content": "     * if modification is attempted"
       },
       {
         "lineNumber": 84,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "            if (getTags().contains(tag)) {"
+        "content": "     */"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "                return true;"
+        "content": "    public Set\u003cChoice\u003e getChoices() {"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "            }"
+        "content": "        return Collections.unmodifiableSet(choices);"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "        return false;"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     * Returns true if this flashcard has any one of the tags in the given tag sets."
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Removes the tag from this flashcard."
+        "content": "    public boolean hasAnyTag(Set\u003cTag\u003e tags) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "        for (Tag tag : tags) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void removeTag(Tag tag) {"
+        "content": "            if (getTags().contains(tag)) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "        tags.remove(tag);"
+        "content": "                return true;"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        return false;"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns true if any choices is from the choice list"
+        "content": "    }"
       },
       {
         "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Removes the tag from this flashcard."
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void removeTag(Tag tag) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        tags.remove(tag);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns true if any choices is from the choice list"
+      },
+      {
+        "lineNumber": 110,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 111,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "    public boolean hasAnyChoice(Set\u003cChoice\u003e choices) {"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 112,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "        for (Choice choice : choices) {"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 113,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "            if (getChoices().contains(choice)) {"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 114,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "                return true;"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 115,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": "        return false;"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "Oscar-B-Liang"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Defines that if and only if two flashcards containing the same word can be considered as the same."
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "Oscar-B-Liang"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public boolean isSameFlashcard(Flashcard otherFlashcard) {"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (otherFlashcard \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return true;"
-      },
-      {
         "lineNumber": 116,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "lzw12345"
         },
         "content": "        }"
       },
       {
         "lineNumber": 117,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "        return otherFlashcard !\u003d null"
+        "content": "        return false;"
       },
       {
         "lineNumber": 118,
         "author": {
-          "gitId": "-"
-        },
-        "content": "                \u0026\u0026 otherFlashcard.getWord().equals(getWord());"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "lzw12345"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 119,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "lzw12345"
         },
         "content": ""
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 120,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "    /**"
       },
       {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Defines that if and only if two flashcards containing the same word can be considered as the same."
+      },
+      {
         "lineNumber": 122,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Returns true if both the word and the definitions and the tags are the same."
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * This is stronger than {@code isSameFlashCard}"
-      },
-      {
-        "lineNumber": 124,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean isSameFlashcard(Flashcard otherFlashcard) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (otherFlashcard \u003d\u003d this) {"
+      },
+      {
         "lineNumber": 125,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "            return true;"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "        }"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "        return otherFlashcard !\u003d null"
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "            return true;"
+        "content": "                \u0026\u0026 otherFlashcard.getWord().equals(getWord());"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "        if (!(other instanceof Flashcard)) {"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "            return false;"
+        "content": "    /**"
       },
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "        }"
+        "content": "     * Returns true if both the word and the definitions and the tags are the same."
       },
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "        Flashcard otherFlashcard \u003d (Flashcard) other;"
+        "content": "     * This is stronger than {@code isSameFlashCard}"
       },
       {
         "lineNumber": 134,
         "author": {
-          "gitId": "-"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "        return otherFlashcard.getWord().equals(getWord())"
+        "content": "     */"
       },
       {
         "lineNumber": 135,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "                \u0026\u0026 otherFlashcard.getDefinition().equals(getDefinition())"
+        "content": "    @Override"
       },
       {
         "lineNumber": 136,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "                \u0026\u0026 otherFlashcard.getTags().equals(getTags());"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    }"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "            return true;"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    public String toString() {"
+        "content": "        if (!(other instanceof Flashcard)) {"
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+        "content": "            return false;"
       },
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "        builder.append(getWord())"
+        "content": "        }"
       },
       {
         "lineNumber": 143,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "                .append(\" Definitions: \")"
+        "content": "        Flashcard otherFlashcard \u003d (Flashcard) other;"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": "                .append(getDefinition())"
+        "content": "        return otherFlashcard.getWord().equals(getWord())"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "                .append(\" Tags: \");"
+        "content": "                \u0026\u0026 otherFlashcard.getDefinition().equals(getDefinition())"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": "        getTags().forEach(builder::append);"
+        "content": "                \u0026\u0026 otherFlashcard.getTags().equals(getTags());"
       },
       {
         "lineNumber": 147,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        builder.append(\" Choices: \\n\");"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        getChoices().forEach(builder::append);"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return builder.toString();"
-      },
-      {
-        "lineNumber": 150,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 151,
+        "lineNumber": 148,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": ""
       },
       {
-        "lineNumber": 152,
+        "lineNumber": 149,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "jolynnn8D"
         },
         "content": "    @Override"
       },
       {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        builder.append(getWord())"
+      },
+      {
         "lineNumber": 153,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": "    public int hashCode() {"
+        "content": "                .append(\" Definitions: \")"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
-        "content": "        return Objects.hash(word, definition, tags);"
+        "content": "                .append(getDefinition())"
       },
       {
         "lineNumber": 155,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .append(\" Tags: \");"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        getTags().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        builder.append(\" Choices: \\n\");"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        getChoices().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return Objects.hash(word, definition, tags);"
+      },
+      {
+        "lineNumber": 165,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 156,
+        "lineNumber": 166,
         "author": {
           "gitId": "jolynnn8D"
         },
@@ -55629,7 +59300,380 @@
       "Oscar-B-Liang": 20,
       "lzw12345": 22,
       "-": 90,
-      "jolynnn8D": 24
+      "jolynnn8D": 34
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/model/flashcard/Score.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "package seedu.flashcard.model.flashcard;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": " * Score of each Flashcard"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "public class Score {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    private int correctAnswers;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    private int wrongAnswers;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public Score() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.correctAnswers \u003d 0;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.wrongAnswers \u003d 0;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Returns the number of times the flashcard has been answered correctly."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * @return Number of correct answers."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public int getCorrectAnswers() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        return correctAnswers;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Returns the number of times the flashcard has been answered wrongly."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * @return Number of wrong answers."
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public int getWrongAnswers() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        return wrongAnswers;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Returns the number of times the flashcard has been answered."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * @return Total number of attempts of the flashcard."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public int getTotalAttempts() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        return correctAnswers + wrongAnswers;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Adds one to the number of times the flashcard has been correctly answered."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public void incrementCorrectAnswer() {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.correctAnswers++;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     * Adds one to the number of times the flashcard has been wrongly answered."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public void incrementWrongAnswer() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "        this.wrongAnswers++;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "jolynnn8D": 52
     }
   },
   {
@@ -57408,6 +61452,2486 @@
     "authorContributionMap": {
       "lzw12345": 16,
       "-": 92
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/ui/MainWindow.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.flashcard.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.event.ActionEvent;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.fxml.FXML;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.MenuItem;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.TextInputControl;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.input.KeyCombination;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.input.KeyEvent;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.layout.StackPane;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.stage.Stage;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.GuiSettings;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.Logic;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Represent the whole window of the user interface, it should contain all units in the user interface."
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class MainWindow extends UiPart\u003cStage\u003e {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final String FXML \u003d \"MainWindow.fxml\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private final Logger logger \u003d LogsCenter.getLogger(getClass());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Stage primaryStage;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Logic logic;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    // Independent Ui parts residing in this Ui container"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private FlashcardListPanel flashcardListPanel;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private ResultDisplay resultDisplay;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private HelpWindow helpWindow;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane commandBoxPlaceholder;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private MenuItem helpMenuItem;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane flashcardListPanelPlaceholder;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private StackPane resultDisplayPlaceholder;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "    private StackPane statisticsDisplayPlaceholder;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public MainWindow(Stage primaryStage, Logic logic) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(FXML, primaryStage);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // Set dependencies"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.primaryStage \u003d primaryStage;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.logic \u003d logic;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // Configure the UI"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setWindowDefaultSize(logic.getGuiSettings());"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setAccelerators();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        helpWindow \u003d new HelpWindow();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public Stage getPrimaryStage() {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return primaryStage;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setAccelerators() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        setAccelerator(helpMenuItem, KeyCombination.valueOf(\"F1\"));"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the accelerator of a MenuItem."
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param keyCombination the KeyCombination value of the accelerator"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        menuItem.setAccelerator(keyCombination);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        /*"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * TODO: the code below can be removed once the bug reported here"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * https://bugs.openjdk.java.net/browse/JDK-8131666"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * is fixed in later version of SDK."
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * According to the bug report, TextInputControl (TextField, TextArea) will"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * consume function-key events. Because CommandBox contains a TextField, and"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * not work when the focus is in them because the key event is consumed by"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * the TextInputControl(s)."
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         *"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * For now, we add following event filter to capture such key events and open"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * help window purposely so to support accelerators even when focus is"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         * in CommandBox or ResultDisplay."
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -\u003e {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (event.getTarget() instanceof TextInputControl \u0026\u0026 keyCombination.match(event)) {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                menuItem.getOnAction().handle(new ActionEvent());"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                event.consume();"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Fills up all the placeholders of this window."
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void fillInnerParts() {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardListPanel \u003d new FlashcardListPanel(logic.getFilteredFlashcardList());"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        resultDisplay \u003d new ResultDisplay();"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Sets the default size based on {@code guiSettings}."
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void setWindowDefaultSize(GuiSettings guiSettings) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.setHeight(guiSettings.getWindowHeight());"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.setWidth(guiSettings.getWindowWidth());"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (guiSettings.getWindowCoordinates() !\u003d null) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            primaryStage.setX(guiSettings.getWindowCoordinates().getX());"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            primaryStage.setY(guiSettings.getWindowCoordinates().getY());"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Opens the help window or focuses on it if it\u0027s already opened."
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void handleHelp() {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!helpWindow.isShowing()) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            helpWindow.show();"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            helpWindow.focus();"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void show() {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.show();"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Closes the application."
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @FXML"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void handleExit() {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        GuiSettings guiSettings \u003d new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                (int) primaryStage.getX(), (int) primaryStage.getY());"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logic.setGuiSettings(guiSettings);"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        helpWindow.hide();"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.hide();"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public FlashcardListPanel getPersonListPanel() {"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return flashcardListPanel;"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Executes the command and returns the result."
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @see seedu.address.logic.Logic#execute(String)"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            CommandResult commandResult \u003d logic.execute(commandText);"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.info(\"Result: \" + commandResult.getFeedbackToUser());"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (commandResult.isShowHelp()) {"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                handleHelp();"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (commandResult.isExit()) {"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                handleExit();"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return commandResult;"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (CommandException | ParseException e) {"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.info(\"Invalid command: \" + commandText);"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 189,
+      "Akimatsu98": 1
+    }
+  },
+  {
+    "path": "src/main/java/seedu/flashcard/ui/UiManager.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package seedu.flashcard.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.logging.Logger;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.application.Platform;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.control.Alert;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.scene.image.Image;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import javafx.stage.Stage;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.MainApp;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.core.LogsCenter;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.commons.util.StringUtil;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.flashcard.logic.Logic;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * The manager that operates the whole ui running logic."
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class UiManager implements Ui {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static final String ALERT_DIALOG_PANE_FIELD_ID \u003d \"alertDialogPane\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static final Logger logger \u003d LogsCenter.getLogger(UiManager.class);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "    private static final String ICON_APPLICATION \u003d \"/images/flashmind_icon.png\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Logic logic;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private MainWindow mainWindow;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public UiManager(Logic logic) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.logic \u003d logic;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public void start(Stage primaryStage) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logger.info(\"Starting UI...\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        //Set the application icon."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        primaryStage.getIcons().add(getImage(ICON_APPLICATION));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            mainWindow \u003d new MainWindow(primaryStage, logic);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            mainWindow.show(); //This should be called before creating other UI parts"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            mainWindow.fillInnerParts();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (Throwable e) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            logger.severe(StringUtil.getDetails(e));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            showFatalErrorDialogAndShutdown(\"Fatal error during initializing\", e);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Image getImage(String imagePath) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new Image(MainApp.class.getResourceAsStream(imagePath));"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Shows an alert dialog on {@code owner} with the given parameters."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * This method only returns after the user has closed the alert dialog."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void showAlertDialogAndWait(Stage owner, Alert.AlertType type, String title, String headerText,"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                                               String contentText) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final Alert alert \u003d new Alert(type);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.getDialogPane().getStylesheets().add(\"view/DarkTheme.css\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.initOwner(owner);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.setTitle(title);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.setHeaderText(headerText);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.setContentText(contentText);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        alert.showAndWait();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Shows an error alert dialog with {@code title} and error message, {@code e},"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * and exits the application after the user has closed the alert dialog."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void showFatalErrorDialogAndShutdown(String title, Throwable e) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        logger.severe(title + \" \" + e.getMessage() + StringUtil.getDetails(e));"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Platform.exit();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.exit(1);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 83,
+      "Akimatsu98": 1
+    }
+  },
+  {
+    "path": "src/main/resources/view/MainWindow.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import java.net.URL?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.Scene?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003c?import javafx.scene.chart.CategoryAxis?\u003e"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003c?import javafx.scene.chart.LineChart?\u003e"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003c?import javafx.scene.chart.NumberAxis?\u003e"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003c?import javafx.scene.chart.PieChart?\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.Menu?\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.MenuBar?\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.MenuItem?\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003c?import javafx.stage.Stage?\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "\u003cfx:root maxHeight\u003d\"520.0\" maxWidth\u003d\"1500.0\" minHeight\u003d\"510.0\" minWidth\u003d\"1000.0\" resizable\u003d\"false\" title\u003d\"FlashMind\" type\u003d\"Stage\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003cscene\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003cScene\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "         \u003cHBox maxHeight\u003d\"500.0\" maxWidth\u003d\"700.0\" minHeight\u003d\"420.0\" minWidth\u003d\"400.0\" prefHeight\u003d\"683.0\" prefWidth\u003d\"400.0\"\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "            \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "               \u003cVBox\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                  \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                     \u003cMenuBar fx:id\u003d\"MenuBar\"\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                       \u003cmenus\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                         \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"Action\"\u003e"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                           \u003citems\u003e"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                             \u003cMenuItem mnemonicParsing\u003d\"false\" onAction\u003d\"#handleExit\" text\u003d\"Close\" /\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                           \u003c/items\u003e"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                         \u003c/Menu\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                         \u003cMenu mnemonicParsing\u003d\"false\" text\u003d\"Help\"\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                           \u003citems\u003e"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                             \u003cMenuItem fx:id\u003d\"helpMenuItem\" mnemonicParsing\u003d\"false\" onAction\u003d\"#handleHelp\" text\u003d\"Show Help\" /\u003e"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                           \u003c/items\u003e"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                         \u003c/Menu\u003e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                       \u003c/menus\u003e"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                     \u003c/MenuBar\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                     \u003cStackPane fx:id\u003d\"commandBoxPlaceholder\" styleClass\u003d\"pane-with-border\" /\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                     \u003cStackPane fx:id\u003d\"resultDisplayPlaceholder\" minHeight\u003d\"220.0\" minWidth\u003d\"200.0\" styleClass\u003d\"pane-with-border\" /\u003e"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                     \u003cHBox\u003e"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                        \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                           \u003cStackPane maxHeight\u003d\"1.7976931348623157E308\" maxWidth\u003d\"1.7976931348623157E308\" minHeight\u003d\"217.0\" minWidth\u003d\"250.0\" prefHeight\u003d\"217.0\" prefWidth\u003d\"109.0\" styleClass\u003d\"pane-with-border\"\u003e"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                              \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                 \u003cLineChart prefHeight\u003d\"166.0\" prefWidth\u003d\"248.0\"\u003e"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                   \u003cxAxis\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                     \u003cCategoryAxis side\u003d\"BOTTOM\" /\u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                   \u003c/xAxis\u003e"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                   \u003cyAxis\u003e"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                     \u003cNumberAxis side\u003d\"LEFT\" /\u003e"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                   \u003c/yAxis\u003e"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                 \u003c/LineChart\u003e"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                              \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                           \u003c/StackPane\u003e"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                           \u003cStackPane minWidth\u003d\"250.0\" prefHeight\u003d\"217.0\" prefWidth\u003d\"111.0\" styleClass\u003d\"pane-with-border\"\u003e"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                              \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                                 \u003cPieChart /\u003e"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                              \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                           \u003c/StackPane\u003e"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                        \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                     \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                  \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "               \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "               \u003cVBox maxHeight\u003d\"1.7976931348623157E308\" maxWidth\u003d\"1.7976931348623157E308\" minHeight\u003d\"800.0\" minWidth\u003d\"500.0\" styleClass\u003d\"pane-with-border-2\"\u003e"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                  \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                     \u003cStackPane fx:id\u003d\"flashcardListPanelPlaceholder\" maxHeight\u003d\"1.7976931348623157E308\" maxWidth\u003d\"1.7976931348623157E308\" minHeight\u003d\"503.0\" minWidth\u003d\"500.0\" prefHeight\u003d\"503.0\" prefWidth\u003d\"203.0\" styleClass\u003d\"pane-with-border-2\" /\u003e"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "                  \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "               \u003c/VBox\u003e"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "            \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "         \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "         \u003cstylesheets\u003e"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "            \u003cURL value\u003d\"@DarkTheme.css\" /\u003e"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "            \u003cURL value\u003d\"@Extensions.css\" /\u003e"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Akimatsu98"
+        },
+        "content": "         \u003c/stylesheets\u003e"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003c/Scene\u003e"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    \u003c/scene\u003e"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c/fx:root\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 24,
+      "Akimatsu98": 52
     }
   },
   {

@@ -19004,21 +19004,21 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "OneArmyj"
+          "gitId": "KxxMxxx"
         },
-        "content": "    public static final String MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX \u003d \"The contacts index provided is invalid\";"
+        "content": "    public static final String MESSAGE_INVALID_ACCOMMODATION_DISPLAYED_INDEX \u003d"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "1nefootstep"
+          "gitId": "KxxMxxx"
         },
-        "content": "    public static final String MESSAGE_INVALID_DAY_DISPLAYED_INDEX \u003d \"The day index provided is invalid\";"
+        "content": "            \"The accommodation index provided is invalid\";"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "oscarsu97"
+          "gitId": "KxxMxxx"
         },
         "content": "    public static final String MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX \u003d \"The activity index provided is invalid\";"
       },
@@ -19027,10 +19027,24 @@
         "author": {
           "gitId": "OneArmyj"
         },
-        "content": "    public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW \u003d \"%1$d contacts listed!\";"
+        "content": "    public static final String MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX \u003d \"The contacts index provided is invalid\";"
       },
       {
         "lineNumber": 14,
+        "author": {
+          "gitId": "1nefootstep"
+        },
+        "content": "    public static final String MESSAGE_INVALID_DAY_DISPLAYED_INDEX \u003d \"The day index provided is invalid\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "OneArmyj"
+        },
+        "content": "    public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW \u003d \"%1$d contacts listed!\";"
+      },
+      {
+        "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
@@ -19040,8 +19054,8 @@
     "authorContributionMap": {
       "1nefootstep": 1,
       "OneArmyj": 2,
-      "-": 10,
-      "oscarsu97": 1
+      "KxxMxxx": 3,
+      "-": 10
     }
   },
   {
@@ -20098,6 +20112,554 @@
     "authorContributionMap": {
       "OneArmyj": 21,
       "-": 69
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/commands/AddAccommodationCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.accommodation.Accommodation;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.contact.Contact;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.field.ContactContainsNumberPredicate;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": " * Adds an accommodation to the itinerary."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "public class AddAccommodationCommand extends AddCommand {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String SECOND_COMMAND_WORD \u003d \"accommodation\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \" \" + SECOND_COMMAND_WORD + \" \""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \": Adds an Accommodation to the itinerary.\""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Parameters: \""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_NAME + \"NAME \""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_ADDRESS + \"ADDRESS \""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_PHONE + \"NUMBER \""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"[\" + PREFIX_TAG + \"TAG]...\\n\""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Example: add \" + COMMAND_WORD + \" \""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_NAME + \"Hotel 81 \""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_ADDRESS + \"Geylang \""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_TAG + \"cheap\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New accommodation added: %1s\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_DUPLICATE_ACCOMMODATION \u003d \"This accommodation already exists in the itinerary.\";"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    private final Accommodation toAdd;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * Creates an AddActivityCommand to add the specified {@Activity}"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public AddAccommodationCommand(Accommodation accommodation) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(accommodation);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        toAdd \u003d accommodation;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (model.hasAccommodation(toAdd)) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_ACCOMMODATION);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (toAdd.getContact().isPresent()) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            model.updateFilteredContactList(new ContactContainsNumberPredicate(toAdd.getContact().get().getPhone()));"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            List\u003cContact\u003e sameNumberContacts \u003d model.getFilteredContactList();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            if (!sameNumberContacts.isEmpty()) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                model.addAccommodation(new Accommodation(toAdd.getName(), toAdd.getAddress(), sameNumberContacts.get(0),"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                        toAdd.getTags()));"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                model.addAccommodation(toAdd);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            model.addAccommodation(toAdd);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return other \u003d\u003d this"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                || (other instanceof AddAccommodationCommand"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                \u0026\u0026 toAdd.equals(((AddAccommodationCommand) other).toAdd));"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "KxxMxxx": 77
     }
   },
   {
@@ -21737,6 +22299,386 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/DeleteAccommodationCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.accommodation.Accommodation;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": " * Removes an accommodation from the accommodation list."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "public class DeleteAccommodationCommand extends DeleteCommand {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String SECOND_COMMAND_WORD \u003d \"accommodation\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \": Deletes the accommodation identified by the index number used in the displayed accommodation list.\\n\""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer)\\n\""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" \" + SECOND_COMMAND_WORD + \" 1\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_DELETE_ACCOMMODATION_SUCCESS \u003d \"Deleted Accommodation: %1$s\";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    private final Index targetIndex;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public DeleteAccommodationCommand(Index targetIndex) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        this.targetIndex \u003d targetIndex;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        List\u003cAccommodation\u003e lastShownList \u003d model.getFilteredAccommodationList();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_ACCOMMODATION_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Accommodation accommodationToDelete \u003d lastShownList.get(targetIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        model.deleteAccommodation(accommodationToDelete);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_DELETE_ACCOMMODATION_SUCCESS, accommodationToDelete));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return other \u003d\u003d this // short circuit if same object"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                || (other instanceof DeleteAccommodationCommand // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                \u0026\u0026 targetIndex.equals(((DeleteAccommodationCommand) other).targetIndex)); // state check"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "KxxMxxx": 53
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/commands/DeleteActivityCommand.java",
     "fileType": "functional",
     "lines": [
@@ -22971,6 +23913,1408 @@
     }
   },
   {
+    "path": "src/main/java/seedu/address/logic/commands/EditAccommodationCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACCOMMODATIONS;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.HashSet;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import java.util.Set;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.commons.util.CollectionUtil;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.accommodation.Accommodation;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.contact.Contact;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.contact.Phone;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.field.Address;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.field.Name;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.model.tag.Tag;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": " * Edits the details of an existing accommodation in the itinerary."
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "public class EditAccommodationCommand extends EditCommand {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String SECOND_COMMAND_WORD \u003d \"accommodation\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \" \" + SECOND_COMMAND_WORD"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \": Edits the details of the accommodation identified \""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"by the index number used in the displayed accommodation list. \""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Existing values will be overwritten by the input values.\\n\""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"[\" + PREFIX_NAME + \"NAME] \""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"[\" + PREFIX_ADDRESS + \"ADDRESS] \""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"[\" + PREFIX_TAG + \"TAG]...\\n\""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            + PREFIX_PHONE + \"91234567 \";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_EDIT_ACCOMMODATION_SUCCESS \u003d \"Edited Accommodation: %1$s\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_NOT_EDITED \u003d \"At least one field to edit must be provided.\";"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static final String MESSAGE_DUPLICATE_ACCOMMODATION \u003d \"This accommodation already exists in the itinerary.\";"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    private final Index index;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    private final EditAccommodationDescriptor editAccommodationDescriptor;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * @param index of the accommodation in the filtered accommodation list to edit"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public EditAccommodationCommand(Index index, EditAccommodationDescriptor editAccommodationDescriptor) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(index);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(editAccommodationDescriptor);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        this.editAccommodationDescriptor \u003d editAccommodationDescriptor;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        List\u003cAccommodation\u003e lastShownList \u003d model.getFilteredAccommodationList();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_ACCOMMODATION_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Accommodation accommodationToEdit \u003d lastShownList.get(index.getZeroBased());"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Accommodation editedAccommodation \u003d createEditedAccommodation(accommodationToEdit, editAccommodationDescriptor);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (!accommodationToEdit.isSameAccommodation(editedAccommodation)"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                \u0026\u0026 model.hasAccommodation(editedAccommodation)) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new CommandException(MESSAGE_DUPLICATE_ACCOMMODATION);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        model.setAccommodation(accommodationToEdit, editedAccommodation);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        model.updateFilteredAccommodationList(PREDICATE_SHOW_ALL_ACCOMMODATIONS);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_EDIT_ACCOMMODATION_SUCCESS, editedAccommodation));"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * Creates and returns a {@code Accommodation} with the details of {@code accommodationToEdit}"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * edited with {@code editAccommodationDescriptor}."
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    private static Accommodation createEditedAccommodation(Accommodation accommodationToEdit,"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                                                      EditAccommodationDescriptor editAccommodationDescriptor) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        assert accommodationToEdit !\u003d null;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Name updatedName \u003d editAccommodationDescriptor.getName().orElse(accommodationToEdit.getName());"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Address updatedAddress \u003d editAccommodationDescriptor.getAddress().orElse(accommodationToEdit.getAddress());"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Contact updatedContact \u003d editAccommodationDescriptor.getPhone().isPresent()"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                ? new Contact(updatedName, editAccommodationDescriptor.getPhone().get(), null, null, new HashSet\u003c\u003e())"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                : accommodationToEdit.getContact().isPresent()"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                ? accommodationToEdit.getContact().get()"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                : null;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Set\u003cTag\u003e updatedTags \u003d editAccommodationDescriptor.getTags().orElse(accommodationToEdit.getTags());"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new Accommodation(updatedName, updatedAddress, updatedContact, updatedTags);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (!(other instanceof EditAccommodationCommand)) {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        EditAccommodationCommand e \u003d (EditAccommodationCommand) other;"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return other \u003d\u003d this"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                || other instanceof EditAccommodationCommand"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                \u0026\u0026 index.equals(e.index)"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                \u0026\u0026 editAccommodationDescriptor.equals(e.editAccommodationDescriptor);"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * Stores the details to edit the accommodation with. Each non-empty field value will replace the"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * corresponding field value of the accommodation."
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public static class EditAccommodationDescriptor {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        private Name name;"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        private Address address;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        private Phone phone;"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        private Set\u003cTag\u003e tags;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public EditAccommodationDescriptor() {}"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public EditAccommodationDescriptor(EditAccommodationDescriptor toCopy) {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            setName(toCopy.name);"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            setAddress(toCopy.address);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            setPhone(toCopy.phone);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            setTags(toCopy.tags);"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public boolean isAnyFieldEdited() {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return CollectionUtil.isAnyNonNull(name, address, phone, tags);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public void setName(Name name) {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            this.name \u003d name;"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public Optional\u003cName\u003e getName() {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return Optional.ofNullable(name);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public void setAddress(Address address) {"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            this.address \u003d address;"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public Optional\u003cAddress\u003e getAddress() {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return Optional.ofNullable(address);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public void setPhone(Phone phone) {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            this.phone \u003d phone;"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public Optional\u003cPhone\u003e getPhone() {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return Optional.ofNullable(phone);"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public void setTags(Set\u003cTag\u003e tags) {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            this.tags \u003d (tags !\u003d null) ? new HashSet\u003c\u003e(tags) : null;"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public Optional\u003cSet\u003cTag\u003e\u003e getTags() {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return (tags !\u003d null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            // short circuit if same object"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                return true;"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            if (!(other instanceof EditAccommodationDescriptor)) {"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                return false;"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            // state check"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            EditAccommodationDescriptor e \u003d (EditAccommodationDescriptor) other;"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return getName().equals(e.getName())"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                    \u0026\u0026 getPhone().equals(e.getPhone())"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                    \u0026\u0026 getAddress().equals(e.getAddress())"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                    \u0026\u0026 getTags().equals(e.getTags());"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "KxxMxxx": 199
+    }
+  },
+  {
     "path": "src/main/java/seedu/address/logic/commands/EditActivityCommand.java",
     "fileType": "functional",
     "lines": [
@@ -23336,7 +25680,7 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * @param index of the person in the filtered person list to edit"
+        "content": "     * @param index of the activity in the filtered activity list to edit"
       },
       {
         "lineNumber": 53,
@@ -29469,511 +31813,511 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.AddActivityCommand;"
+        "content": "import seedu.address.logic.commands.AddAccommodationCommand;"
       },
       {
         "lineNumber": 18,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.logic.commands.AddActivityCommand;"
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.logic.commands.AddCommand;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 20,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.logic.commands.AddContactCommand;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 21,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.logic.commands.AddDayCommand;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 22,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 24,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "import seedu.address.model.accommodation.Accommodation;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 25,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.model.activity.Activity;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 26,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "import seedu.address.model.contact.Contact;"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 27,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "import seedu.address.model.contact.Email;"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 28,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "import seedu.address.model.contact.Phone;"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 29,
         "author": {
           "gitId": "OneArmyj"
         },
         "content": "import seedu.address.model.field.Address;"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 30,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.model.field.Name;"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.model.tag.Tag;"
       },
       {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses input arguments and creates a new AddCommand object"
+        "content": "/**"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses input arguments and creates a new AddCommand object"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddCommandParser implements Parser\u003cAddCommand\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class AddCommandParser implements Parser\u003cAddCommand\u003e {"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "    private static final Pattern ADD_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ctype\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "    private static final Pattern ADD_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ctype\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the AddCommand"
+        "content": "    /**"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "     * and returns an AddCommand object for execution."
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddCommand"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * and returns an AddCommand object for execution."
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "    public AddCommand parse(String args) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public AddCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 46,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "        final Matcher matcher \u003d ADD_COMMAND_FORMAT.matcher(args.trim());"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "        final String type \u003d matcher.group(\"type\");"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String type \u003d matcher.group(\"type\");"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "        switch(type) {"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        case AddDayCommand.SECOND_COMMAND_WORD:"
+        "content": "        switch(type) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            return parseDay(arguments);"
+        "content": "        case AddAccommodationCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        case AddActivityCommand.SECOND_COMMAND_WORD:"
+        "content": "            return parseAccommodation(arguments);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            return parseActivity(arguments);"
+        "content": "        case AddActivityCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        case AddContactCommand.SECOND_COMMAND_WORD:"
+        "content": "            return parseActivity(arguments);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            return parseContact(arguments);"
+        "content": "        case AddContactCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        default:"
+        "content": "            return parseContact(arguments);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        case AddDayCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            return parseDay(arguments);"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    }"
+        "content": "        default:"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "     * {@code ArgumentMultimap}."
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+        "content": "     * {@code ArgumentMultimap}."
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the AddDayCommand for a Day"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "     * and returns an AddDayCommand object for execution."
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "    /**"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     */"
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddAccommodationCommand for an Accommodation"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    private AddDayCommand parseDay(String args) throws ParseException {"
+        "content": "     * and returns an AddAccommodationCommand object for execution."
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_DAY);"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_DAY)"
+        "content": "    private AddAccommodationCommand parseAccommodation(String args) throws ParseException {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+        "content": "                PREFIX_TAG);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        int numDays \u003d ParserUtil.parseDays(argMultimap.getValue(PREFIX_DAY).get());"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        return new AddDayCommand(numDays);"
+        "content": "                    AddAccommodationCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 90,
@@ -29987,189 +32331,189 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": "        Name name \u003d ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the AddActivityCommand for a Activity"
+        "content": "        Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * and returns an AddActivityCommand object for execution."
+        "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     */"
+        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    private AddActivityCommand parseActivity(String args) throws ParseException {"
+        "content": "            Phone phone \u003d ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,"
+        "content": "            Contact contact \u003d new Contact(name, phone, null, null, new HashSet\u003cTag\u003e());"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                PREFIX_TAG);"
+        "content": "            Accommodation accommodation \u003d new Accommodation(name, address, contact, tagList);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "            return new AddAccommodationCommand(accommodation);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS) || !argMultimap.getPreamble().isEmpty()) {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+        "content": "            Accommodation accommodation \u003d new Accommodation(name, address, null, tagList);"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            return new AddAccommodationCommand(accommodation);"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        Name name \u003d ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());"
+        "content": "    }"
       },
       {
         "lineNumber": 105,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
-      },
-      {
-        "lineNumber": 107,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": ""
       },
       {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddActivityCommand for an Activity"
+      },
+      {
         "lineNumber": 108,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
+        "content": "     * and returns an AddActivityCommand object for execution."
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            Phone phone \u003d ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            Contact contact \u003d new Contact(name, phone, null, null, new HashSet\u003cTag\u003e());"
+        "content": "     */"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            Activity activity \u003d new Activity(name, address, contact, tagList);"
+        "content": "    private AddActivityCommand parseActivity(String args) throws ParseException {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            return new AddActivityCommand(activity);"
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        } else {"
+        "content": "                PREFIX_TAG);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            Activity activity \u003d new Activity(name, address, null, tagList);"
+        "content": ""
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            return new AddActivityCommand(activity);"
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddActivityCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 118,
@@ -30183,227 +32527,451 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": "        Name name \u003d ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());"
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "OneArmyj"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the AddCommand for a Person"
+        "content": "        Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * and returns an AddCommand object for execution."
+        "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": ""
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     */"
+        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "OneArmyj"
+          "gitId": "KxxMxxx"
         },
-        "content": "    private AddCommand parseContact(String args) throws ParseException {"
+        "content": "            Phone phone \u003d ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());"
       },
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d"
+        "content": "            Contact contact \u003d new Contact(name, phone, null, null, new HashSet\u003cTag\u003e());"
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);"
+        "content": "            Activity activity \u003d new Activity(name, address, contact, tagList);"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "            return new AddActivityCommand(activity);"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));"
+        "content": "            Activity activity \u003d new Activity(name, address, null, tagList);"
       },
       {
         "lineNumber": 130,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            return new AddActivityCommand(activity);"
       },
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 132,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        Name name \u003d ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());"
+        "content": "    }"
       },
       {
         "lineNumber": 133,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        Phone phone \u003d ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());"
+        "content": ""
       },
       {
         "lineNumber": 134,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
+        "content": "    /**"
       },
       {
         "lineNumber": 135,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddCommand for a Contact and returns an"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {"
+        "content": "     * AddContactCommand object for execution."
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            Email email \u003d ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+        "content": "     */"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
+        "content": "    private AddContactCommand parseContact(String args) throws ParseException {"
       },
       {
         "lineNumber": 140,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "                return new AddContactCommand(new Contact(name, phone, email, address, tagList));"
+        "content": "        ArgumentMultimap argMultimap \u003d"
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "            } else {"
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);"
       },
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "                return new AddContactCommand(new Contact(name, phone, email, null, tagList));"
+        "content": ""
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            }"
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "            Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
+        "content": "        }"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "            return new AddContactCommand(new Contact(name, phone, null, address, tagList));"
+        "content": ""
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "        } else {"
+        "content": "        Name name \u003d ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());"
       },
       {
         "lineNumber": 148,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "            return new AddContactCommand(new Contact(name, phone, null, null, tagList));"
+        "content": "        Phone phone \u003d ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());"
       },
       {
         "lineNumber": 149,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "        }"
+        "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 151,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            Email email \u003d ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                return new AddContactCommand(new Contact(name, phone, email, address, tagList));"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                return new AddContactCommand(new Contact(name, phone, email, null, tagList));"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            Address address \u003d ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return new AddContactCommand(new Contact(name, phone, null, address, tagList));"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            return new AddContactCommand(new Contact(name, phone, null, null, tagList));"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddDayCommand for a Day and returns an"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * AddDayCommand object for execution."
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    private AddDayCommand parseDay(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_DAY);"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_DAY)"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDayCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        int numDays \u003d ParserUtil.parseDays(argMultimap.getValue(PREFIX_DAY).get());"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new AddDayCommand(numDays);"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 183,
         "author": {
           "gitId": "-"
         },
@@ -30411,8 +32979,8 @@
       }
     ],
     "authorContributionMap": {
-      "OneArmyj": 6,
-      "KxxMxxx": 93,
+      "OneArmyj": 5,
+      "KxxMxxx": 126,
       "-": 52
     }
   },
@@ -30626,332 +33194,353 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.DeleteActivityCommand;"
+        "content": "import seedu.address.logic.commands.DeleteAccommodationCommand;"
       },
       {
         "lineNumber": 10,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "import seedu.address.logic.commands.DeleteActivityCommand;"
+      },
+      {
+        "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.logic.commands.DeleteCommand;"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 12,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.logic.commands.DeleteContactCommand;"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 13,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.logic.commands.DeleteDayCommand;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 14,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses input arguments and creates a new DeleteCommand object"
+        "content": "/**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses input arguments and creates a new DeleteCommand object"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "public class DeleteCommandParser implements Parser\u003cDeleteCommand\u003e {"
+        "content": " */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class DeleteCommandParser implements Parser\u003cDeleteCommand\u003e {"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "    private static final Pattern DELETE_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ctype\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "    private static final Pattern DELETE_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ctype\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the DeleteCommand"
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "     * and returns a DeleteCommand object for execution."
+        "content": "     * Parses the given {@code String} of arguments in the context of the DeleteCommand"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * and returns a DeleteCommand object for execution."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    public DeleteCommand parse(String args) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d DELETE_COMMAND_FORMAT.matcher(args.trim());"
+        "content": "    public DeleteCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        final Matcher matcher \u003d DELETE_COMMAND_FORMAT.matcher(args.trim());"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        final String type \u003d matcher.group(\"type\");"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String type \u003d matcher.group(\"type\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 38,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 40,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "            Index index \u003d ParserUtil.parseIndex(arguments);"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 41,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": ""
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 42,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "            switch(type) {"
       },
       {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "            case DeleteContactCommand.SECOND_COMMAND_WORD:"
-      },
-      {
         "lineNumber": 43,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                return new DeleteContactCommand(index);"
+        "content": "            case DeleteAccommodationCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            case DeleteDayCommand.SECOND_COMMAND_WORD:"
+        "content": "                return new DeleteAccommodationCommand(index);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                return new DeleteDayCommand(index);"
+        "content": "            case DeleteActivityCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            case DeleteActivityCommand.SECOND_COMMAND_WORD:"
+        "content": "                return new DeleteActivityCommand(index);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                return new DeleteActivityCommand(index);"
+        "content": "            case DeleteContactCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            default:"
+        "content": "                return new DeleteContactCommand(index);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));"
+        "content": "            case DeleteDayCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            }"
+        "content": "                return new DeleteDayCommand(index);"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        } catch (ParseException pe) {"
+        "content": "            default:"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException("
+        "content": "                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);"
+        "content": "            }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        } catch (ParseException pe) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            throw new ParseException("
       },
       {
         "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
@@ -30959,7 +33548,7 @@
       }
     ],
     "authorContributionMap": {
-      "KxxMxxx": 30,
+      "KxxMxxx": 33,
       "-": 26
     }
   },
@@ -31098,238 +33687,238 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.EditActivityCommand;"
+        "content": "import seedu.address.logic.commands.EditAccommodationCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.EditActivityCommand.EditActivityDescriptor;"
+        "content": "import seedu.address.logic.commands.EditAccommodationCommand.EditAccommodationDescriptor;"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.EditCommand;"
+        "content": "import seedu.address.logic.commands.EditActivityCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.EditContactCommand;"
+        "content": "import seedu.address.logic.commands.EditActivityCommand.EditActivityDescriptor;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.EditContactCommand.EditContactDescriptor;"
+        "content": "import seedu.address.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.commands.HelpCommand;"
+        "content": "import seedu.address.logic.commands.EditContactCommand;"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.logic.commands.EditContactCommand.EditContactDescriptor;"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "import seedu.address.model.tag.Tag;"
+        "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.tag.Tag;"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": " * Parses input arguments and creates a new EditContactCommand object"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "public class EditCommandParser implements Parser\u003cEditCommand\u003e {"
+        "content": " * Parses input arguments and creates a new EditContactCommand object"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "    private static final Pattern EDIT_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ctype\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "public class EditCommandParser implements Parser\u003cEditCommand\u003e {"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": "    private static final Pattern EDIT_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ctype\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the EditActivityCommand or EditContactCommand"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * and returns an EditCommand object for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditActivityCommand or EditContactCommand"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * and returns an EditCommand object for execution."
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public EditCommand parse(String args) throws ParseException {"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d EDIT_COMMAND_FORMAT.matcher(args.trim());"
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "    public EditCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d EDIT_COMMAND_FORMAT.matcher(args.trim());"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        final String type \u003d matcher.group(\"type\");"
+        "content": "        }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        final String type \u003d matcher.group(\"type\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        switch(type) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        case EditContactCommand.SECOND_COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            return parseContactForEdit(arguments);"
+        "content": "        switch(type) {"
       },
       {
         "lineNumber": 53,
@@ -31350,696 +33939,990 @@
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        default:"
+        "content": "        case EditAccommodationCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "            return parseAccommodationForEdit(arguments);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "        case EditContactCommand.SECOND_COMMAND_WORD:"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    }"
+        "content": "            return parseContactForEdit(arguments);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    /**"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the EditContactCommand"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * and returns an EditContactCommand object for execution."
+        "content": "    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    public EditContactCommand parseContactForEdit(String args) throws ParseException {"
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditAccommodationCommand"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        requireNonNull(args);"
+        "content": "     * and returns an EditAccommodationCommand object for execution."
       },
       {
         "lineNumber": 67,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        ArgumentMultimap argMultimap \u003d"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Index index;"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        } catch (ParseException pe) {"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE),"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "                    pe);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        EditContactDescriptor editContactDescriptor \u003d new EditContactDescriptor();"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "            editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "            editContactDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "            editContactDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "            editContactDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "OneArmyj"
-        },
-        "content": "        if (!editContactDescriptor.isAnyFieldEdited()) {"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "        return new EditContactCommand(index, editContactDescriptor);"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "     * Parses the given {@code String} of arguments in the context of the EditActivityCommand"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "KxxMxxx"
-        },
-        "content": "     * and returns an EditContactCommand object for execution."
-      },
-      {
-        "lineNumber": 104,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 68,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 69,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "    public EditActivityCommand parseActivityForEdit(String args) throws ParseException {"
+        "content": "    public EditAccommodationCommand parseAccommodationForEdit(String args) throws ParseException {"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 70,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        requireNonNull(args);"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 71,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        ArgumentMultimap argMultimap \u003d"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 72,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG);"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 73,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 74,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        Index index;"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 75,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 76,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 77,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 78,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        } catch (ParseException pe) {"
       },
       {
-        "lineNumber": 116,
+        "lineNumber": 79,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditActivityCommand.MESSAGE_USAGE),"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 80,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "                    pe);"
+        "content": "                    EditAccommodationCommand.MESSAGE_USAGE), pe);"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 83,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        EditActivityDescriptor editActivityDescriptor \u003d new EditActivityDescriptor();"
+        "content": "        EditAccommodationDescriptor editAccommodationDescriptor \u003d new EditAccommodationDescriptor();"
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 84,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 85,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            editActivityDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));"
+        "content": "            editAccommodationDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 86,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 124,
+        "lineNumber": 87,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
       },
       {
-        "lineNumber": 125,
+        "lineNumber": 88,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            editActivityDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));"
+        "content": "            editAccommodationDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));"
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 89,
         "author": {
-          "gitId": "KxxMxxx"
+          "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 90,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
       },
       {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editAccommodationDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAccommodationDescriptor::setTags);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (!editAccommodationDescriptor.isAnyFieldEdited()) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new ParseException(EditAccommodationCommand.MESSAGE_NOT_EDITED);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new EditAccommodationCommand(index, editAccommodationDescriptor);"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditActivityCommand"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * and returns an EditActivityCommand object for execution."
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "    public EditActivityCommand parseActivityForEdit(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        requireNonNull(args);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_TAG);"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        Index index;"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditActivityCommand.MESSAGE_USAGE),"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                    pe);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        EditActivityDescriptor editActivityDescriptor \u003d new EditActivityDescriptor();"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editActivityDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editActivityDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        }"
+      },
+      {
         "lineNumber": 128,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
+      },
+      {
+        "lineNumber": 129,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "            editActivityDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 130,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 131,
         "author": {
           "gitId": "KxxMxxx"
         },
         "content": "        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);"
       },
       {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 132,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        if (!editActivityDescriptor.isAnyFieldEdited()) {"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "            throw new ParseException(EditActivityCommand.MESSAGE_NOT_EDITED);"
+        "content": "        if (!editActivityDescriptor.isAnyFieldEdited()) {"
       },
       {
         "lineNumber": 134,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(EditActivityCommand.MESSAGE_NOT_EDITED);"
       },
       {
         "lineNumber": 135,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "KxxMxxx"
         },
-        "content": "        return new EditActivityCommand(index, editActivityDescriptor);"
+        "content": ""
       },
       {
         "lineNumber": 137,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    }"
+        "content": "        return new EditActivityCommand(index, editActivityDescriptor);"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 140,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "     * Parses {@code Collection\u003cString\u003e tags} into a {@code Set\u003cTag\u003e} if {@code tags} is non-empty."
+        "content": "    /**"
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "     * If {@code tags} contain only one element which is an empty string, it will be parsed into a"
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditContactCommand"
       },
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "     * {@code Set\u003cTag\u003e} containing zero tags."
+        "content": "     * and returns an EditContactCommand object for execution."
       },
       {
         "lineNumber": 143,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "    private Optional\u003cSet\u003cTag\u003e\u003e parseTagsForEdit(Collection\u003cString\u003e tags) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "-"
+          "gitId": "KxxMxxx"
         },
-        "content": "        assert tags !\u003d null;"
+        "content": "    public EditContactCommand parseContactForEdit(String args) throws ParseException {"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        requireNonNull(args);"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (tags.isEmpty()) {"
+        "content": "        ArgumentMultimap argMultimap \u003d"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": "            return Optional.empty();"
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": "        Collection\u003cString\u003e tagSet \u003d tags.size() \u003d\u003d 1 \u0026\u0026 tags.contains(\"\") ? Collections.emptySet() : tags;"
+        "content": "        Index index;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "        return Optional.of(ParserUtil.parseTags(tagSet));"
+        "content": ""
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
       },
       {
         "lineNumber": 154,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE),"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                    pe);"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        EditContactDescriptor editContactDescriptor \u003d new EditContactDescriptor();"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editContactDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editContactDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            editContactDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        if (!editContactDescriptor.isAnyFieldEdited()) {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "        return new EditContactCommand(index, editContactDescriptor);"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Parses {@code Collection\u003cString\u003e tags} into a {@code Set\u003cTag\u003e} if {@code tags} is non-empty."
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * If {@code tags} contain only one element which is an empty string, it will be parsed into a"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * {@code Set\u003cTag\u003e} containing zero tags."
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private Optional\u003cSet\u003cTag\u003e\u003e parseTagsForEdit(Collection\u003cString\u003e tags) throws ParseException {"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assert tags !\u003d null;"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (tags.isEmpty()) {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return Optional.empty();"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Collection\u003cString\u003e tagSet \u003d tags.size() \u003d\u003d 1 \u0026\u0026 tags.contains(\"\") ? Collections.emptySet() : tags;"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return Optional.of(ParserUtil.parseTags(tagSet));"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 196,
         "author": {
           "gitId": "-"
         },
@@ -32047,9 +34930,8 @@
       }
     ],
     "authorContributionMap": {
-      "OneArmyj": 7,
-      "KxxMxxx": 74,
-      "-": 73
+      "KxxMxxx": 108,
+      "-": 88
     }
   },
   {
@@ -43269,33 +46151,61 @@
       {
         "lineNumber": 109,
         "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                .append(\" Phone: \")"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                .append(getContact().isPresent()"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                        ? getContact().get().getPhone()"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "KxxMxxx"
+        },
+        "content": "                        : \"\")"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
           "gitId": "-"
         },
         "content": "                .append(\" Tags: \");"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 114,
         "author": {
           "gitId": "-"
         },
         "content": "        getTags().forEach(builder::append);"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
         "content": "        return builder.toString();"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
@@ -43304,6 +46214,7 @@
     ],
     "authorContributionMap": {
       "OneArmyj": 30,
+      "KxxMxxx": 4,
       "-": 83
     }
   },
