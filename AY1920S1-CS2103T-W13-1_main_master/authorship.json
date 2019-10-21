@@ -2693,16 +2693,16 @@
       {
         "lineNumber": 125,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "* stores the Address Book data."
+        "content": "* stores the ModuleBook data."
       },
       {
         "lineNumber": 126,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "* exposes an unmodifiable `ObservableList\u003cPerson\u003e` that can be \u0027observed\u0027 e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change."
+        "content": "* exposes an unmodifiable `ObservableList\u003cModule\u003e` that can be \u0027observed\u0027 e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change."
       },
       {
         "lineNumber": 127,
@@ -2723,49 +2723,49 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": "[[Design-Storage]]"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "-"
         },
-        "content": "As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +"
+        "content": "\u003d\u003d\u003d Storage component"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "-"
         },
-        "content": " +"
+        "content": ""
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "-"
         },
-        "content": "image:BetterModelClassDiagram.png[]"
+        "content": ".Structure of the Storage Component"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::StorageClassDiagram.png[]"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
-        "content": "[[Design-Storage]]"
+        "content": ""
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Storage component"
+        "content": "*API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]"
       },
       {
         "lineNumber": 136,
@@ -2779,28 +2779,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": ".Structure of the Storage Component"
+        "content": "The `Storage` component,"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
-        "content": "image::StorageClassDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* can save `UserPref` objects in json format and read it back."
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
-        "content": "*API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]"
+        "content": "* can save the Address Book data in json format and read it back."
       },
       {
         "lineNumber": 141,
@@ -2814,28 +2814,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "The `Storage` component,"
+        "content": "[[Design-Commons]]"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Common classes"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": "* can save `UserPref` objects in json format and read it back."
+        "content": ""
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "* can save the Address Book data in json format and read it back."
+        "content": "Classes used by multiple components are in the `seedu.addressbook.commons` package."
       },
       {
         "lineNumber": 146,
@@ -2849,238 +2849,238 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[[Design-Commons]]"
+        "content": "\u003d\u003d Implementation"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Common classes"
+        "content": ""
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "This section describes some noteworthy details on how certain features are implemented."
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": "Classes used by multiple components are in the `seedu.addressbook.commons` package."
+        "content": ""
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// tag::undoredo[]"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Implementation"
+        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
-        "content": "This section describes some noteworthy details on how certain features are implemented."
+        "content": ""
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
-        "content": "// tag::undoredo[]"
+        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
+        "content": "Additionally, it implements the following operations:"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
+        "content": ""
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
+        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
+        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": "Additionally, it implements the following operations:"
+        "content": ""
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
+        "content": ""
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
+        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
+        "content": ""
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
-        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
+        "content": ""
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState0.png[]"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
+        "content": ""
       },
       {
         "lineNumber": 171,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "image::UndoRedoState0.png[]"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 176,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "Step 2. The user executes `delete 5` command to delete the 5th module in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state."
       },
       {
-        "lineNumber": 177,
+        "lineNumber": 172,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 178,
+        "lineNumber": 173,
         "author": {
           "gitId": "-"
         },
         "content": "image::UndoRedoState1.png[]"
       },
       {
-        "lineNumber": 179,
+        "lineNumber": 174,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 180,
+        "lineNumber": 175,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "Step 3. The user executes `add n/David ...` to add a new module. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`."
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "image::UndoRedoState2.png[]"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[NOTE]"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
       },
       {
         "lineNumber": 181,
@@ -3092,9 +3092,9 @@
       {
         "lineNumber": 182,
         "author": {
-          "gitId": "-"
+          "gitId": "CowSaysBaa"
         },
-        "content": "image::UndoRedoState2.png[]"
+        "content": "Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state."
       },
       {
         "lineNumber": 183,
@@ -3108,28 +3108,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": "image::UndoRedoState3.png[]"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "-"
         },
-        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
+        "content": ""
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 187,
         "author": {
-          "gitId": "CowSaysBaa"
+          "gitId": "-"
         },
-        "content": "Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state."
+        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
       },
       {
         "lineNumber": 188,
@@ -3143,7 +3143,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState3.png[]"
+        "content": "The following sequence diagram shows how the undo operation works:"
       },
       {
         "lineNumber": 190,
@@ -3157,56 +3157,56 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": "image::UndoSequenceDiagram.png[]"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "-"
         },
-        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
+        "content": ""
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "-"
         },
-        "content": "The following sequence diagram shows how the undo operation works:"
+        "content": ""
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoSequenceDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "-"
         },
-        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
+        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
       },
       {
         "lineNumber": 199,
@@ -3220,7 +3220,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
+        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
       },
       {
         "lineNumber": 201,
@@ -3234,245 +3234,245 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": "image::UndoRedoState4.png[]"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "-"
         },
-        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
+        "content": ""
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
+        "content": ""
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState5.png[]"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState4.png[]"
+        "content": ""
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
+        "content": ""
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::CommitActivityDiagram.png[]"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState5.png[]"
+        "content": ""
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "-"
         },
-        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
+        "content": ""
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "-"
         },
-        "content": "image::CommitActivityDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d Design Considerations"
+        "content": "** Pros: Easy to implement."
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "** Cons: May have performance issues in terms of memory usage."
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
-      },
-      {
-        "lineNumber": 220,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
-      },
-      {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "** Pros: Easy to implement."
-      },
-      {
-        "lineNumber": 223,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "** Cons: May have performance issues in terms of memory usage."
-      },
-      {
-        "lineNumber": 224,
-        "author": {
-          "gitId": "-"
-        },
         "content": "* **Alternative 2:** Individual command knows how to undo/redo by itself."
       },
       {
-        "lineNumber": 225,
+        "lineNumber": 220,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "** Pros: Will use less memory (e.g. for `delete`, just save the module being deleted)."
       },
       {
-        "lineNumber": 226,
+        "lineNumber": 221,
         "author": {
           "gitId": "-"
         },
         "content": "** Cons: We must ensure that the implementation of each individual command are correct."
       },
       {
-        "lineNumber": 227,
+        "lineNumber": 222,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 228,
+        "lineNumber": 223,
         "author": {
           "gitId": "-"
         },
         "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the undo/redo commands"
       },
       {
-        "lineNumber": 229,
+        "lineNumber": 224,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 230,
+        "lineNumber": 225,
         "author": {
           "gitId": "-"
         },
         "content": "* **Alternative 1 (current choice):** Use a list to store the history of address book states."
       },
       {
-        "lineNumber": 231,
+        "lineNumber": 226,
         "author": {
           "gitId": "-"
         },
         "content": "** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project."
       },
       {
-        "lineNumber": 232,
+        "lineNumber": 227,
         "author": {
           "gitId": "-"
         },
         "content": "** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`."
       },
       {
-        "lineNumber": 233,
+        "lineNumber": 228,
         "author": {
           "gitId": "-"
         },
         "content": "* **Alternative 2:** Use `HistoryManager` for undo/redo"
       },
       {
-        "lineNumber": 234,
+        "lineNumber": 229,
         "author": {
           "gitId": "-"
         },
         "content": "** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase."
       },
       {
-        "lineNumber": 235,
+        "lineNumber": 230,
         "author": {
           "gitId": "-"
         },
         "content": "** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things."
       },
       {
-        "lineNumber": 236,
+        "lineNumber": 231,
         "author": {
           "gitId": "-"
         },
         "content": "// end::undoredo[]"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "// tag::dataencryption[]"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{Explain here how the data encryption feature will be implemented}_"
       },
       {
         "lineNumber": 237,
@@ -3486,112 +3486,112 @@
         "author": {
           "gitId": "-"
         },
-        "content": "// tag::dataencryption[]"
+        "content": "// end::dataencryption[]"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+        "content": ""
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "-"
         },
-        "content": "_{Explain here how the data encryption feature will be implemented}_"
+        "content": ""
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "-"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": ""
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "-"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": ""
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "-"
         },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "-"
         },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "-"
         },
-        "content": "*Logging Levels*"
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 254,
@@ -3605,28 +3605,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
+        "content": "[[Implementation-Configuration]]"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "-"
         },
-        "content": "* `WARNING` : Can continue, but with caution"
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "-"
         },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
+        "content": ""
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "-"
         },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 259,
@@ -3640,98 +3640,98 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": ""
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "-"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": ""
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": ""
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Testing"
+        "content": ""
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 272,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Dev Ops"
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 274,
@@ -3745,7 +3745,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
+        "content": "*Target user profile*:"
       },
       {
         "lineNumber": 276,
@@ -3757,72 +3757,72 @@
       {
         "lineNumber": 277,
         "author": {
-          "gitId": "-"
-        },
-        "content": "[appendix]"
-      },
-      {
-        "lineNumber": 278,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d Product Scope"
-      },
-      {
-        "lineNumber": 279,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 280,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*Target user profile*:"
-      },
-      {
-        "lineNumber": 281,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 282,
-        "author": {
           "gitId": "geshuming"
         },
         "content": "* is a student of National University of Singapore (NUS)"
       },
       {
-        "lineNumber": 283,
+        "lineNumber": 278,
         "author": {
           "gitId": "geshuming"
         },
         "content": "* prefer desktop apps over web apps"
       },
       {
-        "lineNumber": 284,
+        "lineNumber": 279,
         "author": {
           "gitId": "-"
         },
         "content": "* can type fast"
       },
       {
-        "lineNumber": 285,
+        "lineNumber": 280,
         "author": {
           "gitId": "-"
         },
         "content": "* prefers typing over mouse input"
       },
       {
-        "lineNumber": 286,
+        "lineNumber": 281,
         "author": {
           "gitId": "-"
         },
         "content": "* is reasonably comfortable using CLI apps"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "*Value proposition*: manage modules faster and with less hassle than the traditional web apps deployed by the institution"
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d User Stories"
       },
       {
         "lineNumber": 287,
@@ -3834,9 +3834,9 @@
       {
         "lineNumber": 288,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "*Value proposition*: manage modules faster and with less hassle than the traditional web apps deployed by the institution"
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
       },
       {
         "lineNumber": 289,
@@ -3850,28 +3850,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d User Stories"
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "|Priority |As a ... |I want to ... |So that I can..."
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "-"
         },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
       },
       {
         "lineNumber": 294,
@@ -3883,254 +3883,254 @@
       {
         "lineNumber": 295,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
+        "content": "|`* * *` |user |track a module I\u0027m currently taking |"
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": ""
       },
       {
         "lineNumber": 297,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|Priority |As a ... |I want to ... |So that I can..."
-      },
-      {
-        "lineNumber": 298,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
-      },
-      {
-        "lineNumber": 299,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 300,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "|`* * *` |user |track a module I\u0027m currently taking |"
-      },
-      {
-        "lineNumber": 301,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 302,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |user |untrack a module |remove entries that I no longer need"
       },
       {
-        "lineNumber": 303,
+        "lineNumber": 298,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 304,
+        "lineNumber": 299,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |user |find a module |locate details of modules that NUS provides"
       },
       {
-        "lineNumber": 305,
+        "lineNumber": 300,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 306,
+        "lineNumber": 301,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |curious student |view a module\u0027s details |check out if I want to take the module"
       },
       {
-        "lineNumber": 307,
+        "lineNumber": 302,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 308,
+        "lineNumber": 303,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |busy student |manage deadlines |keep track of my assignments and tasks"
       },
       {
-        "lineNumber": 309,
+        "lineNumber": 304,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 310,
+        "lineNumber": 305,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |organized student |manage my grades |know roughly how well I\u0027m doing in the module"
       },
       {
-        "lineNumber": 311,
+        "lineNumber": 306,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 312,
+        "lineNumber": 307,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |new student |schedule my modules |plan how to approach my future focus areas"
       },
       {
-        "lineNumber": 313,
+        "lineNumber": 308,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 314,
+        "lineNumber": 309,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |graduating student |check what modules I need to complete |"
       },
       {
-        "lineNumber": 315,
+        "lineNumber": 310,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 316,
+        "lineNumber": 311,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |computing student |plan my focus area modules |choose a specialization"
       },
       {
-        "lineNumber": 317,
+        "lineNumber": 312,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 318,
+        "lineNumber": 313,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |competitive student |calculate my GPA |"
       },
       {
-        "lineNumber": 319,
+        "lineNumber": 314,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 320,
+        "lineNumber": 315,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |busy student |prioritize certain modules (and their deadlines) |manage my time better"
       },
       {
-        "lineNumber": 321,
+        "lineNumber": 316,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 322,
+        "lineNumber": 317,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |organized student |manage files related to a module |add and tag files"
       },
       {
-        "lineNumber": 323,
+        "lineNumber": 318,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 324,
+        "lineNumber": 319,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |student |catalog past modules |access the content conveniently"
       },
       {
-        "lineNumber": 325,
+        "lineNumber": 320,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 326,
+        "lineNumber": 321,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`*` |student |generate a sample module planner |plan my modules"
       },
       {
-        "lineNumber": 327,
+        "lineNumber": 322,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 328,
+        "lineNumber": 323,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`*` |hardworking student |access past exam papers |"
       },
       {
-        "lineNumber": 329,
+        "lineNumber": 324,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 330,
+        "lineNumber": 325,
         "author": {
           "gitId": "-"
         },
         "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 326,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 327,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{More to be added}_"
+      },
+      {
+        "lineNumber": 328,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 329,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 330,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d Use Cases"
       },
       {
         "lineNumber": 331,
@@ -4142,9 +4142,9 @@
       {
         "lineNumber": 332,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "_{More to be added}_"
+        "content": "(For all use cases below, the *System* is the `ModuleBook` and the *Actor* is the `user`, unless specified otherwise)"
       },
       {
         "lineNumber": 333,
@@ -4158,14 +4158,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 335,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": "\u003d\u003d\u003d Use case: Find and Track a Module"
       },
       {
         "lineNumber": 336,
@@ -4177,9 +4177,9 @@
       {
         "lineNumber": 337,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "(For all use cases below, the *System* is the `ModuleBook` and the *Actor* is the `user`, unless specified otherwise)"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 338,
@@ -4191,84 +4191,84 @@
       {
         "lineNumber": 339,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "[discrete]"
+        "content": "1.  User requests to find a module with incomplete keyword (e.g. \u0027CS2\u0027)"
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "\u003d\u003d\u003d Use case: Find and Track a Module"
-      },
-      {
-        "lineNumber": 341,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 342,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 343,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 344,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "1.  User requests to find a module with incomplete keyword (e.g. \u0027CS2\u0027)"
-      },
-      {
-        "lineNumber": 345,
-        "author": {
-          "gitId": "geshuming"
-        },
         "content": "2.  ModuleBook shows a list of modules matching the keyword (e.g. \u0027CS2030, CS2040, CS2100, CS2101, etc.\u0027)"
       },
       {
-        "lineNumber": 346,
+        "lineNumber": 341,
         "author": {
           "gitId": "geshuming"
         },
         "content": "3.  User requests to track a module"
       },
       {
-        "lineNumber": 347,
+        "lineNumber": 342,
         "author": {
           "gitId": "geshuming"
         },
         "content": "4.  ModuleBook tracks the module"
       },
       {
-        "lineNumber": 348,
+        "lineNumber": 343,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 349,
+        "lineNumber": 344,
         "author": {
           "gitId": "-"
         },
         "content": "Use case ends."
       },
       {
-        "lineNumber": 350,
+        "lineNumber": 345,
         "author": {
           "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 346,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 347,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "\u003d\u003d\u003d Use case: Add a deadline for a tracked module"
+      },
+      {
+        "lineNumber": 348,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 349,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "*MSS*"
+      },
+      {
+        "lineNumber": 350,
+        "author": {
+          "gitId": "geshuming"
         },
         "content": ""
       },
@@ -4277,215 +4277,215 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "[discrete]"
+        "content": "1.  User requests to view the specific tracked module"
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "\u003d\u003d\u003d Use case: Add a deadline for a tracked module"
-      },
-      {
-        "lineNumber": 353,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 354,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 355,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 356,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "1.  User requests to view the specific tracked module"
-      },
-      {
-        "lineNumber": 357,
-        "author": {
-          "gitId": "geshuming"
-        },
         "content": "2.  ModuleBook displays the module details"
       },
       {
-        "lineNumber": 358,
+        "lineNumber": 353,
         "author": {
           "gitId": "geshuming"
         },
         "content": "3.  User requests to add a deadline"
       },
       {
-        "lineNumber": 359,
+        "lineNumber": 354,
         "author": {
           "gitId": "geshuming"
         },
         "content": "4.  ModuleBook adds the deadline"
       },
       {
-        "lineNumber": 360,
+        "lineNumber": 355,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 361,
+        "lineNumber": 356,
         "author": {
           "gitId": "-"
         },
         "content": "Use case ends."
       },
       {
-        "lineNumber": 362,
+        "lineNumber": 357,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 363,
+        "lineNumber": 358,
         "author": {
           "gitId": "geshuming"
         },
         "content": "*Extensions*"
       },
       {
-        "lineNumber": 364,
+        "lineNumber": 359,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 365,
+        "lineNumber": 360,
         "author": {
           "gitId": "geshuming"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 366,
+        "lineNumber": 361,
         "author": {
           "gitId": "geshuming"
         },
         "content": "* 2a. The module is not currently tracked"
       },
       {
-        "lineNumber": 367,
+        "lineNumber": 362,
         "author": {
           "gitId": "geshuming"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 368,
+        "lineNumber": 363,
         "author": {
           "gitId": "geshuming"
         },
         "content": "** 2a1. User requests to track the module"
       },
       {
-        "lineNumber": 369,
+        "lineNumber": 364,
         "author": {
           "gitId": "geshuming"
         },
         "content": "** 2a2. The module is now tracked"
       },
       {
-        "lineNumber": 370,
+        "lineNumber": 365,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 371,
+        "lineNumber": 366,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 372,
+        "lineNumber": 367,
         "author": {
           "gitId": "geshuming"
         },
         "content": "Use case resumes at step 3"
       },
       {
-        "lineNumber": 373,
+        "lineNumber": 368,
         "author": {
           "gitId": "geshuming"
         },
         "content": ""
       },
       {
-        "lineNumber": 374,
+        "lineNumber": 369,
         "author": {
           "gitId": "geshuming"
         },
         "content": "[%hardbreaks]"
       },
       {
-        "lineNumber": 375,
+        "lineNumber": 370,
         "author": {
           "gitId": "-"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 376,
+        "lineNumber": 371,
         "author": {
           "gitId": "geshuming"
         },
         "content": "* 3a. ModuleBook requests for a description"
       },
       {
-        "lineNumber": 377,
+        "lineNumber": 372,
         "author": {
           "gitId": "geshuming"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 378,
+        "lineNumber": 373,
         "author": {
           "gitId": "geshuming"
         },
         "content": "** 3a1. User provides a description"
       },
       {
-        "lineNumber": 379,
+        "lineNumber": 374,
         "author": {
           "gitId": "geshuming"
         },
         "content": "** 3a2. ModuleBook requests for a datetime"
       },
       {
-        "lineNumber": 380,
+        "lineNumber": 375,
         "author": {
           "gitId": "geshuming"
         },
         "content": "** 3a3. User provides a datetime"
       },
       {
-        "lineNumber": 381,
+        "lineNumber": 376,
         "author": {
           "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 377,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 378,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Use case resumes at step 4."
+      },
+      {
+        "lineNumber": 379,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 380,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{More to be added}_"
+      },
+      {
+        "lineNumber": 381,
+        "author": {
+          "gitId": "-"
         },
         "content": ""
       },
@@ -4494,14 +4494,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "+"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 383,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "Use case resumes at step 4."
+        "content": "\u003d\u003d Non Functional Requirements"
       },
       {
         "lineNumber": 384,
@@ -4515,28 +4515,28 @@
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
       },
       {
         "lineNumber": 386,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
       },
       {
         "lineNumber": 387,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 388,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Non Functional Requirements"
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 389,
@@ -4550,14 +4550,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": "[appendix]"
       },
       {
         "lineNumber": 391,
         "author": {
           "gitId": "-"
         },
-        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
+        "content": "\u003d\u003d Glossary"
       },
       {
         "lineNumber": 392,
@@ -4571,84 +4571,84 @@
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": "[[mainstream-os]] Mainstream OS::"
       },
       {
         "lineNumber": 394,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Windows, Linux, Unix, OS-X"
       },
       {
         "lineNumber": 395,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 396,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 397,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Survey"
       },
       {
         "lineNumber": 398,
         "author": {
           "gitId": "-"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": ""
       },
       {
         "lineNumber": 399,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": "LumiNUS"
       },
       {
         "lineNumber": 400,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
         "content": ""
       },
       {
         "lineNumber": 401,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "[appendix]"
+        "content": "Pros:"
       },
       {
         "lineNumber": 402,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": ""
       },
       {
         "lineNumber": 403,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": ""
+        "content": "* Good deadline system"
       },
       {
         "lineNumber": 404,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "LumiNUS"
+        "content": "* Working file management system"
       },
       {
         "lineNumber": 405,
@@ -4662,7 +4662,7 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "Pros:"
+        "content": "Cons:"
       },
       {
         "lineNumber": 407,
@@ -4676,84 +4676,84 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Good deadline system"
+        "content": "* A lot of GUI navigation involved"
       },
       {
         "lineNumber": 409,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Working file management system"
+        "content": "* Cannot add user-generated deadlines"
       },
       {
         "lineNumber": 410,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "* Cannot view past module details or content"
       },
       {
         "lineNumber": 411,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "Cons:"
+        "content": ""
       },
       {
         "lineNumber": 412,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 413,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "* A lot of GUI navigation involved"
-      },
-      {
-        "lineNumber": 414,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "* Cannot add user-generated deadlines"
-      },
-      {
-        "lineNumber": 415,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "* Cannot view past module details or content"
-      },
-      {
-        "lineNumber": 416,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 417,
-        "author": {
-          "gitId": "geshuming"
-        },
         "content": "\u0027\u0027\u0027"
       },
       {
-        "lineNumber": 418,
+        "lineNumber": 413,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 419,
+        "lineNumber": 414,
         "author": {
           "gitId": "geshuming"
         },
         "content": "NUSMods"
+      },
+      {
+        "lineNumber": 415,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 416,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Pros:"
+      },
+      {
+        "lineNumber": 417,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 418,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "* Easy to use and powerful module search feature"
+      },
+      {
+        "lineNumber": 419,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "* Modules come with schedules for tutorials, lectures, etc"
       },
       {
         "lineNumber": 420,
@@ -4767,7 +4767,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Pros:"
+        "content": "Cons:"
       },
       {
         "lineNumber": 422,
@@ -4781,28 +4781,28 @@
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Easy to use and powerful module search feature"
+        "content": "* Not applicable for managing modules (such as deadlines, grades)"
       },
       {
         "lineNumber": 424,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "* Modules come with schedules for tutorials, lectures, etc"
-      },
-      {
-        "lineNumber": 425,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 425,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
         "lineNumber": 426,
         "author": {
           "gitId": "-"
         },
-        "content": "Cons:"
+        "content": "\u003d\u003d Instructions for Manual Testing"
       },
       {
         "lineNumber": 427,
@@ -4814,9 +4814,9 @@
       {
         "lineNumber": 428,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "* Not applicable for managing modules (such as deadlines, grades)"
+        "content": "Given below are instructions to test the app manually."
       },
       {
         "lineNumber": 429,
@@ -4830,14 +4830,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 431,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
       },
       {
         "lineNumber": 432,
@@ -4851,7 +4851,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
       },
       {
         "lineNumber": 434,
@@ -4865,276 +4865,241 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ". Initial launch"
       },
       {
         "lineNumber": 436,
         "author": {
           "gitId": "-"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": ""
       },
       {
         "lineNumber": 437,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. Download the jar file and copy into an empty folder"
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": ".. Double-click the jar file +"
       },
       {
         "lineNumber": 439,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
       },
       {
         "lineNumber": 440,
         "author": {
           "gitId": "-"
         },
-        "content": ". Initial launch"
+        "content": ""
       },
       {
         "lineNumber": 441,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Saving window preferences"
       },
       {
         "lineNumber": 442,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": ""
       },
       {
         "lineNumber": 443,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Double-click the jar file +"
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
       },
       {
         "lineNumber": 444,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
       },
       {
         "lineNumber": 445,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: The most recent window size and location is retained."
       },
       {
         "lineNumber": 446,
         "author": {
           "gitId": "-"
         },
-        "content": ". Saving window preferences"
+        "content": ""
       },
       {
         "lineNumber": 447,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 448,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+        "content": ""
       },
       {
         "lineNumber": 449,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
-      },
-      {
-        "lineNumber": 450,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "   Expected: The most recent window size and location is retained."
-      },
-      {
-        "lineNumber": 451,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 452,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "_{ more test cases ... }_"
-      },
-      {
-        "lineNumber": 453,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 454,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "\u003d\u003d\u003d Deleting a module"
       },
       {
-        "lineNumber": 455,
+        "lineNumber": 450,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 456,
+        "lineNumber": 451,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": ". Deleting a module while all modules are listed"
       },
       {
-        "lineNumber": 457,
+        "lineNumber": 452,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 458,
+        "lineNumber": 453,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": ".. Prerequisites: List all modules using the `list` command. Multiple modules in the list."
       },
       {
-        "lineNumber": 459,
+        "lineNumber": 454,
         "author": {
           "gitId": "-"
         },
         "content": ".. Test case: `delete 1` +"
       },
       {
-        "lineNumber": 460,
+        "lineNumber": 455,
         "author": {
           "gitId": "-"
         },
         "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
       },
       {
-        "lineNumber": 461,
+        "lineNumber": 456,
         "author": {
           "gitId": "-"
         },
         "content": ".. Test case: `delete 0` +"
       },
       {
-        "lineNumber": 462,
+        "lineNumber": 457,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "   Expected: No module is deleted. Error details shown in the status message. Status bar remains the same."
       },
       {
-        "lineNumber": 463,
+        "lineNumber": 458,
         "author": {
           "gitId": "-"
         },
         "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
       },
       {
-        "lineNumber": 464,
+        "lineNumber": 459,
         "author": {
           "gitId": "-"
         },
         "content": "   Expected: Similar to previous."
       },
       {
-        "lineNumber": 465,
+        "lineNumber": 460,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 466,
+        "lineNumber": 461,
         "author": {
           "gitId": "-"
         },
         "content": "_{ more test cases ... }_"
       },
       {
-        "lineNumber": 467,
+        "lineNumber": 462,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 468,
+        "lineNumber": 463,
         "author": {
           "gitId": "-"
         },
         "content": "\u003d\u003d\u003d Saving data"
       },
       {
-        "lineNumber": 469,
+        "lineNumber": 464,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 470,
+        "lineNumber": 465,
         "author": {
           "gitId": "-"
         },
         "content": ". Dealing with missing/corrupted data files"
       },
       {
-        "lineNumber": 471,
+        "lineNumber": 466,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 472,
+        "lineNumber": 467,
         "author": {
           "gitId": "-"
         },
         "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
       },
       {
-        "lineNumber": 473,
+        "lineNumber": 468,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 474,
+        "lineNumber": 469,
         "author": {
           "gitId": "-"
         },
@@ -5142,8 +5107,8 @@
       }
     ],
     "authorContributionMap": {
-      "geshuming": 82,
-      "-": 383,
+      "geshuming": 81,
+      "-": 379,
       "CowSaysBaa": 9
     }
   },

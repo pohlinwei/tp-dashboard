@@ -12328,13 +12328,20 @@
       {
         "lineNumber": 65,
         "author": {
+          "gitId": "hoholyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
           "gitId": "-"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 26,
+      "hoholyin": 27,
       "-": 39
     }
   },
@@ -14509,7 +14516,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        boolean bookHasLoan \u003d bookToEdit.getLoan().isPresent();"
+        "content": "        boolean bookHasLoan \u003d bookToEdit.isCurrentlyLoanedOut();"
       },
       {
         "lineNumber": 98,
@@ -17714,413 +17721,413 @@
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import java.util.Optional;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "import seedu.address.commons.core.index.Index;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import seedu.address.commons.core.index.Index;"
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+        "content": "import seedu.address.model.Model;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import seedu.address.model.Model;"
+        "content": "import seedu.address.model.book.Book;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import seedu.address.model.book.Book;"
+        "content": "import seedu.address.model.borrower.Borrower;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import seedu.address.model.borrower.Borrower;"
+        "content": "import seedu.address.model.loan.Loan;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "import seedu.address.model.loan.Loan;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "/**"
+        "content": " * Returns a Book with the given Index."
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": " * Returns a Book with the given Index."
+        "content": " */"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": " */"
+        "content": "public class ReturnCommand extends Command {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "public class ReturnCommand extends Command {"
+        "content": "    public static final String COMMAND_WORD \u003d \"return\";"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"return\";"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Loans a book to a borrower.\\n\""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Loans a book to a borrower.\\n\""
+        "content": "            + \"Command can only be used in Serve mode.\\n\""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "            + \"Command can only be used in Serve mode.\\n\""
+        "content": "            + \"Parameters: INDEX (must be a positive integer)\\n\""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "            + \"Parameters: INDEX (must be a positive integer)\\n\""
+        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \";"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"Book: %1$s returned by Borrower: %2$s\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    public static final String MESSAGE_SUCCESS \u003d \"Book: %1$s returned by Borrower: %2$s\";"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "    private final Index index;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    private final Index index;"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    /**"
+        "content": "     * Creates an ReturnCommand to return the currently served Borrower\u0027s {@code Book}."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * Creates an ReturnCommand to return the currently served Borrower\u0027s {@code Book}."
+        "content": "     *"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     *"
+        "content": "     * @param index Index of book to be returned."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * @param index Index of book to be returned."
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     */"
+        "content": "    public ReturnCommand(Index index) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    public ReturnCommand(Index index) {"
+        "content": "        requireNonNull(index);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        requireNonNull(index);"
+        "content": "        this.index \u003d index;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        this.index \u003d index;"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    /**"
+        "content": "     * Executes the ReturnCommand and returns the result message."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * Executes the ReturnCommand and returns the result message."
+        "content": "     *"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     *"
+        "content": "     * @param model {@code Model} which the command should operate on."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * @param model {@code Model} which the command should operate on."
+        "content": "     * @return Feedback message of the operation result for display."
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * @return Feedback message of the operation result for display."
+        "content": "     * @throws CommandException If an error occurs during command execution."
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * @throws CommandException If an error occurs during command execution."
+        "content": "     */"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     */"
+        "content": "    @Override"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    @Override"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        requireNonNull(model);"
+        "content": "        if (!model.isServeMode()) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        if (!model.isServeMode()) {"
+        "content": "            throw new CommandException(MESSAGE_NOT_IN_SERVE_MODE);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "            throw new CommandException(MESSAGE_NOT_IN_SERVE_MODE);"
+        "content": "        }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "        List\u003cBook\u003e lastShownList \u003d model.getFilteredBookList();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        List\u003cBook\u003e lastShownList \u003d model.getFilteredBookList();"
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "            throw new CommandException(MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "            throw new CommandException(MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);"
+        "content": "        }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "        Book bookToBeReturned \u003d lastShownList.get(index.getZeroBased()); // TODO change to second list index"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "seeziyang"
+          "gitId": "hoholyin"
         },
-        "content": "        Book bookToBeReturned \u003d lastShownList.get(index.getZeroBased()); // TODO change to second list index"
+        "content": "        if (!bookToBeReturned.isCurrentlyLoanedOut()) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        Optional\u003cLoan\u003e returningLoanOptional \u003d bookToBeReturned.getLoan();"
+        "content": "            throw new CommandException(String.format(MESSAGE_BOOK_NOT_ON_LOAN, bookToBeReturned));"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        if (returningLoanOptional.isEmpty()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "seeziyang"
+          "gitId": "hoholyin"
         },
-        "content": "            throw new CommandException(String.format(MESSAGE_BOOK_NOT_ON_LOAN, bookToBeReturned));"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "seeziyang"
+          "gitId": "hoholyin"
         },
-        "content": "        }"
+        "content": "        //is there a way to split this up so that we follow Law of demeter?"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "seeziyang"
+          "gitId": "hoholyin"
         },
-        "content": "        Loan returningLoan \u003d returningLoanOptional.get();"
+        "content": "        Loan returningLoan \u003d bookToBeReturned.getLoan().get();"
       },
       {
         "lineNumber": 69,
@@ -18355,7 +18362,8 @@
       }
     ],
     "authorContributionMap": {
-      "seeziyang": 101
+      "hoholyin": 4,
+      "seeziyang": 97
     }
   },
   {
@@ -35049,511 +35057,511 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    private final Optional\u003cLoan\u003e loan;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    private Optional\u003cLoan\u003e loan;"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    /**"
+        "content": "     * Constructor when loading the file from history or when loading sample data/tests."
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * Constructor when loading the file from history or when loading sample data/tests."
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     */"
+        "content": "    public Book(Title title, SerialNumber serialNumber, Author author, Loan loan, Set\u003cGenre\u003e genres) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public Book(Title title, SerialNumber serialNumber, Author author, Loan loan, Set\u003cGenre\u003e genres) {"
+        "content": "        requireAllNonNull(title, serialNumber, author, genres);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        requireAllNonNull(title, serialNumber, author, genres);"
+        "content": "        this.title \u003d title;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        this.title \u003d title;"
+        "content": "        this.serialNumber \u003d serialNumber;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        this.serialNumber \u003d serialNumber;"
+        "content": "        this.author \u003d author;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        this.author \u003d author;"
+        "content": "        this.loan \u003d Optional.ofNullable(loan);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        this.loan \u003d Optional.ofNullable(loan);"
+        "content": "        this.genres.addAll(genres);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        this.genres.addAll(genres);"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    public Title getTitle() {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public Title getTitle() {"
+        "content": "        return title;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return title;"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    public SerialNumber getSerialNumber() {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public SerialNumber getSerialNumber() {"
+        "content": "        return serialNumber;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return serialNumber;"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    public Author getAuthor() {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public Author getAuthor() {"
+        "content": "        return author;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return author;"
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    /**"
+        "content": "     * Returns an immutable genre set, which throws {@code UnsupportedOperationException}"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * Returns an immutable genre set, which throws {@code UnsupportedOperationException}"
+        "content": "     * if modification is attempted."
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * if modification is attempted."
+        "content": "     */"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     */"
+        "content": "    public Set\u003cGenre\u003e getGenres() {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public Set\u003cGenre\u003e getGenres() {"
+        "content": "        return Collections.unmodifiableSet(genres);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return Collections.unmodifiableSet(genres);"
+        "content": "    }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    /**"
+        "content": "     * Returns an optional of Loan object. If book is not loaned, Optional will be null."
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * Returns an optional of Loan object. If book is not loaned, Optional will be null."
+        "content": "     * @return Optional of Loan object."
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * @return Optional of Loan object."
+        "content": "     */"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     */"
+        "content": "    public Optional\u003cLoan\u003e getLoan() {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public Optional\u003cLoan\u003e getLoan() {"
+        "content": "        return loan;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return loan;"
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    /**"
+        "content": "     * Returns true if book is currently on loan."
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * Returns true if book is currently on loan."
+        "content": "     *"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     *"
+        "content": "     * @return true if book is currently on loan."
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * @return true if book is currently on loan."
+        "content": "     */"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     */"
+        "content": "    public boolean isCurrentlyLoanedOut() {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public boolean isCurrentlyLoanedOut() {"
+        "content": "        return this.loan.isPresent();"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return this.loan.isPresent();"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    /**"
+        "content": "     * Check if a book is currently overdue."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * Check if a book is currently overdue."
+        "content": "     *"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     *"
+        "content": "     * @return true if book is on loan and overdue."
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * @return true if book is on loan and overdue."
+        "content": "     */"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     */"
+        "content": "    public boolean isOverdue() {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public boolean isOverdue() {"
+        "content": "        if (this.loan.isEmpty()) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        if (this.loan.isEmpty()) {"
+        "content": "            //a book without loan cannot be overdue"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "            //a book without loan cannot be overdue"
+        "content": "            return false;"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "            return false;"
+        "content": "        } else {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        } else {"
+        "content": "            return this.loan.get().getDueDate().compareTo(DateUtil.getTodayDate()) \u003c 0;"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "            return this.loan.get().getDueDate().compareTo(DateUtil.getTodayDate()) \u003c 0;"
+        "content": "        }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    /**"
+        "content": "     * Checks if a book is same, regardless of serial number."
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * Returns true if both books have the same identity and data fields."
+        "content": "     *"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     * This defines a stronger notion of equality between two books."
+        "content": "     * @param b Book to be checked against"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "     */"
+        "content": "     * @return true if both books are the same, even if they are different copies"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    @Override"
+        "content": "     */"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    public boolean isSameBook(Object b) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "        if (b \u003d\u003d this) {"
       },
       {
         "lineNumber": 99,
@@ -35581,7 +35589,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        if (!(other instanceof Book)) {"
+        "content": "        if (!(b instanceof Book)) {"
       },
       {
         "lineNumber": 103,
@@ -35602,192 +35610,353 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        Book otherBook \u003d (Book) b;"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book otherBook \u003d (Book) other;"
+        "content": "        //same book different copy"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // allow for same books but different copies"
+        "content": "        return otherBook.getTitle().equals(getTitle())"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return otherBook.getSerialNumber().equals(getSerialNumber());"
+        "content": "                \u0026\u0026 otherBook.getAuthor().equals(getAuthor())"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 otherBook.getGenres().equals(getGenres());"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public int hashCode() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // use this method for custom fields hashing instead of implementing your own"
+        "content": "     * Returns true if both books have the same identity and data fields."
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return Objects.hash(title, serialNumber, author, genres);"
+        "content": "     * This defines a stronger notion of equality between two books."
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    @Override"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public String toString() {"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+        "content": "            return true;"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        builder.append(getTitle())"
+        "content": "        }"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .append(\" Serial Number: \")"
+        "content": ""
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .append(getSerialNumber())"
+        "content": "        if (!(other instanceof Book)) {"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .append(\" Author: \")"
+        "content": "            return false;"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .append(getAuthor());"
+        "content": "        }"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        if (!getGenres().isEmpty()) {"
+        "content": ""
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "            builder.append(\" Genres: \");"
+        "content": "        Book otherBook \u003d (Book) other;"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "            getGenres().forEach(genre -\u003e builder.append(genre + \" \"));"
+        "content": "        //strictly same book, ignoring loan"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        }"
+        "content": "        return otherBook.getSerialNumber().equals(getSerialNumber())"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        return builder.toString();"
+        "content": "                \u0026\u0026 otherBook.getTitle().equals(getTitle())"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 otherBook.getAuthor().equals(getAuthor())"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "                \u0026\u0026 otherBook.getGenres().equals(getGenres());"
       },
       {
         "lineNumber": 132,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        return Objects.hash(title, serialNumber, author, genres);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        builder.append(getTitle())"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "                .append(\" Serial Number: \")"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "                .append(getSerialNumber())"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "                .append(\" Author: \")"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "                .append(getAuthor());"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        if (!getGenres().isEmpty()) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "            builder.append(\" Genres: \");"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "            getGenres().forEach(genre -\u003e builder.append(genre + \" \"));"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 155,
         "author": {
           "gitId": "hoholyin"
         },
@@ -35795,7 +35964,7 @@
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 132
+      "hoholyin": 155
     }
   },
   {
@@ -50624,915 +50793,901 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "seeziyang"
+          "gitId": "shiyao821"
         },
-        "content": "import java.util.Optional;"
+        "content": "import java.util.Set;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "import java.util.Set;"
+        "content": "import java.util.stream.Collectors;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "import java.util.stream.Collectors;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": ""
+        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonCreator;"
+        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": "import com.fasterxml.jackson.annotation.JsonProperty;"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "shiyao821"
-        },
         "content": "import seedu.address.commons.exceptions.IllegalValueException;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 15,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "import seedu.address.model.LoanRecords;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "import seedu.address.model.ReadOnlyLoanRecords;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "import seedu.address.model.book.Author;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "import seedu.address.model.book.Book;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "import seedu.address.model.book.SerialNumber;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "import seedu.address.model.book.Title;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "import seedu.address.model.genre.Genre;"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "import seedu.address.model.loan.Loan;"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "import seedu.address.model.loan.LoanId;"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "shiyao821"
         },
         "content": " * Jackson-friendly version of {@link Book}."
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "shiyao821"
         },
         "content": " */"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "public class JsonAdaptedBook {"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "    public static final String MISSING_FIELD_MESSAGE_FORMAT \u003d \"Book\u0027s %s field is missing!\";"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    private final String title;"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    private final String serialNumber;"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    private final String author;"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "    private final String loan;"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    private final List\u003cJsonAdaptedTag\u003e genres \u003d new ArrayList\u003c\u003e();"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 39,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "     * Constructs a {@code JsonAdaptedBook} with the given person details."
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 40,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 41,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    @JsonCreator"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 42,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "    public JsonAdaptedBook(@JsonProperty(\"title\") String title,"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 43,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "                           @JsonProperty(\"serialNumber\") String serialNumber,"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 44,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                           @JsonProperty(\"author\") String author,"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 45,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "                           @JsonProperty(\"loan\") String loan,"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 46,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                           @JsonProperty(\"genres\") List\u003cJsonAdaptedTag\u003e genres) {"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        this.title \u003d title;"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 48,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        this.serialNumber \u003d serialNumber;"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 49,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        this.author \u003d author;"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 50,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        if (genres !\u003d null) {"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 51,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            this.genres.addAll(genres);"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 52,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 53,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "        this.loan \u003d loan;"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 54,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "shiyao821"
+        },
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "shiyao821"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "shiyao821"
-        },
         "content": "    /**"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 57,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "     * Converts a given {@code Book} into this class for Jackson use."
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 58,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 59,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    public JsonAdaptedBook(Book source) {"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 60,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        title \u003d source.getTitle().value;"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 61,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        serialNumber \u003d source.getSerialNumber().value;"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 62,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        author \u003d source.getAuthor().value;"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 63,
         "author": {
           "gitId": "seeziyang"
         },
         "content": ""
       },
       {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        if (source.isCurrentlyLoanedOut()) {"
+      },
+      {
         "lineNumber": 65,
         "author": {
-          "gitId": "seeziyang"
+          "gitId": "hoholyin"
         },
-        "content": "        Optional\u003cLoan\u003e optionalLoan \u003d source.getLoan();"
+        "content": "            loan \u003d source.getLoan().get().getLoanId().toString();"
       },
       {
         "lineNumber": 66,
-        "author": {
-          "gitId": "seeziyang"
-        },
-        "content": "        if (optionalLoan.isPresent()) {"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "seeziyang"
-        },
-        "content": "            loan \u003d optionalLoan.get().getLoanId().toString();"
-      },
-      {
-        "lineNumber": 68,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "        } else {"
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 67,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "            loan \u003d null;"
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 68,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 69,
         "author": {
           "gitId": "seeziyang"
         },
         "content": ""
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 70,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        genres.addAll(source.getGenres().stream()"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 71,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                .map(JsonAdaptedTag::new)"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 72,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                .collect(Collectors.toList()));"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 73,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 74,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 75,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 76,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "     * Converts this Jackson-friendly adapted book object into the model\u0027s {@code Book} object."
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 77,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "     * Uses an empty LoanRecords."
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 78,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "     *"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "seeziyang"
+        },
+        "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted book."
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "seeziyang"
+        },
+        "content": "     */"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted book."
+        "content": "    public Book toModelType() throws IllegalValueException {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "     */"
+        "content": "        return toModelType(new LoanRecords());"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    public Book toModelType() throws IllegalValueException {"
+        "content": "    }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "        return toModelType(new LoanRecords());"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": ""
+        "content": "     * Converts this Jackson-friendly adapted book object into the model\u0027s {@code Book} object."
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "seeziyang"
         },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "seeziyang"
-        },
-        "content": "     * Converts this Jackson-friendly adapted book object into the model\u0027s {@code Book} object."
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "seeziyang"
-        },
         "content": "     * Loan objects of the Book is taken from the initialLoanRecords."
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 88,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "     *"
       },
       {
-        "lineNumber": 91,
+        "lineNumber": 89,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted book."
       },
       {
-        "lineNumber": 92,
+        "lineNumber": 90,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 93,
+        "lineNumber": 91,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "    public Book toModelType(ReadOnlyLoanRecords initialLoanRecords) throws IllegalValueException {"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 92,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        final List\u003cGenre\u003e personGenres \u003d new ArrayList\u003c\u003e();"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 93,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        for (JsonAdaptedTag tag : genres) {"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 94,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            personGenres.add(tag.toModelType());"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 95,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 96,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 97,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        if (title \u003d\u003d null) {"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 98,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 99,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 100,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        if (!Title.isValidTitle(title)) {"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 101,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 102,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 103,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        final Title modelTitle \u003d new Title(title);"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 104,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 105,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        if (serialNumber \u003d\u003d null) {"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 106,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 107,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                    SerialNumber.class.getSimpleName()));"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 108,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 109,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "        if (!SerialNumber.isValidSerialNumber(serialNumber)) {"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 110,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            throw new IllegalValueException(SerialNumber.MESSAGE_CONSTRAINTS);"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 111,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 114,
+        "lineNumber": 112,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        final SerialNumber modelSerialNumber \u003d new SerialNumber(serialNumber);"
       },
       {
-        "lineNumber": 115,
+        "lineNumber": 113,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 116,
+        "lineNumber": 114,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        if (author \u003d\u003d null) {"
       },
       {
-        "lineNumber": 117,
+        "lineNumber": 115,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName()));"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 116,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 117,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        final Author modelAuthor \u003d new Author(author);"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 118,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 121,
+        "lineNumber": 119,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "        final Loan modelLoan;"
       },
       {
-        "lineNumber": 122,
+        "lineNumber": 120,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "        if (loan \u003d\u003d null) {"
       },
       {
-        "lineNumber": 123,
+        "lineNumber": 121,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "            modelLoan \u003d null;"
       },
       {
-        "lineNumber": 124,
+        "lineNumber": 122,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "        } else if (!LoanId.isValidLoanId(loan)) {"
       },
       {
-        "lineNumber": 125,
+        "lineNumber": 123,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "            throw new IllegalValueException(LoanId.MESSAGE_CONSTRAINTS);"
       },
       {
-        "lineNumber": 126,
+        "lineNumber": 124,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "        } else {"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 125,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "            LoanId loanId \u003d new LoanId(loan);"
       },
       {
-        "lineNumber": 128,
+        "lineNumber": 126,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "            modelLoan \u003d initialLoanRecords.getLoansMap().get(loanId);"
       },
       {
-        "lineNumber": 129,
+        "lineNumber": 127,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "            if (modelLoan \u003d\u003d null) {"
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 128,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "                throw new IllegalValueException(String.format(MESSAGE_LOAN_ID_DOES_NOT_EXISTS, loanId));"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 129,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 130,
         "author": {
           "gitId": "seeziyang"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 131,
         "author": {
           "gitId": "seeziyang"
         },
         "content": ""
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 132,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "        final Set\u003cGenre\u003e modelGenres \u003d new HashSet\u003c\u003e(personGenres);"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 133,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "        return new Book(modelTitle, modelSerialNumber, modelAuthor, modelLoan, modelGenres);"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 134,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 135,
         "author": {
           "gitId": "shiyao821"
         },
         "content": ""
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 136,
         "author": {
           "gitId": "shiyao821"
         },
@@ -51540,8 +51695,8 @@
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 11,
-      "seeziyang": 41,
+      "hoholyin": 13,
+      "seeziyang": 37,
       "shiyao821": 86
     }
   },
@@ -55461,434 +55616,434 @@
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public Stage getPrimaryStage() {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Stage getPrimaryStage() {"
+        "content": "        return primaryStage;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        return primaryStage;"
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Fills up all the placeholders of this window."
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Fills up all the placeholders of this window."
+        "content": "     */"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    void fillInnerParts() {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "    void fillInnerParts() {"
+        "content": "        personListPanel \u003d new PersonListPanel(logic.getFilteredPersonList());"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "        personListPanel \u003d new PersonListPanel(logic.getFilteredPersonList());"
+        "content": "        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        resultDisplay \u003d new ResultDisplay();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        resultDisplay \u003d new ResultDisplay();"
+        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
+        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Sets the default size based on {@code guiSettings}."
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Sets the default size based on {@code guiSettings}."
+        "content": "     */"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    private void setWindowDefaultSize(GuiSettings guiSettings) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void setWindowDefaultSize(GuiSettings guiSettings) {"
+        "content": "        primaryStage.setHeight(guiSettings.getWindowHeight());"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.setHeight(guiSettings.getWindowHeight());"
+        "content": "        primaryStage.setWidth(guiSettings.getWindowWidth());"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.setWidth(guiSettings.getWindowWidth());"
+        "content": "        if (guiSettings.getWindowCoordinates() !\u003d null) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (guiSettings.getWindowCoordinates() !\u003d null) {"
+        "content": "            primaryStage.setX(guiSettings.getWindowCoordinates().getX());"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "            primaryStage.setX(guiSettings.getWindowCoordinates().getX());"
+        "content": "            primaryStage.setY(guiSettings.getWindowCoordinates().getY());"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "            primaryStage.setY(guiSettings.getWindowCoordinates().getY());"
+        "content": "        }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    void show() {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "    void show() {"
+        "content": "        primaryStage.show();"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.show();"
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Closes the application."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Closes the application."
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "    private void handleExit() {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": "    private void handleExit() {"
+        "content": "        GuiSettings guiSettings \u003d new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "        GuiSettings guiSettings \u003d new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),"
+        "content": "                (int) primaryStage.getX(), (int) primaryStage.getY());"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "                (int) primaryStage.getX(), (int) primaryStage.getY());"
+        "content": "        logic.setGuiSettings(guiSettings);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "        logic.setGuiSettings(guiSettings);"
+        "content": "        primaryStage.hide();"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "        primaryStage.hide();"
+        "content": "    }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public PersonListPanel getPersonListPanel() {"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": "    public PersonListPanel getPersonListPanel() {"
+        "content": "        return personListPanel;"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "        return personListPanel;"
+        "content": "    }"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Executes the command and returns the result."
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Executes the command and returns the result."
+        "content": "     *"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * @see seedu.address.logic.Logic#execute(String)"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @see seedu.address.logic.Logic#execute(String)"
+        "content": "     */"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
-        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
+        "content": "        try {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "            CommandResult commandResult \u003d logic.execute(commandText);"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "-"
         },
-        "content": "            CommandResult commandResult \u003d logic.execute(commandText);"
+        "content": "            logger.info(\"Result: \" + commandResult.getFeedbackToUser());"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Result: \" + commandResult.getFeedbackToUser());"
+        "content": "            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
-        "content": "            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());"
+        "content": ""
       },
       {
         "lineNumber": 114,
@@ -55902,87 +56057,80 @@
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            if (commandResult.isExit()) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": "            if (commandResult.isExit()) {"
+        "content": "                handleExit();"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
-        "content": "                handleExit();"
+        "content": "            }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return commandResult;"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "-"
         },
-        "content": "            return commandResult;"
+        "content": "        } catch (CommandException | ParseException e) {"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (CommandException | ParseException e) {"
+        "content": "            logger.info(\"Invalid command: \" + commandText);"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "-"
         },
-        "content": "            logger.info(\"Invalid command: \" + commandText);"
+        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
-        "content": "            resultDisplay.setFeedbackToUser(e.getMessage());"
+        "content": "            throw e;"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw e;"
+        "content": "        }"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 127,
+        "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
@@ -55991,7 +56139,7 @@
     ],
     "authorContributionMap": {
       "Cronyxx": 4,
-      "-": 123
+      "-": 122
     }
   },
   {
@@ -56283,213 +56431,269 @@
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @FXML"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "hoholyin"
+          "gitId": "Cronyxx"
         },
-        "content": "    public PersonCard(Book book, int displayedIndex) {"
+        "content": "    private Label loanStatus;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        super(FXML);"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        this.book \u003d book;"
+        "content": "    public PersonCard(Book book, int displayedIndex) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        id.setText(displayedIndex + \". \");"
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        title.setText(book.getTitle().value);"
+        "content": "        this.book \u003d book;"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "hoholyin"
+          "gitId": "-"
         },
-        "content": "        serialNumber.setText(book.getSerialNumber().value);"
+        "content": "        id.setText(displayedIndex + \". \");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        author.setText(book.getAuthor().value);"
+        "content": "        title.setText(book.getTitle().value);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        book.getGenres().stream()"
+        "content": "        serialNumber.setText(book.getSerialNumber().value);"
       },
       {
         "lineNumber": 50,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        author.setText(book.getAuthor().value);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "        book.getGenres().stream()"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                .sorted(Comparator.comparing(tag -\u003e tag.genreName))"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 53,
         "author": {
           "gitId": "shiyao821"
         },
         "content": "                .forEach(tag -\u003e genres.getChildren().add(new Label(tag.genreName)));"
       },
       {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "    @Override"
+        "content": "        if (book.isCurrentlyLoanedOut()) {"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "            loanStatus.setText(\"Loaned\");"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "        // short circuit if same object"
+        "content": "        } else {"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "            loanStatus.setText(\"\");"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "            return true;"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "        // instanceof handles nulls"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!(other instanceof PersonCard)) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "            return false;"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "        // short circuit if same object"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        // state check"
+        "content": "            return true;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "        PersonCard card \u003d (PersonCard) other;"
+        "content": "        }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        return id.getText().equals(card.id.getText())"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "hoholyin"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 book.equals(card.book);"
+        "content": "        // instanceof handles nulls"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        if (!(other instanceof PersonCard)) {"
       },
       {
         "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        PersonCard card \u003d (PersonCard) other;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return id.getText().equals(card.id.getText())"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "                \u0026\u0026 book.equals(card.book);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
@@ -56498,7 +56702,8 @@
     ],
     "authorContributionMap": {
       "hoholyin": 13,
-      "-": 56,
+      "Cronyxx": 7,
+      "-": 57,
       "shiyao821": 2
     }
   },
@@ -56997,7 +57202,7 @@
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "    private static final String ICON_APPLICATION \u003d \"/images/LiBerryLogo.png\";"
+        "content": "    private static final String ICON_APPLICATION \u003d \"/images/LiBerryLogo_square.png\";"
       },
       {
         "lineNumber": 24,
@@ -57447,6 +57652,65 @@
     }
   },
   {
+    "path": "src/main/resources/view/CommandBox.fxml",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?xml version\u003d\"1.0\" encoding\u003d\"UTF-8\"?\u003e"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003c?import javafx.scene.control.TextField?\u003e"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "\u003c?import javafx.scene.layout.AnchorPane?\u003e"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "\u003cTextField fx:id\u003d\"commandTextField\" maxHeight\u003d\"35.0\" maxWidth\u003d\"Infinity\" minHeight\u003d\"35.0\" minWidth\u003d\"0.0\" onAction\u003d\"#handleCommandEntered\" prefHeight\u003d\"35.0\" prefWidth\u003d\"600.0\" promptText\u003d\"Enter command here...\" AnchorPane.leftAnchor\u003d\"5\" AnchorPane.rightAnchor\u003d\"5\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\" /\u003e"
+      }
+    ],
+    "authorContributionMap": {
+      "Cronyxx": 2,
+      "-": 5
+    }
+  },
+  {
     "path": "src/main/resources/view/MainWindow.fxml",
     "fileType": "functional",
     "lines": [
@@ -57469,416 +57733,451 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.geometry.Insets?\u003e"
+        "content": "\u003c?import java.net.URL?\u003e"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "Cronyxx"
+          "gitId": "-"
         },
-        "content": "\u003c?import java.net.URL?\u003e"
+        "content": "\u003c?import javafx.geometry.Insets?\u003e"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.image.Image?\u003e"
+        "content": "\u003c?import javafx.scene.Scene?\u003e"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.image.ImageView?\u003e"
+        "content": "\u003c?import javafx.scene.control.Label?\u003e"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "Cronyxx"
+          "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.layout.AnchorPane?\u003e"
+        "content": "\u003c?import javafx.scene.image.Image?\u003e"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.layout.BorderPane?\u003e"
+        "content": "\u003c?import javafx.scene.image.ImageView?\u003e"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.layout.Pane?\u003e"
+        "content": "\u003c?import javafx.scene.layout.AnchorPane?\u003e"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
+        "content": "\u003c?import javafx.scene.layout.BorderPane?\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.text.Text?\u003e"
+        "content": "\u003c?import javafx.scene.layout.Pane?\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "Cronyxx"
+          "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.Scene?\u003e"
+        "content": "\u003c?import javafx.scene.layout.StackPane?\u003e"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "Cronyxx"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
         "lineNumber": 15,
         "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "\u003c?import javafx.scene.text.Text?\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "\u003c?import javafx.stage.Stage?\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003cfx:root type\u003d\"javafx.stage.Stage\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\""
-      },
-      {
-        "lineNumber": 17,
+        "lineNumber": 18,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "         title\u003d\"LiBerry\" minWidth\u003d\"450\" minHeight\u003d\"600\" onCloseRequest\u003d\"#handleExit\"\u003e"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "  \u003cscene\u003e"
+        "content": "\u003cfx:root minHeight\u003d\"600\" minWidth\u003d\"650.0\" onCloseRequest\u003d\"#handleExit\" title\u003d\"LiBerry\" type\u003d\"javafx.stage.Stage\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    \u003cScene\u003e"
+        "content": "  \u003cscene\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "      \u003cstylesheets\u003e"
+        "content": "    \u003cScene\u003e"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "        \u003cURL value\u003d\"@DarkTheme.css\" /\u003e"
+        "content": "      \u003cstylesheets\u003e"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "        \u003cURL value\u003d\"@Extensions.css\" /\u003e"
+        "content": "        \u003cURL value\u003d\"@DarkTheme.css\" /\u003e"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "      \u003c/stylesheets\u003e"
+        "content": "        \u003cURL value\u003d\"@Extensions.css\" /\u003e"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "      \u003c/stylesheets\u003e"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "Cronyxx"
+          "gitId": "-"
         },
-        "content": "      \u003cBorderPane maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\""
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "                  prefHeight\u003d\"400.0\" prefWidth\u003d\"615.0\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\""
+        "content": "      \u003cBorderPane maxHeight\u003d\"-Infinity\" maxWidth\u003d\"-Infinity\" minHeight\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" prefHeight\u003d\"510.0\" prefWidth\u003d\"615.0\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "                  xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+        "content": "        \u003cbottom\u003e"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "        \u003cbottom\u003e"
+        "content": "          \u003cAnchorPane fx:id\u003d\"commandBoxPlaceholder\" maxHeight\u003d\"35.0\" minHeight\u003d\"35.0\" minWidth\u003d\"0.0\" prefHeight\u003d\"35.0\" prefWidth\u003d\"600.0\" styleClass\u003d\"pane-with-border\" BorderPane.alignment\u003d\"CENTER\"\u003e"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "          \u003cAnchorPane fx:id\u003d\"commandBoxPlaceholder\" styleClass\u003d\"pane-with-border\" prefHeight\u003d\"35.0\""
+        "content": "          \u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "                      prefWidth\u003d\"600.0\" BorderPane.alignment\u003d\"CENTER\" \u003e"
+        "content": "        \u003c/bottom\u003e"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "          \u003c/AnchorPane\u003e"
+        "content": "        \u003cright\u003e"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "        \u003c/bottom\u003e"
+        "content": "          \u003cAnchorPane maxWidth\u003d\"-Infinity\" minWidth\u003d\"-Infinity\" prefHeight\u003d\"315.0\" prefWidth\u003d\"200.0\" style\u003d\"-fx-background-color: #d8dae3#d8dae3;\" BorderPane.alignment\u003d\"CENTER\"\u003e"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "        \u003ctop\u003e"
+        "content": "            \u003cchildren\u003e"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "          \u003cPane fx:id\u003d\"resultDisplayPlaceholder\" minHeight\u003d\"50\" prefHeight\u003d\"50\" maxHeight\u003d\"50\""
+        "content": "                     \u003cPane fx:id\u003d\"resultDisplayPlaceholder\" maxWidth\u003d\"200.0\" minWidth\u003d\"200.0\" prefHeight\u003d\"115.0\" prefWidth\u003d\"200.0\" /\u003e"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "                      style\u003d\"-fx-background-color: C8D3D5;\" BorderPane.alignment\u003d\"CENTER\"\u003e"
+        "content": "              \u003cText layoutX\u003d\"31.0\" layoutY\u003d\"143.0\" strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Name: John\" wrappingWidth\u003d\"109.7158203125\" /\u003e"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "          \u003c/Pane\u003e"
+        "content": "              \u003cText layoutX\u003d\"31.0\" layoutY\u003d\"167.0\" strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Loans: 4\" /\u003e"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "        \u003c/top\u003e"
+        "content": "              \u003cText layoutX\u003d\"31.0\" layoutY\u003d\"189.0\" strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Unpaid fees: 0\" /\u003e"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "        \u003cright\u003e"
+        "content": "            \u003c/children\u003e\u003c/AnchorPane\u003e"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "          \u003cAnchorPane prefHeight\u003d\"200.0\" prefWidth\u003d\"200.0\" style\u003d\"-fx-background-color: #d8dae3#d8dae3;\" BorderPane.alignment\u003d\"CENTER\"\u003e"
+        "content": "        \u003c/right\u003e"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "            \u003cchildren\u003e"
+        "content": "        \u003ccenter\u003e"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "              \u003cImageView fitHeight\u003d\"84.0\" fitWidth\u003d\"69.0\" layoutX\u003d\"66.0\" layoutY\u003d\"30.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
+        "content": "            \u003cVBox fx:id\u003d\"bookList\" minWidth\u003d\"340\" prefWidth\u003d\"340\" styleClass\u003d\"pane-with-border\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
       },
       {
         "lineNumber": 42,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "                \u003cimage\u003e"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "                  \u003cImage url\u003d\"@/images/Portrait_placeholder.png\" /\u003e"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "                \u003c/image\u003e"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "              \u003c/ImageView\u003e"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "              \u003cText layoutX\u003d\"82.0\" layoutY\u003d\"136.0\" strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Name\" /\u003e"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "              \u003cText layoutX\u003d\"31.0\" layoutY\u003d\"170.0\" strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Loans: 4\" /\u003e"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "              \u003cText layoutX\u003d\"31.0\" layoutY\u003d\"194.0\" strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Unpaid fees: 0\" /\u003e"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "            \u003c/children\u003e\u003c/AnchorPane\u003e"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "        \u003c/right\u003e"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "        \u003ccenter\u003e"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "hoholyin"
-        },
-        "content": "            \u003cVBox fx:id\u003d\"bookList\" styleClass\u003d\"pane-with-border\" minWidth\u003d\"340\" prefWidth\u003d\"340\" VBox.vgrow\u003d\"ALWAYS\"\u003e"
-      },
-      {
-        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
         "content": "                \u003cpadding\u003e"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "                    \u003cInsets top\u003d\"10\" right\u003d\"10\" bottom\u003d\"10\" left\u003d\"10\" /\u003e"
+        "content": "                    \u003cInsets bottom\u003d\"10\" left\u003d\"10\" right\u003d\"10\" top\u003d\"10\" /\u003e"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
         "content": "                \u003c/padding\u003e"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "                \u003cStackPane fx:id\u003d\"personListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\"/\u003e"
+        "content": "                \u003cStackPane fx:id\u003d\"personListPanelPlaceholder\" VBox.vgrow\u003d\"ALWAYS\" /\u003e"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": "            \u003c/VBox\u003e"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 47,
         "author": {
           "gitId": "Cronyxx"
         },
         "content": "        \u003c/center\u003e"
       },
       {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "            \u003ctop\u003e"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "               \u003cHBox prefHeight\u003d\"47.0\" prefWidth\u003d\"615.0\" BorderPane.alignment\u003d\"CENTER\"\u003e"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                  \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                     \u003cImageView fitHeight\u003d\"47.0\" fitWidth\u003d\"118.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\" HBox.hgrow\u003d\"NEVER\"\u003e"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                        \u003cimage\u003e"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                           \u003cImage url\u003d\"@../images/LiBerryLogo.png\" /\u003e"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                        \u003c/image\u003e"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                        \u003cHBox.margin\u003e"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                           \u003cInsets left\u003d\"7.0\" top\u003d\"7.0\" /\u003e"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                        \u003c/HBox.margin\u003e"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                     \u003c/ImageView\u003e"
+      },
+      {
         "lineNumber": 59,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                     \u003cPane prefHeight\u003d\"47.0\" prefWidth\u003d\"286.0\" HBox.hgrow\u003d\"ALWAYS\" /\u003e"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                     \u003cLabel prefHeight\u003d\"57.0\" prefWidth\u003d\"201.0\" text\u003d\"Mode: Serving\" /\u003e"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "                  \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "               \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "            \u003c/top\u003e"
+      },
+      {
+        "lineNumber": 64,
         "author": {
           "gitId": "Cronyxx"
         },
         "content": "      \u003c/BorderPane\u003e"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
         "content": "    \u003c/Scene\u003e"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
         "content": "  \u003c/scene\u003e"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
@@ -57886,8 +58185,7 @@
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 1,
-      "Cronyxx": 38,
+      "Cronyxx": 44,
       "-": 23
     }
   },
@@ -57954,187 +58252,292 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
+        "content": "\u003c?import javafx.scene.layout.Pane?\u003e"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
+        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": ""
+        "content": "\u003c?import javafx.scene.layout.RowConstraints?\u003e"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/8\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
+        "content": "\u003c?import javafx.scene.layout.VBox?\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "  \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
+        "content": "\u003c?import javafx.scene.text.Font?\u003e"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "    \u003ccolumnConstraints\u003e"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "      \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" minWidth\u003d\"10\" prefWidth\u003d\"150\" /\u003e"
+        "content": "\u003cHBox id\u003d\"cardPane\" fx:id\u003d\"cardPane\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "    \u003c/columnConstraints\u003e"
+        "content": "  \u003cGridPane HBox.hgrow\u003d\"ALWAYS\"\u003e"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "    \u003cVBox alignment\u003d\"CENTER_LEFT\" minHeight\u003d\"105\" GridPane.columnIndex\u003d\"0\"\u003e"
+        "content": "    \u003ccolumnConstraints\u003e"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "      \u003cpadding\u003e"
+        "content": "      \u003cColumnConstraints hgrow\u003d\"SOMETIMES\" maxWidth\u003d\"Infinity\" minWidth\u003d\"10.0\" prefWidth\u003d\"205.0\" /\u003e"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "        \u003cInsets top\u003d\"5\" right\u003d\"5\" bottom\u003d\"5\" left\u003d\"15\" /\u003e"
+        "content": "    \u003c/columnConstraints\u003e"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "      \u003c/padding\u003e"
+        "content": "    \u003cVBox alignment\u003d\"CENTER_LEFT\" minHeight\u003d\"105\" GridPane.columnIndex\u003d\"0\" GridPane.hgrow\u003d\"ALWAYS\"\u003e"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "      \u003cHBox spacing\u003d\"5\" alignment\u003d\"CENTER_LEFT\"\u003e"
+        "content": "      \u003cpadding\u003e"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "        \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
+        "content": "        \u003cInsets bottom\u003d\"5\" left\u003d\"15\" right\u003d\"5\" top\u003d\"5\" /\u003e"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "          \u003cminWidth\u003e"
+        "content": "      \u003c/padding\u003e"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "Cronyxx"
         },
-        "content": "            \u003c!-- Ensures that the label text is never truncated --\u003e"
+        "content": "      \u003cHBox alignment\u003d\"CENTER_LEFT\" spacing\u003d\"5\"\u003e"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "            \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
+        "content": "        \u003cLabel fx:id\u003d\"id\" styleClass\u003d\"cell_big_label\"\u003e"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "          \u003c/minWidth\u003e"
+        "content": "          \u003cminWidth\u003e"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "        \u003c/Label\u003e"
+        "content": "            \u003c!-- Ensures that the label text is never truncated --\u003e"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "hoholyin"
+          "gitId": "-"
         },
-        "content": "        \u003cLabel fx:id\u003d\"title\" text\u003d\"\\$first\" styleClass\u003d\"cell_big_label\" /\u003e"
+        "content": "            \u003cRegion fx:constant\u003d\"USE_PREF_SIZE\" /\u003e"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "      \u003c/HBox\u003e"
+        "content": "          \u003c/minWidth\u003e"
       },
       {
         "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        \u003c/Label\u003e"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "        \u003cLabel fx:id\u003d\"title\" styleClass\u003d\"cell_big_label\" text\u003d\"\\$first\" /\u003e"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "      \u003c/HBox\u003e"
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "      \u003cFlowPane fx:id\u003d\"genres\" /\u003e"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 34,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "      \u003cLabel fx:id\u003d\"serialNumber\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$serialNumber\" /\u003e"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 35,
         "author": {
           "gitId": "hoholyin"
         },
         "content": "      \u003cLabel fx:id\u003d\"author\" styleClass\u003d\"cell_small_label\" text\u003d\"\\$author\" /\u003e"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
         "content": "    \u003c/VBox\u003e"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "      \u003crowConstraints\u003e"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "         \u003cRowConstraints /\u003e"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "      \u003c/rowConstraints\u003e"
+      },
+      {
+        "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
         "content": "  \u003c/GridPane\u003e"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "   \u003cPane maxWidth\u003d\"100.0\" minHeight\u003d\"105.0\" minWidth\u003d\"100.0\" prefHeight\u003d\"105.0\" prefWidth\u003d\"100.0\"\u003e"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "      \u003cchildren\u003e"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "         \u003cLabel fx:id\u003d\"loanStatus\" layoutY\u003d\"41.0\" text\u003d\"Loaned\"\u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "            \u003cfont\u003e"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "               \u003cFont size\u003d\"19.0\" /\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "            \u003c/font\u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "         \u003c/Label\u003e"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "      \u003c/children\u003e"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Cronyxx"
+        },
+        "content": "   \u003c/Pane\u003e"
+      },
+      {
+        "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
@@ -58142,8 +58545,9 @@
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 4,
-      "-": 31
+      "hoholyin": 3,
+      "Cronyxx": 21,
+      "-": 26
     }
   },
   {
@@ -58174,160 +58578,27 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "Cronyxx"
+          "gitId": "-"
         },
-        "content": "\u003c?import javafx.scene.image.Image?\u003e"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.image.ImageView?\u003e"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Cronyxx"
         },
-        "content": "\u003c?import javafx.scene.layout.HBox?\u003e"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "\u003c?import javafx.scene.text.Font?\u003e"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "\u003c?import javafx.scene.text.Text?\u003e"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "\u003c?import javafx.geometry.Insets?\u003e"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "\u003c?import javafx.scene.layout.Region?\u003e"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "\u003cHBox alignment\u003d\"CENTER\" spacing\u003d\"5\" prefHeight\u003d\"50.0\" prefWidth\u003d\"725.0\" HBox.hgrow\u003d\"ALWAYS\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\"\u003e"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "    \u003cRegion minWidth\u003d\"10\" maxWidth\u003d\"10\" minHeight\u003d\"50\" maxHeight\u003d\"50\"\u003e\u003c/Region\u003e"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "    \u003cImageView fitHeight\u003d\"50.0\" fitWidth\u003d\"107.0\" pickOnBounds\u003d\"true\" preserveRatio\u003d\"true\"\u003e"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "        \u003cimage\u003e"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "            \u003cImage url\u003d\"@/images/LiBerryLogo.png\" /\u003e"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "        \u003c/image\u003e"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "    \u003c/ImageView\u003e"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "    \u003cTextArea fx:id\u003d\"resultDisplay\" editable\u003d\"false\" styleClass\u003d\"result-display\" HBox.hgrow\u003d\"ALWAYS\" /\u003e"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "    \u003cText strokeType\u003d\"OUTSIDE\" strokeWidth\u003d\"0.0\" text\u003d\"Mode: Serving\"\u003e"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "        \u003cfont\u003e"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "            \u003cFont size\u003d\"17.0\" /\u003e"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "        \u003c/font\u003e"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "    \u003c/Text\u003e"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "Cronyxx"
-        },
-        "content": "\u003c/HBox\u003e"
+        "content": "\u003cTextArea fx:id\u003d\"resultDisplay\" prefHeight\u003d\"115.0\" prefWidth\u003d\"200.0\" styleClass\u003d\"result-display\" xmlns\u003d\"http://javafx.com/javafx/11.0.1\" xmlns:fx\u003d\"http://javafx.com/fxml/1\" /\u003e"
       }
     ],
     "authorContributionMap": {
-      "Cronyxx": 21,
+      "Cronyxx": 2,
       "-": 4
     }
   },
@@ -63547,16 +63818,16 @@
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "hoholyin"
         },
-        "content": "    public static final String VALID_GENRE_FICTION \u003d \"FICTON\";"
+        "content": "    public static final String VALID_GENRE_FICTION \u003d \"FICTION\";"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "hoholyin"
         },
-        "content": "    public static final String VALID_GENRE_NONFICTION \u003d \"NON-FICTON\";"
+        "content": "    public static final String VALID_GENRE_NONFICTION \u003d \"NON-FICTION\";"
       },
       {
         "lineNumber": 66,
@@ -64443,11 +64714,11 @@
     ],
     "authorContributionMap": {
       "linyutinglyt": 6,
-      "hoholyin": 45,
+      "hoholyin": 47,
       "Cronyxx": 40,
       "seeziyang": 2,
       "-": 91,
-      "shiyao821": 7
+      "shiyao821": 5
     }
   },
   {
@@ -88587,9 +88858,9 @@
       {
         "lineNumber": 237,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "hoholyin"
         },
-        "content": "        // Non-matching keyword"
+        "content": "        // Non-matching keyword will not pass"
       },
       {
         "lineNumber": 238,
@@ -88615,9 +88886,9 @@
       {
         "lineNumber": 241,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "hoholyin"
         },
-        "content": "        // Only one matching keyword"
+        "content": "        // Only one matching keyword will not pass predicate"
       },
       {
         "lineNumber": 242,
@@ -88643,9 +88914,9 @@
       {
         "lineNumber": 245,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "hoholyin"
         },
-        "content": "        // Mixed-case keywords"
+        "content": "        // Mixed-case keywords allowed"
       },
       {
         "lineNumber": 246,
@@ -88657,9 +88928,9 @@
       {
         "lineNumber": 247,
         "author": {
-          "gitId": "shiyao821"
+          "gitId": "hoholyin"
         },
-        "content": "        assertFalse(predicate.test(new BookBuilder().withGenres(VALID_GENRE_FICTION, VALID_GENRE_ACTION).build()));"
+        "content": "        assertTrue(predicate.test(new BookBuilder().withGenres(VALID_GENRE_FICTION, VALID_GENRE_ACTION).build()));"
       },
       {
         "lineNumber": 248,
@@ -88768,8 +89039,8 @@
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 42,
-      "shiyao821": 220
+      "hoholyin": 46,
+      "shiyao821": 216
     }
   },
   {
@@ -89110,140 +89381,140 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // same object -\u003e returns true"
+        "content": "        // will return true if book is same, regardless of serial number"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(BOOK_1.equals(BOOK_1));"
+        "content": "        // same object -\u003e returns true"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertTrue(BOOK_1.isSameBook(BOOK_1));"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // null -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(null));"
+        "content": "        // null -\u003e returns false"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.isSameBook(null));"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different serial number and author -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book editedBook1 \u003d new BookBuilder(BOOK_1).withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2)"
+        "content": "        // different serial number and author -\u003e returns false"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .withAuthor(VALID_AUTHOR_BOOK_2).build();"
+        "content": "        Book editedBook1 \u003d new BookBuilder(BOOK_1).withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2)"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(editedBook1));"
+        "content": "                .withAuthor(VALID_AUTHOR_BOOK_2).build();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.isSameBook(editedBook1));"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different title -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        editedBook1 \u003d new BookBuilder(BOOK_1).withTitle(VALID_TITLE_BOOK_2)"
+        "content": "        // different title -\u003e returns false"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
+        "content": "        editedBook1 \u003d new BookBuilder(BOOK_1).withTitle(VALID_TITLE_BOOK_2)"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(editedBook1));"
+        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.isSameBook(editedBook1));"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // same name, same phone, different attributes -\u003e returns true"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        editedBook1 \u003d new BookBuilder(BOOK_1).withAuthor(VALID_AUTHOR_BOOK_2)"
+        "content": "        // same attributes, different serial number -\u003e returns true"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .withGenres(VALID_GENRE_ACTION).build();"
+        "content": "        editedBook1 \u003d new BookBuilder(BOOK_1).withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(BOOK_1.equals(editedBook1));"
+        "content": "        assertTrue(BOOK_1.isSameBook(editedBook1));"
       },
       {
         "lineNumber": 68,
@@ -89257,7 +89528,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // same name, same email, different attributes -\u003e returns true"
+        "content": "        // same title, different serial number, different genre -\u003e isSameBook returns false"
       },
       {
         "lineNumber": 70,
@@ -89278,7 +89549,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(BOOK_2.equals(editedBook1));"
+        "content": "        assertFalse(BOOK_1.isSameBook(editedBook1));"
       },
       {
         "lineNumber": 73,
@@ -89292,7 +89563,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // same title, same serial number, same author, different attributes -\u003e returns true"
+        "content": "        // same attributes, different genres -\u003e returns false"
       },
       {
         "lineNumber": 75,
@@ -89306,7 +89577,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(BOOK_1.equals(editedBook1));"
+        "content": "        assertFalse(BOOK_1.equals(editedBook1));"
       },
       {
         "lineNumber": 77,
@@ -89341,437 +89612,444 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // same values -\u003e returns true"
+        "content": "        // compares all attributes"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book aliceCopy \u003d new BookBuilder(BOOK_1).build();"
+        "content": "        // same values -\u003e returns true"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(BOOK_1.equals(aliceCopy));"
+        "content": "        Book aliceCopy \u003d new BookBuilder(BOOK_1).build();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertTrue(BOOK_1.equals(aliceCopy));"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // same object -\u003e returns true"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(BOOK_1.equals(BOOK_1));"
+        "content": "        // same object -\u003e returns true"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertTrue(BOOK_1.equals(BOOK_1));"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // null -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(null));"
+        "content": "        // null -\u003e returns false"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.equals(null));"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different type -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(5));"
+        "content": "        // different type -\u003e returns false"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.equals(5));"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different person -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(BOOK_2));"
+        "content": "        // different person -\u003e returns false"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.equals(BOOK_2));"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different name and serial number -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book editedA \u003d new BookBuilder(BOOK_1).withTitle(VALID_TITLE_BOOK_2)"
+        "content": "        // different name and serial number -\u003e returns false"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
+        "content": "        Book editedA \u003d new BookBuilder(BOOK_1).withTitle(VALID_TITLE_BOOK_2)"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(editedA));"
+        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.equals(editedA));"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different serial number -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        editedA \u003d new BookBuilder(BOOK_1).withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
+        "content": "        // different serial number -\u003e returns false"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(editedA));"
+        "content": "        editedA \u003d new BookBuilder(BOOK_1).withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.equals(editedA));"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different author -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        editedA \u003d new BookBuilder(BOOK_1).withAuthor(VALID_AUTHOR_BOOK_2)"
+        "content": "        // different author -\u003e returns false"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
+        "content": "        editedA \u003d new BookBuilder(BOOK_1).withAuthor(VALID_AUTHOR_BOOK_2)"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(editedA));"
+        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "        assertFalse(BOOK_1.equals(editedA));"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        // different genres -\u003e returns false"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        editedA \u003d new BookBuilder(BOOK_1).withGenres(VALID_GENRE_ACTION)"
+        "content": "        // different genres -\u003e returns false"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
+        "content": "        editedA \u003d new BookBuilder(BOOK_1).withGenres(VALID_GENRE_ACTION)"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertFalse(BOOK_1.equals(editedA));"
+        "content": "                .withSerialNumber(VALID_SERIAL_NUMBER_BOOK_2).build();"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "        assertFalse(BOOK_1.equals(editedA));"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public void hashCode_sameBookSameHashCode_assertTrue() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book book1 \u003d new BookBuilder(BOOK_1).build();"
+        "content": "    public void hashCode_sameBookSameHashCode_assertTrue() {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book book2 \u003d new BookBuilder(BOOK_1).build();"
+        "content": "        Book book1 \u003d new BookBuilder(BOOK_1).build();"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertEquals(book1.hashCode(), book2.hashCode());"
+        "content": "        Book book2 \u003d new BookBuilder(BOOK_1).build();"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "        assertEquals(book1.hashCode(), book2.hashCode());"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public void getSerialNumber_sameBook_assertTrue() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book book1 \u003d new BookBuilder(BOOK_1).build();"
+        "content": "    public void getSerialNumber_sameBook_assertTrue() {"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(book1.getSerialNumber().equals(new SerialNumber(VALID_SERIAL_NUMBER_BOOK_1)));"
+        "content": "        Book book1 \u003d new BookBuilder(BOOK_1).build();"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "        assertTrue(book1.getSerialNumber().equals(new SerialNumber(VALID_SERIAL_NUMBER_BOOK_1)));"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    public void toString_book() {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        Book book1 \u003d new BookBuilder(BOOK_1).build();"
+        "content": "    public void toString_book() {"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        StringBuilder genres \u003d new StringBuilder();"
+        "content": "        Book book1 \u003d new BookBuilder(BOOK_1).build();"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        book1.getGenres().forEach(genre -\u003e genres.append(genre + \" \"));"
+        "content": "        StringBuilder genres \u003d new StringBuilder();"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        String stringRep \u003d book1.getTitle()"
+        "content": "        book1.getGenres().forEach(genre -\u003e genres.append(genre + \" \"));"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                + \" Serial Number: \" + book1.getSerialNumber()"
+        "content": "        String stringRep \u003d book1.getTitle()"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                + \" Author: \" + book1.getAuthor()"
+        "content": "                + \" Serial Number: \" + book1.getSerialNumber()"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "                + \" Genres: \" + genres.toString();"
+        "content": "                + \" Author: \" + book1.getAuthor()"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": ""
+        "content": "                + \" Genres: \" + genres.toString();"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        String temp \u003d book1.toString();"
+        "content": ""
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(book1.toString().equals(stringRep));"
+        "content": "        String temp \u003d book1.toString();"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "    }"
+        "content": "        assertTrue(book1.toString().equals(stringRep));"
       },
       {
         "lineNumber": 143,
+        "author": {
+          "gitId": "hoholyin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 144,
         "author": {
           "gitId": "hoholyin"
         },
@@ -89779,7 +90057,7 @@
       }
     ],
     "authorContributionMap": {
-      "hoholyin": 138,
+      "hoholyin": 139,
       "seeziyang": 5
     }
   },
@@ -91635,7 +91913,7 @@
         "author": {
           "gitId": "hoholyin"
         },
-        "content": "        assertTrue(uniqueBookList.contains(editedBook1));"
+        "content": "        assertFalse(uniqueBookList.contains(editedBook1));"
       },
       {
         "lineNumber": 47,

@@ -46631,9 +46631,9 @@
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "Akimatsu98"
+          "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New flashcard added: %1$s\";"
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"New flashcard added.\";"
       },
       {
         "lineNumber": 35,
@@ -46855,8 +46855,8 @@
     ],
     "authorContributionMap": {
       "lzw12345": 6,
-      "-": 39,
-      "Akimatsu98": 20
+      "-": 40,
+      "Akimatsu98": 19
     }
   },
   {
@@ -49306,7 +49306,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": " * Command to view the MCQ choices in a flashcard."
+        "content": " * Command to view the MCQ choices in a flashcard. The answer will not be shown."
       },
       {
         "lineNumber": 14,
@@ -49362,255 +49362,262 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        + \"Parameters: INDEX (must be a positive integer)\\n\""
+        "content": "        + \"Only the choices with the flashcard will be shown but the answer will not.\\n\""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "        + \"Example: \" + COMMAND_WORD + \" 1\";"
+        "content": "        + \"Parameters: INDEX (must be a positive integer)\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        + \"Example: \" + COMMAND_WORD + \" 1\";"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_INVALID_FLASHCARD_INDEX \u003d \"The index you entered is invalid!\";"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS \u003d \"The flashcard is shown below.\";"
+        "content": "    public static final String MESSAGE_INVALID_FLASHCARD_INDEX \u003d \"The index you entered is invalid!\";"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final Index targetIndex;"
+        "content": "    public static final String MESSAGE_DELETE_FLASHCARD_SUCCESS \u003d \"The flashcard is shown below.\";"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private final Index targetIndex;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    public ViewCommand(Index targetIndex) {"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(targetIndex);"
+        "content": "    public ViewCommand(Index targetIndex) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.targetIndex \u003d targetIndex;"
+        "content": "        requireNonNull(targetIndex);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this.targetIndex \u003d targetIndex;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Showing a whole flashcard in the command bot."
+        "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param model list of flashcards"
+        "content": "     * Showing a whole flashcard in the command bot, the answer will not be shown."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the execution result"
+        "content": "     * @param model list of flashcards"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws CommandException error encountered during execution of command"
+        "content": "     * @return the execution result containing the flashcard without the answer."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws CommandException error encountered during execution of command."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        List\u003cFlashcard\u003e lastShownList \u003d model.getFilteredFlashcardList();"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "        List\u003cFlashcard\u003e lastShownList \u003d model.getFilteredFlashcardList();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new CommandException(MESSAGE_INVALID_FLASHCARD_INDEX);"
+        "content": "        if (targetIndex.getZeroBased() \u003e\u003d lastShownList.size()) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new CommandException(MESSAGE_INVALID_FLASHCARD_INDEX);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        Flashcard cardToView \u003d lastShownList.get(targetIndex.getZeroBased());"
+        "content": "        }"
       },
       {
         "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Flashcard cardToView \u003d lastShownList.get(targetIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 48,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": "        model.updateLastViewedFlashcard(cardToView);"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
         "content": "        return new CommandResult(cardToView.toString());"
       },
       {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        return other \u003d\u003d this"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "            || (other instanceof ViewCommand"
+        "content": "        return other \u003d\u003d this"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": "            \u0026\u0026 targetIndex.equals(((ViewCommand) other).targetIndex));"
+        "content": "            || (other instanceof ViewCommand"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            \u0026\u0026 targetIndex.equals(((ViewCommand) other).targetIndex));"
       },
       {
         "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
@@ -49618,7 +49625,7 @@
       }
     ],
     "authorContributionMap": {
-      "-": 56,
+      "-": 57,
       "jolynnn8D": 1
     }
   },
@@ -50004,150 +50011,157 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d"
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args,"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_WORD, PREFIX_CHOICE, PREFIX_DEFINITION, PREFIX_TAG);"
+        "content": "            PREFIX_WORD, PREFIX_CHOICE, PREFIX_DEFINITION, PREFIX_TAG, PREFIX_ANSWER);"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_WORD, PREFIX_CHOICE, PREFIX_DEFINITION, PREFIX_TAG)"
+        "content": "        if (!arePrefixesPresent(argMultimap,"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
+        "content": "            PREFIX_WORD, PREFIX_DEFINITION, PREFIX_ANSWER)"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+        "content": "            || !argMultimap.getPreamble().isEmpty()) {"
       },
       {
         "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 41,
         "author": {
           "gitId": "Akimatsu98"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
         "content": "        Word word \u003d ParserUtil.parseWord(argMultimap.getValue(PREFIX_WORD).get());"
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 44,
         "author": {
           "gitId": "lzw12345"
         },
         "content": "        Set\u003cChoice\u003e choices \u003d ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
         "content": "        Definition definition \u003d ParserUtil.parseDefinition(argMultimap.getValue(PREFIX_DEFINITION).get());"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": "        Set\u003cTag\u003e tagList \u003d ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
         "content": "        Answer answer \u003d ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());"
       },
       {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        Flashcard flashcard \u003d new Flashcard(word, choices, definition, tagList, answer);"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        Flashcard flashcard \u003d new Flashcard(word, choices, definition, tagList, answer);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        return new AddCommand(flashcard);"
+        "content": ""
       },
       {
         "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new AddCommand(flashcard);"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "Akimatsu98"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
@@ -50155,8 +50169,8 @@
       }
     ],
     "authorContributionMap": {
-      "lzw12345": 5,
-      "-": 43,
+      "lzw12345": 3,
+      "-": 46,
       "Akimatsu98": 8
     }
   },
@@ -52768,521 +52782,549 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.HelpCommand;"
+        "content": "import seedu.flashcard.logic.commands.FullViewCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ListCardByTagCommand;"
+        "content": "import seedu.flashcard.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ListCommand;"
+        "content": "import seedu.flashcard.logic.commands.ListCardByTagCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ListTagCommand;"
+        "content": "import seedu.flashcard.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.commands.ViewCommand;"
+        "content": "import seedu.flashcard.logic.commands.ListTagCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.flashcard.logic.commands.ViewCommand;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.flashcard.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " * The major controlling panel of command parsers."
+        "content": "/**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * The major controlling panel of command parsers."
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "public class FlashcardListParser {"
+        "content": " */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "public class FlashcardListParser {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses the original user input and calls corresponding commands or sub-parsers."
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput the original user input."
+        "content": "     * Parses the original user input and calls corresponding commands or sub-parsers."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command being extracted out from the user input."
+        "content": "     * @param userInput the original user input."
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException when the user input format does not fit the pattern."
+        "content": "     * @return the command being extracted out from the user input."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException when the user input format does not fit the pattern."
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 61,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": "            return new FindCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 62,
         "author": {
           "gitId": "Akimatsu98"
         },
         "content": ""
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": "        case ListCardByTagCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
         "content": "            return new ListCardByTagCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "lzw12345"
-        },
-        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "lzw12345"
         },
-        "content": "        case ListTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListTagCommand();"
+        "content": "        case ListTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListTagCommand();"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "        case DeleteTagCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteTagCommandParser().parse(arguments);"
+        "content": "        case DeleteTagCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new DeleteTagCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ViewCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ViewCommandParser().parse(arguments);"
+        "content": "        case ViewCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ViewCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 83,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "        case FlipCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "            return new FlipCommandParser().parse(arguments);"
+        "content": "        case FlipCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "            return new FlipCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "jolynnn8D"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKOWN_COMMAND);"
+        "content": "        case FullViewCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "        }"
+        "content": "            return new FullViewCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "lzw12345"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "lzw12345"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "lzw12345"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
         "author": {
           "gitId": "lzw12345"
         },
@@ -53291,7 +53333,7 @@
     ],
     "authorContributionMap": {
       "lzw12345": 42,
-      "-": 44,
+      "-": 48,
       "jolynnn8D": 4,
       "Akimatsu98": 1
     }
@@ -57407,220 +57449,227 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void updateFilteredFlashcardList(Predicate\u003cFlashcard\u003e predicate) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": "        requireNonNull(predicate);"
+        "content": "    public void updateFilteredFlashcardList(Predicate\u003cFlashcard\u003e predicate) {"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": "        filteredFlashcards.setPredicate(predicate);"
+        "content": "        requireNonNull(predicate);"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        filteredFlashcards.setPredicate(predicate);"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 147,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    public void updateLastViewedFlashcard(Flashcard flashcard) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "        this.viewedFlashcard \u003d flashcard;"
+        "content": "    public void updateLastViewedFlashcard(Flashcard flashcard) {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    }"
+        "content": "        this.viewedFlashcard \u003d flashcard;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    public Flashcard getLastViewedFlashcard() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "        return this.viewedFlashcard;"
+        "content": "    public Flashcard getLastViewedFlashcard() {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    }"
+        "content": "        return this.viewedFlashcard;"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 157,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "            return true;"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            return true;"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!(other instanceof ModelManager)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": "            return false;"
+        "content": "        if (!(other instanceof ModelManager)) {"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            return false;"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "        ModelManager obj \u003d (ModelManager) other;"
+        "content": "        }"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": "        return flashcardList.equals(obj.flashcardList)"
+        "content": "        ModelManager obj \u003d (ModelManager) other;"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
-        "content": "                \u0026\u0026 userPrefs.equals(obj.userPrefs)"
+        "content": "        return flashcardList.equals(obj.flashcardList)"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
-        "content": "                \u0026\u0026 filteredFlashcards.equals(obj.filteredFlashcards);"
+        "content": "                \u0026\u0026 userPrefs.equals(obj.userPrefs)"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 filteredFlashcards.equals(obj.filteredFlashcards);"
       },
       {
         "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 171,
         "author": {
           "gitId": "-"
         },
@@ -57628,7 +57677,7 @@
       }
     ],
     "authorContributionMap": {
-      "-": 158,
+      "-": 159,
       "jolynnn8D": 12
     }
   },
@@ -57653,138 +57702,313 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": "/**"
+        "content": "import static java.util.Objects.requireNonNull;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "-"
         },
-        "content": " * The answer is just one of the choices in the flashcard."
+        "content": "import static seedu.flashcard.commons.util.AppUtil.checkArgument;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
         },
-        "content": " * Its message must exactly fit the correct choice."
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "-"
         },
-        "content": "public class Answer extends Choice {"
+        "content": " * The answer is just one of the choices in the flashcard."
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": ""
+        "content": " * Its message must exactly fit the correct choice."
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d \"Answer can take any values, and it should not be blank\";"
+        "content": " */"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class Answer {"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "Oscar-B-Liang"
         },
-        "content": "    public Answer(String choice) {"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "        super(choice);"
+        "content": "    public static final String MESSAGE_CONSTRAINTS \u003d \"Answer can take any values, and it should not be blank\";"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "    public static final String VALIDATION_REGEX \u003d \"[^\\\\s].*\";"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "    public final String answer;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns true if a given string is a valid answer."
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": "     */"
+        "content": "    public Answer(String answer) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static boolean isValidAnswer(String test) {"
+        "content": "        requireNonNull(answer);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "        return test.matches(VALIDATION_REGEX);"
+        "content": "        checkArgument(isValidAnswer(answer));"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "jolynnn8D"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this.answer \u003d answer;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns true if a given string is a valid choice."
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static boolean isValidAnswer(String test) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return test.matches(VALIDATION_REGEX);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return other \u003d\u003d this"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            || (other instanceof Answer"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            \u0026\u0026 answer.equals(((Answer) other).answer));"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return answer.hashCode();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return answer + \u0027\\n\u0027;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
         "author": {
           "gitId": "jolynnn8D"
         },
@@ -57793,7 +58017,7 @@
     ],
     "authorContributionMap": {
       "Oscar-B-Liang": 5,
-      "-": 11,
+      "-": 36,
       "jolynnn8D": 6
     }
   },
@@ -58100,7 +58324,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        return \u0027[\u0027 + choice + \u0027]\u0027 + \u0027\\n\u0027;"
+        "content": "        return choice + \u0027\\n\u0027;"
       },
       {
         "lineNumber": 44,
@@ -59046,7 +59270,7 @@
       {
         "lineNumber": 131,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
         "content": "    /**"
       },
@@ -59055,241 +59279,346 @@
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns true if both the word and the definitions and the tags are the same."
+        "content": "     * Get the representation of this flashcard containing the answer."
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
-        "content": "     * This is stronger than {@code isSameFlashCard}"
+        "content": "     */"
       },
       {
         "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String fullString() {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return toString() + \"\\nAnswer:\\n\" + answer;"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns true if both the word and the definitions and the tags are the same."
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * This is stronger than {@code isSameFlashCard}"
+      },
+      {
+        "lineNumber": 141,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "    public boolean equals(Object other) {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "        if (other \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "        if (!(other instanceof Flashcard)) {"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "jolynnn8D"
-        },
-        "content": "            return false;"
-      },
-      {
         "lineNumber": 142,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "        }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "        Flashcard otherFlashcard \u003d (Flashcard) other;"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 144,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "        return otherFlashcard.getWord().equals(getWord())"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 145,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "                \u0026\u0026 otherFlashcard.getDefinition().equals(getDefinition())"
+        "content": "            return true;"
       },
       {
         "lineNumber": 146,
         "author": {
-          "gitId": "-"
+          "gitId": "jolynnn8D"
         },
-        "content": "                \u0026\u0026 otherFlashcard.getTags().equals(getTags());"
+        "content": "        }"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    }"
+        "content": "        if (!(other instanceof Flashcard)) {"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": ""
+        "content": "            return false;"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "jolynnn8D"
         },
-        "content": "    public String toString() {"
+        "content": "        Flashcard otherFlashcard \u003d (Flashcard) other;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+        "content": "        return otherFlashcard.getWord().equals(getWord())"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "        builder.append(getWord())"
+        "content": "                \u0026\u0026 otherFlashcard.getDefinition().equals(getDefinition())"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": "                .append(\" Definitions: \")"
+        "content": "                \u0026\u0026 otherFlashcard.getTags().equals(getTags());"
       },
       {
         "lineNumber": 154,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .append(getDefinition())"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .append(\" Tags: \");"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        getTags().forEach(builder::append);"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        builder.append(\" Choices: \\n\");"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        getChoices().forEach(builder::append);"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return builder.toString();"
-      },
-      {
-        "lineNumber": 160,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 155,
         "author": {
           "gitId": "jolynnn8D"
         },
         "content": ""
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 156,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "jolynnn8D"
         },
         "content": "    @Override"
       },
       {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        builder.append(getWord()).append(\"\\n\")"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .append(\"\\nDefinitions:\").append(\"\\n\")"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .append(getDefinition()).append(\"\\n\");"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!tags.isEmpty()) {"
+      },
+      {
         "lineNumber": 163,
         "author": {
-          "gitId": "Oscar-B-Liang"
+          "gitId": "-"
         },
-        "content": "    public int hashCode() {"
+        "content": "            builder.append(\"\\nTags:\").append(\"\\n\");"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": "        return Objects.hash(word, definition, tags);"
+        "content": "            getTags().forEach(builder::append);"
       },
       {
         "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!choices.isEmpty()) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            builder.append(\"\\nChoices:\\n\");"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            int index \u003d 1;"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            for (Choice choice : getChoices()) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                builder.append(Integer.toString(index) + \". \" + choice);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                index++;"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "jolynnn8D"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "Oscar-B-Liang"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return Objects.hash(word, definition, tags);"
+      },
+      {
+        "lineNumber": 180,
         "author": {
           "gitId": "Oscar-B-Liang"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 181,
         "author": {
           "gitId": "jolynnn8D"
         },
@@ -59299,7 +59628,7 @@
     "authorContributionMap": {
       "Oscar-B-Liang": 20,
       "lzw12345": 22,
-      "-": 90,
+      "-": 105,
       "jolynnn8D": 34
     }
   },
@@ -61117,7 +61446,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        answer \u003d source.getAnswer().choice;"
+        "content": "        answer \u003d source.getAnswer().answer;"
       },
       {
         "lineNumber": 62,

@@ -21680,19 +21680,47 @@
       {
         "lineNumber": 15,
         "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String MESSAGE_INVALD_CREDIT_VALUE \u003d \"The value for credits is invalid\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String MESSAGE_CREDIT_UNDER_AMT_MODS \u003d \"The new credit score is below amount \""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + \"required for current modules taken\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
           "gitId": "cheongliyuan"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
@@ -21703,7 +21731,8 @@
       "SendorasLeft": 3,
       "AaronLuk": 1,
       "-": 10,
-      "cheongliyuan": 3
+      "cheongliyuan": 3,
+      "MistyRainforest": 4
     }
   },
   {
@@ -36766,6 +36795,983 @@
     }
   },
   {
+    "path": "src/main/java/mams/logic/commands/SetCredits.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import java.util.stream.Collectors;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.model.Model;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.model.student.Credits;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.model.student.Student;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": " * Adds a module to a student"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "public class SetCredits extends StudentCommand {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String MESSAGE_CREDIT_CHANGE_SUCCESS \u003d \"Student max credits updated to : %d\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    private final String matricId;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    private final String newCredits;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    private final Index index;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public SetCredits(Index index, String newCredits) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        requireNonNull(index);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        requireNonNull(newCredits);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        this.matricId \u003d null;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        this.newCredits \u003d newCredits;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public SetCredits(String matricId, String newCredits) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        requireNonNull(matricId);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        requireNonNull(newCredits);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        this.matricId \u003d matricId;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        this.index \u003d null;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        this.newCredits \u003d newCredits;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * Checks for logical errors, such as non-existant modules and students etc."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * Create a new student with the added module and replaces the old student in mams."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * @param model {@code Model} which the command should operate on."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * @return {@code CommandResult}"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * @throws CommandException for non-existant modules/student or if the student"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * already has the module."
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        List\u003cStudent\u003e lastShownStudentList \u003d model.getFilteredStudentList();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        Student studentToEdit;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        Student editedStudent;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        //check if student exist"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (index !\u003d null) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            if (index.getZeroBased() \u003e\u003d lastShownStudentList.size()) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            studentToEdit \u003d lastShownStudentList.get(index.getZeroBased());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            List\u003cStudent\u003e studentToCheckList \u003d lastShownStudentList.stream()"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                    .filter(p -\u003e p.getMatricId().toString().equals(matricId)).collect(Collectors.toList());"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            if (studentToCheckList.isEmpty()) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_MATRIC_ID);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            studentToEdit \u003d studentToCheckList.get(0);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        // check if credit value is valid"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (!Credits.isValidCredits(newCredits)) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALD_CREDIT_VALUE);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        //check if current mods satisfy new credits"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (4 * studentToEdit.getNumberOfMods() \u003e Integer.parseInt(newCredits)) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_CREDIT_UNDER_AMT_MODS);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        editedStudent \u003d new Student(studentToEdit.getName(),"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                new Credits(newCredits),"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                studentToEdit.getPrevMods(),"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                studentToEdit.getMatricId(),"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                studentToEdit.getTags());"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        model.setStudent(studentToEdit, editedStudent);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_CREDIT_CHANGE_SUCCESS,"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                editedStudent.getCredits().getIntVal()));"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public boolean equals(Object other) {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        // short circuit if same object"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (other \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        // instanceof handles nulls"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (!(other instanceof AddModCommand)) {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        // state check"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        AddModCommand e \u003d (AddModCommand) other;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "MistyRainforest": 113
+    }
+  },
+  {
+    "path": "src/main/java/mams/logic/commands/StudentCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_CREDITS;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_STUDENT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": " * Abstract class for AddModCommand and RemoveModCommand"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "public abstract class StudentCommand extends Command {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String COMMAND_WORD_SET_CREDITS \u003d \"setcredits\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String MESSAGE_USAGE_SETCREDITS \u003d COMMAND_WORD_SET_CREDITS"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + \": Sets a student\u0027s maximum credits \""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + \"identified by index number used in the displayed student list or \""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + \"their matric id. \\n\""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) or \""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + PREFIX_STUDENT + \"MATRIC_ID and \""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            + PREFIX_CREDITS + \"CREDITS \";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String MESSAGE_INVALID_MATRICID \u003d \"Please enter 1 valid Matric ID or Index. \";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public static final String MESSAGE_INVALID_CREDIT_VALUE \u003d \"Please enter 1 valid credit value. \";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "MistyRainforest": 24
+    }
+  },
+  {
     "path": "src/main/java/mams/logic/commands/exceptions/CommandException.java",
     "fileType": "functional",
     "lines": [
@@ -40733,453 +41739,481 @@
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "SendorasLeft"
+          "gitId": "MistyRainforest"
         },
-        "content": "import mams.logic.parser.exceptions.ParseException;"
+        "content": "import mams.logic.commands.SetCredits;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": ""
+        "content": "import mams.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": "/**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "public class MamsParser {"
       },
       {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (!matcher.matches()) {"
+      },
+      {
+        "lineNumber": 41,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "chensu2436"
+          "gitId": "-"
         },
-        "content": "        case ClashCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "chensu2436"
         },
-        "content": "            return new ClashCommandParser().parse(arguments);"
+        "content": "        case ClashCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "chensu2436"
         },
-        "content": ""
+        "content": "            return new ClashCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "chensu2436"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "AaronLuk"
+          "gitId": "cheongliyuan"
         },
-        "content": "        case ApproveCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            return new ApproveCommandParser().parse(arguments);"
+        "content": "        case ApproveCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "cheongliyuan"
+          "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "            return new ApproveCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "AaronLuk"
+          "gitId": "cheongliyuan"
         },
-        "content": "        case RejectCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            return new RejectCommandParser().parse(arguments);"
+        "content": "        case RejectCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "cheongliyuan"
+          "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "            return new RejectCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "        case AddModCommand.COMMAND_WORD_ADD_MOD:"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "            return new AddModCommandParser().parse(arguments);"
+        "content": "        case AddModCommand.COMMAND_WORD_ADD_MOD:"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": ""
+        "content": "            return new AddModCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "        case RemoveModCommand.COMMAND_WORD_REMOVE_MOD:"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "            return new RemoveModCommandParser().parse(arguments);"
+        "content": "        case RemoveModCommand.COMMAND_WORD_REMOVE_MOD:"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": ""
+        "content": "            return new RemoveModCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "-"
+          "gitId": "cheongliyuan"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "SendorasLeft"
+          "gitId": "MistyRainforest"
         },
-        "content": "            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);"
+        "content": "        case SetCredits.COMMAND_WORD_SET_CREDITS:"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "MistyRainforest"
         },
-        "content": "        }"
+        "content": "            return new SetCreditsParser().parse(arguments);"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "-"
+          "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 82,
+        "author": {
+          "gitId": "SendorasLeft"
+        },
+        "content": "            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
@@ -41189,9 +42223,10 @@
     "authorContributionMap": {
       "SendorasLeft": 6,
       "AaronLuk": 13,
-      "chensu2436": 2,
-      "-": 51,
-      "cheongliyuan": 10
+      "chensu2436": 3,
+      "-": 49,
+      "cheongliyuan": 11,
+      "MistyRainforest": 4
     }
   },
   {
@@ -43110,6 +44145,379 @@
     ],
     "authorContributionMap": {
       "cheongliyuan": 52
+    }
+  },
+  {
+    "path": "src/main/java/mams/logic/parser/SetCreditsParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "package mams.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_CREDITS;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_STUDENT;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.commons.core.index.Index;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.logic.commands.SetCredits;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.logic.commands.StudentCommand;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "import mams.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": " * Parses input arguments and creates a new AddModCommand object"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "public class SetCreditsParser implements Parser\u003cSetCredits\u003e {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the AddModCommand"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * and returns an AddModCommand object for execution. (Only argument checking is done here)"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public SetCredits parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        requireNonNull(args);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT, PREFIX_CREDITS);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        Index index;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_CREDITS).isEmpty()) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            throw new ParseException(StudentCommand.MESSAGE_INVALID_CREDIT_VALUE);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        //priority: Matric \u003e Index"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_STUDENT).isEmpty()) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                return new SetCredits(index, argMultimap.getAllValues(PREFIX_CREDITS).get(0));"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            } catch (ParseException pe) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                        SetCredits.MESSAGE_USAGE_SETCREDITS), pe);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        } else if (argMultimap.getValueSize(PREFIX_STUDENT) \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            return new SetCredits(argMultimap.getAllValues(PREFIX_STUDENT).get(0),"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                    argMultimap.getAllValues(PREFIX_CREDITS).get(0));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            throw new ParseException(StudentCommand.MESSAGE_USAGE_SETCREDITS);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "MistyRainforest": 52
     }
   },
   {
@@ -56331,255 +57739,297 @@
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "    public final int intValue;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "     * Constructs a {@code Credits}."
+        "content": "    /**"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "     *"
+        "content": "     * Constructs a {@code Credits}."
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "     * @param credits A valid credits number."
+        "content": "     *"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "     */"
+        "content": "     * @param credits A valid credits number."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    public Credits(String credits) {"
+        "content": "     */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        requireNonNull(credits);"
+        "content": "    public Credits(String credits) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        AppUtil.checkArgument(isValidCredits(credits), MESSAGE_CONSTRAINTS);"
+        "content": "        requireNonNull(credits);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        value \u003d credits;"
+        "content": "        AppUtil.checkArgument(isValidCredits(credits), MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": "        value \u003d credits;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "        intValue \u003d Integer.parseInt(value);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "     * Returns true if a given string is a valid credits number."
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    public static boolean isValidCredits(String test) {"
+        "content": "     * Returns true if a given string is a valid credits number."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        return test.matches(VALIDATION_REGEX);"
+        "content": "     */"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": "    public static boolean isValidCredits(String test) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "        return test.matches(VALIDATION_REGEX);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        return value;"
+        "content": "    public int getIntVal() {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": "        return this.intValue;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "                || (other instanceof Credits // instanceof handles nulls"
+        "content": "        return value;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "                \u0026\u0026 value.equals(((Credits) other).value)); // state check"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    @Override"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    public int hashCode() {"
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        return value.hashCode();"
+        "content": "                || (other instanceof Credits // instanceof handles nulls"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 value.equals(((Credits) other).value)); // state check"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 54,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        return value.hashCode();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
         "author": {
           "gitId": "MistyRainforest"
         },
@@ -56588,7 +58038,7 @@
     ],
     "authorContributionMap": {
       "SendorasLeft": 1,
-      "MistyRainforest": 53
+      "MistyRainforest": 59
     }
   },
   {
@@ -58568,14 +60018,14 @@
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "    public Set\u003cTag\u003e getCurrentAppeals() {"
+        "content": "    public int getNumberOfMods() {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        Set\u003cTag\u003e ret \u003d new HashSet\u003c\u003e();"
+        "content": "        int count \u003d 0;"
       },
       {
         "lineNumber": 74,
@@ -58589,14 +60039,14 @@
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "            if (tag.type.equals(\"appeal\")) {"
+        "content": "            if (tag.type.equals(\"module\")) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "                ret.add(tag);"
+        "content": "                count++;"
       },
       {
         "lineNumber": 77,
@@ -58617,7 +60067,7 @@
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "        return Collections.unmodifiableSet(ret);"
+        "content": "        return count;"
       },
       {
         "lineNumber": 80,
@@ -58636,156 +60086,156 @@
       {
         "lineNumber": 82,
         "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    public Set\u003cTag\u003e getCurrentAppeals() {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        Set\u003cTag\u003e ret \u003d new HashSet\u003c\u003e();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        for (Tag tag : tags) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            if (tag.type.equals(\"appeal\")) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                ret.add(tag);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "        return Collections.unmodifiableSet(ret);"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 93,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "     * Returns true if both students of the same name have at least one other identity field that is the same."
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 94,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "     * This defines a weaker notion of equality between two students."
       },
       {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "SendorasLeft"
-        },
-        "content": "    public boolean isSameStudent(Student otherStudent) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "SendorasLeft"
-        },
-        "content": "        if (otherStudent \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "SendorasLeft"
-        },
-        "content": "        return otherStudent !\u003d null"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "SendorasLeft"
-        },
-        "content": "                \u0026\u0026 otherStudent.getName().equals(getName())"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "MistyRainforest"
-        },
-        "content": "                \u0026\u0026 (otherStudent.getCredits().equals(getCredits()) || otherStudent.getPrevMods().equals(getPrevMods()));"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "SendorasLeft"
         },
-        "content": "     * Returns true if both students have the same identity and data fields."
+        "content": "    public boolean isSameStudent(Student otherStudent) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "SendorasLeft"
         },
-        "content": "     * This defines a stronger notion of equality between two students."
+        "content": "        if (otherStudent \u003d\u003d this) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "            return true;"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "        return otherStudent !\u003d null"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "        if (other \u003d\u003d this) {"
+        "content": "                \u0026\u0026 otherStudent.getName().equals(getName())"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
+          "gitId": "MistyRainforest"
         },
-        "content": "            return true;"
+        "content": "                \u0026\u0026 (otherStudent.getCredits().equals(getCredits()) || otherStudent.getPrevMods().equals(getPrevMods()));"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 104,
@@ -58797,229 +60247,299 @@
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "SendorasLeft"
+          "gitId": "-"
         },
-        "content": "        if (!(other instanceof Student)) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "            return false;"
+        "content": "     * Returns true if both students have the same identity and data fields."
       },
       {
         "lineNumber": 107,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "        }"
+        "content": "     * This defines a stronger notion of equality between two students."
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "SendorasLeft"
+          "gitId": "-"
         },
-        "content": "        Student otherStudent \u003d (Student) other;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 110,
         "author": {
-          "gitId": "SendorasLeft"
+          "gitId": "-"
         },
-        "content": "        return otherStudent.getName().equals(getName())"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 111,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherStudent.getCredits().equals(getCredits())"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 112,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherStudent.getPrevMods().equals(getPrevMods())"
+        "content": "            return true;"
       },
       {
         "lineNumber": 113,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherStudent.getMatricId().equals(getMatricId())"
+        "content": "        }"
       },
       {
         "lineNumber": 114,
         "author": {
-          "gitId": "SendorasLeft"
+          "gitId": "-"
         },
-        "content": "                \u0026\u0026 otherStudent.getTags().equals(getTags());"
+        "content": ""
       },
       {
         "lineNumber": 115,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "    }"
+        "content": "        if (!(other instanceof Student)) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return false;"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "-"
         },
-        "content": "    public int hashCode() {"
+        "content": ""
       },
       {
         "lineNumber": 119,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "        // use this method for custom fields hashing instead of implementing your own"
+        "content": "        Student otherStudent \u003d (Student) other;"
       },
       {
         "lineNumber": 120,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "SendorasLeft"
         },
-        "content": "        return Objects.hash(name, credits, prevMods, matricId, tags);"
+        "content": "        return otherStudent.getName().equals(getName())"
       },
       {
         "lineNumber": 121,
         "author": {
-          "gitId": "-"
+          "gitId": "MistyRainforest"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 otherStudent.getCredits().equals(getCredits())"
       },
       {
         "lineNumber": 122,
         "author": {
-          "gitId": "-"
+          "gitId": "MistyRainforest"
         },
-        "content": ""
+        "content": "                \u0026\u0026 otherStudent.getPrevMods().equals(getPrevMods())"
       },
       {
         "lineNumber": 123,
         "author": {
-          "gitId": "-"
+          "gitId": "MistyRainforest"
         },
-        "content": "    @Override"
+        "content": "                \u0026\u0026 otherStudent.getMatricId().equals(getMatricId())"
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "-"
+          "gitId": "SendorasLeft"
         },
-        "content": "    public String toString() {"
+        "content": "                \u0026\u0026 otherStudent.getTags().equals(getTags());"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
-        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+        "content": "    }"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
-        "content": "        builder.append(getName())"
+        "content": ""
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "-"
         },
-        "content": "                .append(\" Credits: \")"
+        "content": "    @Override"
       },
       {
         "lineNumber": 128,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "-"
         },
-        "content": "                .append(getCredits())"
+        "content": "    public int hashCode() {"
       },
       {
         "lineNumber": 129,
         "author": {
-          "gitId": "MistyRainforest"
+          "gitId": "-"
         },
-        "content": "                .append(\" PrevMods: \")"
+        "content": "        // use this method for custom fields hashing instead of implementing your own"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "MistyRainforest"
         },
-        "content": "                .append(getPrevMods())"
+        "content": "        return Objects.hash(name, credits, prevMods, matricId, tags);"
       },
       {
         "lineNumber": 131,
-        "author": {
-          "gitId": "MistyRainforest"
-        },
-        "content": "                .append(\" Matric Id: \")"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "MistyRainforest"
-        },
-        "content": "                .append(getMatricId())"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                .append(\" Tags: \");"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        getTags().forEach(builder::append);"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return builder.toString();"
-      },
-      {
-        "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        final StringBuilder builder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        builder.append(getName())"
+      },
+      {
         "lineNumber": 137,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                .append(\" Credits: \")"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                .append(getCredits())"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                .append(\" PrevMods: \")"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                .append(getPrevMods())"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                .append(\" Matric Id: \")"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "MistyRainforest"
+        },
+        "content": "                .append(getMatricId())"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .append(\" Tags: \");"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        getTags().forEach(builder::append);"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return builder.toString();"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
@@ -59029,7 +60549,7 @@
     "authorContributionMap": {
       "SendorasLeft": 17,
       "-": 75,
-      "MistyRainforest": 45
+      "MistyRainforest": 55
     }
   },
   {
