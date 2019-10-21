@@ -14,4 +14,4 @@
 ## Examples of other valid options; For more, please view the user guide
 ### java -jar RepoSense.jar --repos https://github.com/reposense/RepoSense.git
 
-java -jar RepoSense.jar --config ./configs --since 06/09/2019 --formats java adoc fxml sh bat gradle txt --timezone UTC+08
+java -jar RepoSense.jar --config ./configs --since 06/09/2019 --formats java adoc fxml sh bat gradle txt css puml --timezone UTC+08
