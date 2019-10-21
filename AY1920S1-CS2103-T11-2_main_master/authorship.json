@@ -27949,6 +27949,162 @@
     }
   },
   {
+    "path": "src/main/java/mams/logic/commands/Approve.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_MASS_RESOLVE;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " * Approve parent class for approve commands"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public abstract class Approve extends ResolveCommand {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final String MESSAGE_USAGE_APPROVE \u003d COMMAND_WORD_APPROVE_APPEAL"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \": approves individual or multiple appeals\\n\""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"To approve individually:\\n \""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + PREFIX_REASON + \"[REASON]\\n\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD_APPROVE_APPEAL + \" 1 \""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + PREFIX_REASON + \"module quota exceeded.\""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"To approve multiple appeals:\\n\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + PREFIX_MASS_RESOLVE + \"[APPEALIDS.....]\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD_APPROVE_APPEAL + \"C000001 C000012 C000007 C000020\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AaronLuk": 21
+    }
+  },
+  {
     "path": "src/main/java/mams/logic/commands/ApproveCommand.java",
     "fileType": "functional",
     "lines": [
@@ -27985,7 +28141,7 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 6,
@@ -27999,28 +28155,28 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import java.util.List;"
+        "content": "import mams.commons.core.Messages;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "import mams.commons.core.index.Index;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.core.Messages;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.core.index.Index;"
+        "content": "import mams.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 11,
@@ -28034,140 +28190,140 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.exceptions.CommandException;"
+        "content": "import mams.model.Model;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "import mams.model.appeal.Appeal;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.model.Model;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.model.appeal.Appeal;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "AaronLuk"
-        },
         "content": "/**"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 17,
         "author": {
           "gitId": "cheongliyuan"
         },
         "content": " * Approves a appeal in mams."
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 18,
         "author": {
           "gitId": "AaronLuk"
         },
         "content": " */"
       },
       {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public class ApproveCommand extends Approve {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 21,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "public class ApproveCommand extends Command {"
+        "content": "    private final Index index;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "    private final String reason;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"approve\";"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "    public ApproveCommand(Index index, String reason) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": approves the appeal selected \""
+        "content": "        requireNonNull(index, reason);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            + \"by the index number used in the displayed appeal list. \""
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            + \"Existing values will be overwritten by the input values.\\n\""
+        "content": "        this.index \u003d index;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+        "content": "        this.reason \u003d reason;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            + PREFIX_REASON + \"[REASON]\\n\""
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \""
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            + PREFIX_REASON + \"module quota exceeded.\";"
+        "content": ""
       },
       {
         "lineNumber": 32,
@@ -28181,49 +28337,49 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public static final String MESSAGE_APPROVE_APPEAL_SUCCESS \u003d \"Approved appeal: %1$s\";"
+        "content": "    @Override"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public static final String MESSAGE_APPROVE_UNSUCCESSFUL \u003d \"At least one field to edit must be provided.\";"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public static final String MESSAGE_APPEAL_ALREADY_APPROVED \u003d \"The appeal was already resolved\";"
+        "content": "        List\u003cAppeal\u003e lastShownList \u003d model.getFilteredAppealList();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public static final String MESSAGE_ARGUMENTS \u003d \"Index: %1$d, Reason: %2$s\";"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    private final Index index;"
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_APPEAL_DISPLAYED_INDEX);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    private final String reason;"
+        "content": "        }"
       },
       {
         "lineNumber": 40,
@@ -28237,437 +28393,339 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public ApproveCommand(Index index, String reason) {"
+        "content": "        Appeal approvedAppeal;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        requireNonNull(index, reason);"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        Appeal appealToApprove \u003d lastShownList.get(index.getZeroBased());"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        this.index \u003d index;"
+        "content": "        if (appealToApprove.isResolved() \u003d\u003d false) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        this.reason \u003d reason;"
+        "content": "            approvedAppeal \u003d new Appeal(appealToApprove.getAppealId(),"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    appealToApprove.getAppealType(),"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "                    appealToApprove.getStudentId(),"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    @Override"
+        "content": "                    appealToApprove.getAcademicYear(),"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "                    appealToApprove.getStudentWorkload(),"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        List\u003cAppeal\u003e lastShownList \u003d model.getFilteredAppealList();"
+        "content": "                    appealToApprove.getAppealDescription(),"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    appealToApprove.getPreviousModule(),"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "                    appealToApprove.getNewModule(),"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_APPEAL_DISPLAYED_INDEX);"
+        "content": "                    appealToApprove.getModule_to_add(),"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        }"
+        "content": "                    appealToApprove.getModule_to_drop(),"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    true,"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        Appeal approvedAppeal;"
+        "content": "                    \"APPROVED\","
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    reason);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        Appeal appealToApprove \u003d lastShownList.get(index.getZeroBased());"
+        "content": "            model.setAppeal(appealToApprove, approvedAppeal);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        if (appealToApprove.isResolved() \u003d\u003d false) {"
+        "content": "            model.updateFilteredAppealList(Model.PREDICATE_SHOW_ALL_APPEALS);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            approvedAppeal \u003d new Appeal(appealToApprove.getAppealId(),"
+        "content": "            return new CommandResult("
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getAppealType(),"
+        "content": "                    generateSuccessMessage(approvedAppeal));"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getStudentId(),"
+        "content": "        } else {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getAcademicYear(),"
+        "content": "            return new CommandResult(MESSAGE_APPEAL_ALREADY_APPROVED);"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getStudentWorkload(),"
+        "content": "        }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getAppealDescription(),"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getPreviousModule(),"
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getNewModule(),"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getModule_to_add(),"
+        "content": "    private String generateSuccessMessage(Appeal appealToApprove) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToApprove.getModule_to_drop(),"
+        "content": "        return \"Approved \" + appealToApprove.getAppealId();"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    true,"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    \"APPROVED\","
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    reason);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            model.setAppeal(appealToApprove, approvedAppeal);"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            model.updateFilteredAppealList(Model.PREDICATE_SHOW_ALL_APPEALS);"
+        "content": "        // short circuit if same object"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            return new CommandResult(generateSuccessMessage(approvedAppeal));"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        } else {"
+        "content": "            return true;"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            return new CommandResult(MESSAGE_APPEAL_ALREADY_APPROVED);"
+        "content": "        }"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        // instanceof handles nulls"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "        if (!(other instanceof ApproveCommand)) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "            return false;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    private String generateSuccessMessage(Appeal appealToApprove) {"
+        "content": "        }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        return \"Approved \" + appealToApprove.getAppealId();"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "        // state check"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        ApproveCommand e \u003d (ApproveCommand) other;"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    @Override"
+        "content": "        return index.equals(e.index)"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "                \u0026\u0026 reason.equals(e.reason);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        // short circuit if same object"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        if (other \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        if (!(other instanceof ApproveCommand)) {"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        // state check"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        ApproveCommand e \u003d (ApproveCommand) other;"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        return index.equals(e.index)"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "                \u0026\u0026 reason.equals(e.reason);"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "AaronLuk"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 89,
         "author": {
           "gitId": "AaronLuk"
         },
@@ -28675,7 +28733,7 @@
       }
     ],
     "authorContributionMap": {
-      "AaronLuk": 102,
+      "AaronLuk": 88,
       "cheongliyuan": 1
     }
   },
@@ -34883,6 +34941,1263 @@
     }
   },
   {
+    "path": "src/main/java/mams/logic/commands/MassApprove.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.model.Model;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.model.appeal.Appeal;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " * Mass approves appeals in Mams"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public class MassApprove extends Approve {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e validIds;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e invalidIds;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e alreadyApproved \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e alreadyRejected \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e approvedSuccessfully \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public MassApprove(List\u003cString\u003e validIds, List\u003cString\u003e invalidIds) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        this.validIds \u003d validIds;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        this.invalidIds \u003d invalidIds;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        List\u003cAppeal\u003e lastShownList \u003d model.getFilteredAppealList();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        for (String appealId : validIds) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            for (Appeal appeal : lastShownList) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                if (appealId.equalsIgnoreCase(appeal.getAppealId())) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    Appeal approvedAppeal;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    Appeal appealToApprove \u003d appeal;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    if (appealToApprove.isResolved() \u003d\u003d false) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        approvedAppeal \u003d new Appeal(appealToApprove.getAppealId(),"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getAppealType(),"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getStudentId(),"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getAcademicYear(),"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getStudentWorkload(),"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getAppealDescription(),"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getPreviousModule(),"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getNewModule(),"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getModule_to_add(),"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getModule_to_drop(),"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                true,"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                \"APPROVED\","
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                \"\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        model.setAppeal(appealToApprove, approvedAppeal);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        approvedSuccessfully.add(appealId);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    } else if (appealToApprove.isResolved() \u003d\u003d true"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                            \u0026\u0026 appealToApprove.getResult().equalsIgnoreCase(\"APPROVED\")) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        alreadyApproved.add(appeal.getAppealId());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    } else if (appealToApprove.isResolved() \u003d\u003d true"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                            \u0026\u0026 appealToApprove.getResult().equalsIgnoreCase(\"REJECTED\")) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        alreadyRejected.add(appeal.getAppealId());"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        return new CommandResult(resultGenerator());"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "     * Generates response for user"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private String resultGenerator() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        String result \u003d \"\";"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (approvedSuccessfully.isEmpty()) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"No appeals were approved\";"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"Successfully approved: \" + approvedSuccessfully.toString();"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (!alreadyApproved.isEmpty()) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"\\nAlready approved: \" + alreadyApproved.toString();"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (!alreadyRejected.isEmpty()) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"\\nAlready rejected: \" + alreadyRejected.toString();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (!invalidIds.isEmpty()) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"\\nInvalid appeal IDs: \" + invalidIds.toString();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        return result;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AaronLuk": 88
+    }
+  },
+  {
+    "path": "src/main/java/mams/logic/commands/MassReject.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.model.Model;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.model.appeal.Appeal;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " * Mass rejects appeals in Mams"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public class MassReject extends Reject {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e validIds;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e invalidIds;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e alreadyApproved \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e alreadyRejected \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private final List\u003cString\u003e rejectedSuccessfully \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public MassReject(List\u003cString\u003e validIds, List\u003cString\u003e invalidIds) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        this.validIds \u003d validIds;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        this.invalidIds \u003d invalidIds;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        List\u003cAppeal\u003e lastShownList \u003d model.getFilteredAppealList();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        for (String appealId : validIds) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            for (Appeal appeal : lastShownList) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                if (appealId.equalsIgnoreCase(appeal.getAppealId())) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    Appeal approvedAppeal;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    Appeal appealToApprove \u003d appeal;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    if (appealToApprove.isResolved() \u003d\u003d false) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        approvedAppeal \u003d new Appeal(appealToApprove.getAppealId(),"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getAppealType(),"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getStudentId(),"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getAcademicYear(),"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getStudentWorkload(),"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getAppealDescription(),"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getPreviousModule(),"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getNewModule(),"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getModule_to_add(),"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                appealToApprove.getModule_to_drop(),"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                true,"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                \"REJECTED\","
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                                \"\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        model.setAppeal(appealToApprove, approvedAppeal);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        rejectedSuccessfully.add(appealId);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    } else if (appealToApprove.isResolved() \u003d\u003d true"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                            \u0026\u0026 appealToApprove.getResult().equalsIgnoreCase(\"APPROVED\")) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        alreadyApproved.add(appeal.getAppealId());"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    } else if (appealToApprove.isResolved() \u003d\u003d true"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                            \u0026\u0026 appealToApprove.getResult().equalsIgnoreCase(\"REJECTED\")) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        alreadyRejected.add(appeal.getAppealId());"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        return new CommandResult(resultGenerator());"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "     * Generates response for user"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "     * @return"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    private String resultGenerator() {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        String result \u003d \"\";"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (rejectedSuccessfully.isEmpty()) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"No appeals were rejected\";"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"Successfully approved: \" + rejectedSuccessfully.toString();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (!alreadyApproved.isEmpty()) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"\\nAlready approved: \" + alreadyApproved.toString();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (!alreadyRejected.isEmpty()) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"\\nAlready rejected: \" + alreadyRejected.toString();"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (!invalidIds.isEmpty()) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            result +\u003d \"\\nInvalid appeal IDs: \" + invalidIds.toString();"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        return result;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AaronLuk": 89
+    }
+  },
+  {
     "path": "src/main/java/mams/logic/commands/ModCommand.java",
     "fileType": "functional",
     "lines": [
@@ -35130,6 +36445,162 @@
     }
   },
   {
+    "path": "src/main/java/mams/logic/commands/Reject.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_MASS_RESOLVE;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " * Reject parent class for reject commands"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public abstract class Reject extends ResolveCommand {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final String MESSAGE_USAGE_REJECT \u003d COMMAND_WORD_REJECT_APPEAL"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \": rejects individual or multiple appeals\\n\""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"To reject individually:\\n \""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + PREFIX_REASON + \"[REASON]\\n\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD_REJECT_APPEAL + \" 1 \""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + PREFIX_REASON + \"module quota exceeded.\""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"To reject multiple appeals:\\n\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + PREFIX_MASS_RESOLVE + \"[APPEALIDS.....]\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD_REJECT_APPEAL + \"C000001 C000012 C000007 C000020\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AaronLuk": 21
+    }
+  },
+  {
     "path": "src/main/java/mams/logic/commands/RejectCommand.java",
     "fileType": "functional",
     "lines": [
@@ -35166,7 +36637,7 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 6,
@@ -35180,28 +36651,28 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import java.util.List;"
+        "content": "import mams.commons.core.Messages;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "import mams.commons.core.index.Index;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.core.Messages;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.core.index.Index;"
+        "content": "import mams.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 11,
@@ -35215,189 +36686,189 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.exceptions.CommandException;"
+        "content": "import mams.model.Model;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "import mams.model.appeal.Appeal;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.model.Model;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.model.appeal.Appeal;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "AaronLuk"
-        },
         "content": "/**"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 16,
         "author": {
           "gitId": "cheongliyuan"
         },
         "content": " * Rejects a appeal in mams."
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 17,
         "author": {
           "gitId": "AaronLuk"
         },
         "content": " */"
       },
       {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public class RejectCommand extends Reject {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 20,
-        "author": {
-          "gitId": "cheongliyuan"
-        },
-        "content": "public class RejectCommand extends ModCommand {"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public static final String COMMAND_WORD \u003d \"reject\";"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": rejects the appeal selected \""
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            + \"by the index number used in the displayed appeal list. \""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            + \"Existing values will be overwritten by the input values.\\n\""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            + \"Parameters: INDEX (must be a positive integer) \""
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            + PREFIX_REASON + \"[REASON]\\n\""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" 1 \""
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            + PREFIX_REASON + \"module quota exceeded.\";"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public static final String MESSAGE_REJECT_APPEAL_SUCCESS \u003d \"Rejected appeal: %1$s\";"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "chensu2436"
-        },
-        "content": "    public static final String MESSAGE_REJECT_UNSUCCESSFUL \u003d \"At least one field to edit must be provided.\";"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public static final String MESSAGE_REJECT_ALREADY_REJECTED \u003d \"The appeal was already resolved\";"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public static final String MESSAGE_ARGUMENTS \u003d \"Index: %1$d, Reason: %2$s\";"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
         "author": {
           "gitId": "AaronLuk"
         },
         "content": "    private final Index index;"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 21,
         "author": {
           "gitId": "AaronLuk"
         },
         "content": "    private final String reason;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public RejectCommand(Index index, String reason) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        requireNonNull(index, reason);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        this.reason \u003d reason;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        List\u003cAppeal\u003e lastShownList \u003d model.getFilteredAppealList();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_APPEAL_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        Appeal rejectedAppeal;"
       },
       {
         "lineNumber": 39,
@@ -35411,437 +36882,318 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public RejectCommand(Index index, String reason) {"
+        "content": "        Appeal appealToReject \u003d lastShownList.get(index.getZeroBased());"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        requireNonNull(index, reason);"
+        "content": "        if (appealToReject.isResolved() \u003d\u003d false) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "            rejectedAppeal \u003d new Appeal(appealToReject.getAppealId(),"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        this.index \u003d index;"
+        "content": "                    appealToReject.getAppealType(),"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        this.reason \u003d reason;"
+        "content": "                    appealToReject.getStudentId(),"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    appealToReject.getAcademicYear(),"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "                    appealToReject.getStudentWorkload(),"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    @Override"
+        "content": "                    appealToReject.getAppealDescription(),"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": "                    appealToReject.getPreviousModule(),"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        List\u003cAppeal\u003e lastShownList \u003d model.getFilteredAppealList();"
+        "content": "                    appealToReject.getNewModule(),"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    appealToReject.getModule_to_add(),"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        if (index.getZeroBased() \u003e\u003d lastShownList.size()) {"
+        "content": "                    appealToReject.getModule_to_drop(),"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_APPEAL_DISPLAYED_INDEX);"
+        "content": "                    true,"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        }"
+        "content": "                    \"REJECTED\","
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "                    reason);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        Appeal rejectedAppeal;"
+        "content": "            model.setAppeal(appealToReject, rejectedAppeal);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "            model.updateFilteredAppealList(Model.PREDICATE_SHOW_ALL_APPEALS);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        Appeal appealToReject \u003d lastShownList.get(index.getZeroBased());"
+        "content": "            return new CommandResult(generateSuccessMessage(appealToReject));"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        if (appealToReject.isResolved() \u003d\u003d false) {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            rejectedAppeal \u003d new Appeal(appealToReject.getAppealId(),"
+        "content": "            return new CommandResult(MESSAGE_REJECT_ALREADY_REJECTED);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getAppealType(),"
+        "content": "        }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getStudentId(),"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getAcademicYear(),"
+        "content": "    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getStudentWorkload(),"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getAppealDescription(),"
+        "content": "    private String generateSuccessMessage(Appeal appealToReject) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getPreviousModule(),"
+        "content": "        return \"Rejected \" + appealToReject.getAppealId();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getNewModule(),"
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getModule_to_add(),"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    appealToReject.getModule_to_drop(),"
+        "content": "    @Override"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    true,"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    \"REJECTED\","
+        "content": "        // short circuit if same object"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "                    reason);"
+        "content": "        if (other \u003d\u003d this) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            model.setAppeal(appealToReject, rejectedAppeal);"
+        "content": "            return true;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            model.updateFilteredAppealList(Model.PREDICATE_SHOW_ALL_APPEALS);"
+        "content": "        }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            return new CommandResult(generateSuccessMessage(appealToReject));"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        } else {"
+        "content": "        // instanceof handles nulls"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            return new CommandResult(MESSAGE_REJECT_ALREADY_REJECTED);"
+        "content": "        if (!(other instanceof RejectCommand)) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        }"
+        "content": "            return false;"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        // state check"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    private String generateSuccessMessage(Appeal appealToReject) {"
+        "content": "        RejectCommand e \u003d (RejectCommand) other;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        return \"Rejected \" + appealToReject.getAppealId();"
+        "content": "        return index.equals(e.index)"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "                \u0026\u0026 reason.equals(e.reason);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public boolean equals(Object other) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        // short circuit if same object"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        if (other \u003d\u003d this) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            return true;"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        if (!(other instanceof RejectCommand)) {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        // state check"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        RejectCommand e \u003d (RejectCommand) other;"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "        return index.equals(e.index)"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "                \u0026\u0026 reason.equals(e.reason);"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "AaronLuk"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 85,
         "author": {
           "gitId": "AaronLuk"
         },
@@ -35849,9 +37201,8 @@
       }
     ],
     "authorContributionMap": {
-      "AaronLuk": 99,
-      "chensu2436": 1,
-      "cheongliyuan": 2
+      "AaronLuk": 84,
+      "cheongliyuan": 1
     }
   },
   {
@@ -36792,6 +38143,106 @@
     ],
     "authorContributionMap": {
       "cheongliyuan": 133
+    }
+  },
+  {
+    "path": "src/main/java/mams/logic/commands/ResolveCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "package mams.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " * Parent class for all resolve appeal commands"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "public abstract class ResolveCommand extends Command {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final String COMMAND_WORD_APPROVE_APPEAL \u003d \"approve\";"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final String COMMAND_WORD_REJECT_APPEAL \u003d \"reject\";"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final String MESSAGE_APPEAL_ALREADY_APPROVED \u003d \"The appeal was already resolved\";"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final String MESSAGE_REJECT_ALREADY_REJECTED \u003d \"The appeal was already resolved\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "AaronLuk": 13
     }
   },
   {
@@ -38311,42 +39762,42 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_MASS_RESOLVE;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.core.index.Index;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.exceptions.IllegalValueException;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.ApproveCommand;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.parser.exceptions.ParseException;"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 11,
@@ -38360,171 +39811,381 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "/**"
+        "content": "import mams.commons.core.index.Index;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": " * Parses input arguments and creates a new {@code ApproveCommand} object"
+        "content": "import mams.commons.exceptions.IllegalValueException;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "public class ApproveCommandParser implements Parser\u003cApproveCommand\u003e {"
+        "content": "import mams.logic.commands.Approve;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    /**"
+        "content": "import mams.logic.commands.ApproveCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the {@code ApproveCommand}"
+        "content": "import mams.logic.commands.MassApprove;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     * and returns a {@code ApproveCommand} object for execution."
+        "content": "import mams.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     */"
+        "content": "import mams.model.appeal.Appeal;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public ApproveCommand parse(String args) throws ParseException {"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        requireNonNull(args);"
+        "content": "/**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_REASON);"
+        "content": " * Parses input arguments and creates a new {@code ApproveCommand} object"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        Index index;"
+        "content": "public class ApproveCommandParser implements Parser\u003cApprove\u003e {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        try {"
+        "content": "    /**"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+        "content": "     * Parses the given {@code String} of arguments in the context of the {@code ApproveCommand}"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        } catch (IllegalValueException ive) {"
+        "content": "     * and returns a {@code ApproveCommand} object for execution."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ApproveCommand.MESSAGE_USAGE), ive);"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "    public Approve parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        String remark \u003d argMultimap.getValue(PREFIX_REASON).orElse(\"\");"
+        "content": "        requireNonNull(args);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_MASS_RESOLVE);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        return new ApproveCommand(index, remark);"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "        Index index;"
       },
       {
         "lineNumber": 36,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        if (argMultimap.getValue(PREFIX_REASON).isPresent()) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            } catch (IllegalValueException ive) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        ApproveCommand.MESSAGE_USAGE_APPROVE), ive);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            String remark \u003d argMultimap.getValue(PREFIX_REASON).orElse(\"\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            return new ApproveCommand(index, remark);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        } else if (argMultimap.getValue(PREFIX_MASS_RESOLVE).isPresent()) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            Optional\u003cString\u003e appealLine \u003d argMultimap.getValue(PREFIX_MASS_RESOLVE);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            String[] appeals \u003d appealLine.get().split(\" \");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            List\u003cString\u003e validIds \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            List\u003cString\u003e invalidIds \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            for (String appeal : appeals) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                if (Appeal.isValidAppealId(appeal)) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    if (!validIds.contains(appeal)) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        validIds.add(appeal);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    invalidIds.add(appeal);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            return new MassApprove(validIds, invalidIds);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            throw new ParseException(Approve.MESSAGE_USAGE_APPROVE);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "AaronLuk"
         },
@@ -38532,7 +40193,7 @@
       }
     ],
     "authorContributionMap": {
-      "AaronLuk": 36
+      "AaronLuk": 66
     }
   },
   {
@@ -40568,23 +42229,23 @@
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "    public static final Prefix PREFIX_REASON \u003d new Prefix(\"rr/\");"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
           "gitId": "chensu2436"
         },
         "content": "    public static final Prefix PREFIX_APPEALID \u003d new Prefix(\"a/\");"
       },
       {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    public static final Prefix PREFIX_MASS_RESOLVE \u003d new Prefix(\"mass/\");"
+      },
+      {
         "lineNumber": 23,
         "author": {
-          "gitId": "chensu2436"
+          "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "    public static final Prefix PREFIX_REASON \u003d new Prefix(\"rr/\");"
       },
       {
         "lineNumber": 24,
@@ -40603,8 +42264,8 @@
     ],
     "authorContributionMap": {
       "SendorasLeft": 1,
-      "AaronLuk": 3,
-      "chensu2436": 5,
+      "AaronLuk": 4,
+      "chensu2436": 4,
       "-": 10,
       "cheongliyuan": 4,
       "MistyRainforest": 2
@@ -41671,549 +43332,542 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.ApproveCommand;"
+        "content": "import mams.logic.commands.ClashCommand;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.ClashCommand;"
+        "content": "import mams.logic.commands.Command;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.Command;"
+        "content": "import mams.logic.commands.EditCommand;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.EditCommand;"
+        "content": "import mams.logic.commands.ExitCommand;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.ExitCommand;"
+        "content": "import mams.logic.commands.FindCommand;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.FindCommand;"
+        "content": "import mams.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.HelpCommand;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "AaronLuk"
-        },
         "content": "import mams.logic.commands.ListCommand;"
       },
       {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "AaronLuk"
-        },
-        "content": "import mams.logic.commands.RejectCommand;"
-      },
-      {
-        "lineNumber": 17,
+        "lineNumber": 15,
         "author": {
           "gitId": "cheongliyuan"
         },
         "content": "import mams.logic.commands.RemoveModCommand;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 16,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "import mams.logic.commands.ResolveCommand;"
+      },
+      {
+        "lineNumber": 17,
         "author": {
           "gitId": "MistyRainforest"
         },
         "content": "import mams.logic.commands.SetCredits;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "import mams.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": " * Parses user input."
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
         "content": " */"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "public class MamsParser {"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "     */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "     *"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     */"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
         "content": "        if (!matcher.matches()) {"
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 40,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
           "gitId": "chensu2436"
         },
         "content": "        case ClashCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 48,
         "author": {
           "gitId": "chensu2436"
         },
         "content": "            return new ClashCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 49,
         "author": {
           "gitId": "chensu2436"
         },
         "content": ""
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
         "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
         "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
         "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
         "content": "            return new ListCommand();"
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
         "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
         "content": "            return new ExitCommand();"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
         "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
         "content": "            return new HelpCommand();"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 64,
         "author": {
           "gitId": "cheongliyuan"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        case ResolveCommand.COMMAND_WORD_APPROVE_APPEAL:"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        case ApproveCommand.COMMAND_WORD:"
+        "content": "            return new ApproveCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "AaronLuk"
+          "gitId": "cheongliyuan"
         },
-        "content": "            return new ApproveCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "cheongliyuan"
+          "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        case ResolveCommand.COMMAND_WORD_REJECT_APPEAL:"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        case RejectCommand.COMMAND_WORD:"
+        "content": "            return new RejectCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "AaronLuk"
+          "gitId": "cheongliyuan"
         },
-        "content": "            return new RejectCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": ""
+        "content": "        case AddModCommand.COMMAND_WORD_ADD_MOD:"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "        case AddModCommand.COMMAND_WORD_ADD_MOD:"
+        "content": "            return new AddModCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "            return new AddModCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": ""
+        "content": "        case RemoveModCommand.COMMAND_WORD_REMOVE_MOD:"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "        case RemoveModCommand.COMMAND_WORD_REMOVE_MOD:"
+        "content": "            return new RemoveModCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "cheongliyuan"
         },
-        "content": "            return new RemoveModCommandParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "cheongliyuan"
-        },
         "content": ""
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 77,
         "author": {
           "gitId": "MistyRainforest"
         },
         "content": "        case SetCredits.COMMAND_WORD_SET_CREDITS:"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 78,
         "author": {
           "gitId": "MistyRainforest"
         },
         "content": "            return new SetCreditsParser().parse(arguments);"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 79,
         "author": {
           "gitId": "MistyRainforest"
         },
         "content": ""
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 81,
         "author": {
           "gitId": "SendorasLeft"
         },
         "content": "            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
@@ -42222,7 +43876,7 @@
     ],
     "authorContributionMap": {
       "SendorasLeft": 6,
-      "AaronLuk": 13,
+      "AaronLuk": 12,
       "chensu2436": 3,
       "-": 49,
       "cheongliyuan": 11,
@@ -43550,42 +45204,42 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_MASS_RESOLVE;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "import static mams.logic.parser.CliSyntax.PREFIX_REASON;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.core.index.Index;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.commons.exceptions.IllegalValueException;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.commands.RejectCommand;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "import mams.logic.parser.exceptions.ParseException;"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 11,
@@ -43599,147 +45253,147 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "/**"
+        "content": "import mams.commons.core.index.Index;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": " * Parses input arguments and creates a new {@code ApproveCommand} object"
+        "content": "import mams.commons.exceptions.IllegalValueException;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "public class RejectCommandParser implements Parser\u003cRejectCommand\u003e {"
+        "content": "import mams.logic.commands.MassReject;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    /**"
+        "content": "import mams.logic.commands.Reject;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the {@code ApproveCommand}"
+        "content": "import mams.logic.commands.RejectCommand;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     * and returns a {@code ApproveCommand} object for execution."
+        "content": "import mams.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "     */"
+        "content": "import mams.model.appeal.Appeal;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    public RejectCommand parse(String args) throws ParseException {"
+        "content": "/**"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        requireNonNull(args);"
+        "content": " * Parses input arguments and creates a new {@code ApproveCommand} object"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_REASON);"
+        "content": " */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "public class RejectCommandParser implements Parser\u003cReject\u003e {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        Index index;"
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        try {"
+        "content": "     * Parses the given {@code String} of arguments in the context of the {@code ApproveCommand}"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+        "content": "     * and returns a {@code ApproveCommand} object for execution."
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        } catch (IllegalValueException ive) {"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RejectCommand.MESSAGE_USAGE), ive);"
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        }"
+        "content": "    public Reject parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": ""
+        "content": "        requireNonNull(args);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        String remark \u003d argMultimap.getValue(PREFIX_REASON).orElse(\"\");"
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_MASS_RESOLVE);"
       },
       {
         "lineNumber": 33,
@@ -43753,17 +45407,213 @@
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "        return new RejectCommand(index, remark);"
+        "content": "        Index index;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "AaronLuk"
         },
-        "content": "    }"
+        "content": "        if (argMultimap.getValue(PREFIX_REASON).isPresent()) {"
       },
       {
         "lineNumber": 36,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                index \u003d ParserUtil.parseIndex(argMultimap.getPreamble());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            } catch (IllegalValueException ive) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        RejectCommand.MESSAGE_USAGE_REJECT), ive);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            String remark \u003d argMultimap.getValue(PREFIX_REASON).orElse(\"\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            return new RejectCommand(index, remark);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        } else if (argMultimap.getValue(PREFIX_MASS_RESOLVE).isPresent()) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            Optional\u003cString\u003e appealLine \u003d argMultimap.getValue(PREFIX_MASS_RESOLVE);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            String[] appeals \u003d appealLine.get().split(\" \");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            List\u003cString\u003e validIds \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            List\u003cString\u003e invalidIds \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            for (String appeal : appeals) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                if (Appeal.isValidAppealId(appeal)) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    if (!validIds.contains(appeal)) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                        validIds.add(appeal);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                    invalidIds.add(appeal);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            return new MassReject(validIds, invalidIds);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "            throw new ParseException(Reject.MESSAGE_USAGE_REJECT);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "AaronLuk"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
         "author": {
           "gitId": "AaronLuk"
         },
@@ -43771,7 +45621,7 @@
       }
     ],
     "authorContributionMap": {
-      "AaronLuk": 36
+      "AaronLuk": 64
     }
   },
   {
