@@ -14240,925 +14240,6 @@
     }
   },
   {
-    "path": "src/main/java/seedu/address/logic/commands/InviteCommand.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "package seedu.address.logic.commands;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static java.util.Objects.requireNonNull;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.Arrays;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.List;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.Context;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.Model;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.activity.Activity;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.person.NameContainsAllKeywordsPredicate;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.person.Person;"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": " * Invites a person to the activity."
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "public class InviteCommand extends Command {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String COMMAND_WORD \u003d \"invite\";"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Invites participant(s) into current viewed Activity.\\n\""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            + \"Parameters: \""
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            + \"[\" + PREFIX_PARTICIPANT + \"PARTICIPANT]...\\n\""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            + \"Example: invite p/Ben p/David\";"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_RESULT \u003d"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            \"Invited the following participants successfully to the activity:\\n%s\\n%s\";"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_DUPLICATE_PERSON_IN_ACTIVITY \u003d"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            \"Unable to invite \\\"%s\\\" as he/she already exists in the activity.\";"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_NON_UNIQUE_SEARCH_RESULT \u003d"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            \"Unable to invite \\\"%s\\\" as he/she has no unique search result in the contacts.\";"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_NO_ONE_TO_INVITE \u003d"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            \"There is no one to invite.\";"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_NO_VIEWED_ACTIVITY \u003d \"There is no viewed activity currently.\";"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public static final String MESSAGE_DUPLICATE_ENTRY \u003d \"\\\"%s\\\" has duplicate entries, the first one will be added.\";"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    private final List\u003cString\u003e peopleToInvite;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     * Creates an InviteCommand to invite the specified {@code Person(s)}"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public InviteCommand(List\u003cString\u003e peopleToInvite) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        requireNonNull(peopleToInvite);"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        this.peopleToInvite \u003d peopleToInvite;"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        requireNonNull(model);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        if (peopleToInvite.size() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            throw new CommandException(MESSAGE_NO_ONE_TO_INVITE);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        if (model.getContext().getType() !\u003d Context.Type.VIEW_ACTIVITY) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            throw new CommandException(MESSAGE_NO_VIEWED_ACTIVITY);"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Activity activityToInviteTo \u003d model.getContext().getActivity().get();"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        ArrayList\u003cInteger\u003e participantIds \u003d activityToInviteTo.getParticipantIds();"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e keywords;"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cPerson\u003e findResult;"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cInteger\u003e idsToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        StringBuilder messageNotInvited \u003d new StringBuilder();"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        StringBuilder messageInvited \u003d new StringBuilder();"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        for (String name : peopleToInvite) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            keywords \u003d Arrays.asList(name.split(\" \"));"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            NameContainsAllKeywordsPredicate predicate \u003d new NameContainsAllKeywordsPredicate(keywords);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                findResult \u003d model.findPersonAll(predicate);"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                assert findResult !\u003d null : \"List of people in contacts should not be null.\";"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                if (findResult.size() !\u003d 1) {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                    throw new CommandException(String.format(MESSAGE_NON_UNIQUE_SEARCH_RESULT, name));"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            } catch (CommandException e) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                messageNotInvited.append(e.getMessage() + \"\\n\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                continue;"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            assert findResult.size() \u003d\u003d 1 : \"There should only be 1 match\";"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            Person personToInvite \u003d findResult.get(0);"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            Integer idOfPersonToInvite \u003d personToInvite.getPrimaryKey();"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                if (activityToInviteTo.hasPerson(idOfPersonToInvite)) {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                    throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_IN_ACTIVITY, name));"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                if (idsToInvite.contains(idOfPersonToInvite)) {"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                    throw new CommandException(String.format(MESSAGE_DUPLICATE_ENTRY, name));"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                idsToInvite.add(idOfPersonToInvite);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                messageInvited.append(personToInvite.getName() + \"\\n\");"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            } catch (CommandException e) {"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                messageNotInvited.append(e.getMessage() + \"\\n\");"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                continue;"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        for (Integer id : idsToInvite) {"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            activityToInviteTo.invite(id);"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.updateFilteredPersonList(x -\u003e participantIds.contains(x.getPrimaryKey()));"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        return new CommandResult(String.format(MESSAGE_RESULT, messageInvited, messageNotInvited));"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public boolean equals(Object other) {"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                || (other instanceof InviteCommand // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                \u0026\u0026 peopleToInvite.containsAll(((InviteCommand) other).peopleToInvite)"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                \u0026\u0026 ((InviteCommand) other).peopleToInvite.containsAll(peopleToInvite));"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "JohnNzj": 130
-    }
-  },
-  {
     "path": "src/main/java/seedu/address/logic/parser/ActivityCommandParser.java",
     "fileType": "functional",
     "lines": [
@@ -16087,488 +15168,460 @@
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "JohnNzj"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.InviteCommand;"
+        "content": "import seedu.address.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ListCommand;"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": " */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "     *"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     */"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
-        "content": "        case DeleteCommand.COMMAND_WORD:"
+        "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new DeleteCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ClearCommand.COMMAND_WORD:"
+        "content": "            return new ClearCommand();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ClearCommand();"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "        case FindCommand.COMMAND_WORD:"
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new FindCommandParser().parse(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListCommand();"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 73,
         "author": {
           "gitId": "daekoon"
         },
         "content": "        case ActivityCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 74,
         "author": {
           "gitId": "daekoon"
         },
         "content": "            return new ActivityCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 75,
         "author": {
           "gitId": "daekoon"
         },
         "content": ""
       },
       {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        case InviteCommand.COMMAND_WORD:"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            return new InviteCommandParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 80,
+        "lineNumber": 76,
         "author": {
           "gitId": "liakify"
         },
         "content": "        case ExpenseCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 77,
         "author": {
           "gitId": "liakify"
         },
         "content": "            return new ExpenseCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 78,
         "author": {
           "gitId": "liakify"
         },
         "content": ""
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
         "content": "        default:"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
         "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
@@ -16577,7 +15630,6 @@
     ],
     "authorContributionMap": {
       "liakify": 4,
-      "JohnNzj": 4,
       "-": 76,
       "daekoon": 4
     }
@@ -17653,323 +16705,6 @@
     ],
     "authorContributionMap": {
       "liakify": 48
-    }
-  },
-  {
-    "path": "src/main/java/seedu/address/logic/parser/InviteCommandParser.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "package seedu.address.logic.parser;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static java.util.Objects.requireNonNull;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.List;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.stream.Stream;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.logic.commands.InviteCommand;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": " * Parses input arguments and creates a new InviteCommand object"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "public class InviteCommandParser implements Parser\u003cInviteCommand\u003e {"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     * Parses the given {@code String} of arguments in the context of the InviteCommand"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     * and returns an InviteCommand object for execution."
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public InviteCommand parse(String args) throws ParseException {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        requireNonNull(args);"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_PARTICIPANT);"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        if (!arePrefixesPresent(argMultimap, PREFIX_PARTICIPANT)"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                || !argMultimap.getPreamble().isEmpty()) {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InviteCommand.MESSAGE_USAGE));"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e participants \u003d argMultimap.getAllValues(PREFIX_PARTICIPANT);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        return new InviteCommand(participants);"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     * Returns true if none of the prefixes contains empty {@code Optional} values in the given"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     * {@code ArgumentMultimap}."
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        return Stream.of(prefixes).allMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "JohnNzj": 44
     }
   },
   {
@@ -39201,6 +37936,2176 @@
     }
   },
   {
+    "path": "src/main/resources/view/Components.css",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".background {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    background-color: #383838; /* Used in the default.html file */"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d LABEL COMPONENT \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " .label {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Regular\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: #404040;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d SCROLLBAR COMPONENT \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  Minimalist MacOS-like design."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 0 0 0 1;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar .thumb {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #808080;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-insets: 0 1 0 1;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-radius: 16px;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar .track {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: transparent;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar .increment-button, .scroll-bar .decrement-button {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 0 0 0 0;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-shape: \" \";"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 1 5 1 5;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 5 1 5 1;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".tooltip-text {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d LISTVIEW COMPONENT \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  One-directional listing of items (JavaFX elements)."
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".list-view {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 0;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-insets: 0;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: transparent;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-insets: 1;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".list-cell {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 0;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-label-padding: 0;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: transparent;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".list-cell:filled:even {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #c0c0c0;"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".list-cell:filled:odd {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #d0d0d0;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".list-cell:filled:selected {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: papayawhip;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: sandybrown;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".list-cell:filled:selected .card-pane {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: moccasin;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d TABLEVIEW COMPONENT \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  Table-based view with customisable rows and columns."
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".table-view {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-base: #1d1d1d;"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-control-inner-background: #1d1d1d;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-table-cell-border-color: transparent;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-table-header-border-color: transparent;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 5;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".table-view .column-header-background {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".table-view .column-header, .table-view .filler {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-size: 35;"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 0 0 1 0;"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color:"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "        transparent"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "        transparent"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "        derive(-fx-base, 80%)"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "        transparent;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-insets: 0 10 1 0;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".table-view .column-header .label {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 20pt;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Regular\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-weight: bold;"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-alignment: center-left;"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-opacity: 1;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".table-view:focused .table-row-cell:filled:focused:selected {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: -fx-focus-color;"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d BUTTON COMPONENT \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  Metro style Push Button"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  Author: Pedro Duque Vieira"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " *  http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": " .button {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 5 22 5 22;"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: #808080;"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 2;"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-radius: 0;"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #b0b0b0;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Regular\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-weight: bold;"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: #404040;"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-insets: 0 0 0 0, 0, 1, 2;"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".button:hover {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #3a3a3a;"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".button:pressed, .button:default:hover:pressed {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "  -fx-background-color: white;"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "  -fx-text-fill: #1d1d1d;"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".button:focused {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: white, white;"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 1, 1;"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-style: solid, segments(1, 1);"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-radius: 0, 0;"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-insets: 1 1 1 1, 0;"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".button:disabled, .button:default:disabled {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-opacity: 0.4;"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".button:default {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: -fx-focus-color;"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: #ffffff;"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".button:default:hover {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: derive(-fx-focus-color, 30%);"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Aulud": 187
+    }
+  },
+  {
+    "path": "src/main/resources/view/Extensions.css",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".error.error.error {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Chain class to sufficiently high specificity to avoid using !important */"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* The error class should always override the default text-fill style */"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: #ff2222;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Aulud": 4,
+      "-": 2
+    }
+  },
+  {
+    "path": "src/main/resources/view/LightTheme.css",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".app-root {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Linear gradient background fill */"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: linear-gradient(#f8f8f8, #d8d8d8);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".command-input-root {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 8;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".command-text-field {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #e0e0e0;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: #c0c0c0;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-radius: 4px;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Regular\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: black;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".result-display-root {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 0 8 6 8;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Add horizontal divider to visually separate I/O GUI elements from content */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: linear-gradient(from 0% 0% to 100% 0%, #f0f0f0, #c0c0c0, #f0f0f0);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 0 0 2px 0;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".result-display {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: #c0c0c0;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-radius: 4px;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Light\", \"Segoe UI Light\", sans-serif;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 10pt;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: black;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-highlight-fill: lightblue;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".result-display .content {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Fill background colour of TextArea content */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #dbdbdb;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".result-display:focused {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Suppress blue focus ring for result display */"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-focus-color: transparent;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-insets: 1, 1, 1, 1;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".content-root {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 6 8 4 8;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".content-display, .content-entry-list {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Suppress blue focus ring for result display */"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-focus-color: transparent;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-insets: 1, 1, 1, 1;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: #c0c0c0;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-radius: 4px;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".card-pane {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 8;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 0;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".content-display .card-large-label {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Black\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-weight: bolder;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 14px;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: black;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".content-display .card-label {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Regular\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 12px;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: black;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".tag-list {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-hgap: 5;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-vgap: 3;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".tag-list .label {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: royalblue;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 1 3 1 3;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-radius: 2;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-radius: 2;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 11;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Bold\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-weight: bold;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: #e0e0e0;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".status-bar-root {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-padding: 10 8 4 8;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    /* Add horizontal divider to visually separate content from status bar */"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-color: linear-gradient(from 0% 0% to 100% 0%, #dadada, #b0b0b0, #dadada);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-width: 2px 0 0 0;"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-border-insets: 2px 0 0 0;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-insets: 10px 0 0 0;"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-background-color: #a0a0a0;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ".status-bar .label {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-family: \"Noto Sans CJK SC Bold\", \"Segoe UI\", sans-serif;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-weight: bold;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-font-size: 9pt;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "    -fx-text-fill: black;"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "Aulud"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "Aulud": 113
+    }
+  },
+  {
     "path": "src/main/resources/view/MainWindow.fxml",
     "fileType": "functional",
     "lines": [
@@ -49229,925 +50134,6 @@
     }
   },
   {
-    "path": "src/test/java/seedu/address/logic/commands/InviteCommandTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "package seedu.address.logic.commands;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.testutil.Assert.assertThrows;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.testutil.TypicalPersons.ALICE;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.testutil.TypicalPersons.BENSON;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.List;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.Context;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.Model;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.ModelManager;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.model.activity.Activity;"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.testutil.ActivityBuilder;"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "public class InviteCommandTest {"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void constructor_nullParams_throwsNullPointerException() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertThrows(NullPointerException.class, () -\u003e new InviteCommand(null));"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void execute_emptyListOfString_throwsCommandException() {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Model model \u003d new ModelManager();"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        InviteCommand inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertThrows(CommandException.class, () -\u003e inviteCommand.execute(model));"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void execute_notViewActivityContext_throwsCommandException() {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Model model \u003d new ModelManager();"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(\"Benny\");"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        InviteCommand inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertThrows(CommandException.class, () -\u003e inviteCommand.execute(model));"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void execute_viewActivityContext_inviteSuccessful() throws CommandException {"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Model model \u003d new ModelManager();"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addPerson(ALICE);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addPerson(BENSON);"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Activity activity \u003d new ActivityBuilder().build();"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addActivity(activity);"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.setContext(new Context(activity));"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(ALICE.getName().toString());"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        InviteCommand inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(1, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(BENSON.getName().fullName);"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(2, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void execute_viewActivityDuplicateEntries_inviteOne() throws CommandException {"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Model model \u003d new ModelManager();"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addPerson(ALICE); // Alice Pauline"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Activity activity \u003d new ActivityBuilder().build();"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addActivity(activity);"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.setContext(new Context(activity));"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(ALICE.getName().toString());"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(ALICE.getName().toString());"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        InviteCommand inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(1, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void execute_viewActivityContextDuplicatePerson_inviteUnsuccessful() throws CommandException {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Model model \u003d new ModelManager();"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addPerson(ALICE);"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addPerson(BENSON);"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Activity activity \u003d new ActivityBuilder().addPerson(ALICE).build();"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addActivity(activity);"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.setContext(new Context(activity));"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(ALICE.getName().fullName);"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        InviteCommand inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(1, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(BENSON.getName().fullName);"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(2, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void execute_viewActivityContextMissingPerson_inviteUnsuccessful() throws CommandException {"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Model model \u003d new ModelManager();"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        Activity activity \u003d new ActivityBuilder().build();"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.addActivity(activity);"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        model.setContext(new Context(activity));"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(ALICE.getName().fullName);"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        InviteCommand inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(0, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(BENSON.getName().fullName);"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand \u003d new InviteCommand(peopleToInvite);"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        inviteCommand.execute(model);"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertEquals(0, activity.getParticipantIds().size());"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "JohnNzj": 130
-    }
-  },
-  {
     "path": "src/test/java/seedu/address/logic/commands/ListCommandTest.java",
     "fileType": "tests",
     "lines": [
@@ -51988,386 +51974,6 @@
     "authorContributionMap": {
       "podocarp": 98,
       "liakify": 59
-    }
-  },
-  {
-    "path": "src/test/java/seedu/address/logic/parser/InviteCommandParserTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "package seedu.address.logic.parser;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.PARTICIPANT_DESC_AMY;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.PARTICIPANT_DESC_BOB;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import java.util.List;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "import seedu.address.logic.commands.InviteCommand;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "public class InviteCommandParserTest {"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    private InviteCommandParser parser \u003d new InviteCommandParser();"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void parse_allFieldsPresent_success() {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(VALID_NAME_AMY);"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PARTICIPANT_DESC_AMY, new InviteCommand(peopleToInvite));"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    public void parse_multipleInvitees_success() {"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e peopleToInvite \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(VALID_NAME_AMY);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        peopleToInvite.add(VALID_NAME_BOB);"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PARTICIPANT_DESC_AMY + PARTICIPANT_DESC_BOB,"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                new InviteCommand(peopleToInvite));"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PARTICIPANT_DESC_BOB + PARTICIPANT_DESC_AMY,"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                new InviteCommand(peopleToInvite));"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        List\u003cString\u003e invitees \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        invitees.add(VALID_NAME_BOB);"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        invitees.add(VALID_NAME_AMY);"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PARTICIPANT_DESC_AMY + PARTICIPANT_DESC_BOB,"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                new InviteCommand(invitees));"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "        assertParseSuccess(parser, PREAMBLE_WHITESPACE + PARTICIPANT_DESC_BOB + PARTICIPANT_DESC_AMY,"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "                new InviteCommand(invitees));"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "JohnNzj"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "JohnNzj": 53
     }
   },
   {

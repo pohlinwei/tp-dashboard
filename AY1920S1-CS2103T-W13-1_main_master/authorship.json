@@ -2799,2308 +2799,2315 @@
       {
         "lineNumber": 140,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "* can save the Address Book data in json format and read it back."
+        "content": "* can save the `TrackedModule` data in json format and read it back."
       },
       {
         "lineNumber": 141,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": ""
+        "content": "* can read the `ArchivedModule` data from json format."
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "-"
         },
-        "content": "[[Design-Commons]]"
+        "content": ""
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Common classes"
+        "content": "[[Design-Commons]]"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Common classes"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "-"
         },
-        "content": "Classes used by multiple components are in the `seedu.addressbook.commons` package."
+        "content": ""
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Classes used by multiple components are in the `seedu.addressbook.commons` package."
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Implementation"
+        "content": ""
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Implementation"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "-"
         },
-        "content": "This section describes some noteworthy details on how certain features are implemented."
+        "content": ""
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "This section describes some noteworthy details on how certain features are implemented."
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "-"
         },
-        "content": "// tag::undoredo[]"
+        "content": ""
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
+        "content": "// tag::undoredo[]"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
+        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "-"
         },
-        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
+        "content": ""
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "-"
         },
-        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
+        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "-"
         },
-        "content": "Additionally, it implements the following operations:"
+        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Additionally, it implements the following operations:"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
+        "content": ""
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
+        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
+        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "-"
         },
-        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
+        "content": ""
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
+        "content": ""
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
+        "content": ""
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState0.png[]"
+        "content": ""
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState0.png[]"
       },
       {
         "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 172,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "Step 2. The user executes `delete 5` command to delete the 5th module in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state."
       },
       {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 173,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState1.png[]"
+        "content": ""
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState1.png[]"
       },
       {
         "lineNumber": 175,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 176,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "Step 3. The user executes `add n/David ...` to add a new module. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`."
       },
       {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 177,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState2.png[]"
+        "content": ""
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState2.png[]"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "-"
         },
-        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
       },
       {
         "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 183,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state."
       },
       {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState3.png[]"
+        "content": ""
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState3.png[]"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "-"
         },
-        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "-"
         },
-        "content": "The following sequence diagram shows how the undo operation works:"
+        "content": ""
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "The following sequence diagram shows how the undo operation works:"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoSequenceDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoSequenceDiagram.png[]"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "-"
         },
-        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
+        "content": ""
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "-"
         },
-        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
+        "content": ""
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "-"
         },
-        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
+        "content": ""
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState4.png[]"
+        "content": ""
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState4.png[]"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
+        "content": ""
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState5.png[]"
+        "content": ""
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState5.png[]"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "-"
         },
-        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
+        "content": ""
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "-"
         },
-        "content": "image::CommitActivityDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::CommitActivityDiagram.png[]"
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d Design Considerations"
+        "content": ""
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
+        "content": ""
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
+        "content": ""
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Easy to implement."
+        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: May have performance issues in terms of memory usage."
+        "content": "** Pros: Easy to implement."
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 2:** Individual command knows how to undo/redo by itself."
+        "content": "** Cons: May have performance issues in terms of memory usage."
       },
       {
         "lineNumber": 220,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* **Alternative 2:** Individual command knows how to undo/redo by itself."
+      },
+      {
+        "lineNumber": 221,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "** Pros: Will use less memory (e.g. for `delete`, just save the module being deleted)."
       },
       {
-        "lineNumber": 221,
+        "lineNumber": 222,
         "author": {
           "gitId": "-"
         },
         "content": "** Cons: We must ensure that the implementation of each individual command are correct."
       },
       {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 223,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the undo/redo commands"
+        "content": ""
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the undo/redo commands"
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 1 (current choice):** Use a list to store the history of address book states."
+        "content": ""
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project."
+        "content": "* **Alternative 1 (current choice):** Use a list to store the history of address book states."
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`."
+        "content": "** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project."
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 2:** Use `HistoryManager` for undo/redo"
+        "content": "** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`."
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase."
+        "content": "* **Alternative 2:** Use `HistoryManager` for undo/redo"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things."
+        "content": "** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase."
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::undoredo[]"
+        "content": "** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things."
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// end::undoredo[]"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "-"
         },
-        "content": "// tag::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+        "content": "// tag::dataencryption[]"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "-"
         },
-        "content": "_{Explain here how the data encryption feature will be implemented}_"
+        "content": ""
       },
       {
         "lineNumber": 237,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{Explain here how the data encryption feature will be implemented}_"
       },
       {
         "lineNumber": 238,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// end::dataencryption[]"
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": ""
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "-"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": ""
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "-"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": ""
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "-"
         },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "-"
         },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "-"
         },
-        "content": "*Logging Levels*"
+        "content": ""
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "-"
         },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
+        "content": ""
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "-"
         },
-        "content": "* `WARNING` : Can continue, but with caution"
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
       },
       {
         "lineNumber": 252,
         "author": {
           "gitId": "-"
         },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "-"
         },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "-"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": ""
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": "[[Implementation-Configuration]]"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "-"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": ""
       },
       {
         "lineNumber": 259,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 260,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": ""
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 262,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 263,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Testing"
+        "content": ""
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Dev Ops"
+        "content": ""
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 272,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Scope"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 274,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 275,
         "author": {
           "gitId": "-"
         },
-        "content": "*Target user profile*:"
+        "content": ""
       },
       {
         "lineNumber": 276,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Target user profile*:"
       },
       {
         "lineNumber": 277,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "* is a student of National University of Singapore (NUS)"
+        "content": ""
       },
       {
         "lineNumber": 278,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* prefer desktop apps over web apps"
+        "content": "* is a student of National University of Singapore (NUS)"
       },
       {
         "lineNumber": 279,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "* can type fast"
+        "content": "* prefer desktop apps over web apps"
       },
       {
         "lineNumber": 280,
         "author": {
           "gitId": "-"
         },
-        "content": "* prefers typing over mouse input"
+        "content": "* can type fast"
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "-"
         },
-        "content": "* is reasonably comfortable using CLI apps"
+        "content": "* prefers typing over mouse input"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* is reasonably comfortable using CLI apps"
       },
       {
         "lineNumber": 283,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 284,
         "author": {
           "gitId": "geshuming"
         },
         "content": "*Value proposition*: manage modules faster and with less hassle than the traditional web apps deployed by the institution"
       },
       {
-        "lineNumber": 284,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 285,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d User Stories"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d User Stories"
       },
       {
         "lineNumber": 288,
         "author": {
           "gitId": "-"
         },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+        "content": ""
       },
       {
         "lineNumber": 289,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
       },
       {
         "lineNumber": 290,
         "author": {
           "gitId": "-"
         },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
+        "content": ""
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "-"
         },
-        "content": "|Priority |As a ... |I want to ... |So that I can..."
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "-"
         },
-        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
+        "content": "|Priority |As a ... |I want to ... |So that I can..."
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
       },
       {
         "lineNumber": 295,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 296,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |user |track a module I\u0027m currently taking |"
       },
       {
-        "lineNumber": 296,
+        "lineNumber": 297,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 297,
+        "lineNumber": 298,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |user |untrack a module |remove entries that I no longer need"
       },
       {
-        "lineNumber": 298,
+        "lineNumber": 299,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 299,
+        "lineNumber": 300,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* * *` |user |find a module |locate details of modules that NUS provides"
       },
       {
-        "lineNumber": 300,
+        "lineNumber": 301,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 301,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "|`* * *` |curious student |view a module\u0027s details |check out if I want to take the module"
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* * *` |curious student |view a module\u0027s details |check out if I want to take the module"
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`* * *` |busy student |manage deadlines |keep track of my assignments and tasks"
+        "content": ""
       },
       {
         "lineNumber": 304,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* * *` |busy student |manage deadlines |keep track of my assignments and tasks"
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`* * *` |organized student |manage my grades |know roughly how well I\u0027m doing in the module"
+        "content": ""
       },
       {
         "lineNumber": 306,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* * *` |organized student |manage my grades |know roughly how well I\u0027m doing in the module"
       },
       {
         "lineNumber": 307,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`* *` |new student |schedule my modules |plan how to approach my future focus areas"
+        "content": ""
       },
       {
         "lineNumber": 308,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* *` |new student |schedule my modules |plan how to approach my future focus areas"
       },
       {
         "lineNumber": 309,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`* *` |graduating student |check what modules I need to complete |"
+        "content": ""
       },
       {
         "lineNumber": 310,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "|`* *` |graduating student |check what modules I need to complete |"
+      },
+      {
+        "lineNumber": 311,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 311,
+        "lineNumber": 312,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |computing student |plan my focus area modules |choose a specialization"
       },
       {
-        "lineNumber": 312,
+        "lineNumber": 313,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 313,
+        "lineNumber": 314,
         "author": {
           "gitId": "geshuming"
         },
         "content": "|`* *` |competitive student |calculate my GPA |"
       },
       {
-        "lineNumber": 314,
+        "lineNumber": 315,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 315,
-        "author": {
-          "gitId": "geshuming"
-        },
-        "content": "|`* *` |busy student |prioritize certain modules (and their deadlines) |manage my time better"
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* *` |busy student |prioritize certain modules (and their deadlines) |manage my time better"
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`* *` |organized student |manage files related to a module |add and tag files"
+        "content": ""
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* *` |organized student |manage files related to a module |add and tag files"
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`* *` |student |catalog past modules |access the content conveniently"
+        "content": ""
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`* *` |student |catalog past modules |access the content conveniently"
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`*` |student |generate a sample module planner |plan my modules"
+        "content": ""
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`*` |student |generate a sample module planner |plan my modules"
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "|`*` |hardworking student |access past exam papers |"
+        "content": ""
       },
       {
         "lineNumber": 324,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": ""
+        "content": "|`*` |hardworking student |access past exam papers |"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": ""
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 328,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 329,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 330,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Use Cases"
       },
       {
         "lineNumber": 332,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 333,
         "author": {
           "gitId": "geshuming"
         },
         "content": "(For all use cases below, the *System* is the `ModuleBook` and the *Actor* is the `user`, unless specified otherwise)"
       },
       {
-        "lineNumber": 333,
+        "lineNumber": 334,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 334,
+        "lineNumber": 335,
         "author": {
           "gitId": "-"
         },
         "content": "[discrete]"
       },
       {
-        "lineNumber": 335,
+        "lineNumber": 336,
         "author": {
           "gitId": "geshuming"
         },
         "content": "\u003d\u003d\u003d Use case: Find and Track a Module"
       },
       {
-        "lineNumber": 336,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 337,
         "author": {
           "gitId": "-"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 338,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 339,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "1.  User requests to find a module with incomplete keyword (e.g. \u0027CS2\u0027)"
+        "content": ""
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "2.  ModuleBook shows a list of modules matching the keyword (e.g. \u0027CS2030, CS2040, CS2100, CS2101, etc.\u0027)"
+        "content": "1.  User requests to find a module with incomplete keyword (e.g. \u0027CS2\u0027)"
       },
       {
         "lineNumber": 341,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "3.  User requests to track a module"
+        "content": "2.  ModuleBook shows a list of modules matching the keyword (e.g. \u0027CS2030, CS2040, CS2100, CS2101, etc.\u0027)"
       },
       {
         "lineNumber": 342,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "4.  ModuleBook tracks the module"
+        "content": "3.  User requests to track a module"
       },
       {
         "lineNumber": 343,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "+"
+        "content": "4.  ModuleBook tracks the module"
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": "+"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 346,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "\u003d\u003d\u003d Use case: Add a deadline for a tracked module"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 348,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: Add a deadline for a tracked module"
       },
       {
         "lineNumber": 349,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "1.  User requests to view the specific tracked module"
+        "content": ""
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "2.  ModuleBook displays the module details"
+        "content": "1.  User requests to view the specific tracked module"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "3.  User requests to add a deadline"
+        "content": "2.  ModuleBook displays the module details"
       },
       {
         "lineNumber": 354,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "4.  ModuleBook adds the deadline"
+        "content": "3.  User requests to add a deadline"
       },
       {
         "lineNumber": 355,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "+"
+        "content": "4.  ModuleBook adds the deadline"
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": "+"
       },
       {
         "lineNumber": 357,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 358,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 359,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 360,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 361,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* 2a. The module is not currently tracked"
+        "content": "[none]"
       },
       {
         "lineNumber": 362,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "[none]"
+        "content": "* 2a. The module is not currently tracked"
       },
       {
         "lineNumber": 363,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "** 2a1. User requests to track the module"
+        "content": "[none]"
       },
       {
         "lineNumber": 364,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "** 2a2. The module is now tracked"
+        "content": "** 2a1. User requests to track the module"
       },
       {
         "lineNumber": 365,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "** 2a2. The module is now tracked"
       },
       {
         "lineNumber": 366,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 367,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "Use case resumes at step 3"
+        "content": "+"
       },
       {
         "lineNumber": 368,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "Use case resumes at step 3"
       },
       {
         "lineNumber": 369,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "[%hardbreaks]"
+        "content": ""
       },
       {
         "lineNumber": 370,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": "[none]"
+        "content": "[%hardbreaks]"
       },
       {
         "lineNumber": 371,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "* 3a. ModuleBook requests for a description"
+        "content": "[none]"
       },
       {
         "lineNumber": 372,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "[none]"
+        "content": "* 3a. ModuleBook requests for a description"
       },
       {
         "lineNumber": 373,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "** 3a1. User provides a description"
+        "content": "[none]"
       },
       {
         "lineNumber": 374,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "** 3a2. ModuleBook requests for a datetime"
+        "content": "** 3a1. User provides a description"
       },
       {
         "lineNumber": 375,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "** 3a3. User provides a datetime"
+        "content": "** 3a2. ModuleBook requests for a datetime"
       },
       {
         "lineNumber": 376,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "** 3a3. User provides a datetime"
       },
       {
         "lineNumber": 377,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 378,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 378,
+        "lineNumber": 379,
         "author": {
           "gitId": "geshuming"
         },
         "content": "Use case resumes at step 4."
       },
       {
-        "lineNumber": 379,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 380,
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 381,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 382,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 383,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Non Functional Requirements"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 384,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Non Functional Requirements"
       },
       {
         "lineNumber": 385,
         "author": {
           "gitId": "-"
         },
-        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": ""
       },
       {
         "lineNumber": 386,
         "author": {
           "gitId": "-"
         },
-        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
+        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
       },
       {
         "lineNumber": 387,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
       },
       {
         "lineNumber": 388,
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 389,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 390,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 391,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 392,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Glossary"
       },
       {
         "lineNumber": 393,
         "author": {
           "gitId": "-"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": ""
       },
       {
         "lineNumber": 394,
         "author": {
           "gitId": "-"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": "[[mainstream-os]] Mainstream OS::"
       },
       {
         "lineNumber": 395,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Windows, Linux, Unix, OS-X"
       },
       {
         "lineNumber": 396,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 397,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 398,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Survey"
       },
       {
         "lineNumber": 399,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "LumiNUS"
+        "content": ""
       },
       {
         "lineNumber": 400,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "LumiNUS"
       },
       {
         "lineNumber": 401,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "Pros:"
+        "content": ""
       },
       {
         "lineNumber": 402,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "Pros:"
       },
       {
         "lineNumber": 403,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Good deadline system"
+        "content": ""
       },
       {
         "lineNumber": 404,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Working file management system"
+        "content": "* Good deadline system"
       },
       {
         "lineNumber": 405,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "* Working file management system"
       },
       {
         "lineNumber": 406,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "Cons:"
+        "content": ""
       },
       {
         "lineNumber": 407,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "Cons:"
       },
       {
         "lineNumber": 408,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* A lot of GUI navigation involved"
+        "content": ""
       },
       {
         "lineNumber": 409,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Cannot add user-generated deadlines"
+        "content": "* A lot of GUI navigation involved"
       },
       {
         "lineNumber": 410,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Cannot view past module details or content"
+        "content": "* Cannot add user-generated deadlines"
       },
       {
         "lineNumber": 411,
         "author": {
           "gitId": "geshuming"
         },
-        "content": ""
+        "content": "* Cannot view past module details or content"
       },
       {
         "lineNumber": 412,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "\u0027\u0027\u0027"
+        "content": ""
       },
       {
         "lineNumber": 413,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "\u0027\u0027\u0027"
+      },
+      {
+        "lineNumber": 414,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 414,
+        "lineNumber": 415,
         "author": {
           "gitId": "geshuming"
         },
         "content": "NUSMods"
       },
       {
-        "lineNumber": 415,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 416,
         "author": {
           "gitId": "-"
         },
-        "content": "Pros:"
+        "content": ""
       },
       {
         "lineNumber": 417,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Pros:"
       },
       {
         "lineNumber": 418,
         "author": {
-          "gitId": "geshuming"
+          "gitId": "-"
         },
-        "content": "* Easy to use and powerful module search feature"
+        "content": ""
       },
       {
         "lineNumber": 419,
         "author": {
           "gitId": "geshuming"
         },
-        "content": "* Modules come with schedules for tutorials, lectures, etc"
+        "content": "* Easy to use and powerful module search feature"
       },
       {
         "lineNumber": 420,
         "author": {
-          "gitId": "-"
+          "gitId": "geshuming"
         },
-        "content": ""
+        "content": "* Modules come with schedules for tutorials, lectures, etc"
       },
       {
         "lineNumber": 421,
         "author": {
           "gitId": "-"
         },
-        "content": "Cons:"
+        "content": ""
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Cons:"
       },
       {
         "lineNumber": 423,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 424,
         "author": {
           "gitId": "geshuming"
         },
         "content": "* Not applicable for managing modules (such as deadlines, grades)"
       },
       {
-        "lineNumber": 424,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 425,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 426,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 427,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Instructions for Manual Testing"
       },
       {
         "lineNumber": 428,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": ""
       },
       {
         "lineNumber": 429,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Given below are instructions to test the app manually."
       },
       {
         "lineNumber": 430,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 431,
         "author": {
           "gitId": "-"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 432,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
       },
       {
         "lineNumber": 433,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": ""
       },
       {
         "lineNumber": 434,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
       },
       {
         "lineNumber": 435,
         "author": {
           "gitId": "-"
         },
-        "content": ". Initial launch"
+        "content": ""
       },
       {
         "lineNumber": 436,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Initial launch"
       },
       {
         "lineNumber": 437,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": ""
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Double-click the jar file +"
+        "content": ".. Download the jar file and copy into an empty folder"
       },
       {
         "lineNumber": 439,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+        "content": ".. Double-click the jar file +"
       },
       {
         "lineNumber": 440,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
       },
       {
         "lineNumber": 441,
         "author": {
           "gitId": "-"
         },
-        "content": ". Saving window preferences"
+        "content": ""
       },
       {
         "lineNumber": 442,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Saving window preferences"
       },
       {
         "lineNumber": 443,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+        "content": ""
       },
       {
         "lineNumber": 444,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
       },
       {
         "lineNumber": 445,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: The most recent window size and location is retained."
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
       },
       {
         "lineNumber": 446,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: The most recent window size and location is retained."
       },
       {
         "lineNumber": 447,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 448,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 449,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 450,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "\u003d\u003d\u003d Deleting a module"
       },
       {
-        "lineNumber": 450,
+        "lineNumber": 451,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 451,
+        "lineNumber": 452,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": ". Deleting a module while all modules are listed"
       },
       {
-        "lineNumber": 452,
+        "lineNumber": 453,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 453,
+        "lineNumber": 454,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": ".. Prerequisites: List all modules using the `list` command. Multiple modules in the list."
       },
       {
-        "lineNumber": 454,
+        "lineNumber": 455,
         "author": {
           "gitId": "-"
         },
         "content": ".. Test case: `delete 1` +"
       },
       {
-        "lineNumber": 455,
+        "lineNumber": 456,
         "author": {
           "gitId": "-"
         },
         "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
       },
       {
-        "lineNumber": 456,
+        "lineNumber": 457,
         "author": {
           "gitId": "-"
         },
         "content": ".. Test case: `delete 0` +"
       },
       {
-        "lineNumber": 457,
+        "lineNumber": 458,
         "author": {
           "gitId": "CowSaysBaa"
         },
         "content": "   Expected: No module is deleted. Error details shown in the status message. Status bar remains the same."
       },
       {
-        "lineNumber": 458,
+        "lineNumber": 459,
         "author": {
           "gitId": "-"
         },
         "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
       },
       {
-        "lineNumber": 459,
+        "lineNumber": 460,
         "author": {
           "gitId": "-"
         },
         "content": "   Expected: Similar to previous."
       },
       {
-        "lineNumber": 460,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 461,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 462,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 463,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Saving data"
+        "content": ""
       },
       {
         "lineNumber": 464,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Saving data"
       },
       {
         "lineNumber": 465,
         "author": {
           "gitId": "-"
         },
-        "content": ". Dealing with missing/corrupted data files"
+        "content": ""
       },
       {
         "lineNumber": 466,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Dealing with missing/corrupted data files"
       },
       {
         "lineNumber": 467,
         "author": {
           "gitId": "-"
         },
-        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+        "content": ""
       },
       {
         "lineNumber": 468,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
       },
       {
         "lineNumber": 469,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 470,
         "author": {
           "gitId": "-"
         },
@@ -5108,8 +5115,8 @@
       }
     ],
     "authorContributionMap": {
-      "geshuming": 81,
-      "-": 379,
+      "geshuming": 83,
+      "-": 378,
       "CowSaysBaa": 9
     }
   },
@@ -8395,6 +8402,600 @@
       "alexwxh": 111,
       "-": 124,
       "CowSaysBaa": 8
+    }
+  },
+  {
+    "path": "docs/diagrams/ModelClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowThickness 1.1"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowColor MODEL_COLOR"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam classBackgroundColor MODEL_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class HiddenOutside #FFFFFF"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Package Model \u003c\u003cRectangle\u003e\u003e{"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Interface ReadOnlyModuleBook \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface Model \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface ObservableList \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class ModuleBook"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class ReadOnlyModuleBook"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class Model"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class ModelManager"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class UserPrefs"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class ReadOnlyUserPrefs"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Package Module {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class ArchivedModule"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class ArchivedModuleList"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class TrackedModule"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class TrackedModuleList"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Interface Module \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "HiddenOutside ..\u003e Model"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ModuleBook .right.|\u003e ReadOnlyModuleBook"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ModelManager .up.|\u003e Model"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Model .right.\u003e ObservableList"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ModelManager o-down-\u003e \"1\" ModuleBook"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ModelManager o-right-\u003e \"1\" UserPrefs"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "UserPrefs .right.|\u003e ReadOnlyUserPrefs"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ModuleBook *-right-\u003e \"1\" TrackedModuleList"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ModuleBook *-down-\u003e \"1\" ArchivedModuleList"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "TrackedModuleList o-down-\u003e \"*\" TrackedModule"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ArchivedModuleList o-down-\u003e \"*\" ArchivedModule"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "TrackedModule *-right-\u003e \"1\" ArchivedModule : references \u003e"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "TrackedModule .down.|\u003e Module"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ArchivedModule .down.|\u003e Module"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "ModelManager o-down-\u003e\"*\" Module : observes \u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "geshuming": 25,
+      "-": 22
+    }
+  },
+  {
+    "path": "docs/diagrams/StorageClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowThickness 1.1"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowColor STORAGE_COLOR"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam classBackgroundColor STORAGE_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Package Storage \u003c\u003cRectangle\u003e\u003e{"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface Storage \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface UserPrefsStorage \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Interface ModuleBookStorage \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class StorageManager"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class JsonUserPrefsStorage"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class JsonModuleBookStorage"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class JsonSerializableModule"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class JsonSerializableModuleBookStorage"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class JsonArchivedModuleList"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class JsonAdaptedArchivedModule"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "Class HiddenOutside #FFFFFF"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "HiddenOutside ..\u003e Storage"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "StorageManager .left.|\u003e Storage"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "StorageManager o-right-\u003e UserPrefsStorage"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "StorageManager o--\u003e ModuleBookStorage"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "JsonUserPrefsStorage .left.|\u003e UserPrefsStorage"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "JsonModuleBookStorage .left.|\u003e ModuleBookStorage"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "JsonModuleBookStorage .right.\u003e JsonArchivedModuleList"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "JsonModuleBookStorage .down.\u003e JsonSerializableModuleBookStorage"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "JsonSerializableModuleBookStorage .right.\u003e JsonSerializableModule"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "JsonArchivedModuleList .down.\u003e JsonAdaptedArchivedModule"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "geshuming": 18,
+      "-": 17
     }
   },
   {
@@ -43176,6 +43777,2557 @@
     "authorContributionMap": {
       "-": 85,
       "CowSaysBaa": 8
+    }
+  },
+  {
+    "path": "src/main/resources/view/DarkTheme.css",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".background {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    background-color: #383838; /* Used in the default.html file */"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".label {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Semibold\";"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: #555555;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-opacity: 0.9;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".label-bright {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Semibold\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-opacity: 1;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".label-header {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 32pt;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Light\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-opacity: 1;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".text-field {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 12pt;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Semibold\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".tab-pane {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 0 0 0 1;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".tab-pane .tab-header-area {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 0 0 0 0;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-min-height: 0;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-max-height: 0;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".table-view {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-base: #1d1d1d;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-control-inner-background: #1d1d1d;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-table-cell-border-color: transparent;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-table-header-border-color: transparent;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 5;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".table-view .column-header-background {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".table-view .column-header, .table-view .filler {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-size: 35;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 0 0 1 0;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color:"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        transparent"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        transparent"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        derive(-fx-base, 80%)"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        transparent;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-insets: 0 10 1 0;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".table-view .column-header .label {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 20pt;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Light\";"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-alignment: center-left;"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-opacity: 1;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".table-view:focused .table-row-cell:filled:focused:selected {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: -fx-focus-color;"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ".text-bright {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Semibold\";"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "    -fx-fill: white;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "    -fx-opacity: 1;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".split-pane:horizontal .split-pane-divider {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: transparent transparent transparent #4d4d4d;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".split-pane {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-radius: 1;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-view {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-insets: 0;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 0;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-cell {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-label-padding: 0 0 0 0;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-graphic-text-gap : 0;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 0 0 0 0;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-cell:filled:even {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #3c3e3f;"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-cell:filled:odd {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #515658;"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-cell:filled:selected {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #424d5f;"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-cell:filled:selected #cardPane {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: #3e7b91;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".list-cell .label {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".cell_big_label {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Semibold\";"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 16px;"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: #010504;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".cell_small_label {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI\";"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 13px;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: #010504;"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".stack-pane {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".pane-with-border {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     -fx-border-color: derive(#1d1d1d, 10%);"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     -fx-border-top-width: 1px;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".status-bar {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 30%);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".result-display {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Light\";"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 13pt;"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".result-display .label {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: black !important;"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".status-bar .label {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Light\";"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 4px;"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-pref-height: 30px;"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".status-bar-with-border {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 30%);"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: derive(#1d1d1d, 25%);"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 1px;"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".status-bar-with-border .label {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".grid-pane {"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 30%);"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: derive(#1d1d1d, 30%);"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 1px;"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".grid-pane .stack-pane {"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 30%);"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".context-menu {"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 50%);"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".context-menu .label {"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".menu-bar {"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".menu-bar .label {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 14pt;"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Light\";"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-opacity: 0.9;"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".menu .left-container {"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: black;"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Metro style Push Button"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * Author: Pedro Duque Vieira"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button {"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 5 22 5 22;"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: #e2e2e2;"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 2;"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-radius: 0;"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI\", Helvetica, Arial, sans-serif;"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 11pt;"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: #d8d8d8;"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-insets: 0 0 0 0, 0, 1, 2;"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button:hover {"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #3a3a3a;"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button:pressed, .button:default:hover:pressed {"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "  -fx-background-color: white;"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "  -fx-text-fill: #1d1d1d;"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button:focused {"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: white, white;"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 1, 1;"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-style: solid, segments(1, 1);"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-radius: 0, 0;"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-insets: 1 1 1 1, 0;"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button:disabled, .button:default:disabled {"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-opacity: 0.4;"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button:default {"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: -fx-focus-color;"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: #ffffff;"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".button:default:hover {"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(-fx-focus-color, 30%);"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".dialog-pane {"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".dialog-pane \u003e *.button-bar \u003e *.container {"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #1d1d1d;"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".dialog-pane \u003e *.label.content {"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 14px;"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-weight: bold;"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".dialog-pane:header *.header-panel {"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 25%);"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".dialog-pane:header *.header-panel *.label {"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 18px;"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-style: italic;"
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-fill: white;"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".scroll-bar {"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 20%);"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".scroll-bar .thumb {"
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: derive(#1d1d1d, 50%);"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-insets: 3;"
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 300,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".scroll-bar .increment-button, .scroll-bar .decrement-button {"
+      },
+      {
+        "lineNumber": 301,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 302,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 0 0 0 0;"
+      },
+      {
+        "lineNumber": 303,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 304,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 305,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {"
+      },
+      {
+        "lineNumber": 306,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-shape: \" \";"
+      },
+      {
+        "lineNumber": 307,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 308,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 309,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {"
+      },
+      {
+        "lineNumber": 310,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 1 8 1 8;"
+      },
+      {
+        "lineNumber": 311,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 312,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 313,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {"
+      },
+      {
+        "lineNumber": 314,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 8 1 8 1;"
+      },
+      {
+        "lineNumber": 315,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 316,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 317,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#cardPane {"
+      },
+      {
+        "lineNumber": 318,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent;"
+      },
+      {
+        "lineNumber": 319,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 0;"
+      },
+      {
+        "lineNumber": 320,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 321,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 322,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#commandTypeLabel {"
+      },
+      {
+        "lineNumber": 323,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 11px;"
+      },
+      {
+        "lineNumber": 324,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: #F70D1A;"
+      },
+      {
+        "lineNumber": 325,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 326,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 327,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#commandTextField {"
+      },
+      {
+        "lineNumber": 328,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent #383838 transparent #383838;"
+      },
+      {
+        "lineNumber": 329,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-insets: 0;"
+      },
+      {
+        "lineNumber": 330,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-color: #383838 #383838 #ffffff #383838;"
+      },
+      {
+        "lineNumber": 331,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-insets: 0;"
+      },
+      {
+        "lineNumber": 332,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-width: 1;"
+      },
+      {
+        "lineNumber": 333,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-family: \"Segoe UI Light\";"
+      },
+      {
+        "lineNumber": 334,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 13pt;"
+      },
+      {
+        "lineNumber": 335,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 336,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 337,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 338,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#filterField, #personListPanel, #personWebpage {"
+      },
+      {
+        "lineNumber": 339,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);"
+      },
+      {
+        "lineNumber": 340,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 341,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 342,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "#mainPanel {"
+      },
+      {
+        "lineNumber": 343,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "    -fx-background-color: #383838;"
+      },
+      {
+        "lineNumber": 344,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 345,
+        "author": {
+          "gitId": "geshuming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 346,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#resultDisplay .content {"
+      },
+      {
+        "lineNumber": 347,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: transparent, #383838, transparent, #383838;"
+      },
+      {
+        "lineNumber": 348,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-radius: 0;"
+      },
+      {
+        "lineNumber": 349,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 350,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 351,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#tags {"
+      },
+      {
+        "lineNumber": 352,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-hgap: 7;"
+      },
+      {
+        "lineNumber": 353,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-vgap: 3;"
+      },
+      {
+        "lineNumber": 354,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 355,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 356,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "#tags .label {"
+      },
+      {
+        "lineNumber": 357,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-text-fill: white;"
+      },
+      {
+        "lineNumber": 358,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-color: #3e7b91;"
+      },
+      {
+        "lineNumber": 359,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-padding: 1 3 1 3;"
+      },
+      {
+        "lineNumber": 360,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-border-radius: 2;"
+      },
+      {
+        "lineNumber": 361,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-background-radius: 2;"
+      },
+      {
+        "lineNumber": 362,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    -fx-font-size: 11;"
+      },
+      {
+        "lineNumber": 363,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "geshuming": 11,
+      "-": 352
     }
   },
   {

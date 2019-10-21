@@ -93,7 +93,7 @@
         ]
       },
       {
-        "insertions": 239,
+        "insertions": 265,
         "deletions": 54,
         "date": "2019-10-08",
         "commitResults": [
@@ -101,7 +101,7 @@
             "hash": "74331ae6190707049ff3c63dd16b9a7e035d3be4",
             "messageTitle": "TransactionCard modifications and added new Balance UI (#89)",
             "messageBody": "Added \u0027Balance\u0027 Ui pane, Modified TransactionCard into ExpenseTransactionCard and IncomeTransactionCard, Formatted the layout of ExpenseTransactionCard and IncomeTransactionCard",
-            "insertions": 239,
+            "insertions": 265,
             "deletions": 54
           }
         ]
@@ -121,16 +121,16 @@
         ]
       },
       {
-        "insertions": 353,
-        "deletions": 14,
+        "insertions": 361,
+        "deletions": 25,
         "date": "2019-10-11",
         "commitResults": [
           {
             "hash": "fddc4ceca26fd435edf82263399c4506ee435dca",
             "messageTitle": "UI improvements to remove text truncation which results in the appearance of ellipses. (#101)",
             "messageBody": "* Bugfix for big transaction values storing incorrectly into JSON\r\n\r\n* Balance bar at the bottom now shows label for monthly budget.\r\n\r\n1. Enabled text-wrap for the various labels in an Expense/IncomeTransactionCard.\r\n2. Added a DateUtils library for ease of making Java\u0027s Date to work.\r\n3. Adjusted the main UI for abit.\r\n\r\n* Removed unused css styles\r\n\r\n* Fixed a bug where there is no minWidth for Value labels, causing unsightly overflows\r\n\r\n* Removed unused methods in DateUtils and formatted comments to comply with coding standards.\r\n\r\n* Added tests for DateUtils class\r\n",
-            "insertions": 353,
-            "deletions": 14
+            "insertions": 361,
+            "deletions": 25
           }
         ]
       },
@@ -191,7 +191,7 @@
         ]
       },
       {
-        "insertions": 1513,
+        "insertions": 1521,
         "deletions": 357,
         "date": "2019-10-20",
         "commitResults": [
@@ -199,7 +199,7 @@
             "hash": "db2cadf51f1d58756bfd4d474985d354d6f069f5",
             "messageTitle": "Budget command added allowing user to specify their budget for a specific month (#143)",
             "messageBody": "* Budget command added which allows user to specify their budget for a specific month.\r\n\r\nMonth are uniquely identified by the following format: MM/yyyy.\r\nOther changes:\r\n1. Updated UGDG to include `budget` command.\r\n2. Updated prefix for money from `c/COST` to `v/VALUE`, UGDG are updated to reflect this change.\r\n3. Added classes to support `BudgetList` which stores `Budget` objects containing `Value` and `Calendar`.\r\n4. Added JUnit test cases for `budget` command and the supporting classes like `BudgetList`, `BudgetCommand`, `BudgetCommandParser` and `ThriftTest` itself.\r\n\r\n* Added saving/reading of monthly budgets into the data file.\r\n\r\n1. Setting budget now saves into the JSON file, similar to how `Transaction` is stored.\r\n2. Added JUnit tests for (de)/serializing of `Budget` objects.\r\n3. Fixed JUnit tests for `JsonSerializableThrift`.\r\n4. Added `StreamUtils` for converting `Iterator\u003cT\u003e` to `Stream\u003cT\u003e`. JUnit tests are also added for this new utility class.\r\n\r\n* Fixed missing EOF in test json file\r\n\r\n* THRIFT now shows the current month\u0027s transactions on startup.\r\n\r\n1. New `TransactionIsInMonthYearPredicateTest` file to check if a `Transaction` belongs to that month. JUnit tests are added as well.\r\n2. Current month\u0027s budget is shown in GUI.\r\n3. Current month\u0027s balance is shown in GUI.\r\n\r\n* Refreshes and displays the current month\u0027s transaction list after add/delete/update is executed\r\n\r\n* Supported dynamic updating of displayed month\u0027s budget and balance\r\n\r\n1. After parsing successfully either a Add/Budget/Delete/Update command, reflect the possible changes on the GUI.\r\n\r\n* Bugfix to now include `Undo` and `Redo` commands to trigger refreshing the GUI.\r\n\r\n* Fix checkstyle\r\n\r\n* When Add/Budget/Delete/Update a transaction, the balance will only be updated if the transaction belongs to the current month.\r\n\r\n* Allow budget to be $0 value and other bug fixes.\r\n\r\n1. Clone will now update the month balance accordingly.\r\n\r\n* Added JUnit tests to BudgetValue class\r\n\r\n* Resolved checkstyle violations and accidental changes to DG.\r\n\r\n* Fixed typo in DG\r\n\r\n* Fixed checkstyle\r\n",
-            "insertions": 1424,
+            "insertions": 1432,
             "deletions": 211
           },
           {
@@ -356,16 +356,16 @@
         ]
       },
       {
-        "insertions": 631,
-        "deletions": 1119,
+        "insertions": 632,
+        "deletions": 1120,
         "date": "2019-09-28",
         "commitResults": [
           {
             "hash": "b6b469dbd4f98ea0ed030f3698f18516b44e7280",
             "messageTitle": "Refactor code and comments from Person to Transaction, Address Book to Thrift (#76)",
             "messageBody": "* Follow up on the comments mentioned in PR #62\r\n\r\n* Remove Person class\r\n\r\n* Removes Address class\r\n\r\n* Removes Phone class\r\n\r\n* Removes Name class\r\n\r\n* Removes Email class\r\n\r\n* Validate the description field in JsonAdaptedTransaction\r\n\r\n* Rename to ThriftBuilder\r\n\r\n* Rename to JsonSerializableThrift\r\n\r\n* Rename from JsonAddressBookStorage to JsonThriftStorage\r\n\r\n* Rename AddressBookStorage to ThriftStorage\r\n\r\n* Rename AddressBookParser to ThriftParser\r\n\r\n* Rename AddressBook to Thrift\r\n\r\n* Change ordering of imports\r\n\r\n* Change ordering of imports\r\n\r\n* Change ordering of imports for tests\r\n\r\n* Rename ReadOnlyAddressBook to ReadOnlyThrift\r\n\r\n* Modify the JsonSerializableAddressBookTest folder name\r\n\r\n* Rename the tests in test/data\r\n\r\n* Rename to Thrift for the logic portion\r\n\r\n* Update UserPrefs to use Thrift instead of Address book\r\n\r\n* Update the userguide url in the app\r\n\r\n* Update the naming for UI\r\n\r\n* Rename withDescription() to withTransaction in ThriftBuilder\r\n\r\n* Rename to Thrift\r\n\r\n* Rename to Transaction instead of Person\r\n\r\n* Update coding standards\r\n\r\n* Rename Person to Transaction, Address Book to Thrift in all JUnit tests\r\n\r\n* Rename to thrift in javadoc\r\n\r\n* Update the icon filepath\r\n\r\n* Added JUnit test for Messages.java\r\n",
-            "insertions": 631,
-            "deletions": 1119
+            "insertions": 632,
+            "deletions": 1120
           }
         ]
       },
@@ -554,16 +554,16 @@
         ]
       },
       {
-        "insertions": 322,
-        "deletions": 287,
+        "insertions": 325,
+        "deletions": 290,
         "date": "2019-10-10",
         "commitResults": [
           {
             "hash": "12569ab95c4b7e0ca2b6c73f74f94df8a0241c1e",
             "messageTitle": "Refactor Edit to Update and modify EditCommand syntax (#94)",
             "messageBody": "* Refactor instances of edit \u0026 classes to update\r\n\r\n* Refactor Edit to Update and modify update syntax\r\n\r\n* Modify tests to reflect changes in syntax\r\n\r\n* Fix checkstyle issues\r\n\r\n* Add 2 new use cases to DeveloperGuide\r\n\r\n* Fix issues raised in review\r\n",
-            "insertions": 322,
-            "deletions": 287
+            "insertions": 325,
+            "deletions": 290
           }
         ]
       },
@@ -705,17 +705,17 @@
     ]
   },
   "authorFinalContributionMap": {
-    "limerencee": 6123,
+    "limerencee": 6154,
     "krusagiz": 988,
-    "lightz96": 2559,
-    "lye-jw": 950,
+    "lightz96": 2560,
+    "lye-jw": 953,
     "kensonoenqh": 105
   },
   "authorFileTypeContributionMap": {
     "limerencee": {
       "docs": 199,
       "tests": 2856,
-      "functional": 3066,
+      "functional": 3097,
       "other": 2
     },
     "krusagiz": {
@@ -727,12 +727,13 @@
       "docs": 441,
       "tests": 1345,
       "functional": 771,
-      "other": 2
+      "other": 3
     },
     "lye-jw": {
       "docs": 185,
       "tests": 456,
-      "functional": 309
+      "functional": 309,
+      "other": 3
     },
     "kensonoenqh": {
       "docs": 53,
@@ -741,10 +742,10 @@
     }
   },
   "authorContributionVariance": {
-    "limerencee": 1353454.1,
+    "limerencee": 1354175.0,
     "krusagiz": 12984.382,
-    "lightz96": 83203.55,
-    "lye-jw": 10614.789,
+    "lightz96": 83347.74,
+    "lye-jw": 10765.62,
     "kensonoenqh": 134.45602
   },
   "authorDisplayNameMap": {
