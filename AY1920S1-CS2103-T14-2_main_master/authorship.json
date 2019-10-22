@@ -1896,9 +1896,9 @@
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`"
+        "content": "By: `T14-2`"
       },
       {
         "lineNumber": 18,
@@ -2869,226 +2869,226 @@
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "// tag::undoredo[]"
+        "content": "// tag::autocorrect[]"
       },
       {
         "lineNumber": 157,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
+        "content": "\u003d\u003d\u003d Autocorrect feature"
       },
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
+        "content": ""
       },
       {
         "lineNumber": 159,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "Autocorrect lets T.A.rence find similar commands to the user\u0027s input, allowing it to catch minor typing mistakes."
       },
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
+        "content": ""
       },
       {
         "lineNumber": 161,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
+        "content": "\u003d\u003d\u003d\u003d Implementation"
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "Additionally, it implements the following operations:"
+        "content": ""
       },
       {
         "lineNumber": 163,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "Autocorrect is implemented at the `Command` level: when `Command` objects are executed, they attempt to find their data values from the application\u0027s storage. If these values are not found, they search for lexically similar alternatives, and construct new `Command`s with these suggested values. The user is then prompted to choose one of these suggestions via a single numerical input."
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
+        "content": ""
       },
       {
         "lineNumber": 165,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
+        "content": "A new `SelectSuggestionCommand` is used to represent the user\u0027s selection. Unlike other commands it has no keyword, and can only be triggered when there are existing suggested commands being temporarily cached. Should the user choose not to pick any of the options, the cached commands are deleted and can no longer be triggered subsequently."
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
+        "content": ""
       },
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "Autocorrect is restricted to input fields that are not strictly numerical, since it makes no sense to correct, for example, index or time inputs."
       },
       {
         "lineNumber": 168,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
+        "content": ""
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "Below is an activity diagram showing the creation of suggested autocorrect commands when a command is executed."
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
+        "content": ""
       },
       {
         "lineNumber": 171,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "image::AutocorrectActivityCreate.png[]"
       },
       {
         "lineNumber": 172,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
+        "content": ""
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "The suggested commands are presented to the user, each tagged with an index number. The user is prompted to select one option by entering its corresponding number."
       },
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "image::UndoRedoState0.png[]"
+        "content": ""
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "image::AutocorrectActivityExecute.png[]"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state."
+        "content": ""
       },
       {
         "lineNumber": 177,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": ""
+        "content": "When a valid option is selected, the `execute()` method in `SelectSuggestionCommand` retrieves the specified command, then calls its `execute()` method. The sequence diagram below illustrates a sample run of the program where `AddStudentCommand`s are being autocorrected."
       },
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "-"
-        },
-        "content": "image::UndoRedoState1.png[]"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
         "content": ""
       },
       {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "image::AutocorrectSequence.png[]"
+      },
+      {
         "lineNumber": 180,
         "author": {
-          "gitId": "-"
+          "gitId": "lumos309"
         },
-        "content": "Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`."
+        "content": ""
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// tag::undoredo[]"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState2.png[]"
+        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "-"
         },
-        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
+        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state."
+        "content": "Additionally, it implements the following operations:"
       },
       {
         "lineNumber": 188,
@@ -3102,105 +3102,105 @@
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState3.png[]"
+        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "-"
         },
-        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
+        "content": ""
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "-"
         },
-        "content": "The following sequence diagram shows how the undo operation works:"
+        "content": ""
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoSequenceDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "-"
         },
-        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
+        "content": ""
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState0.png[]"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "-"
         },
-        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
+        "content": ""
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state."
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "-"
         },
-        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
+        "content": "image::UndoRedoState1.png[]"
       },
       {
         "lineNumber": 204,
@@ -3214,7 +3214,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
+        "content": "Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`."
       },
       {
         "lineNumber": 206,
@@ -3228,7 +3228,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState4.png[]"
+        "content": "image::UndoRedoState2.png[]"
       },
       {
         "lineNumber": 208,
@@ -3242,63 +3242,63 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState5.png[]"
+        "content": ""
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state."
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "-"
         },
-        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
+        "content": ""
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::UndoRedoState3.png[]"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "-"
         },
-        "content": "image::CommitActivityDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d Design Considerations"
+        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
       },
       {
         "lineNumber": 218,
@@ -3312,7 +3312,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
+        "content": "The following sequence diagram shows how the undo operation works:"
       },
       {
         "lineNumber": 220,
@@ -3326,56 +3326,56 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
+        "content": "image::UndoSequenceDiagram.png[]"
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Easy to implement."
+        "content": ""
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: May have performance issues in terms of memory usage."
+        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 2:** Individual command knows how to undo/redo by itself."
+        "content": ""
       },
       {
         "lineNumber": 225,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted)."
+        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: We must ensure that the implementation of each individual command are correct."
+        "content": ""
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the undo/redo commands"
+        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
       },
       {
         "lineNumber": 229,
@@ -3389,49 +3389,49 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 1 (current choice):** Use a list to store the history of address book states."
+        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project."
+        "content": ""
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`."
+        "content": "image::UndoRedoState4.png[]"
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 2:** Use `HistoryManager` for undo/redo"
+        "content": ""
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase."
+        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things."
+        "content": ""
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::undoredo[]"
+        "content": "image::UndoRedoState5.png[]"
       },
       {
         "lineNumber": 237,
@@ -3445,98 +3445,98 @@
         "author": {
           "gitId": "-"
         },
-        "content": "// tag::dataencryption[]"
+        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+        "content": ""
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "image::CommitActivityDiagram.png[]"
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "-"
         },
-        "content": "_{Explain here how the data encryption feature will be implemented}_"
+        "content": ""
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": ""
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "-"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": "** Pros: Easy to implement."
       },
       {
         "lineNumber": 248,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "** Cons: May have performance issues in terms of memory usage."
       },
       {
         "lineNumber": 249,
         "author": {
           "gitId": "-"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": "* **Alternative 2:** Individual command knows how to undo/redo by itself."
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "-"
         },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
+        "content": "** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted)."
       },
       {
         "lineNumber": 251,
         "author": {
           "gitId": "-"
         },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
+        "content": "** Cons: We must ensure that the implementation of each individual command are correct."
       },
       {
         "lineNumber": 252,
@@ -3550,7 +3550,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "*Logging Levels*"
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the undo/redo commands"
       },
       {
         "lineNumber": 254,
@@ -3564,49 +3564,49 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
+        "content": "* **Alternative 1 (current choice):** Use a list to store the history of address book states."
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "-"
         },
-        "content": "* `WARNING` : Can continue, but with caution"
+        "content": "** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project."
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "-"
         },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
+        "content": "** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`."
       },
       {
         "lineNumber": 258,
         "author": {
           "gitId": "-"
         },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
+        "content": "* **Alternative 2:** Use `HistoryManager` for undo/redo"
       },
       {
         "lineNumber": 259,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase."
       },
       {
         "lineNumber": 260,
         "author": {
           "gitId": "-"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": "** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things."
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": "// end::undoredo[]"
       },
       {
         "lineNumber": 262,
@@ -3620,112 +3620,112 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": "// tag::dataencryption[]"
       },
       {
         "lineNumber": 264,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
       },
       {
         "lineNumber": 265,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": ""
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{Explain here how the data encryption feature will be implemented}_"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 268,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// end::dataencryption[]"
       },
       {
         "lineNumber": 269,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Testing"
+        "content": ""
       },
       {
         "lineNumber": 270,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 271,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 272,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 273,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Dev Ops"
+        "content": ""
       },
       {
         "lineNumber": 274,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 275,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 276,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 277,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 278,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Scope"
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 279,
@@ -3739,49 +3739,49 @@
         "author": {
           "gitId": "-"
         },
-        "content": "*Target user profile*:"
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 282,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "* has a need to manage a significant number of tutorial classes"
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "-"
         },
-        "content": "* prefer desktop apps over other types"
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 284,
         "author": {
           "gitId": "-"
         },
-        "content": "* can type fast"
+        "content": ""
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "-"
         },
-        "content": "* prefers typing over mouse input"
+        "content": "[[Implementation-Configuration]]"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "-"
         },
-        "content": "* is reasonably comfortable using CLI apps"
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 287,
@@ -3793,9 +3793,9 @@
       {
         "lineNumber": 288,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "*Value proposition*: manage TA-related tasks faster than a typical mouse/GUI driven app"
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 289,
@@ -3809,63 +3809,63 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d User Stories"
+        "content": ""
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "-"
         },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+        "content": ""
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 295,
         "author": {
           "gitId": "-"
         },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
+        "content": ""
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 297,
         "author": {
           "gitId": "-"
         },
-        "content": "|Priority |As a ... |I want to ... |So that I can..."
+        "content": ""
       },
       {
         "lineNumber": 298,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`* * *` |TA |mark students attendance easily on computer |not have to keep a physical record of it"
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 299,
@@ -3877,9 +3877,9 @@
       {
         "lineNumber": 300,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`* * *` |TA |add a new student to my class |easily track students without having to refer to LumiNUS"
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 301,
@@ -3891,170 +3891,170 @@
       {
         "lineNumber": 302,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`* * *` |TA |delete a student |stop referring to LumiNUS due to students periodically dropping classes"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 304,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`* * *` |TA |track students\u0027 performance |pay special attention to weaker students"
+        "content": ""
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Target user profile*:"
       },
       {
         "lineNumber": 306,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "|`* * *` |TA |easily key in marks for assignments and mid-terms|view statistics such as mean and help the outlier students"
-      },
-      {
-        "lineNumber": 307,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 308,
+        "lineNumber": 307,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "|`* *` |TA with busy schedule |keep track of my available slots | know when to schedule consultations"
+        "content": "* has a need to manage a significant number of tutorial classes"
+      },
+      {
+        "lineNumber": 308,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* prefer desktop apps over other types"
       },
       {
         "lineNumber": 309,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* can type fast"
       },
       {
         "lineNumber": 310,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`*` |TA|have a contact list of professors | easily contact them"
+        "content": "* prefers typing over mouse input"
       },
       {
         "lineNumber": 311,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* is reasonably comfortable using CLI apps"
       },
       {
         "lineNumber": 312,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`* * *` |TA overloading  | compare my personal timetable with the scheduled tutorial slots |plan out any potential clashes"
+        "content": ""
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "*Value proposition*: manage TA-related tasks faster than a typical mouse/GUI driven app"
       },
       {
         "lineNumber": 314,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "|`* *` |TA  | share my schedules with my other TA friends | assign a substitute TA if needed"
+        "content": ""
       },
       {
         "lineNumber": 315,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 316,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "|`* *` |TA  |track all guest \u0026 students that crash | remember to manually submit their attendance and/or assignments"
-      },
-      {
-        "lineNumber": 317,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 318,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "|`* *` |TA  | keep separate logs of the modules I taught for each semester | retrieve any information from the"
-      },
-      {
-        "lineNumber": 319,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "previous semesters taught"
-      },
-      {
-        "lineNumber": 320,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
-      },
-      {
-        "lineNumber": 321,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 322,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "_{More to be added}_"
-      },
-      {
-        "lineNumber": 323,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 324,
         "author": {
           "gitId": "-"
         },
         "content": "[appendix]"
       },
       {
-        "lineNumber": 325,
+        "lineNumber": 316,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": "\u003d\u003d User Stories"
+      },
+      {
+        "lineNumber": 317,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 318,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+      },
+      {
+        "lineNumber": 319,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 320,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
+      },
+      {
+        "lineNumber": 321,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+      },
+      {
+        "lineNumber": 322,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "|Priority |As a ... |I want to ... |So that I can..."
+      },
+      {
+        "lineNumber": 323,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "|`* * *` |TA |mark students attendance easily on computer |not have to keep a physical record of it"
+      },
+      {
+        "lineNumber": 324,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 325,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "|`* * *` |TA |add a new student to my class |easily track students without having to refer to LumiNUS"
       },
       {
         "lineNumber": 326,
@@ -4068,7 +4068,7 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "(For all use cases below, the *System* is the `T.A.rence application` and the *Actor* is the `TA user`, unless specified otherwise)"
+        "content": "|`* * *` |TA |delete a student |stop referring to LumiNUS due to students periodically dropping classes"
       },
       {
         "lineNumber": 328,
@@ -4080,23 +4080,23 @@
       {
         "lineNumber": 329,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[discrete]"
+        "content": "|`* * *` |TA |track students\u0027 performance |pay special attention to weaker students"
       },
       {
         "lineNumber": 330,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: New module entry"
+        "content": ""
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Pre-conditions*: User selects the command to add a new module."
+        "content": "|`* * *` |TA |easily key in marks for assignments and mid-terms|view statistics such as mean and help the outlier students"
       },
       {
         "lineNumber": 332,
@@ -4108,9 +4108,9 @@
       {
         "lineNumber": 333,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "|`* *` |TA with busy schedule |keep track of my available slots | know when to schedule consultations"
       },
       {
         "lineNumber": 334,
@@ -4124,448 +4124,448 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1.  User requests to add a new module"
+        "content": "|`*` |TA|have a contact list of professors | easily contact them"
       },
       {
         "lineNumber": 336,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "2.  System adds new module."
+        "content": ""
       },
       {
         "lineNumber": 337,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "|`* * *` |TA overloading  | compare my personal timetable with the scheduled tutorial slots |plan out any potential clashes"
       },
       {
         "lineNumber": 338,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 339,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "|`* *` |TA  | share my schedules with my other TA friends | assign a substitute TA if needed"
       },
       {
         "lineNumber": 340,
         "author": {
-          "gitId": "-"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 341,
-        "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
         "content": ""
       },
       {
+        "lineNumber": 341,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "|`* *` |TA  |track all guest \u0026 students that crash | remember to manually submit their attendance and/or assignments"
+      },
+      {
         "lineNumber": 342,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 343,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1a. The given module already exists."
+        "content": "|`* *` |TA  | keep separate logs of the modules I taught for each semester | retrieve any information from the"
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1a1. System shows an error message that the given module already exists."
+        "content": "previous semesters taught"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "-"
         },
-        "content": "+"
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 348,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "* 1b. The given input is in an invalid format"
+        "content": ""
       },
       {
         "lineNumber": 349,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "** 1b1. System shows an error message showing the correct format to add a module."
+        "content": "[appendix]"
       },
       {
         "lineNumber": 350,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "+"
+        "content": "\u003d\u003d Use Cases"
       },
       {
         "lineNumber": 351,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "User case ends."
+        "content": ""
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "(For all use cases below, the *System* is the `T.A.rence application` and the *Actor* is the `TA user`, unless specified otherwise)"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "-"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 354,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: New tutorial entry"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Precondition: User selects the command to add a new tutorial."
+        "content": "\u003d\u003d\u003d Use case: New module entry"
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "*Pre-conditions*: User selects the command to add a new module."
       },
       {
         "lineNumber": 357,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 358,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "1. User requests to add a new tutorial to a selected module."
+        "content": "*MSS*"
       },
       {
         "lineNumber": 359,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "2. System adds the tutorial to the given module."
+        "content": ""
       },
       {
         "lineNumber": 360,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "3. System displays the newly added tutorial to the tutorial list."
+        "content": "1.  User requests to add a new module"
       },
       {
         "lineNumber": 361,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "2.  System adds new module."
+      },
+      {
+        "lineNumber": 362,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 362,
+        "lineNumber": 363,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": "Use case ends."
       },
       {
-        "lineNumber": 363,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 364,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 365,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 366,
         "author": {
           "gitId": "-"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 367,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "* 1a. The given tutorial already exists."
+        "content": "[none]"
       },
       {
         "lineNumber": 368,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1a1. System shows an error message showing that the given tutorial already exists."
+        "content": "* 1a. The given module already exists."
       },
       {
         "lineNumber": 369,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "** 1a1. System shows an error message that the given module already exists."
       },
       {
         "lineNumber": 370,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": "+"
       },
       {
         "lineNumber": 371,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 372,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "* 1b. The given module does not exist."
+        "content": ""
       },
       {
         "lineNumber": 373,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1b1. System shows an error message showing that the given module does not exist."
+        "content": "* 1b. The given input is in an invalid format"
       },
       {
         "lineNumber": 374,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "** 1b1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 375,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends."
+        "content": "+"
       },
       {
         "lineNumber": 376,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "User case ends."
       },
       {
         "lineNumber": 377,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1c. The given input is in an invalid format"
+        "content": ""
       },
       {
         "lineNumber": 378,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "** 1c1. System shows an error message showing the correct format to add a module."
+        "content": "[discrete]"
       },
       {
         "lineNumber": 379,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "\u003d\u003d\u003d Use case: New tutorial entry"
       },
       {
         "lineNumber": 380,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "User case ends."
+        "content": "Precondition: User selects the command to add a new tutorial."
       },
       {
         "lineNumber": 381,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 382,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 383,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Use case: New student entry"
+        "content": "1. User requests to add a new tutorial to a selected module."
       },
       {
         "lineNumber": 384,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Precondition*: User selects the command to add a new student."
+        "content": "2. System adds the tutorial to the given module."
       },
       {
         "lineNumber": 385,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "3. System displays the newly added tutorial to the tutorial list."
       },
       {
         "lineNumber": 386,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 387,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User requests to add a new student into the selected tutorial and module."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 388,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. System adds the new student into the selected tutorial and module."
+        "content": ""
       },
       {
         "lineNumber": 389,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "3. System displays the student\u0027s particulars under the student list."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 390,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 391,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": "[none]"
       },
       {
         "lineNumber": 392,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "* 1a. The given tutorial already exists."
       },
       {
         "lineNumber": 393,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "*Extensions*"
+        "content": "** 1a1. System shows an error message showing that the given tutorial already exists."
       },
       {
         "lineNumber": 394,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 395,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 396,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "* 1a. The given student already exists."
+        "content": ""
       },
       {
         "lineNumber": 397,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1a1. System shows an error message that the given student already exists within the selected"
+        "content": "* 1b. The given module does not exist."
       },
       {
         "lineNumber": 398,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "tutorial and module."
+        "content": "** 1b1. System shows an error message showing that the given module does not exist."
       },
       {
         "lineNumber": 399,
@@ -4593,14 +4593,14 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1b. The given tutorial does not exist."
+        "content": "* 1c. The given input is in an invalid format"
       },
       {
         "lineNumber": 403,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1b1. System shows an error message that the given tutorial does not exist."
+        "content": "** 1c1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 404,
@@ -4614,12 +4614,12 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends."
+        "content": "User case ends."
       },
       {
         "lineNumber": 406,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -4628,33 +4628,33 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1c. The given module does not exist."
+        "content": "[discrete]"
       },
       {
         "lineNumber": 408,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1c1. System shows an error message that the given module does not exist."
+        "content": "\u003d\u003d\u003d Use case: New student entry"
       },
       {
         "lineNumber": 409,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "*Precondition*: User selects the command to add a new student."
       },
       {
         "lineNumber": 410,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": "*MSS*"
       },
       {
         "lineNumber": 411,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -4663,154 +4663,154 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1d. The given input is in an invalid format."
+        "content": "1. User requests to add a new student into the selected tutorial and module."
       },
       {
         "lineNumber": 413,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1d1. System shows an error message showing the correct format to add a module."
+        "content": "2. System adds the new student into the selected tutorial and module."
       },
       {
         "lineNumber": 414,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "3. System displays the student\u0027s particulars under the student list."
       },
       {
         "lineNumber": 415,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "User case ends."
+        "content": "+"
       },
       {
         "lineNumber": 416,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 417,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 418,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "[discrete]"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 419,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: Editing a student\u0027s particulars"
+        "content": ""
       },
       {
         "lineNumber": 420,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "*Precondition*: User selects the command to edit a student."
+        "content": "[none]"
       },
       {
         "lineNumber": 421,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "* 1a. The given student already exists."
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "** 1a1. System shows an error message that the given student already exists within the selected"
       },
       {
         "lineNumber": 423,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "tutorial and module."
       },
       {
         "lineNumber": 424,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User requests to edit the particulars of a given student."
+        "content": "+"
       },
       {
         "lineNumber": 425,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. System edits student particulars."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 426,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 427,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends."
+        "content": "* 1b. The given tutorial does not exist."
       },
       {
         "lineNumber": 428,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "** 1b1. System shows an error message that the given tutorial does not exist."
       },
       {
         "lineNumber": 429,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Extensions*"
+        "content": "+"
       },
       {
         "lineNumber": 430,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 431,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 432,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1a. The given student does not exist."
+        "content": "* 1c. The given module does not exist."
       },
       {
         "lineNumber": 433,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1a1. System shows an error message that the given student does not exist."
+        "content": "** 1c1. System shows an error message that the given module does not exist."
       },
       {
         "lineNumber": 434,
@@ -4838,14 +4838,14 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1b. The given input is in an invalid format."
+        "content": "* 1d. The given input is in an invalid format."
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1b1. System shows an error message showing the correct format to add a module."
+        "content": "** 1d1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 439,
@@ -4887,14 +4887,14 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Use case: Deleting a student"
+        "content": "\u003d\u003d\u003d Use case: Editing a student\u0027s particulars"
       },
       {
         "lineNumber": 445,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Preconditions:*"
+        "content": "*Precondition*: User selects the command to edit a student."
       },
       {
         "lineNumber": 446,
@@ -4908,119 +4908,119 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. Given tutorial and module exists in the system."
+        "content": "*MSS*"
       },
       {
         "lineNumber": 448,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. User selects the command to delete a student."
+        "content": ""
       },
       {
         "lineNumber": 449,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "1. User requests to edit the particulars of a given student."
       },
       {
         "lineNumber": 450,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "2. System edits student particulars."
       },
       {
         "lineNumber": 451,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 452,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User request to delete a student from a particular tutorial and module."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 453,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. System prompts for confirmation with full details of student."
+        "content": ""
       },
       {
         "lineNumber": 454,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "3. User enters confirmation."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 455,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "4. System deletes student and shows confirmation."
+        "content": ""
       },
       {
         "lineNumber": 456,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "[none]"
       },
       {
         "lineNumber": 457,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends"
+        "content": "* 1a. The given student does not exist."
       },
       {
         "lineNumber": 458,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "** 1a1. System shows an error message that the given student does not exist."
       },
       {
         "lineNumber": 459,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Extensions*"
+        "content": "+"
       },
       {
         "lineNumber": 460,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 461,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 462,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1a. The given student does not exist."
+        "content": "* 1b. The given input is in an invalid format."
       },
       {
         "lineNumber": 463,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1a1. System shows an error message that the given student does not exist."
+        "content": "** 1b1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 464,
@@ -5034,7 +5034,7 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends."
+        "content": "User case ends."
       },
       {
         "lineNumber": 466,
@@ -5048,28 +5048,28 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1b. The given input is in an invalid format."
+        "content": ""
       },
       {
         "lineNumber": 468,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1b1. System shows an error message showing the correct format to add a module."
+        "content": "[discrete]"
       },
       {
         "lineNumber": 469,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "\u003d\u003d\u003d Use case: Deleting a student"
       },
       {
         "lineNumber": 470,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "User case ends."
+        "content": "*Preconditions:*"
       },
       {
         "lineNumber": 471,
@@ -5083,96 +5083,96 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[discrete]"
+        "content": "1. Given tutorial and module exists in the system."
       },
       {
         "lineNumber": 473,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Use case: Listing students"
+        "content": "2. User selects the command to delete a student."
       },
       {
         "lineNumber": 474,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Preconditions:*"
+        "content": ""
       },
       {
         "lineNumber": 475,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 476,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. Given module exists in the system."
+        "content": ""
       },
       {
         "lineNumber": 477,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. User selects the command to list students of a particular tutorial class."
+        "content": "1. User request to delete a student from a particular tutorial and module."
       },
       {
         "lineNumber": 478,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "2. System prompts for confirmation with full details of student."
       },
       {
         "lineNumber": 479,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "3. User enters confirmation."
       },
       {
         "lineNumber": 480,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "4. System deletes student and shows confirmation."
       },
       {
         "lineNumber": 481,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User requests to list a given selected tutorial class."
+        "content": "+"
       },
       {
         "lineNumber": 482,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. System displays the class list for a given tutorial."
+        "content": "Use case ends"
       },
       {
         "lineNumber": 483,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 484,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 485,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
         "content": ""
       },
@@ -5181,133 +5181,133 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Extensions*"
+        "content": "[none]"
       },
       {
         "lineNumber": 487,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "* 1a. The given student does not exist."
       },
       {
         "lineNumber": 488,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": "** 1a1. System shows an error message that the given student does not exist."
       },
       {
         "lineNumber": 489,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1a. The given tutorial does not exist."
+        "content": "+"
       },
       {
         "lineNumber": 490,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1a1. System shows an error message that the given tutorial does not exist."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 491,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 492,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "User case ends"
+        "content": "* 1b. The given input is in an invalid format."
       },
       {
         "lineNumber": 493,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "** 1b1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 494,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1b. The given input is in an invalid format."
+        "content": "+"
       },
       {
         "lineNumber": 495,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1b1. System shows an error message showing the correct format to add a module."
+        "content": "User case ends."
       },
       {
         "lineNumber": 496,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 497,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "User case ends."
+        "content": "[discrete]"
       },
       {
         "lineNumber": 498,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: Listing students"
       },
       {
         "lineNumber": 499,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[discrete]"
+        "content": "*Preconditions:*"
       },
       {
         "lineNumber": 500,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Use case: Post class attendance."
+        "content": ""
       },
       {
         "lineNumber": 501,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Preconditions:*"
+        "content": "1. Given module exists in the system."
       },
       {
         "lineNumber": 502,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "2. User selects the command to list students of a particular tutorial class."
       },
       {
         "lineNumber": 503,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. Given module exists in the system."
+        "content": ""
       },
       {
         "lineNumber": 504,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. User selects the command to mark a tutorial class\u0027 attendance."
+        "content": "*MSS*"
       },
       {
         "lineNumber": 505,
@@ -5321,42 +5321,42 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "1. User requests to list a given selected tutorial class."
       },
       {
         "lineNumber": 507,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "2. System displays the class list for a given tutorial."
       },
       {
         "lineNumber": 508,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "1. User requests to enter attendance for class for particular week."
-      },
-      {
-        "lineNumber": 509,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "2. Application enters attendance for class in the given week."
-      },
-      {
-        "lineNumber": 510,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
+        "lineNumber": 509,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 510,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 511,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case ends."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 512,
@@ -5370,119 +5370,119 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Extensions*"
+        "content": "[none]"
       },
       {
         "lineNumber": 514,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 515,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 516,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
         "content": "* 1a. The given tutorial does not exist."
       },
       {
-        "lineNumber": 517,
+        "lineNumber": 515,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "** 1a1. System shows an error message that the given tutorial does not exist."
       },
       {
-        "lineNumber": 518,
+        "lineNumber": 516,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "+"
+      },
+      {
+        "lineNumber": 517,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "User case ends"
+      },
+      {
+        "lineNumber": 518,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": ""
       },
       {
         "lineNumber": 519,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "User case ends."
+        "content": "* 1b. The given input is in an invalid format."
       },
       {
         "lineNumber": 520,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "** 1b1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 521,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1b. The given tutorial class already has its attendance marked for that week."
+        "content": "+"
       },
       {
         "lineNumber": 522,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1b1. Application shows an error message that the class already has its"
+        "content": "User case ends."
       },
       {
         "lineNumber": 523,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "attendance marked for that week"
+        "content": ""
       },
       {
         "lineNumber": 524,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "[discrete]"
       },
       {
         "lineNumber": 525,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 1c. The given input is in an invalid format."
+        "content": "\u003d\u003d\u003d Use case: Post class attendance."
       },
       {
         "lineNumber": 526,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 1c1. System shows an error message showing the correct format to add a module."
+        "content": "*Preconditions:*"
       },
       {
         "lineNumber": 527,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 528,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "User case ends."
+        "content": "1. Given module exists in the system."
       },
       {
         "lineNumber": 529,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "2. User selects the command to mark a tutorial class\u0027 attendance."
       },
       {
         "lineNumber": 530,
@@ -5496,224 +5496,224 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[discrete]"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 532,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Use case: Adding in hours clocked."
+        "content": ""
       },
       {
         "lineNumber": 533,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Preconditions:*"
+        "content": "1. User requests to enter attendance for class for particular week."
       },
       {
         "lineNumber": 534,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User selects the command to add in the hours."
+        "content": "2. Application enters attendance for class in the given week."
       },
       {
         "lineNumber": 535,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "2. Given module exists in the system."
+        "content": "+"
       },
       {
         "lineNumber": 536,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 537,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 538,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 539,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User indicates the tutorial class that has been completed for the week."
+        "content": ""
       },
       {
         "lineNumber": 540,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "2. System adds the given hours to the tutorial slot"
+        "content": "[none]"
       },
       {
         "lineNumber": 541,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "3. System displays response on the total number of hours clocked for the given tutorial"
-      },
-      {
-        "lineNumber": 542,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 543,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 544,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 545,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 546,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 547,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 548,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
         "content": "* 1a. The given tutorial does not exist."
       },
       {
-        "lineNumber": 549,
+        "lineNumber": 542,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "** 1a1. System shows an error message that the given tutorial does not exist."
       },
       {
+        "lineNumber": 543,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 544,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "User case ends."
+      },
+      {
+        "lineNumber": 545,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 546,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "* 1b. The given tutorial class already has its attendance marked for that week."
+      },
+      {
+        "lineNumber": 547,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "** 1b1. Application shows an error message that the class already has its"
+      },
+      {
+        "lineNumber": 548,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "attendance marked for that week"
+      },
+      {
+        "lineNumber": 549,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 550,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 551,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 552,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 553,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "* 1b. The hours of the tutorial class for that week has already been clocked."
-      },
-      {
-        "lineNumber": 554,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "** 1b1. Application shows an error message that the class already has its hours clocked"
-      },
-      {
-        "lineNumber": 555,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "for that week"
-      },
-      {
-        "lineNumber": 556,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 557,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 558,
-        "author": {
-          "gitId": "AhmadHatziq"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 559,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "* 1c. The given input is in an invalid format."
       },
       {
-        "lineNumber": 560,
+        "lineNumber": 551,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "** 1c1. System shows an error message showing the correct format to add a module."
       },
       {
-        "lineNumber": 561,
+        "lineNumber": 552,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "+"
       },
       {
-        "lineNumber": 562,
+        "lineNumber": 553,
         "author": {
           "gitId": "AhmadHatziq"
         },
         "content": "User case ends."
+      },
+      {
+        "lineNumber": 554,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 555,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 556,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 557,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "\u003d\u003d\u003d Use case: Adding in hours clocked."
+      },
+      {
+        "lineNumber": 558,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "*Preconditions:*"
+      },
+      {
+        "lineNumber": 559,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "1. User selects the command to add in the hours."
+      },
+      {
+        "lineNumber": 560,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "2. Given module exists in the system."
+      },
+      {
+        "lineNumber": 561,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 562,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "*MSS*"
       },
       {
         "lineNumber": 563,
@@ -5727,40 +5727,40 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Use case: Adding and viewing assignment score to students"
+        "content": "1. User indicates the tutorial class that has been completed for the week."
       },
       {
         "lineNumber": 565,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Preconditions*"
+        "content": "2. System adds the given hours to the tutorial slot"
       },
       {
         "lineNumber": 566,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "3. System displays response on the total number of hours clocked for the given tutorial"
       },
       {
         "lineNumber": 567,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "1. User selects the command to add assignment and its\u0027 scores to the student."
+        "content": "+"
       },
       {
         "lineNumber": 568,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. Given module and tutorial exists in the system."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 569,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -5769,7 +5769,7 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*MSS*"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 571,
@@ -5783,203 +5783,203 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "1. User adds assignment to the tutorial class in the module."
+        "content": "[none]"
       },
       {
         "lineNumber": 573,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "2. User adds the score for each student for the assignment."
+        "content": "* 1a. The given tutorial does not exist."
       },
       {
         "lineNumber": 574,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "3. User switches to the student performance window."
+        "content": "** 1a1. System shows an error message that the given tutorial does not exist."
       },
       {
         "lineNumber": 575,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "4. System displays results across semester for each student."
+        "content": "+"
       },
       {
         "lineNumber": 576,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 577,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 578,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "* 1b. The hours of the tutorial class for that week has already been clocked."
       },
       {
         "lineNumber": 579,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": "** 1b1. Application shows an error message that the class already has its hours clocked"
       },
       {
         "lineNumber": 580,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "for that week"
       },
       {
         "lineNumber": 581,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 582,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "* 2a. One of the students does not exist."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 583,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** 2a1. System shows an error message that the given student does not exist."
+        "content": ""
       },
       {
         "lineNumber": 584,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "** Steps 2-2a2 are repeated for all invalid students."
+        "content": "* 1c. The given input is in an invalid format."
       },
       {
         "lineNumber": 585,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "+"
+        "content": "** 1c1. System shows an error message showing the correct format to add a module."
       },
       {
         "lineNumber": 586,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "Use case resumes at step 2"
+        "content": "+"
       },
       {
         "lineNumber": 587,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "User case ends."
       },
       {
         "lineNumber": 588,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "_{More to be added soon. Stay tuned!}_"
+        "content": ""
       },
       {
         "lineNumber": 589,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: Adding and viewing assignment score to students"
       },
       {
         "lineNumber": 590,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[appendix]"
+        "content": "*Preconditions*"
       },
       {
         "lineNumber": 591,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d Non Functional Requirements"
+        "content": ""
       },
       {
         "lineNumber": 592,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "1. User selects the command to add assignment and its\u0027 scores to the student."
       },
       {
         "lineNumber": 593,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Business/Domain Rules:"
+        "content": "2. Given module and tutorial exists in the system."
       },
       {
         "lineNumber": 594,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". System should be able to handle multiple modules and tutorials"
+        "content": ""
       },
       {
         "lineNumber": 595,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". Number of module and tutorial slots created should be of reasonable amount (\u003c 10)"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 596,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". The application’s functionalities should be easily testable."
+        "content": ""
       },
       {
         "lineNumber": 597,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "1. User adds assignment to the tutorial class in the module."
       },
       {
         "lineNumber": 598,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Constraints:"
+        "content": "2. User adds the score for each student for the assignment."
       },
       {
         "lineNumber": 599,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". System should be wholly usable by \u003c\u003cCLI, C.L.I\u003e\u003e. (No \u003c\u003cGUI, G.U.I\u003e\u003e -only functionality)"
+        "content": "3. User switches to the student performance window."
       },
       {
         "lineNumber": 600,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". The application should work without requiring an Internet connection."
+        "content": "4. System displays results across semester for each student."
       },
       {
         "lineNumber": 601,
@@ -5993,110 +5993,110 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Technical Requirements:"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 603,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ". Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": ""
       },
       {
         "lineNumber": 604,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 605,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Performance Requirements:"
+        "content": ""
       },
       {
         "lineNumber": 606,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". System should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage."
+        "content": "[none]"
       },
       {
         "lineNumber": 607,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "* 2a. One of the students does not exist."
       },
       {
         "lineNumber": 608,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d\u003d Quality Requirements:"
+        "content": "** 2a1. System shows an error message that the given student does not exist."
       },
       {
         "lineNumber": 609,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". A user with above average typing speed for regular English text (i.e. not code, not system admin commands)"
+        "content": "** Steps 2-2a2 are repeated for all invalid students."
       },
       {
         "lineNumber": 610,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "should be able to accomplish most of the tasks faster using commands than using the mouse."
+        "content": "+"
       },
       {
         "lineNumber": 611,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". The application should work even if the user enters partial commands/data and data in"
+        "content": "Use case resumes at step 2"
       },
       {
         "lineNumber": 612,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "different formats, or omits certain command prefixes."
+        "content": ""
       },
       {
         "lineNumber": 613,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ". Product should be usable by someone who just became a Teaching Assistant."
+        "content": "_{More to be added soon. Stay tuned!}_"
       },
       {
         "lineNumber": 614,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 615,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Notes about Project Scope:"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 616,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": ". System does not need to handle exporting or importing of data from other programs."
+        "content": "\u003d\u003d Non Functional Requirements"
       },
       {
         "lineNumber": 617,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -6105,28 +6105,28 @@
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "_{More to be added. Coming to stores near you!}_"
+        "content": "\u003d\u003d\u003d Business/Domain Rules:"
       },
       {
         "lineNumber": 619,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": ". System should be able to handle multiple modules and tutorials"
       },
       {
         "lineNumber": 620,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[appendix]"
+        "content": ". Number of module and tutorial slots created should be of reasonable amount (\u003c 10)"
       },
       {
         "lineNumber": 621,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": ". The application’s functionalities should be easily testable."
       },
       {
         "lineNumber": 622,
@@ -6138,191 +6138,191 @@
       {
         "lineNumber": 623,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": "\u003d\u003d\u003d Constraints:"
       },
       {
         "lineNumber": 624,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": ". System should be wholly usable by \u003c\u003cCLI, C.L.I\u003e\u003e. (No \u003c\u003cGUI, G.U.I\u003e\u003e -only functionality)"
       },
       {
         "lineNumber": 625,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": ". The application should work without requiring an Internet connection."
       },
       {
         "lineNumber": 626,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[[ta]] TA::"
+        "content": ""
       },
       {
         "lineNumber": 627,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "teaching assistant"
+        "content": "\u003d\u003d\u003d Technical Requirements:"
       },
       {
         "lineNumber": 628,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": ""
+        "content": ". Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
       },
       {
         "lineNumber": 629,
         "author": {
-          "gitId": "AhmadHatziq"
+          "gitId": "-"
         },
-        "content": "[[module]] module::"
+        "content": ""
       },
       {
         "lineNumber": 630,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "A module that comes with an associated code in the form of [XXX1234Y]"
+        "content": "\u003d\u003d\u003d Performance Requirements:"
       },
       {
         "lineNumber": 631,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": ". System should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage."
       },
       {
         "lineNumber": 632,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[[tutorial]] tutorial::"
+        "content": ""
       },
       {
         "lineNumber": 633,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "A tutorial class conducted by a \u003c\u003cta, TA\u003e\u003e"
+        "content": "\u003d\u003d\u003d Quality Requirements:"
       },
       {
         "lineNumber": 634,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": ". A user with above average typing speed for regular English text (i.e. not code, not system admin commands)"
       },
       {
         "lineNumber": 635,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[[private-contact-detail]] Private contact detail::"
+        "content": "should be able to accomplish most of the tasks faster using commands than using the mouse."
       },
       {
         "lineNumber": 636,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "A contact detail that is not meant to be shared with others"
+        "content": ". The application should work even if the user enters partial commands/data and data in"
       },
       {
         "lineNumber": 637,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "different formats, or omits certain command prefixes."
       },
       {
         "lineNumber": 638,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[[CLI]] Command-Line Interface::"
+        "content": ". Product should be usable by someone who just became a Teaching Assistant."
       },
       {
         "lineNumber": 639,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "An interface that only requires textual inputs."
+        "content": ""
       },
       {
         "lineNumber": 640,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Notes about Project Scope:"
       },
       {
         "lineNumber": 641,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "[[GUI]] Graphical User Inferface::"
+        "content": ". System does not need to handle exporting or importing of data from other programs."
       },
       {
         "lineNumber": 642,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": "An interface that requires the use of graphics such as the use of the mouse pointer."
+        "content": ""
       },
       {
         "lineNumber": 643,
         "author": {
           "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "_{More to be added. Coming to stores near you!}_"
       },
       {
         "lineNumber": 644,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 645,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 646,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Glossary"
       },
       {
         "lineNumber": 647,
         "author": {
           "gitId": "-"
         },
-        "content": "*Product Name*"
+        "content": ""
       },
       {
         "lineNumber": 648,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[[mainstream-os]] Mainstream OS::"
       },
       {
         "lineNumber": 649,
         "author": {
           "gitId": "-"
         },
-        "content": "Author: ..."
+        "content": "Windows, Linux, Unix, OS-X"
       },
       {
         "lineNumber": 650,
@@ -6334,126 +6334,126 @@
       {
         "lineNumber": 651,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "Pros:"
+        "content": "[[ta]] TA::"
       },
       {
         "lineNumber": 652,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "teaching assistant"
       },
       {
         "lineNumber": 653,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "* ..."
+        "content": ""
       },
       {
         "lineNumber": 654,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "* ..."
+        "content": "[[module]] module::"
       },
       {
         "lineNumber": 655,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "A module that comes with an associated code in the form of [XXX1234Y]"
       },
       {
         "lineNumber": 656,
         "author": {
-          "gitId": "-"
-        },
-        "content": "Cons:"
-      },
-      {
-        "lineNumber": 657,
-        "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
         "content": ""
       },
       {
+        "lineNumber": 657,
+        "author": {
+          "gitId": "AhmadHatziq"
+        },
+        "content": "[[tutorial]] tutorial::"
+      },
+      {
         "lineNumber": 658,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "* ..."
+        "content": "A tutorial class conducted by a \u003c\u003cta, TA\u003e\u003e"
       },
       {
         "lineNumber": 659,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "* ..."
+        "content": ""
       },
       {
         "lineNumber": 660,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[[private-contact-detail]] Private contact detail::"
       },
       {
         "lineNumber": 661,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "A contact detail that is not meant to be shared with others"
       },
       {
         "lineNumber": 662,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": ""
       },
       {
         "lineNumber": 663,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": ""
+        "content": "[[CLI]] Command-Line Interface::"
       },
       {
         "lineNumber": 664,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": "An interface that only requires textual inputs."
       },
       {
         "lineNumber": 665,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
         "content": ""
       },
       {
         "lineNumber": 666,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "[NOTE]"
+        "content": "[[GUI]] Graphical User Inferface::"
       },
       {
         "lineNumber": 667,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": "An interface that requires the use of graphics such as the use of the mouse pointer."
       },
       {
         "lineNumber": 668,
         "author": {
-          "gitId": "-"
+          "gitId": "AhmadHatziq"
         },
         "content": ""
       },
@@ -6462,91 +6462,91 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 670,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Survey"
       },
       {
         "lineNumber": 671,
         "author": {
           "gitId": "-"
         },
-        "content": ". Initial launch"
+        "content": ""
       },
       {
         "lineNumber": 672,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Product Name*"
       },
       {
         "lineNumber": 673,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": ""
       },
       {
         "lineNumber": 674,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Double-click the jar file +"
+        "content": "Author: ..."
       },
       {
         "lineNumber": 675,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+        "content": ""
       },
       {
         "lineNumber": 676,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Pros:"
       },
       {
         "lineNumber": 677,
         "author": {
           "gitId": "-"
         },
-        "content": ". Saving window preferences"
+        "content": ""
       },
       {
         "lineNumber": 678,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* ..."
       },
       {
         "lineNumber": 679,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+        "content": "* ..."
       },
       {
         "lineNumber": 680,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
+        "content": ""
       },
       {
         "lineNumber": 681,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: The most recent window size and location is retained."
+        "content": "Cons:"
       },
       {
         "lineNumber": 682,
@@ -6560,35 +6560,35 @@
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": "* ..."
       },
       {
         "lineNumber": 684,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* ..."
       },
       {
         "lineNumber": 685,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Deleting a person"
+        "content": ""
       },
       {
         "lineNumber": 686,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 687,
         "author": {
           "gitId": "-"
         },
-        "content": ". Deleting a person while all persons are listed"
+        "content": "\u003d\u003d Instructions for Manual Testing"
       },
       {
         "lineNumber": 688,
@@ -6602,115 +6602,290 @@
         "author": {
           "gitId": "-"
         },
-        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+        "content": "Given below are instructions to test the app manually."
       },
       {
         "lineNumber": 690,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 1` +"
+        "content": ""
       },
       {
         "lineNumber": 691,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 692,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 0` +"
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
       },
       {
         "lineNumber": 693,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+        "content": ""
       },
       {
         "lineNumber": 694,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
       },
       {
         "lineNumber": 695,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Similar to previous."
+        "content": ""
       },
       {
         "lineNumber": 696,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Initial launch"
       },
       {
         "lineNumber": 697,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 698,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. Download the jar file and copy into an empty folder"
       },
       {
         "lineNumber": 699,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Saving data"
+        "content": ".. Double-click the jar file +"
       },
       {
         "lineNumber": 700,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
       },
       {
         "lineNumber": 701,
         "author": {
           "gitId": "-"
         },
-        "content": ". Dealing with missing/corrupted data files"
+        "content": ""
       },
       {
         "lineNumber": 702,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Saving window preferences"
       },
       {
         "lineNumber": 703,
         "author": {
           "gitId": "-"
         },
-        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+        "content": ""
       },
       {
         "lineNumber": 704,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
       },
       {
         "lineNumber": 705,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
+      },
+      {
+        "lineNumber": 706,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: The most recent window size and location is retained."
+      },
+      {
+        "lineNumber": 707,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 708,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{ more test cases ... }_"
+      },
+      {
+        "lineNumber": 709,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 710,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Deleting a person"
+      },
+      {
+        "lineNumber": 711,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 712,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Deleting a person while all persons are listed"
+      },
+      {
+        "lineNumber": 713,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 714,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+      },
+      {
+        "lineNumber": 715,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Test case: `delete 1` +"
+      },
+      {
+        "lineNumber": 716,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+      },
+      {
+        "lineNumber": 717,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Test case: `delete 0` +"
+      },
+      {
+        "lineNumber": 718,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+      },
+      {
+        "lineNumber": 719,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+      },
+      {
+        "lineNumber": 720,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: Similar to previous."
+      },
+      {
+        "lineNumber": 721,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 722,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{ more test cases ... }_"
+      },
+      {
+        "lineNumber": 723,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 724,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Saving data"
+      },
+      {
+        "lineNumber": 725,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 726,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Dealing with missing/corrupted data files"
+      },
+      {
+        "lineNumber": 727,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 728,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+      },
+      {
+        "lineNumber": 729,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 730,
         "author": {
           "gitId": "-"
         },
@@ -6719,8 +6894,9 @@
     ],
     "authorContributionMap": {
       "Ellieyee": 1,
-      "AhmadHatziq": 285,
-      "-": 419
+      "AhmadHatziq": 282,
+      "-": 421,
+      "lumos309": 26
     }
   },
   {
@@ -10587,6 +10763,754 @@
     "authorContributionMap": {
       "Ellieyee": 1,
       "-": 36
+    }
+  },
+  {
+    "path": "docs/diagrams/plantuml/AutocorrectActivityCreate.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ":Search for data values in application;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "if () then ([All data values found])"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  :Execute command;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  :Feedback to user: success;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "else ([else])"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  if () then ([Similar data values found])"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Create new commands with similar values;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Store suggested commands;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Prompt user to make selection;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  else ([else])"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Throw CommandException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  endif"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "endif"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "lumos309": 17
+    }
+  },
+  {
+    "path": "docs/diagrams/plantuml/AutocorrectActivityExecute.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ":User enters number;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "if () then ([No saved commands])"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  :Throw ParseException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "else ([else])"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  if () then ([User input within range])"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Load saved command;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Purge cached commands;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Execute selected command;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  else ([else])"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    :Prompt user again for valid input;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "  endif"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "endif"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "lumos309": 16
+    }
+  },
+  {
+    "path": "docs/diagrams/plantuml/AutocorrectSequence.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "box Logic LOGIC_COLOR_T1"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "participant \":LogicManager\" as LogicManager LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "participant \":SelectSuggestion\\nCommandParser\" as SelectSuggestionCommandParser LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "participant \":SelectSuggestion\\nCommand\" as SelectSuggestionCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "participant \":AddStudent\\nCommand\" as AddStudentCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "box Model MODEL_COLOR_T1"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "participant \":Model\" as Model MODEL_COLOR"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "participant \":Application\" as Application MODEL_COLOR"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "[-\u003e LogicManager : execute(1)"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate LogicManager"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "LogicManager -\u003e SelectSuggestionCommandParser : parseCommand(1)"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate SelectSuggestionCommandParser"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "create SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommandParser -\u003e SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand --\u003e SelectSuggestionCommandParser"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommandParser --\u003e LogicManager :"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate SelectSuggestionCommandParser"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "LogicManager -\u003e SelectSuggestionCommand : execute()"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand -\u003e Model : getSuggestedCommands()"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate Model"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "Model -\u003e Application : getSuggestedCommands()"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate Application"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "Application --\u003e Model : suggestedCommands"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate Application"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "Model --\u003e SelectSuggestionCommand : suggestedCommands"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate Model"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand -\u003e Model : deleteSuggestedCommands()"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "Model -\u003e Application : deleteSuggestedCommands()"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand -\u003e SelectSuggestionCommand : get index 1 from\\n suggestedCommands"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand -\u003e AddStudentCommand : execute(Model)"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "activate AddStudentCommand"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "group ref [execute AddStudentCommand]"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "    AddStudentCommand -[hidden]\u003e Application"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "end"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "AddStudentCommand -\u003e SelectSuggestionCommand : result"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate AddStudentCommand"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "destroy AddStudentCommand"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand --\u003e LogicManager : result"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "SelectSuggestionCommand -[hidden]-\u003e LogicManager : result"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "destroy SelectSuggestionCommand"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "[\u003c--LogicManager"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "deactivate LogicManager"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "lumos309"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "lumos309": 70
     }
   },
   {

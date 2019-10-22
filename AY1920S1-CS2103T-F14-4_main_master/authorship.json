@@ -14986,7 +14986,7 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public static final String MESSAGE_EVENT_START_BEFORE_NOW \u003d \"Assigned #%1$d to %2$s at %3$s\";"
+        "content": "    public static final String MESSAGE_EVENT_START_BEFORE_NOW \u003d \"The proposed time is in the past.\";"
       },
       {
         "lineNumber": 28,
@@ -15343,7 +15343,7 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+        "content": "            throw new CommandException(MESSAGE_EVENT_START_BEFORE_NOW);"
       },
       {
         "lineNumber": 79,
@@ -15406,161 +15406,161 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        forceAssign(driver, task, eventTime);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return forceAssign(driver, task, eventTime);"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "        // TODO: update GUI"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS,"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    /**"
+        "content": "                task.getId(), driver.getName().fullName, eventTime.toString()));"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * Assign the task at the given time to the specified driver, without checking the driver\u0027s schedule."
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * The operation is atomic."
+        "content": "    }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param driver    driver"
+        "content": "    /**"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param task      task"
+        "content": "     * Assign the task at the given time to the specified driver, without checking the driver\u0027s schedule."
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @param eventTime the time which the task is happening"
+        "content": "     * The operation is atomic."
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @return success messages"
+        "content": "     *"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     * @throws SchedulingException when the proposed time conflicts with the driver\u0027s schedule"
+        "content": "     * @param driver    driver"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "tysng"
         },
-        "content": "     */"
+        "content": "     * @param task      task"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    private CommandResult forceAssign(Driver driver, Task task, EventTime eventTime) throws CommandException {"
+        "content": "     * @param eventTime the time which the task is happening"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        try {"
+        "content": "     * @throws SchedulingException when the proposed time conflicts with the driver\u0027s schedule"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            driver.assign(eventTime);"
+        "content": "     */"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        } catch (SchedulingException e) {"
+        "content": "    private void forceAssign(Driver driver, Task task, EventTime eventTime) throws CommandException {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            throw new CommandException(e.getMessage());"
+        "content": "        try {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "            driver.assign(eventTime);"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "        } catch (SchedulingException e) {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        task.setDriver(Optional.of(driver));"
+        "content": "            throw new CommandException(e.getMessage());"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        task.setEventTime(Optional.of(eventTime));"
+        "content": "        }"
       },
       {
         "lineNumber": 110,
@@ -15574,21 +15574,21 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "        // TODO: update GUI"
+        "content": "        task.setDriver(Optional.of(driver));"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_ASSIGN_SUCCESS,"
+        "content": "        task.setEventTime(Optional.of(eventTime));"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                task.getId(), driver.getName().fullName, eventTime.toString()));"
+        "content": "    }"
       },
       {
         "lineNumber": 114,
@@ -15602,150 +15602,136 @@
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public boolean equals(Object o) {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "        if (this \u003d\u003d o) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public boolean equals(Object o) {"
+        "content": "            return true;"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if (this \u003d\u003d o) {"
+        "content": "        }"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            return true;"
+        "content": "        if (o \u003d\u003d null || getClass() !\u003d o.getClass()) {"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "            return false;"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        if (o \u003d\u003d null || getClass() !\u003d o.getClass()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            return false;"
+        "content": "        AssignCommand that \u003d (AssignCommand) o;"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        }"
+        "content": "        return isForceAssign \u003d\u003d that.isForceAssign"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        AssignCommand that \u003d (AssignCommand) o;"
+        "content": "                \u0026\u0026 driverId \u003d\u003d that.driverId"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return isForceAssign \u003d\u003d that.isForceAssign"
+        "content": "                \u0026\u0026 taskId \u003d\u003d that.taskId"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 driverId \u003d\u003d that.driverId"
+        "content": "                \u0026\u0026 Objects.equals(eventTime, that.eventTime);"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 taskId \u003d\u003d that.taskId"
+        "content": "    }"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "tysng"
         },
-        "content": "                \u0026\u0026 Objects.equals(eventTime, that.eventTime);"
+        "content": ""
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "    public int hashCode() {"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    @Override"
+        "content": "        return Objects.hash(eventTime, isForceAssign, driverId, taskId);"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public int hashCode() {"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "tysng"
-        },
-        "content": "        return Objects.hash(eventTime, isForceAssign, driverId, taskId);"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "tysng"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 134,
         "author": {
           "gitId": "tysng"
         },
@@ -15753,7 +15739,7 @@
       }
     ],
     "authorContributionMap": {
-      "tysng": 136
+      "tysng": 134
     }
   },
   {
@@ -15999,63 +15985,63 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.task.Task;"
+        "content": "import seedu.address.model.person.Driver;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.task.TaskStatus;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " * Deletes an entity using it\u0027s unique id from its list."
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " * Entity refers to Task, Driver and Customer."
+        "content": "/**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " */"
+        "content": " * Deletes an entity using it\u0027s unique id from its list."
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "public class DeleteIdCommand extends Command {"
+        "content": " * Entity refers to Task, Driver and Customer."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": " */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"del\";"
+        "content": "public class DeleteIdCommand extends Command {"
       },
       {
         "lineNumber": 19,
@@ -16069,77 +16055,77 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
+        "content": "    public static final String COMMAND_WORD \u003d \"del\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + \": Deletes a Task / Driver / Customer using their UNIQUE ID.\\n\""
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + \"Parameters: [\" + PREFIX_TASK + \" Task ID]  |  \""
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + \"Parameters: [\" + PREFIX_CUSTOMER + \" Customer ID]  |  \""
+        "content": "            + \": Deletes a Task / Driver / Customer using their UNIQUE ID.\\n\""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + \"Parameters: [\" + PREFIX_DRIVER + \" Driver ID] \\n\""
+        "content": "            + \"Parameters: [\" + PREFIX_TASK + \" Task ID]  |  \""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + \"Example: \" + COMMAND_WORD + \" \""
+        "content": "            + \"Parameters: [\" + PREFIX_CUSTOMER + \" Customer ID]  |  \""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + PREFIX_TASK + \" 10 \\n\""
+        "content": "            + \"Parameters: [\" + PREFIX_DRIVER + \" Driver ID] \\n\""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + \"Example 2: \" + COMMAND_WORD + \" \""
+        "content": "            + \"Example: \" + COMMAND_WORD + \" \""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            + PREFIX_CUSTOMER + \" 2\";"
+        "content": "            + PREFIX_TASK + \" 10 \\n\""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            + \"Example 2: \" + COMMAND_WORD + \" \""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String MESSAGE_INVALID_TASK_ID \u003d \"Invalid task id.\";"
+        "content": "            + PREFIX_CUSTOMER + \" 2\";"
       },
       {
         "lineNumber": 31,
@@ -16153,7 +16139,7 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String MESSAGE_DELETE_PERSON_SUCCESS \u003d \"Deleted %1$s: %2$s\";"
+        "content": "    public static final String MESSAGE_INVALID_TASK_ID \u003d \"Invalid task id.\";"
       },
       {
         "lineNumber": 33,
@@ -16167,227 +16153,283 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private final String className;"
+        "content": "    public static final String MESSAGE_DELETE_PERSON_SUCCESS \u003d \"Deleted %1$s: %2$s\";"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private final int id;"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "    private final String className;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public DeleteIdCommand(String className, int id) {"
+        "content": "    private final int id;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.id \u003d id;"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.className \u003d className;"
+        "content": "    public DeleteIdCommand(String className, int id) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "        this.id \u003d id;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        this.className \u003d className;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public CommandResult execute(Model model) throws CommandException {"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (className.equals(Task.class.getSimpleName())) {"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //deletion for Task"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            if (!model.hasTask(id)) {"
+        "content": "        if (className.equals(Task.class.getSimpleName())) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                throw new CommandException(MESSAGE_INVALID_TASK_ID);"
+        "content": "            //deletion for Task"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            }"
+        "content": "            if (!model.hasTask(id)) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "                throw new CommandException(MESSAGE_INVALID_TASK_ID);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            Task taskToDelete \u003d model.getTask(id);"
+        "content": "            }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            model.deleteTask(taskToDelete);"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            Task taskToDelete \u003d model.getTask(id);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //temp"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //need to free driver from schedule"
+        "content": "            //if task has driver, free his schedule from the duration given in task"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            if (taskToDelete.getStatus() \u003d\u003d TaskStatus.ON_GOING) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, className, taskToDelete));"
+        "content": "                //disregard check for optional empty because if a task is ON_GOING, there MUST be a driver and duration."
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else {"
+        "content": "                Driver driver \u003d taskToDelete.getDriver().get();"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "junnbang"
+          "gitId": "tysng"
         },
-        "content": "            //temp"
+        "content": "                boolean isDeleteSuccess \u003d driver.deleteFromSchedule(taskToDelete.getEventTime().get());"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "junnbang"
+          "gitId": "tysng"
         },
-        "content": "            //deletion for Customer"
+        "content": "                assert isDeleteSuccess;"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //deletion for Driver"
+        "content": "            }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return new CommandResult(\"temp\");"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            model.deleteTask(taskToDelete);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 66,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, className, taskToDelete));"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            //temp"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            //deletion for Customer"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            //deletion for Driver"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            return new CommandResult(\"temp\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
         "author": {
           "gitId": "junnbang"
         },
@@ -16395,7 +16437,8 @@
       }
     ],
     "authorContributionMap": {
-      "junnbang": 66
+      "junnbang": 72,
+      "tysng": 2
     }
   },
   {
@@ -16442,420 +16485,420 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_DRIVER;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "tysng"
-        },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "junnbang"
-        },
         "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 7,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 8,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 9,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import java.time.LocalDate;"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 10,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import java.util.Optional;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 11,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 12,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.commons.util.CollectionUtil;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 13,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.logic.commands.exceptions.CommandException;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 14,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.model.Description;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 15,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.model.EventTime;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 16,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.model.Model;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 17,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.model.person.Customer;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 18,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.model.person.Driver;"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 19,
         "author": {
           "gitId": "junnbang"
         },
         "content": "import seedu.address.model.task.Task;"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 20,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "import seedu.address.model.task.TaskStatus;"
+      },
+      {
+        "lineNumber": 21,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 22,
         "author": {
           "gitId": "junnbang"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 23,
         "author": {
           "gitId": "junnbang"
         },
         "content": " * Edits the details of an existing task in the task list."
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
           "gitId": "junnbang"
         },
         "content": " */"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 25,
         "author": {
           "gitId": "junnbang"
         },
         "content": "public class EditTaskCommand extends Command {"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 26,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 27,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public static final String COMMAND_WORD \u003d \"editT\";"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 28,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 29,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": \""
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 30,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"Edits the details of a task. \""
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"Existing values will be overwritten by the input values. \""
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 32,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"Indicate only the parameters you want to change.\\n\""
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 33,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"Parameters: \""
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 34,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"[TASK ID] \""
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 35,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"[\" + PREFIX_GOODS + \"DESCRIPTION] \""
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"[\" + PREFIX_CUSTOMER + \"CUSTOMER ID] \""
       },
       {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            + \"[\" + PREFIX_DATETIME + \"DATE]\\n\""
+      },
+      {
         "lineNumber": 38,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "            + \"[\" + PREFIX_DATETIME + \"DATE] \""
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "            + \"[\" + PREFIX_DRIVER + \"DRIVER ID] \""
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "tysng"
-        },
-        "content": "            + \"[\" + PREFIX_EVENT_TIME + \"DURATION]\\n\""
-      },
-      {
-        "lineNumber": 41,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + \"Example: \" + COMMAND_WORD + \" \""
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 39,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + PREFIX_TASK + \"2 \""
       },
       {
-        "lineNumber": 43,
+        "lineNumber": 40,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + PREFIX_GOODS + \"10 ice boxes of red groupers \""
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 41,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            + PREFIX_DATETIME + \"10/12/2019\\n\";"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 42,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 43,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public static final String MESSAGE_NOT_EDITED \u003d \"At least one field to edit must be provided.\";"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 44,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public static final String MESSAGE_NOTHING_TO_EDIT \u003d \"At least one field need to be different to edit.\";"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 45,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public static final String MESSAGE_EDIT_TASK_SUCCESS \u003d \"Edited Task: %1$s\";"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 46,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    public static final String MESSAGE_CANNOT_BE_EDITED \u003d \"Completed Task cannot be edited.\";"
+      },
+      {
+        "lineNumber": 47,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 48,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    private final int id;"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 49,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    private final EditTaskDescriptor editTaskDescriptor;"
       },
       {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 52,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 54,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public EditTaskCommand(int id, EditTaskDescriptor editTaskDescriptor) {"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 53,
         "author": {
           "gitId": "junnbang"
         },
         "content": "        this.id \u003d id;"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 54,
         "author": {
           "gitId": "junnbang"
         },
         "content": "        this.editTaskDescriptor \u003d editTaskDescriptor;"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 55,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 56,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 57,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 58,
         "author": {
           "gitId": "junnbang"
         },
         "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 59,
         "author": {
           "gitId": "junnbang"
         },
         "content": "        requireNonNull(model);"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 60,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 61,
         "author": {
           "gitId": "junnbang"
         },
         "content": "        if (!model.hasTask(id)) {"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 62,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            throw new CommandException(Task.MESSAGE_INVALID_ID);"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 63,
         "author": {
           "gitId": "junnbang"
         },
         "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        Task taskToEdit \u003d model.getTask(id);"
       },
       {
         "lineNumber": 66,
@@ -16869,42 +16912,42 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Task taskToEdit \u003d model.getTask(id);"
+        "content": "        //check task is completed, then it cannot be edited."
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Task editedTask \u003d createEditedTask(taskToEdit, editTaskDescriptor, model);"
+        "content": "        if (taskToEdit.getStatus() \u003d\u003d TaskStatus.COMPLETED) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            throw new CommandException(MESSAGE_CANNOT_BE_EDITED);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (taskToEdit.isSameTask(editedTask)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new CommandException(MESSAGE_NOTHING_TO_EDIT);"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        Task editedTask \u003d createEditedTask(taskToEdit, editTaskDescriptor, model);"
       },
       {
         "lineNumber": 73,
@@ -16918,21 +16961,21 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //temp"
+        "content": "        if (taskToEdit.isSameTask(editedTask)) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //if driver is different, set driver to be free, and populate the other driver"
+        "content": "            throw new CommandException(MESSAGE_NOTHING_TO_EDIT);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        model.setTask(taskToEdit, editedTask);"
+        "content": "        }"
       },
       {
         "lineNumber": 77,
@@ -16946,357 +16989,357 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));"
+        "content": "        //if date is changed, the schedule of the driver will be free too."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "        //task will become incomplete"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        freeDriverIfDateIsChanged(taskToEdit, editedTask);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Creates and returns a {@code Person} with the details of {@code personToEdit}"
+        "content": "        model.setTask(taskToEdit, editedTask);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * edited with {@code editPersonDescriptor}."
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor,"
+        "content": "    }"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                                         Model model) throws CommandException {"
+        "content": ""
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        assert taskToEdit !\u003d null;"
+        "content": "    /**"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "     * Empty Driver\u0027s schedule if the date of delivery has been changed."
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Description updatedDescription \u003d editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());"
+        "content": "     *"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "     * @param taskToEdit original task."
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //check if customer id provided is valid"
+        "content": "     * @param editedTask updated task."
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Optional\u003cInteger\u003e customerId \u003d editTaskDescriptor.getCustomer();"
+        "content": "     */"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (customerId.isPresent() \u0026\u0026 !model.hasCustomer(customerId.get())) {"
+        "content": "    private static void freeDriverIfDateIsChanged(Task taskToEdit, Task editedTask) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new CommandException(Customer.MESSAGE_INVALID_ID);"
+        "content": "        if (taskToEdit.getDate() !\u003d editedTask.getDate() \u0026\u0026 taskToEdit.getDriver().isPresent()) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            Driver driver \u003d taskToEdit.getDriver().get();"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "junnbang"
+          "gitId": "tysng"
         },
-        "content": ""
+        "content": "            boolean isDeleteSuccess \u003d driver.deleteFromSchedule(taskToEdit.getEventTime().get());"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "junnbang"
+          "gitId": "tysng"
         },
-        "content": "        Customer updatedCustomer;"
+        "content": "            assert isDeleteSuccess;"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (customerId.isPresent()) {"
+        "content": "            editedTask.setStatus(TaskStatus.INCOMPLETE);"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //get the new customer to be assigned from customer list."
+        "content": "        }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            int updatedCustomerId \u003d customerId.get();"
+        "content": "    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            updatedCustomer \u003d model.getCustomer(updatedCustomerId);"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else {"
+        "content": "    /**"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //get the original customer that is assigned to the task."
+        "content": "     * Creates and returns a {@code Person} with the details of {@code personToEdit}"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            updatedCustomer \u003d taskToEdit.getCustomer();"
+        "content": "     * edited with {@code editPersonDescriptor}."
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor,"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        LocalDate updatedDate \u003d editTaskDescriptor.getDate().orElse(taskToEdit.getDate());"
+        "content": "                                         Model model) throws CommandException {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        assert taskToEdit !\u003d null;"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //check if driver id provided is valid"
+        "content": ""
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Optional\u003cInteger\u003e driverId \u003d editTaskDescriptor.getDriver();"
+        "content": "        Description updatedDescription \u003d editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (driverId.isPresent() \u0026\u0026 !model.hasDriver(driverId.get())) {"
+        "content": ""
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new CommandException(Driver.MESSAGE_INVALID_ID);"
+        "content": "        //check if customer id provided is valid"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        Optional\u003cInteger\u003e customerId \u003d editTaskDescriptor.getCustomer();"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        if (customerId.isPresent() \u0026\u0026 !model.hasCustomer(customerId.get())) {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Optional\u003cDriver\u003e updatedDriver;"
+        "content": "            throw new CommandException(Customer.MESSAGE_INVALID_ID);"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (driverId.isPresent()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //get the new customer to be assigned from customer list."
+        "content": ""
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            int updatedDriverId \u003d driverId.get();"
+        "content": "        Customer updatedCustomer;"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            updatedDriver \u003d model.getDriver(updatedDriverId);"
+        "content": "        if (customerId.isPresent()) {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else {"
+        "content": "            //get the new customer to be assigned from customer list."
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //get the original customer that is assigned to the task."
+        "content": "            int updatedCustomerId \u003d customerId.get();"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            updatedDriver \u003d taskToEdit.getDriver();"
+        "content": "            updatedCustomer \u003d model.getCustomer(updatedCustomerId);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            //get the original customer that is assigned to the task."
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Optional\u003cEventTime\u003e updatedEventTime \u003d editTaskDescriptor.getEventTime();"
+        "content": "            updatedCustomer \u003d taskToEdit.getCustomer();"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (updatedEventTime.isEmpty()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            updatedEventTime \u003d taskToEdit.getEventTime();"
+        "content": ""
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        LocalDate updatedDate \u003d editTaskDescriptor.getDate().orElse(taskToEdit.getDate());"
       },
       {
         "lineNumber": 129,
@@ -17324,28 +17367,28 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        editedTask.setDriver(updatedDriver);"
+        "content": ""
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        editedTask.setEventTime(updatedEventTime);"
+        "content": "        //use the original driver and eventTime, no changes made to them."
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        editedTask.setDriver(taskToEdit.getDriver());"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        editedTask.setStatus(taskToEdit.getStatus());"
+        "content": "        editedTask.setEventTime(taskToEdit.getEventTime());"
       },
       {
         "lineNumber": 136,
@@ -17359,112 +17402,112 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        return editedTask;"
+        "content": "        editedTask.setStatus(taskToEdit.getStatus());"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        return editedTask;"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Stores the details to edit the task with. Each non-empty field value will replace the"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * corresponding field value of the person."
+        "content": "    /**"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "     * Stores the details to edit the task with. Each non-empty field value will replace the"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static class EditTaskDescriptor {"
+        "content": "     * corresponding field value of the person."
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        private Description description;"
+        "content": "     */"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        private LocalDate date;"
+        "content": "    public static class EditTaskDescriptor {"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        private Integer driver;"
+        "content": "        private Description description;"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        private Integer customer;"
+        "content": "        private LocalDate date;"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        private EventTime eventTime;"
+        "content": "        private Integer driver;"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        private Integer customer;"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        private EventTime eventTime;"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public EditTaskDescriptor() {"
+        "content": ""
       },
       {
         "lineNumber": 153,
@@ -17478,7 +17521,7 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public EditTaskDescriptor() {"
       },
       {
         "lineNumber": 155,
@@ -17492,395 +17535,409 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public EditTaskDescriptor(EditTaskDescriptor toCopy) {"
+        "content": "        }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            setDescription(toCopy.description);"
+        "content": ""
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            setDate(toCopy.date);"
+        "content": "        public EditTaskDescriptor(EditTaskDescriptor toCopy) {"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            setDriver(toCopy.driver);"
+        "content": "            setDescription(toCopy.description);"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            setCustomer(toCopy.customer);"
+        "content": "            setDate(toCopy.date);"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            setEventTime(toCopy.eventTime);"
+        "content": "            setDriver(toCopy.driver);"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            setCustomer(toCopy.customer);"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            setEventTime(toCopy.eventTime);"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        /**"
+        "content": "        }"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "         * Returns true if at least one field is edited."
+        "content": ""
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "         */"
+        "content": "        /**"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public boolean isAnyFieldEdited() {"
+        "content": "         * Returns true if at least one field is edited."
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return CollectionUtil.isAnyNonNull(description, date, driver, customer, eventTime);"
+        "content": "         */"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public boolean isAnyFieldEdited() {"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return CollectionUtil.isAnyNonNull(description, date, driver, customer, eventTime);"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public Optional\u003cDescription\u003e getDescription() {"
+        "content": "        }"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return Optional.ofNullable(description);"
+        "content": ""
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public Optional\u003cDescription\u003e getDescription() {"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(description);"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public void setDescription(Description description) {"
+        "content": "        }"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            this.description \u003d description;"
+        "content": ""
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public void setDescription(Description description) {"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            this.description \u003d description;"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public Optional\u003cLocalDate\u003e getDate() {"
+        "content": "        }"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return Optional.ofNullable(date);"
+        "content": ""
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public Optional\u003cLocalDate\u003e getDate() {"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(date);"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public void setDate(LocalDate date) {"
+        "content": "        }"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            this.date \u003d date;"
+        "content": ""
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public void setDate(LocalDate date) {"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            this.date \u003d date;"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public Optional\u003cInteger\u003e getDriver() {"
+        "content": "        }"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return Optional.ofNullable(driver);"
+        "content": ""
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public Optional\u003cInteger\u003e getDriver() {"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(driver);"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public void setDriver(int driver) {"
+        "content": "        }"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            this.driver \u003d driver;"
+        "content": ""
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public void setDriver(int driver) {"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            this.driver \u003d driver;"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public Optional\u003cInteger\u003e getCustomer() {"
+        "content": "        }"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return Optional.ofNullable(customer);"
+        "content": ""
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public Optional\u003cInteger\u003e getCustomer() {"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(customer);"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public void setCustomer(int customer) {"
+        "content": "        }"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            this.customer \u003d customer;"
+        "content": ""
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public void setCustomer(int customer) {"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            this.customer \u003d customer;"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public Optional\u003cEventTime\u003e getEventTime() {"
+        "content": "        }"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return Optional.ofNullable(eventTime);"
+        "content": ""
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public Optional\u003cEventTime\u003e getEventTime() {"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return Optional.ofNullable(eventTime);"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        public void setEventTime(EventTime eventTime) {"
+        "content": "        }"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            this.eventTime \u003d eventTime;"
+        "content": ""
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        public void setEventTime(EventTime eventTime) {"
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            this.eventTime \u003d eventTime;"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 212,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 214,
         "author": {
           "gitId": "junnbang"
         },
@@ -17888,8 +17945,717 @@
       }
     ],
     "authorContributionMap": {
-      "junnbang": 210,
+      "junnbang": 212,
       "tysng": 2
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/commands/FreeCommand.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "package seedu.address.logic.commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_DRIVER;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import java.util.Objects;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import java.util.Optional;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.commons.core.Messages;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.model.Model;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.model.person.Driver;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.model.task.Task;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * Edits the details of an existing person in the address book."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public class FreeCommand extends Command {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String COMMAND_WORD \u003d \"free\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_FREE_SUCCESS \u003d \"Task #%1$s is no longer assigned to %2$s\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Remove a driver from a task, and set the corresponding\""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"start and end time. \""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"\\n\""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"Parameters: \""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"[\" + PREFIX_DRIVER + \"DRIVER_ID] \""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"[\" + PREFIX_TASK + \"TASK_ID] \" + \"\\n\""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + \"Example: \" + COMMAND_WORD"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + PREFIX_DRIVER + \"1 \""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            + PREFIX_TASK + \"3 \";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private int driverId;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private int taskId;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param driverId driver\u0027s ID"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param taskId   task\u0027s ID"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public FreeCommand(int driverId, int taskId) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        this.driverId \u003d driverId;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        this.taskId \u003d taskId;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * Remove a driver from a task, and set the driver free during the corresponding time in the task."
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * The method will fail if the Task contains no EventTime, or the Driver\u0027s Schedule doesn\u0027t contain"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * the EventTime."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param driver driver to be freed"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @param task   task to be freed"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public static void freeDriverFromTask(Driver driver, Task task) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assert task.getEventTime().isPresent();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        // remove the task from driver\u0027s schedule"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        boolean isFreed \u003d driver.deleteFromSchedule(task.getEventTime().get());"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        assert isFreed;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        // remove driver from the task"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        task.setDriver(Optional.empty());"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        requireNonNull(model);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (!model.hasTask(taskId)) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            throw new CommandException(Task.MESSAGE_INVALID_ID);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (!model.hasDriver(driverId)) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Driver driver \u003d model.getDriver(driverId).get();"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        Task task \u003d model.getTask(taskId);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        freeDriverFromTask(driver, task);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return new CommandResult(String.format(MESSAGE_FREE_SUCCESS, task.getId(), driver.getName().fullName));"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public boolean equals(Object o) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (this \u003d\u003d o) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        if (o \u003d\u003d null || getClass() !\u003d o.getClass()) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        FreeCommand that \u003d (FreeCommand) o;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return driverId \u003d\u003d that.driverId"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "                \u0026\u0026 taskId \u003d\u003d that.taskId;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return Objects.hash(driverId, taskId);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tysng": 100
     }
   },
   {
@@ -18412,509 +19178,537 @@
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "tysng"
         },
-        "content": "import seedu.address.logic.commands.HelpCommand;"
+        "content": "import seedu.address.logic.commands.FreeCommand;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.ListCommand;"
+        "content": "import seedu.address.logic.commands.HelpCommand;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.logic.commands.ListCommand;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": " * Parses user input."
+        "content": "/**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": " */"
+        "content": " * Parses user input."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "public class AddressBookParser {"
+        "content": " */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "public class AddressBookParser {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "        switch (commandWord) {"
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        switch (commandWord) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "        case AddCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new AddCommandParser().parse(arguments);"
+        "content": "        case AddCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new AddCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "junnbang"
+          "gitId": "-"
         },
-        "content": "        case AddTaskCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return new AddTaskCommandParser().parse(arguments);"
+        "content": "        case AddTaskCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return new AddTaskCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "junnbang"
         },
-        "content": "        case EditCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new EditCommandParser().parse(arguments);"
+        "content": "        case EditCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new EditCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "junnbang"
+          "gitId": "-"
         },
-        "content": "        case EditTaskCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            return new EditTaskCommandParser().parse(arguments);"
+        "content": "        case EditTaskCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            return new EditTaskCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "tysng"
+          "gitId": "junnbang"
         },
-        "content": "        case AssignCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "tysng"
         },
-        "content": "            return new AssignCommandParser().parse(arguments);"
+        "content": "        case AssignCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "            return new AssignCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 66,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        case FreeCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "            return new FreeCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
         "content": "        case DeleteCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
         "content": "            return new DeleteCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 68,
+        "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 69,
+        "lineNumber": 73,
         "author": {
           "gitId": "junnbang"
         },
         "content": "        case DeleteIdCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 70,
+        "lineNumber": 74,
         "author": {
           "gitId": "junnbang"
         },
         "content": "            return new DeleteIdCommandParser().parse(arguments);"
       },
       {
-        "lineNumber": 71,
+        "lineNumber": 75,
         "author": {
           "gitId": "junnbang"
         },
         "content": ""
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
         "content": "        case ClearCommand.COMMAND_WORD:"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
         "content": "            return new ClearCommand();"
       },
       {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        case FindCommand.COMMAND_WORD:"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return new FindCommandParser().parse(arguments);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ListCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ListCommand();"
+        "content": "        case FindCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new FindCommandParser().parse(arguments);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "        case ExitCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        case ListCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "        case HelpCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "            return new HelpCommand();"
+        "content": "        case ExitCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+        "content": "        case HelpCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            return new HelpCommand();"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        default:"
       },
       {
         "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
@@ -18923,7 +19717,7 @@
     ],
     "authorContributionMap": {
       "junnbang": 12,
-      "tysng": 4,
+      "tysng": 8,
       "-": 76
     }
   },
@@ -20281,224 +21075,224 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_DRIVER;"
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "tysng"
+          "gitId": "junnbang"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;"
+        "content": "import seedu.address.logic.commands.EditTaskCommand;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.logic.commands.EditTaskCommand;"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": " * Parses input arguments and creates a new EditTaskCommand object"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "/**"
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " * Parses input arguments and creates a new EditTaskCommand object"
+        "content": "public class EditTaskCommandParser implements Parser\u003cEditTaskCommand\u003e {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "public class EditTaskCommandParser implements Parser\u003cEditTaskCommand\u003e {"
+        "content": "    /**"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditTaskCommand"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "     * and returns an EditTaskCommand object for execution."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Parses the given {@code String} of arguments in the context of the EditTaskCommand"
+        "content": "     *"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * and returns an EditTaskCommand object for execution."
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     *"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "    public EditTaskCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "        requireNonNull(args);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public EditTaskCommand parse(String args) throws ParseException {"
+        "content": "        ArgumentMultimap argMultimap \u003d"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        requireNonNull(args);"
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_GOODS, PREFIX_CUSTOMER, PREFIX_DATETIME);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        ArgumentMultimap argMultimap \u003d"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_GOODS, PREFIX_CUSTOMER,"
+        "content": "        int id;"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "tysng"
+          "gitId": "junnbang"
         },
-        "content": "                                            PREFIX_DATETIME, PREFIX_DRIVER, PREFIX_EVENT_TIME);"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        int id;"
+        "content": "            id \u003d ParserUtil.parseId(argMultimap.getPreamble());"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        try {"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            id \u003d ParserUtil.parseId(argMultimap.getPreamble());"
+        "content": "        }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } catch (ParseException e) {"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));"
+        "content": "        //Create a temp task to track what fields needs to be edited"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        EditTaskDescriptor editTaskDescriptor \u003d new EditTaskDescriptor();"
       },
       {
         "lineNumber": 39,
@@ -20512,241 +21306,150 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //Create a temp task to track what fields needs to be edited"
+        "content": "        //set description into temp task if any"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        EditTaskDescriptor editTaskDescriptor \u003d new EditTaskDescriptor();"
+        "content": "        if (argMultimap.getValue(PREFIX_GOODS).isPresent()) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GOODS).get()));"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //set description into temp task if any"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (argMultimap.getValue(PREFIX_GOODS).isPresent()) {"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GOODS).get()));"
+        "content": "        //set Customer into temp task if any"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        if (argMultimap.getValue(PREFIX_CUSTOMER).isPresent()) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            editTaskDescriptor.setCustomer(ParserUtil.parseId(argMultimap.getValue(PREFIX_CUSTOMER).get()));"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //set Customer into temp task if any"
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (argMultimap.getValue(PREFIX_CUSTOMER).isPresent()) {"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            editTaskDescriptor.setCustomer(ParserUtil.parseId(argMultimap.getValue(PREFIX_CUSTOMER).get()));"
+        "content": "        //set date for delivery into temp task if any"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            editTaskDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get()));"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //set date for delivery into temp task if any"
+        "content": "        }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            editTaskDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get()));"
+        "content": "        if (!editTaskDescriptor.isAnyFieldEdited()) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED + \"\\n\" + EditTaskCommand.MESSAGE_USAGE);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //set Driver into temp task if any"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (argMultimap.getValue(PREFIX_DRIVER).isPresent()) {"
+        "content": "        return new EditTaskCommand(id, editTaskDescriptor);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            editTaskDescriptor.setDriver(ParserUtil.parseId(argMultimap.getValue(PREFIX_DRIVER).get()));"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "        //set duration of delivery task into temp task if any"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "tysng"
-        },
-        "content": "        if (argMultimap.getValue(PREFIX_EVENT_TIME).isPresent()) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "tysng"
-        },
-        "content": "            editTaskDescriptor.setEventTime(ParserUtil.parseEventTime(argMultimap.getValue(PREFIX_EVENT_TIME).get()));"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "        if (!editTaskDescriptor.isAnyFieldEdited()) {"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "            throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED + \"\\n\" + EditTaskCommand.MESSAGE_USAGE);"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "junnbang"
-        },
-        "content": "        return new EditTaskCommand(id, editTaskDescriptor);"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "junnbang"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 61,
         "author": {
           "gitId": "junnbang"
         },
@@ -20754,8 +21457,310 @@
       }
     ],
     "authorContributionMap": {
-      "junnbang": 70,
-      "tysng": 4
+      "junnbang": 61
+    }
+  },
+  {
+    "path": "src/main/java/seedu/address/logic/parser/FreeCommandParser.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "package seedu.address.logic.parser;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static java.util.Objects.requireNonNull;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_DRIVER;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.logic.commands.FreeCommand;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " * Parses input arguments and creates a new EditCommand object"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "public class FreeCommandParser implements Parser\u003cFreeCommand\u003e {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    private static ParseException getWrongFormatException() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FreeCommand.MESSAGE_USAGE));"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * Parses the given {@code String} of arguments in the context of the EditCommand"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * and returns an EditCommand object for execution."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @return the parsed command"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public FreeCommand parse(String args) throws ParseException {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        requireNonNull(args);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, PREFIX_DRIVER, PREFIX_TASK);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        // driver and task must both be present"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        String driver \u003d argMultimap.getValue(PREFIX_DRIVER).orElseThrow(FreeCommandParser::getWrongFormatException);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        int driverId \u003d ParserUtil.parseId(driver);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        String task \u003d argMultimap.getValue(PREFIX_TASK).orElseThrow(FreeCommandParser::getWrongFormatException);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        int taskId \u003d ParserUtil.parseId(task);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return new FreeCommand(driverId, taskId);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "tysng": 42
     }
   },
   {
@@ -31461,376 +32466,376 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_NOT_AVAILABLE \u003d \"Driver(ID: %1$s) is not available\";"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "cheeyou"
+          "gitId": "junnbang"
         },
-        "content": "    //Identity fields"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    private static int idCount \u003d 1;"
+        "content": "    //Identity fields"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    private final int id;"
+        "content": "    private static int idCount \u003d 1;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": ""
+        "content": "    private final int id;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    //data fields"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    private Schedule schedule;"
+        "content": "    //data fields"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": ""
+        "content": "    private Schedule schedule;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "     * Every field must be present and not null."
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "     */"
+        "content": "     * Every field must be present and not null."
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    public Driver(Name name, Phone phone, Email email, Address address, Set\u003cTag\u003e tags) {"
+        "content": "     */"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        super(name, phone, email, address, tags);"
+        "content": "    public Driver(Name name, Phone phone, Email email, Address address, Set\u003cTag\u003e tags) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        schedule \u003d new Schedule();"
+        "content": "        super(name, phone, email, address, tags);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        id \u003d idCount;"
+        "content": "        schedule \u003d new Schedule();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        idCount++;"
+        "content": "        id \u003d idCount;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    }"
+        "content": "        idCount++;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    public int getId() {"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        return id;"
+        "content": "    public int getId() {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    }"
+        "content": "        return id;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    public int getIdCount() {"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        return idCount;"
+        "content": "    public int getIdCount() {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    }"
+        "content": "        return idCount;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    public Schedule getSchedule() {"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "        return schedule;"
+        "content": "    public Schedule getSchedule() {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": "    }"
+        "content": "        return schedule;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "cheeyou"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "tysng"
+          "gitId": "cheeyou"
         },
-        "content": "    public String suggestTime(EventTime eventTime) {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        return this.schedule.getSchedulingSuggestion(eventTime);"
+        "content": "    /**"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    }"
+        "content": "     * {@see Schedule#remove}"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "tysng"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "tysng"
         },
-        "content": "    public void assign(EventTime eventTime) throws SchedulingException {"
+        "content": "    public boolean deleteFromSchedule(EventTime durationToRemove) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "tysng"
         },
-        "content": "        this.schedule.add(eventTime);"
+        "content": "        return schedule.remove(durationToRemove);"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "tysng"
+          "gitId": "junnbang"
         },
         "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "tysng"
+          "gitId": "junnbang"
         },
         "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    public void addToSchedule(EventTime durationToAdd) throws SchedulingException {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        schedule.add(durationToAdd);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    public boolean isScheduleAvailable(EventTime durationToAdd) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        return schedule.isAvailable(durationToAdd);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    public String suggestTime(EventTime eventTime) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "        return this.schedule.getSchedulingSuggestion(eventTime);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "tysng"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
           "gitId": "tysng"
         },
         "content": ""
       },
       {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "     * Returns a string representation of the driver, with identity fields visible to the user."
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "     *"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "     * @return string representation of driver"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "        StringBuilder driverBuilder \u003d new StringBuilder();"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "        driverBuilder.append(\" Driver stats: \\n\")"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "                .append(\" id: \")"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "cheeyou"
-        },
-        "content": "                .append(getId())"
-      },
-      {
         "lineNumber": 66,
         "author": {
-          "gitId": "cheeyou"
+          "gitId": "tysng"
         },
-        "content": "                .append(super.toString());"
+        "content": "    public void assign(EventTime eventTime) throws SchedulingException {"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "cheeyou"
+          "gitId": "tysng"
         },
-        "content": "        return driverBuilder.toString();"
+        "content": "        this.schedule.add(eventTime);"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "cheeyou"
+          "gitId": "tysng"
         },
         "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "cheeyou"
+          "gitId": "tysng"
         },
         "content": ""
       },
@@ -31839,13 +32844,118 @@
         "author": {
           "gitId": "cheeyou"
         },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * Returns a string representation of the driver, with identity fields visible to the user."
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     * @return string representation of driver"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        StringBuilder driverBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        driverBuilder.append(\" Driver stats: \\n\")"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                .append(\" id: \")"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                .append(getId())"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "                .append(super.toString());"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "        return driverBuilder.toString();"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "cheeyou"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "cheeyou"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
       "cheeyou": 57,
-      "junnbang": 2,
-      "tysng": 11
+      "junnbang": 13,
+      "tysng": 15
     }
   },
   {
@@ -32807,9 +33917,9 @@
       {
         "lineNumber": 137,
         "author": {
-          "gitId": "tysng"
+          "gitId": "junnbang"
         },
-        "content": "    private boolean isAvailable(EventTime eventTime) {"
+        "content": "    public boolean isAvailable(EventTime eventTime) {"
       },
       {
         "lineNumber": 138,
@@ -32995,7 +34105,8 @@
       }
     ],
     "authorContributionMap": {
-      "tysng": 163
+      "junnbang": 1,
+      "tysng": 162
     }
   },
   {
@@ -38246,105 +39357,105 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.EventTime;"
+        "content": "import seedu.address.model.DriverManager;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.person.Customer;"
+        "content": "import seedu.address.model.EventTime;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.person.Driver;"
+        "content": "import seedu.address.model.person.Customer;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.task.Task;"
+        "content": "import seedu.address.model.person.CustomerManager;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.task.TaskStatus;"
+        "content": "import seedu.address.model.person.Driver;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "import seedu.address.model.person.Schedule;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " * Jackson-friendly version of {@link Task}."
+        "content": "import seedu.address.model.task.TaskStatus;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "public class JsonAdaptedTask {"
+        "content": "/**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": " * Jackson-friendly version of {@link Task}."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String MISSING_FIELD_MESSAGE_FORMAT \u003d \"Task\u0027s %s field is missing!\";"
+        "content": " */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "public class JsonAdaptedTask {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String INVALID_INTEGER_ID \u003d \"Task\u0027s %s field has a invalid integer id.\";"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String INVALID_DATE_FORMAT \u003d \"Invalid Date format. Date format should be \" + DATE_FORMAT;"
+        "content": "    public static final String MISSING_FIELD_MESSAGE_FORMAT \u003d \"Task\u0027s %s field is missing!\";"
       },
       {
         "lineNumber": 30,
@@ -38358,238 +39469,238 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    //using String data type for fields to accommodate null value and prevent precision loss."
+        "content": "    public static final String INVALID_INTEGER_ID \u003d \"Task\u0027s %s field has a invalid integer id.\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String id;"
+        "content": "    public static final String INVALID_DATE_FORMAT \u003d \"Invalid Date format. Date format should be \" + DATE_FORMAT;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String description;"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String customerId;"
+        "content": "    //using String data type for fields to accommodate null value and prevent precision loss."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String date;"
+        "content": "    private String id;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String driverId;"
+        "content": "    private String description;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String duration;"
+        "content": "    private String customerId;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private String status;"
+        "content": "    private String date;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "    private String driverId;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "    private String duration;"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Converts a given {@code Task} into this class for Jackson use."
+        "content": "    private String status;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public JsonAdaptedTask(Task task) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        id \u003d String.valueOf(task.getId());"
+        "content": "     * Converts a given {@code Task} into this class for Jackson use."
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        description \u003d task.getDescription().getValue();"
+        "content": "     */"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        customerId \u003d String.valueOf(task.getCustomer().getId());"
+        "content": "    public JsonAdaptedTask(Task task) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        date \u003d task.getDate().format(DATE_FORMATTER_FOR_USER_INPUT);"
+        "content": "        id \u003d String.valueOf(task.getId());"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        description \u003d task.getDescription().getValue();"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Optional\u003cDriver\u003e driver \u003d task.getDriver();"
+        "content": "        customerId \u003d String.valueOf(task.getCustomer().getId());"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (driver.isEmpty()) {"
+        "content": "        date \u003d task.getDate().format(DATE_FORMATTER_FOR_USER_INPUT);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            driverId \u003d null;"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else {"
+        "content": "        Optional\u003cDriver\u003e driver \u003d task.getDriver();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            driverId \u003d String.valueOf(task.getDriver().get().getId());"
+        "content": "        if (driver.isEmpty()) {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            driverId \u003d null;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Optional\u003cEventTime\u003e eventTime \u003d task.getEventTime();"
+        "content": "            driverId \u003d String.valueOf(task.getDriver().get().getId());"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (eventTime.isEmpty()) {"
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            duration \u003d null;"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else {"
+        "content": "        Optional\u003cEventTime\u003e eventTime \u003d task.getEventTime();"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            duration \u003d EventTime.getStringFromDuration(task.getEventTime().get());"
+        "content": "        if (eventTime.isEmpty()) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            duration \u003d null;"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        status \u003d task.getStatus().toString();"
+        "content": "            duration \u003d EventTime.getStringFromDuration(task.getEventTime().get());"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 65,
@@ -38603,259 +39714,259 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "        status \u003d task.getStatus().toString();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Constructs a {@code JsonAdaptedTask} with the given task details."
+        "content": "    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    @JsonCreator"
+        "content": "    /**"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public JsonAdaptedTask(@JsonProperty(\"taskId\") String id, @JsonProperty(\"description\") String description,"
+        "content": "     * Constructs a {@code JsonAdaptedTask} with the given task details."
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                           @JsonProperty(\"customerId\") String customerId, @JsonProperty(\"date\") String date,"
+        "content": "     */"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                           @JsonProperty(\"driverId\") String driverId, @JsonProperty(\"duration\") String duration,"
+        "content": "    @JsonCreator"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                           @JsonProperty(\"status\") String status) {"
+        "content": "    public JsonAdaptedTask(@JsonProperty(\"taskId\") String id, @JsonProperty(\"description\") String description,"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.id \u003d id;"
+        "content": "                           @JsonProperty(\"customerId\") String customerId, @JsonProperty(\"date\") String date,"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.description \u003d description;"
+        "content": "                           @JsonProperty(\"driverId\") String driverId, @JsonProperty(\"duration\") String duration,"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.customerId \u003d customerId;"
+        "content": "                           @JsonProperty(\"status\") String status) {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.date \u003d date;"
+        "content": "        this.id \u003d id;"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.driverId \u003d driverId;"
+        "content": "        this.description \u003d description;"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.duration \u003d duration;"
+        "content": "        this.customerId \u003d customerId;"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.status \u003d status;"
+        "content": "        this.date \u003d date;"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "        this.driverId \u003d driverId;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        this.duration \u003d duration;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "        this.status \u003d status;"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Converts this Jackson-friendly adapted task object into the model\u0027s {@code Task} object."
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted task."
+        "content": "    /**"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "     * Converts this Jackson-friendly adapted task object into the model\u0027s {@code Task} object."
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public Task toModelType() throws IllegalValueException {"
+        "content": "     *"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //temp"
+        "content": "     * @throws IllegalValueException if there were any data constraints violated in the adapted task."
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        // id ok, description ok, customerId NOT OK, date OK,"
+        "content": "     */"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //need to check against customerManager list if customer id valid"
+        "content": "    public Task toModelType(CustomerManager customerManager, DriverManager driverManager) throws IllegalValueException {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //then get the customer and input into task as parameter"
+        "content": "        //Task ID \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //SAME FOR DRIVER^"
+        "content": "        if (id \u003d\u003d null) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (id \u003d\u003d null) {"
+        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
+        "content": "                    Task.class.getSimpleName() + \" ID\"));"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                    Task.class.getSimpleName() + \" ID\"));"
+        "content": "        }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        if (!Task.isValidId(id)) {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (!Task.isValidId(id)) {"
+        "content": "            throw new IllegalValueException(String.format(INVALID_INTEGER_ID, Task.class.getSimpleName() + \" ID\"));"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(String.format(INVALID_INTEGER_ID, Task.class.getSimpleName() + \" ID\"));"
+        "content": "        }"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        final int modelTaskId \u003d Integer.parseInt(id);"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        final int modelTaskId \u003d Integer.parseInt(id);"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        //Description \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 103,
@@ -38925,63 +40036,63 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (customerId \u003d\u003d null) {"
+        "content": "        //Customer ID \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
+        "content": "        if (customerId \u003d\u003d null) {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                    Customer.class.getSimpleName() + \" ID\"));"
+        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "                    Customer.class.getSimpleName() + \" ID\"));"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (!Task.isValidId(customerId)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(String.format(INVALID_INTEGER_ID, Customer.class.getSimpleName() + \" ID\"));"
+        "content": "        if (!Task.isValidId(customerId) || !customerManager.hasCustomer(Integer.parseInt(customerId))) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            throw new IllegalValueException(Customer.MESSAGE_INVALID_ID);"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //check if customer exists in the list"
+        "content": "        }"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        // final Customer modelCustomer \u003d new Customer();"
+        "content": "        final Customer modelCustomer \u003d customerManager.getCustomer(Integer.parseInt(customerId));"
       },
       {
         "lineNumber": 121,
@@ -38995,315 +40106,315 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (date \u003d\u003d null) {"
+        "content": "        //Delivery Date \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
+        "content": "        if (date \u003d\u003d null) {"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                    LocalDate.class.getSimpleName()));"
+        "content": "            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "                    LocalDate.class.getSimpleName()));"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (!ParserUtil.isValidDate(date)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(INVALID_DATE_FORMAT);"
+        "content": "        if (!ParserUtil.isValidDate(date)) {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            throw new IllegalValueException(INVALID_DATE_FORMAT);"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        final LocalDate modelDate \u003d Task.getDateFromString(date);"
+        "content": "        }"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        final LocalDate modelDate \u003d Task.getDateFromString(date);"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //driverId can be null"
+        "content": ""
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (driverId !\u003d null \u0026\u0026 !Task.isValidId(driverId)) {"
+        "content": "        //Driver ID \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(String.format(INVALID_INTEGER_ID, Driver.class.getSimpleName() + \" ID\"));"
+        "content": "        //driverId can be null"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        //if driver is not null, check if the id a valid, then check if there exist a driver with driverId."
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //final Driver modelDriver \u003d new Driver();"
+        "content": "        if (driverId !\u003d null \u0026\u0026 (!Task.isValidId(driverId) || !driverManager.hasDriver(Integer.parseInt(driverId)))) {"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            throw new IllegalValueException(Driver.MESSAGE_INVALID_ID);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //Duration\u0027s can be null"
+        "content": "        }"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (duration !\u003d null \u0026\u0026 !EventTime.isValidEventTime(duration)) {"
+        "content": ""
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);"
+        "content": "        //Duration \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        //Duration\u0027s can be null"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        if (duration !\u003d null \u0026\u0026 !EventTime.isValidEventTime(duration)) {"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        Task task \u003d new Task(modelTaskId, modelDescription, modelDate);"
+        "content": "            throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (driverId !\u003d null) {"
+        "content": "        }"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //get driver from DriverManager"
+        "content": ""
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //assign driver to the task"
+        "content": "        //Create Task \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        Task task \u003d new Task(modelTaskId, modelDescription, modelDate);"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (duration !\u003d null) {"
+        "content": "        task.setCustomer(modelCustomer);"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            final EventTime modelEventTime \u003d EventTime.parse(duration);"
+        "content": ""
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            task.setEventTime(Optional.of(modelEventTime));"
+        "content": "        if (driverId !\u003d null) {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            Optional\u003cDriver\u003e driverOptional \u003d driverManager.getDriver(Integer.parseInt(driverId));"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "            if (driverOptional.isEmpty()) {"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        //status cannot be null"
+        "content": "                throw new IllegalValueException(Driver.MESSAGE_INVALID_ID);"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (status !\u003d null) {"
+        "content": "            }"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);"
+        "content": ""
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "            task.setDriver(driverOptional);"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        if (status.equals(TaskStatus.INCOMPLETE.toString())) {"
+        "content": "        }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            task.setStatus(TaskStatus.INCOMPLETE);"
+        "content": "        //if driver is not null, duration must be not null as well."
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else if (status.equals(TaskStatus.ON_GOING.toString())) {"
+        "content": "        if (duration !\u003d null) {"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            task.setStatus(TaskStatus.ON_GOING);"
+        "content": "            final EventTime modelEventTime \u003d EventTime.parse(duration);"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        } else {"
+        "content": "            task.setEventTime(Optional.of(modelEventTime));"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            //task is completed"
+        "content": "        }"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            task.setStatus(TaskStatus.COMPLETED);"
+        "content": ""
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "        //status cannot be null"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        if (status \u003d\u003d null) {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        return task;"
+        "content": "            throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 167,
@@ -39317,10 +40428,129 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        if (status.equals(TaskStatus.INCOMPLETE.toString())) {"
       },
       {
         "lineNumber": 169,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            task.setStatus(TaskStatus.INCOMPLETE);"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        } else if (status.equals(TaskStatus.ON_GOING.toString())) {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            task.setStatus(TaskStatus.ON_GOING);"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            //if status is ongoing, then load the eventTime to driver schedule"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            Driver driver \u003d driverManager.getDriver(Integer.parseInt(driverId)).get();"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            Schedule driverSchedule \u003d driver.getSchedule();"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            driverSchedule.add(EventTime.parse(duration));"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            //task is completed"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "            task.setStatus(TaskStatus.COMPLETED);"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        return task;"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 186,
         "author": {
           "gitId": "junnbang"
         },
@@ -39328,7 +40558,7 @@
       }
     ],
     "authorContributionMap": {
-      "junnbang": 169
+      "junnbang": 186
     }
   },
   {
@@ -40593,70 +41823,70 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.task.Task;"
+        "content": "import seedu.address.model.DriverManager;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "import seedu.address.model.task.TaskManager;"
+        "content": "import seedu.address.model.person.CustomerManager;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "import seedu.address.model.task.Task;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "/**"
+        "content": "import seedu.address.model.task.TaskManager;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " * A Task Manager that is serializable to JSON format."
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "junnbang"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "@JsonRootName(value \u003d \"taskmanager\")"
+        "content": " * A Task Manager that is serializable to JSON format."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "class JsonSerializableTaskManager {"
+        "content": " */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "@JsonRootName(value \u003d \"taskmanager\")"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"Task list contains duplicate task(s).\";"
+        "content": "class JsonSerializableTaskManager {"
       },
       {
         "lineNumber": 22,
@@ -40670,7 +41900,7 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    private final List\u003cJsonAdaptedTask\u003e tasks \u003d new ArrayList\u003c\u003e();"
+        "content": "    public static final String MESSAGE_DUPLICATE_TASK \u003d \"Task list contains duplicate task(s).\";"
       },
       {
         "lineNumber": 24,
@@ -40684,241 +41914,262 @@
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "    private final List\u003cJsonAdaptedTask\u003e tasks \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Constructs a {@code JsonSerializableTaskManager} with the given persons."
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    @JsonCreator"
+        "content": "     * Constructs a {@code JsonSerializableTaskManager} with the given persons."
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public JsonSerializableTaskManager(@JsonProperty(\"tasks\") List\u003cJsonAdaptedTask\u003e tasks) {"
+        "content": "     */"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        this.tasks.addAll(tasks);"
+        "content": "    @JsonCreator"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "    public JsonSerializableTaskManager(@JsonProperty(\"tasks\") List\u003cJsonAdaptedTask\u003e tasks) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        this.tasks.addAll(tasks);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Converts a given {@code TaskManager} into this class for Jackson use."
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}."
+        "content": "     * Converts a given {@code TaskManager} into this class for Jackson use."
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public JsonSerializableTaskManager(TaskManager source) {"
+        "content": "     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        tasks.addAll(source.getList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));"
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "    public JsonSerializableTaskManager(TaskManager source) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        tasks.addAll(source.getList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * Converts this task manager into the model\u0027s {@code TaskManager} object."
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     * @throws IllegalValueException if there were any data constraints violated."
+        "content": "     * Converts this task manager into the model\u0027s {@code TaskManager} object."
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "     */"
+        "content": "     *"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    public TaskManager toModelType() throws IllegalValueException {"
+        "content": "     * @throws IllegalValueException if there were any data constraints violated."
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        TaskManager taskManager \u003d new TaskManager();"
+        "content": "     */"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        for (JsonAdaptedTask jsonAdaptedTask : tasks) {"
+        "content": "    public TaskManager toModelType(CustomerManager customerManager,"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            Task task \u003d jsonAdaptedTask.toModelType();"
+        "content": "                                   DriverManager driverManager) throws IllegalValueException {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            if (taskManager.hasTask(task)) {"
+        "content": "        TaskManager taskManager \u003d new TaskManager();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);"
+        "content": "        for (JsonAdaptedTask jsonAdaptedTask : tasks) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            }"
+        "content": "            Task task \u003d jsonAdaptedTask.toModelType(customerManager, driverManager);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "            taskManager.addTask(task);"
+        "content": "            if (taskManager.hasTask(task)) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        }"
+        "content": "                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "        return taskManager;"
+        "content": "            }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "junnbang"
         },
-        "content": "    }"
+        "content": "            taskManager.addTask(task);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "junnbang"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 59,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "        return taskManager;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "junnbang"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
         "author": {
           "gitId": "junnbang"
         },
@@ -40926,7 +42177,7 @@
       }
     ],
     "authorContributionMap": {
-      "junnbang": 59
+      "junnbang": 62
     }
   },
   {
