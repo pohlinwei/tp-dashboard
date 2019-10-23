@@ -2487,485 +2487,485 @@
       {
         "lineNumber": 238,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "// tag::dataencryption[]"
+        "content": "// tag::merging[]"
       },
       {
         "lineNumber": 239,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+        "content": "\u003d\u003d\u003d Merging Feature"
       },
       {
         "lineNumber": 240,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Implementation"
       },
       {
         "lineNumber": 241,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "_{Explain here how the data encryption feature will be implemented}_"
+        "content": ""
       },
       {
         "lineNumber": 242,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "The merging mechanism is facilitated by abstract classes `MergeCommand`, `DoNotMergeCommand`, `MergeConfirmedCommand` and `MergeRejectedCommand` and their child classes, which implement the merging of profiles and policies respectively."
       },
       {
         "lineNumber": 243,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "// end::dataencryption[]"
+        "content": "These classes extend `Command`. The child classes of `MergeCommand` are `MergePersonCommand` and `MergePolicyCommand`. A `MergePersonCommand` object will store the `Person` created by the input and the corresponding `Person` that is stored in the model."
       },
       {
         "lineNumber": 244,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "Additionally, the main crucial operations implemented by this class are:"
       },
       {
         "lineNumber": 245,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": ""
       },
       {
         "lineNumber": 246,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "* `MergeCommand#getDifferences()` -- Finds all the different fields between the input person and the original person."
       },
       {
         "lineNumber": 247,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": "* `MergeCommand#removeFirstDifferentField()` -- Removes the first different field in the list of differences. This method is called after a merge decision has been input by the user and executed."
       },
       {
         "lineNumber": 248,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "* `MergeCommand#getNextMergeFieldType()` -- Returns the type of the field for the next merge."
       },
       {
         "lineNumber": 249,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": "* `MergeCommand#onlyOneMergeLeft()` -- Checks whether there is only one merge left."
       },
       {
         "lineNumber": 250,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
+        "content": ""
       },
       {
         "lineNumber": 251,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
+        "content": "The implementation of `MergePolicyCommand` is similar."
       },
       {
         "lineNumber": 252,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 253,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "*Logging Levels*"
+        "content": "The child classes of `MergeConfirmedCommand` are `MergePersonConfirmedCommand` and `MergePolicyConfirmedCommand`, while the child classes of `MergeRejectedCommand` are `MergePersonRejectedCommand` and `MergePolicyRejectedCommand`."
       },
       {
         "lineNumber": 254,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "They all implement `#execute(Model)`. Additionally, these classes implement an `#isLastMerge()` command to indicate if this is the last possible merge for the entity being merged."
       },
       {
         "lineNumber": 255,
         "author": {
-          "gitId": "-"
-        },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* `WARNING` : Can continue, but with caution"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser stores a boolean flag to indicate whether a merge is currently taking place. When it is set as true, all other commands will not be parsed and will be treated as invalid commands."
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "The AddressBookParser object also stores the MergeCommand object during a merge process. This object is then used by `MergeConfirmedCommand` objects and `MergeRejectedCommand` objects in their execution."
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "image::MergeClassDiagram.png[]"
+      },
+      {
         "lineNumber": 260,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": ""
       },
       {
         "lineNumber": 261,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": "Given below is an example usage scenario and how the merge mechanism behaves at each step."
       },
       {
         "lineNumber": 262,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 263,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": "Step 1. The user adds a duplicate profile. The `AddCommand` will throw a `DuplicatePersonWithMergeException` during its execution."
       },
       {
         "lineNumber": 264,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "This exception is thrown if there is at least one different field between the input person and the original person stored in the model. Else, a `DuplicatePersonWithoutMergeException` will be thrown."
       },
       {
         "lineNumber": 265,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": "The `DuplicatePersonWithMergeException` will finally be caught in the `CommandBox`. UI outputs the error message and a prompt to start a merge. `CommandBox` then constructs two command strings: one to proceed with the merge and one to reject the merge."
       },
       {
         "lineNumber": 266,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "This is done via `#standByForMerge(String, String)`. This string is then stored."
       },
       {
         "lineNumber": 267,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 268,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "Step 2. The user inputs yes or presses enter to proceed with the merge. `CommandBox` then calls `CommandExecutor#execute()` to execute the merge command it constructed previously."
       },
       {
         "lineNumber": 269,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d Testing"
+        "content": "When the command is being parsed in the `AddressBookParser` object, a new `MergeCommand` object is created and stored. The `isMerging` flag is also set to true."
       },
       {
         "lineNumber": 270,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "The execution of this command then returns a CommandResult that prompts the next merge."
       },
       {
         "lineNumber": 271,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 272,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "Step 3. The user inputs yes or presses enter to update the field that was displayed in the prompt. The `AddressBookParser` parses the input and creates a new `MergePersonConfirmedCommand` object."
       },
       {
         "lineNumber": 273,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d Dev Ops"
+        "content": "The `MergePersonConfirmedCommand` object obtains information for the merge from the `MergeCommand` object that was passed in as a parameter in the constructor."
       },
       {
         "lineNumber": 274,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "In the execution, a new `EditCommand` is created and `EditCommand#executeForMerge()` is used to update the person in the model. If the"
       },
       {
         "lineNumber": 275,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
+        "content": "`MergePersonConfirmedCommand#isLastMerge` returns false, `MergeCommand#removeFirstDifferentField` is called and the command result then shows a success message and the next prompt."
       },
       {
         "lineNumber": 276,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 277,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "[appendix]"
+        "content": "This process is shown in the sequence diagram below."
       },
       {
         "lineNumber": 278,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d Product Scope"
+        "content": ""
       },
       {
         "lineNumber": 279,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "image::MergeSequenceDiagram.png[]"
       },
       {
         "lineNumber": 280,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "*Target user profile*:"
+        "content": ""
       },
       {
         "lineNumber": 281,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 282,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": "* is an insurance agent"
+        "content": "If the user inputs an invalid command, the prompt will be displayed again along with an error message."
       },
       {
         "lineNumber": 283,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": "* is always meeting new clients, so needs to manage a significant number of contacts"
+        "content": ""
       },
       {
         "lineNumber": 284,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": "* needs to manage a significant number of insurance policies"
+        "content": "Step 4. The user inputs no to reject the update of the field that was displayed in the prompt. The input gets parsed in the `AddressBookParser` object and creates a new MergePersonRejectedCommand."
       },
       {
         "lineNumber": 285,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": "* always offering insurance schemes to client base"
+        "content": "If it is not the last merge, `MergeCommand#removeFirstDifferentField` is called. The command result then shows the next prompt. Else, it will show a success message of successfully updating the profile."
       },
       {
         "lineNumber": 286,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": "* finds it easier to understand visual data"
+        "content": ""
       },
       {
         "lineNumber": 287,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* prefer desktop apps over other types"
+        "content": "This is repeated until all merges have been prompted."
       },
       {
         "lineNumber": 288,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* can type fast"
+        "content": ""
       },
       {
         "lineNumber": 289,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* prefers typing over mouse input"
+        "content": "image::MergeActivityDiagram.png[]"
       },
       {
         "lineNumber": 290,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "* is reasonably comfortable using CLI apps"
+        "content": ""
       },
       {
         "lineNumber": 291,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "*Value proposition*: manages large number of contacts and insurance policies faster than a typical mouse/GUI driven app"
+        "content": ""
       },
       {
         "lineNumber": 293,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How merge command executes"
       },
       {
         "lineNumber": 294,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 295,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d User Stories"
+        "content": "* **Alternative 1 (current choice):** Stores the `MergeCommand` object in the `AddressBookParser` to be accessed by `MergeConfirmedCommand` and `MergeRejectedCommand` objects."
       },
       {
         "lineNumber": 296,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "** Pros: Finding of different fields is only executed once and can be used by future commands."
       },
       {
         "lineNumber": 297,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+        "content": "** Cons: More coupling between `MergeCommand` and other classes."
       },
       {
         "lineNumber": 298,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "* **Alternative 2:** Update the field in the command string and pass it on in the command result."
       },
       {
         "lineNumber": 299,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
+        "content": "** Pros: Less coupling between `MergeCommand` and other classes."
       },
       {
         "lineNumber": 300,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": "** Cons:"
       },
       {
         "lineNumber": 301,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "|Priority |As a ... |I want to ... |So that I can..."
+        "content": "*** User has to see the updated command (information that user does not need to see is displayed)."
       },
       {
         "lineNumber": 302,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
+        "content": "*** Command still has to be stored somewhere to be accessed by other future merge commands."
       },
       {
         "lineNumber": 303,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "// end::merging[]"
       },
       {
         "lineNumber": 304,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": "|`* * *` |user |add a new contact/policy |"
+        "content": ""
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// tag::dataencryption[]"
       },
       {
         "lineNumber": 306,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user |delete a contact/policy |remove entries that I no longer need"
+        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
       },
       {
         "lineNumber": 307,
@@ -2977,392 +2977,392 @@
       {
         "lineNumber": 308,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |insurance agent |find a person/policy by name |locate details of persons without having to go through the entire list"
+        "content": "_{Explain here how the data encryption feature will be implemented}_"
       },
       {
         "lineNumber": 309,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 310,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |insurance agent |predefine a custom set of policies |so I can select policies in this predefined set and make data entry faster"
+        "content": "// end::dataencryption[]"
       },
       {
         "lineNumber": 311,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 312,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |insurance agent |tag or untag clients |so I can target people belonging to different target groups"
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 313,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 314,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |insurance agent |generate basic statistics and data about my sales for the month| so I can visualise and keep track of them"
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 315,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 316,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |busy user |quickly check what commands  are available |so I do not have to remember all commands of the app"
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 317,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 318,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user handling many profiles and contacts |can use mass operations to change the same details across different people/policies |so I can speed up my workflow"
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 319,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 320,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |insurance agent with many clients |filter and sort people according to their policies and tags |so I can get information about a particular group of people quickly"
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 321,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 322,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user who prefers typing over using a mouse |interact with all aspects of GUI using commands only |"
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
       },
       {
         "lineNumber": 323,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 324,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "|`* * *` |insurance agent | view the key KPIs of my address book | track my performance"
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 325,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 326,
         "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": "|`* *` |user with not a strong memory |view all commands as a dropdown list |"
-      },
-      {
-        "lineNumber": 327,
-        "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 327,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[[Implementation-Configuration]]"
+      },
+      {
         "lineNumber": 328,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent prone to making mistakes during manual entry |I want to be sure that the details of buyers are valid without having to manually check every record |"
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 329,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 330,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent |start-up page to reflect key KPIs (e.g: sales in current quarter) |"
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 331,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 332,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent with many contacts |disallow creating duplicate profiles |so I need not worry about accidentally creating duplicate profiles"
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 333,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 334,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |clumsy insurance agent |retrieve deleted contacts from an archive of recently deleted contacts |"
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 335,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 336,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent |want to see which policies a new contact is eligible for |so I can quickly check eligible policies while constantly adding new contacts"
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 337,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 338,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |clumsy user |I can undo and redo my previous commands |to amend mistakes made by entering incorrect commands"
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 339,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 340,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent |I can export the data as an Excel document for easier sharing of data |so I can generate reports and and send these reports to authorities/other agents"
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 341,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 342,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent |I can group families who are under the same insurance |so it is easier to sell/manage plans for these people"
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 343,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 344,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent with new policies |I want to be able to filter people based on eligibility for these policies |for faster data entry"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 345,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 346,
         "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": "|`* *` |insurance agent |I can have details auto-filled into business/government forms |so I can save time keying in details I already have"
-      },
-      {
-        "lineNumber": 347,
-        "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 347,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*Target user profile*:"
+      },
+      {
         "lineNumber": 348,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`* *` |insurance agent |receive reminders for clients whose policies are almost due for renewal |so I can contact them to renew their insurance policy"
+        "content": ""
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "* is an insurance agent"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "chaitanyabaranwal"
         },
-        "content": "|`* *` |insurance agent |receive reminders when clients pass a certain age group |so I can contact them about the new policies that they are now eligible for."
+        "content": "* is always meeting new clients, so needs to manage a significant number of contacts"
       },
       {
         "lineNumber": 351,
         "author": {
-          "gitId": "-"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "* needs to manage a significant number of insurance policies"
       },
       {
         "lineNumber": 352,
         "author": {
-          "gitId": "-"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "|`* *` |user |hide \u003c\u003cprivate-contact-detail,private contact details\u003e\u003e by default |minimize chance of someone else seeing them by accident"
+        "content": "* always offering insurance schemes to client base"
       },
       {
         "lineNumber": 353,
         "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "* finds it easier to understand visual data"
+      },
+      {
+        "lineNumber": 354,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* prefer desktop apps over other types"
+      },
+      {
+        "lineNumber": 355,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* can type fast"
+      },
+      {
+        "lineNumber": 356,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* prefers typing over mouse input"
+      },
+      {
+        "lineNumber": 357,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* is reasonably comfortable using CLI apps"
+      },
+      {
+        "lineNumber": 358,
+        "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 354,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "|`* *` |insurance agent who prefers visualisation | view key performance indicators as diagrams |"
-      },
-      {
-        "lineNumber": 355,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 356,
-        "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": "|`*` |insurance agent with many clients |configure automatic greeting emails to policyholders |so I can maintain a good relationship with clients without manually sending individual emails"
-      },
-      {
-        "lineNumber": 357,
-        "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 358,
-        "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": "|`*` |user with personal preferences |configure the CLI |so I can speed up my workflow"
-      },
-      {
         "lineNumber": 359,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "*Value proposition*: manages large number of contacts and insurance policies faster than a typical mouse/GUI driven app"
       },
       {
         "lineNumber": 360,
         "author": {
-          "gitId": "chaitanyabaranwal"
-        },
-        "content": "|`*` |insurance agent with many clients |want to contact my policyholders with ease (such as email) |so I have a convenient method of communication"
-      },
-      {
-        "lineNumber": 361,
-        "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 361,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
         "lineNumber": 362,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
-        "content": "|`*` |busy user |auto-complete my commands |so I can perform operations and find the data I need quickly"
+        "content": "\u003d\u003d User Stories"
       },
       {
         "lineNumber": 363,
         "author": {
-          "gitId": "chaitanyabaranwal"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -3371,1372 +3371,1372 @@
         "author": {
           "gitId": "-"
         },
-        "content": "|`*` |user with many persons in the address book |sort persons by name |locate a person easily"
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
       },
       {
         "lineNumber": 365,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": ""
       },
       {
         "lineNumber": 366,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
       },
       {
         "lineNumber": 367,
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 368,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "|Priority |As a ... |I want to ... |So that I can..."
       },
       {
         "lineNumber": 369,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
       },
       {
         "lineNumber": 370,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": ""
       },
       {
         "lineNumber": 371,
         "author": {
-          "gitId": "-"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "|`* * *` |user |add a new contact/policy |"
       },
       {
         "lineNumber": 372,
         "author": {
           "gitId": "-"
         },
-        "content": "(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)"
+        "content": ""
       },
       {
         "lineNumber": 373,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "[discrete]"
+        "content": "|`* * *` |user |delete a contact/policy |remove entries that I no longer need"
       },
       {
         "lineNumber": 374,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: Add person"
+        "content": ""
       },
       {
         "lineNumber": 375,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Guarantees: +"
+        "content": "|`* * *` |insurance agent |find a person/policy by name |locate details of persons without having to go through the entire list"
       },
       {
         "lineNumber": 376,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 377,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "1. Person is added even if input fields might be invalid (see 1a)."
+        "content": "|`* * *` |insurance agent |predefine a custom set of policies |so I can select policies in this predefined set and make data entry faster"
       },
       {
         "lineNumber": 378,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 379,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "*MSS*"
+        "content": "|`* * *` |insurance agent |tag or untag clients |so I can target people belonging to different target groups"
       },
       {
         "lineNumber": 380,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 381,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "1.  User requests to add a person."
+        "content": "|`* * *` |insurance agent |generate basic statistics and data about my sales for the month| so I can visualise and keep track of them"
       },
       {
         "lineNumber": 382,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "2.  AddressBook adds the person."
+        "content": ""
       },
       {
         "lineNumber": 383,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": "|`* * *` |busy user |quickly check what commands  are available |so I do not have to remember all commands of the app"
       },
       {
         "lineNumber": 384,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 385,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "|`* * *` |user handling many profiles and contacts |can use mass operations to change the same details across different people/policies |so I can speed up my workflow"
       },
       {
         "lineNumber": 386,
         "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 387,
-        "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
+        "lineNumber": 387,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "|`* * *` |insurance agent with many clients |filter and sort people according to their policies and tags |so I can get information about a particular group of people quickly"
+      },
+      {
         "lineNumber": 388,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 389,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "* 1a. Either of the given NRIC, contact number, or email address is invalid."
+        "content": "|`* * *` |user who prefers typing over using a mouse |interact with all aspects of GUI using commands only |"
       },
       {
         "lineNumber": 390,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 391,
         "author": {
           "gitId": "larrylawl"
         },
-        "content": "[none]"
+        "content": "|`* * *` |insurance agent | view the key KPIs of my address book | track my performance"
       },
       {
         "lineNumber": 392,
         "author": {
           "gitId": "larrylawl"
         },
-        "content": "** 1a1. AddressBook adds the person into address book."
+        "content": ""
       },
       {
         "lineNumber": 393,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "** 1a1. AddressBook shows a warning."
+        "content": "|`* *` |user with not a strong memory |view all commands as a dropdown list |"
       },
       {
         "lineNumber": 394,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 395,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "* 1b. Duplicate profile is added."
+        "content": "|`* *` |insurance agent prone to making mistakes during manual entry |I want to be sure that the details of buyers are valid without having to manually check every record |"
       },
       {
         "lineNumber": 396,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 397,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "[none]"
+        "content": "|`* *` |insurance agent |start-up page to reflect key KPIs (e.g: sales in current quarter) |"
       },
       {
         "lineNumber": 398,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "** 1b1. AddressBook shows an error message and will attempt to merge the profile."
+        "content": ""
       },
       {
         "lineNumber": 399,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": "|`* *` |insurance agent with many contacts |disallow creating duplicate profiles |so I need not worry about accidentally creating duplicate profiles"
       },
       {
         "lineNumber": 400,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 401,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "|`* *` |clumsy insurance agent |retrieve deleted contacts from an archive of recently deleted contacts |"
       },
       {
         "lineNumber": 402,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 403,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "\u003d\u003d\u003d Use case: Edit person"
+        "content": "|`* *` |insurance agent |want to see which policies a new contact is eligible for |so I can quickly check eligible policies while constantly adding new contacts"
       },
       {
         "lineNumber": 404,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "Guarantees: +"
+        "content": ""
       },
       {
         "lineNumber": 405,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "|`* *` |clumsy user |I can undo and redo my previous commands |to amend mistakes made by entering incorrect commands"
       },
       {
         "lineNumber": 406,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "1. Person is editted even if input fields might be invalid (see 3a)."
+        "content": ""
       },
       {
         "lineNumber": 407,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": ""
+        "content": "|`* *` |insurance agent |I can export the data as an Excel document for easier sharing of data |so I can generate reports and and send these reports to authorities/other agents"
       },
       {
         "lineNumber": 408,
         "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 409,
-        "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
+        "lineNumber": 409,
+        "author": {
+          "gitId": "chaitanyabaranwal"
+        },
+        "content": "|`* *` |insurance agent |I can group families who are under the same insurance |so it is easier to sell/manage plans for these people"
+      },
+      {
         "lineNumber": 410,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "1.  User requests to find a person"
+        "content": ""
       },
       {
         "lineNumber": 411,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "2.  AddressBook shows details of the person"
+        "content": "|`* *` |insurance agent with new policies |I want to be able to filter people based on eligibility for these policies |for faster data entry"
       },
       {
         "lineNumber": 412,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "3.  User requests to edit that specific person."
+        "content": ""
       },
       {
         "lineNumber": 413,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "4.  AddressBook edits the person."
+        "content": "|`* *` |insurance agent |I can have details auto-filled into business/government forms |so I can save time keying in details I already have"
       },
       {
         "lineNumber": 414,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 415,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Use case ends."
+        "content": "|`* *` |insurance agent |receive reminders for clients whose policies are almost due for renewal |so I can contact them to renew their insurance policy"
       },
       {
         "lineNumber": 416,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 417,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "*Extensions*"
+        "content": "|`* *` |insurance agent |receive reminders when clients pass a certain age group |so I can contact them about the new policies that they are now eligible for."
       },
       {
         "lineNumber": 418,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 419,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "[none]"
+        "content": "|`* *` |user |hide \u003c\u003cprivate-contact-detail,private contact details\u003e\u003e by default |minimize chance of someone else seeing them by accident"
       },
       {
         "lineNumber": 420,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "* 1a. Person is not found"
+        "content": ""
       },
       {
         "lineNumber": 421,
         "author": {
           "gitId": "larrylawl"
         },
-        "content": "+"
+        "content": "|`* *` |insurance agent who prefers visualisation | view key performance indicators as diagrams |"
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "larrylawl"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 423,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "** 1a1. AddressBook shows an error message."
+        "content": "|`*` |insurance agent with many clients |configure automatic greeting emails to policyholders |so I can maintain a good relationship with clients without manually sending individual emails"
       },
       {
         "lineNumber": 424,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 425,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "Use case resumes at step 1."
+        "content": "|`*` |user with personal preferences |configure the CLI |so I can speed up my workflow"
       },
       {
         "lineNumber": 426,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
         "content": ""
       },
       {
         "lineNumber": 427,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "* 3a. Either of the given NRIC, contact number, or email address is invalid."
+        "content": "|`*` |insurance agent with many clients |want to contact my policyholders with ease (such as email) |so I have a convenient method of communication"
       },
       {
         "lineNumber": 428,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 429,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "[none]"
+        "content": "|`*` |busy user |auto-complete my commands |so I can perform operations and find the data I need quickly"
       },
       {
         "lineNumber": 430,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "chaitanyabaranwal"
         },
-        "content": "** 3a1. AddressBook adds the person into address book."
+        "content": ""
       },
       {
         "lineNumber": 431,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "** 3a2. AddressBook shows a warning."
+        "content": "|`*` |user with many persons in the address book |sort persons by name |locate a person easily"
       },
       {
         "lineNumber": 432,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": "+"
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 433,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
         "content": ""
       },
       {
         "lineNumber": 434,
         "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "* *a. At any time, User requests to cancel the edit."
-      },
-      {
-        "lineNumber": 435,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 436,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 437,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "** *a1. Address books requests to confirm the cancellation."
-      },
-      {
-        "lineNumber": 438,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "** *a1. User confirms the cancellation."
-      },
-      {
-        "lineNumber": 439,
-        "author": {
-          "gitId": "larrylawl"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 440,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 441,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[discrete]"
-      },
-      {
-        "lineNumber": 442,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "\u003d\u003d\u003d Use case: Delete contact"
-      },
-      {
-        "lineNumber": 443,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 444,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 445,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 446,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "1.  User requests to list contacts"
-      },
-      {
-        "lineNumber": 447,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "2.  AddressBook shows a list of contacts"
-      },
-      {
-        "lineNumber": 448,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "3.  User requests to delete a specific contact in the list"
-      },
-      {
-        "lineNumber": 449,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "4.  AddressBook deletes the contact"
-      },
-      {
-        "lineNumber": 450,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "5.  Contact appears in the recycling bin"
-      },
-      {
-        "lineNumber": 451,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 452,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 453,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 454,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 455,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 456,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 457,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "* 2a. The list is empty."
-      },
-      {
-        "lineNumber": 458,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 459,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 460,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 461,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "* 3a. The given index is invalid."
-      },
-      {
-        "lineNumber": 462,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 463,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 464,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "** 3a1. AddressBook shows an error message."
-      },
-      {
-        "lineNumber": 465,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 466,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "Use case resumes at step 2."
-      },
-      {
-        "lineNumber": 467,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 468,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[discrete]"
-      },
-      {
-        "lineNumber": 469,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "\u003d\u003d\u003d Use case: Assigning a policy to a person"
-      },
-      {
-        "lineNumber": 470,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 471,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 472,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 473,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "1.  User requests to list persons"
-      },
-      {
-        "lineNumber": 474,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "2.  AddressBook shows a list of persons"
-      },
-      {
-        "lineNumber": 475,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "3.  User requests to assign a policy to a specific person"
-      },
-      {
-        "lineNumber": 476,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "4.  The policy gets assigned to the person"
-      },
-      {
-        "lineNumber": 477,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 478,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 479,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 480,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 481,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 482,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 483,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "* 2a. The list is empty."
-      },
-      {
-        "lineNumber": 484,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 485,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 486,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 487,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "* 3a. The given index is invalid."
-      },
-      {
-        "lineNumber": 488,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 489,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 490,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "** 3a1. AddressBook shows an error message."
-      },
-      {
-        "lineNumber": 491,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 492,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "Use case resumes at step 2."
-      },
-      {
-        "lineNumber": 493,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 494,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "* 3b. The person is not eligible for the policy."
-      },
-      {
-        "lineNumber": 495,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 496,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 497,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "** 3b1. AddressBook shows an error message and returns a list of policies the person is eligible for."
-      },
-      {
-        "lineNumber": 498,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 499,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "Use case resumes at step 2."
-      },
-      {
-        "lineNumber": 500,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 501,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 502,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "[discrete]"
-      },
-      {
-        "lineNumber": 503,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "\u003d\u003d\u003d Use case: Restoring recently deleted contact"
-      },
-      {
-        "lineNumber": 504,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 505,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 506,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 507,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "1.  User requests to list recently deleted contacts from recycling bin"
-      },
-      {
-        "lineNumber": 508,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "2.  AddressBook shows a list of contacts"
-      },
-      {
-        "lineNumber": 509,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "3.  User requests to restore a specific contact in the list"
-      },
-      {
-        "lineNumber": 510,
-        "author": {
-          "gitId": "ybchen97"
-        },
-        "content": "4.  AddressBook restores the contact"
-      },
-      {
-        "lineNumber": 511,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 512,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 513,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 514,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 515,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 516,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 517,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* 2a. The list is empty."
-      },
-      {
-        "lineNumber": 518,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 519,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 520,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 521,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* 3a. The given index is invalid."
-      },
-      {
-        "lineNumber": 522,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 523,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 524,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "** 3a1. AddressBook shows an error message."
-      },
-      {
-        "lineNumber": 525,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 526,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Use case resumes at step 2."
-      },
-      {
-        "lineNumber": 527,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 528,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "\u003d\u003d\u003d Use case: Merging a duplicate person with different fields"
-      },
-      {
-        "lineNumber": 529,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 530,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 531,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 532,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "1.  User requests to add a person."
-      },
-      {
-        "lineNumber": 533,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "2.  AddressBook indicates that this person already exists and prompts a merge."
-      },
-      {
-        "lineNumber": 534,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "3.  User indicates whether or not to edit this profile."
-      },
-      {
-        "lineNumber": 535,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "4.  A different field is displayed and asks the user whether or not to update this field."
-      },
-      {
-        "lineNumber": 536,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "5.  Steps 3 and 4 repeat until decisions whether or not to merge different fields have been completed."
-      },
-      {
-        "lineNumber": 537,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 538,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 539,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 540,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 541,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 542,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 543,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "* *a. User indicates to stop the merging process."
-      },
-      {
-        "lineNumber": 544,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 545,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 546,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "** 3a1. The user inputs an invalid command."
-      },
-      {
-        "lineNumber": 547,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "** 3a2. The AddressBook indicates an error and prompts the merge again."
-      },
-      {
-        "lineNumber": 548,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 549,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "Use case resumes at 4."
-      },
-      {
-        "lineNumber": 550,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 551,
-        "author": {
           "gitId": "-"
         },
         "content": "_{More to be added}_"
       },
       {
-        "lineNumber": 552,
+        "lineNumber": 435,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 553,
+        "lineNumber": 436,
         "author": {
           "gitId": "-"
         },
         "content": "[appendix]"
       },
       {
-        "lineNumber": 554,
+        "lineNumber": 437,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Non Functional Requirements"
+        "content": "\u003d\u003d Use Cases"
       },
       {
-        "lineNumber": 555,
+        "lineNumber": 438,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 439,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)"
+      },
+      {
+        "lineNumber": 440,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 441,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "\u003d\u003d\u003d Use case: Add person"
+      },
+      {
+        "lineNumber": 442,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "Guarantees: +"
+      },
+      {
+        "lineNumber": 443,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 444,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "1. Person is added even if input fields might be invalid (see 1a)."
+      },
+      {
+        "lineNumber": 445,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 446,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "*MSS*"
+      },
+      {
+        "lineNumber": 447,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 448,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "1.  User requests to add a person."
+      },
+      {
+        "lineNumber": 449,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "2.  AddressBook adds the person."
+      },
+      {
+        "lineNumber": 450,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 451,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 452,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 453,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "*Extensions*"
+      },
+      {
+        "lineNumber": 454,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 455,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 456,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "* 1a. Either of the given NRIC, contact number, or email address is invalid."
+      },
+      {
+        "lineNumber": 457,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 458,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 459,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** 1a1. AddressBook adds the person into address book."
+      },
+      {
+        "lineNumber": 460,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** 1a1. AddressBook shows a warning."
+      },
+      {
+        "lineNumber": 461,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 462,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "* 1b. Duplicate profile is added."
+      },
+      {
+        "lineNumber": 463,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 464,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 465,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** 1b1. AddressBook shows an error message and will attempt to merge the profile."
+      },
+      {
+        "lineNumber": 466,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 467,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 468,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 469,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 470,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "\u003d\u003d\u003d Use case: Edit person"
+      },
+      {
+        "lineNumber": 471,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "Guarantees: +"
+      },
+      {
+        "lineNumber": 472,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 473,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "1. Person is editted even if input fields might be invalid (see 3a)."
+      },
+      {
+        "lineNumber": 474,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 475,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "*MSS*"
+      },
+      {
+        "lineNumber": 476,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 477,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "1.  User requests to find a person"
+      },
+      {
+        "lineNumber": 478,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "2.  AddressBook shows details of the person"
+      },
+      {
+        "lineNumber": 479,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "3.  User requests to edit that specific person."
+      },
+      {
+        "lineNumber": 480,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "4.  AddressBook edits the person."
+      },
+      {
+        "lineNumber": 481,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 482,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 483,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 484,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "*Extensions*"
+      },
+      {
+        "lineNumber": 485,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 486,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 487,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "* 1a. Person is not found"
+      },
+      {
+        "lineNumber": 488,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 489,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 490,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** 1a1. AddressBook shows an error message."
+      },
+      {
+        "lineNumber": 491,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 492,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "Use case resumes at step 1."
+      },
+      {
+        "lineNumber": 493,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 494,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "* 3a. Either of the given NRIC, contact number, or email address is invalid."
+      },
+      {
+        "lineNumber": 495,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 496,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 497,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** 3a1. AddressBook adds the person into address book."
+      },
+      {
+        "lineNumber": 498,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** 3a2. AddressBook shows a warning."
+      },
+      {
+        "lineNumber": 499,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 500,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 501,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "* *a. At any time, User requests to cancel the edit."
+      },
+      {
+        "lineNumber": 502,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 503,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 504,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** *a1. Address books requests to confirm the cancellation."
+      },
+      {
+        "lineNumber": 505,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "** *a1. User confirms the cancellation."
+      },
+      {
+        "lineNumber": 506,
+        "author": {
+          "gitId": "larrylawl"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 507,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 508,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 509,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "\u003d\u003d\u003d Use case: Delete contact"
+      },
+      {
+        "lineNumber": 510,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 511,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*MSS*"
+      },
+      {
+        "lineNumber": 512,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 513,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "1.  User requests to list contacts"
+      },
+      {
+        "lineNumber": 514,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "2.  AddressBook shows a list of contacts"
+      },
+      {
+        "lineNumber": 515,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "3.  User requests to delete a specific contact in the list"
+      },
+      {
+        "lineNumber": 516,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "4.  AddressBook deletes the contact"
+      },
+      {
+        "lineNumber": 517,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "5.  Contact appears in the recycling bin"
+      },
+      {
+        "lineNumber": 518,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 519,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 520,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 521,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "*Extensions*"
+      },
+      {
+        "lineNumber": 522,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 523,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 524,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "* 2a. The list is empty."
+      },
+      {
+        "lineNumber": 525,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 526,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 527,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 528,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "* 3a. The given index is invalid."
+      },
+      {
+        "lineNumber": 529,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 530,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 531,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "** 3a1. AddressBook shows an error message."
+      },
+      {
+        "lineNumber": 532,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 533,
+        "author": {
+          "gitId": "ybchen97"
+        },
+        "content": "Use case resumes at step 2."
+      },
+      {
+        "lineNumber": 534,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 535,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 536,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "\u003d\u003d\u003d Use case: Assigning a policy to a person"
+      },
+      {
+        "lineNumber": 537,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 538,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*MSS*"
+      },
+      {
+        "lineNumber": 539,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 540,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "1.  User requests to list persons"
+      },
+      {
+        "lineNumber": 541,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "2.  AddressBook shows a list of persons"
+      },
+      {
+        "lineNumber": 542,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "3.  User requests to assign a policy to a specific person"
+      },
+      {
+        "lineNumber": 543,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "4.  The policy gets assigned to the person"
+      },
+      {
+        "lineNumber": 544,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 545,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 546,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 547,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*Extensions*"
+      },
+      {
+        "lineNumber": 548,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 549,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 550,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* 2a. The list is empty."
+      },
+      {
+        "lineNumber": 551,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 552,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 553,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 554,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* 3a. The given index is invalid."
+      },
+      {
+        "lineNumber": 555,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
         "lineNumber": 556,
         "author": {
           "gitId": "-"
         },
-        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": "[none]"
       },
       {
         "lineNumber": 557,
         "author": {
           "gitId": "-"
         },
-        "content": ".  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage."
+        "content": "** 3a1. AddressBook shows an error message."
       },
       {
         "lineNumber": 558,
         "author": {
           "gitId": "-"
         },
-        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
+        "content": "+"
       },
       {
         "lineNumber": 559,
         "author": {
-          "gitId": "larrylawl"
+          "gitId": "-"
         },
-        "content": ".  Should display visual representations as long as Excel is installed."
+        "content": "Use case resumes at step 2."
       },
       {
         "lineNumber": 560,
@@ -4748,135 +4748,135 @@
       {
         "lineNumber": 561,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "_{More to be added}_"
+        "content": "* 3b. The person is not eligible for the policy."
       },
       {
         "lineNumber": 562,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 563,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "[appendix]"
+        "content": "[none]"
       },
       {
         "lineNumber": 564,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": "** 3b1. AddressBook shows an error message and returns a list of policies the person is eligible for."
       },
       {
         "lineNumber": 565,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 566,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": "Use case resumes at step 2."
       },
       {
         "lineNumber": 567,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": ""
       },
       {
         "lineNumber": 568,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 569,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": "[[private-contact-detail]] Private contact detail::"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 570,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": "A contact detail that is not meant to be shared with others"
+        "content": "\u003d\u003d\u003d Use case: Restoring recently deleted contact"
       },
       {
         "lineNumber": 571,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
         "content": ""
       },
       {
         "lineNumber": 572,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": "[appendix]"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 573,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": ""
       },
       {
         "lineNumber": 574,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": ""
+        "content": "1.  User requests to list recently deleted contacts from recycling bin"
       },
       {
         "lineNumber": 575,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": "*Product Name*"
+        "content": "2.  AddressBook shows a list of contacts"
       },
       {
         "lineNumber": 576,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": ""
+        "content": "3.  User requests to restore a specific contact in the list"
       },
       {
         "lineNumber": 577,
         "author": {
-          "gitId": "-"
+          "gitId": "ybchen97"
         },
-        "content": "Author: ..."
+        "content": "4.  AddressBook restores the contact"
       },
       {
         "lineNumber": 578,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 579,
         "author": {
           "gitId": "-"
         },
-        "content": "Pros:"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 580,
@@ -4890,357 +4890,357 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 582,
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": ""
       },
       {
         "lineNumber": 583,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 584,
         "author": {
           "gitId": "-"
         },
-        "content": "Cons:"
+        "content": "* 2a. The list is empty."
       },
       {
         "lineNumber": 585,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 586,
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 587,
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": ""
       },
       {
         "lineNumber": 588,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* 3a. The given index is invalid."
       },
       {
         "lineNumber": 589,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "+"
       },
       {
         "lineNumber": 590,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": "[none]"
       },
       {
         "lineNumber": 591,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "** 3a1. AddressBook shows an error message."
       },
       {
         "lineNumber": 592,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": "+"
       },
       {
         "lineNumber": 593,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Use case resumes at step 2."
       },
       {
         "lineNumber": 594,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 595,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": "\u003d\u003d\u003d Use case: Merging a duplicate person with different fields"
       },
       {
         "lineNumber": 596,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 597,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 598,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 599,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ". Initial launch"
+        "content": "1.  User requests to add a person."
       },
       {
         "lineNumber": 600,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "2.  AddressBook indicates that this person already exists and prompts a merge."
       },
       {
         "lineNumber": 601,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": "3.  User indicates whether or not to edit this profile."
       },
       {
         "lineNumber": 602,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ".. Double-click the jar file +"
+        "content": "4.  A different field is displayed and asks the user whether or not to update this field."
       },
       {
         "lineNumber": 603,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+        "content": "5.  Steps 3 and 4 repeat until decisions whether or not to merge different fields have been completed."
       },
       {
         "lineNumber": 604,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 605,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ". Saving window preferences"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 606,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
         "content": ""
       },
       {
         "lineNumber": 607,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 608,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
+        "content": ""
       },
       {
         "lineNumber": 609,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "   Expected: The most recent window size and location is retained."
+        "content": "[none]"
       },
       {
         "lineNumber": 610,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "* *a. User indicates to stop the merging process."
       },
       {
         "lineNumber": 611,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "_{ more test cases ... }_"
+        "content": "+"
       },
       {
         "lineNumber": 612,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 613,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": "\u003d\u003d\u003d Deleting a person"
+        "content": "** 3a1. The user inputs an invalid command."
       },
       {
         "lineNumber": 614,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "** 3a2. The AddressBook indicates an error and prompts the merge again."
       },
       {
         "lineNumber": 615,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ". Deleting a person while all persons are listed"
+        "content": "+"
       },
       {
         "lineNumber": 616,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "Use case resumes at 4."
       },
       {
         "lineNumber": 617,
         "author": {
-          "gitId": "-"
+          "gitId": "chowyiyin"
         },
-        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+        "content": ""
       },
       {
         "lineNumber": 618,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 1` +"
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 619,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+        "content": ""
       },
       {
         "lineNumber": 620,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 0` +"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 621,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+        "content": "\u003d\u003d Non Functional Requirements"
       },
       {
         "lineNumber": 622,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+        "content": ""
       },
       {
         "lineNumber": 623,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Similar to previous."
+        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
       },
       {
         "lineNumber": 624,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage."
       },
       {
         "lineNumber": 625,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
       },
       {
         "lineNumber": 626,
         "author": {
-          "gitId": "-"
+          "gitId": "larrylawl"
         },
-        "content": ""
+        "content": ".  Should display visual representations as long as Excel is installed."
       },
       {
         "lineNumber": 627,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Saving data"
+        "content": ""
       },
       {
         "lineNumber": 628,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 629,
         "author": {
           "gitId": "-"
         },
-        "content": ". Dealing with missing/corrupted data files"
+        "content": ""
       },
       {
         "lineNumber": 630,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 631,
         "author": {
           "gitId": "-"
         },
-        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+        "content": "\u003d\u003d Glossary"
       },
       {
         "lineNumber": 632,
@@ -5254,15 +5254,484 @@
         "author": {
           "gitId": "-"
         },
+        "content": "[[mainstream-os]] Mainstream OS::"
+      },
+      {
+        "lineNumber": 634,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Windows, Linux, Unix, OS-X"
+      },
+      {
+        "lineNumber": 635,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 636,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[[private-contact-detail]] Private contact detail::"
+      },
+      {
+        "lineNumber": 637,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "A contact detail that is not meant to be shared with others"
+      },
+      {
+        "lineNumber": 638,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 639,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 640,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d Product Survey"
+      },
+      {
+        "lineNumber": 641,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 642,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*Product Name*"
+      },
+      {
+        "lineNumber": 643,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 644,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Author: ..."
+      },
+      {
+        "lineNumber": 645,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 646,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Pros:"
+      },
+      {
+        "lineNumber": 647,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 648,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* ..."
+      },
+      {
+        "lineNumber": 649,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* ..."
+      },
+      {
+        "lineNumber": 650,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 651,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Cons:"
+      },
+      {
+        "lineNumber": 652,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 653,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* ..."
+      },
+      {
+        "lineNumber": 654,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* ..."
+      },
+      {
+        "lineNumber": 655,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 656,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 657,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d Instructions for Manual Testing"
+      },
+      {
+        "lineNumber": 658,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 659,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Given below are instructions to test the app manually."
+      },
+      {
+        "lineNumber": 660,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 661,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[NOTE]"
+      },
+      {
+        "lineNumber": 662,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+      },
+      {
+        "lineNumber": 663,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 664,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
+      },
+      {
+        "lineNumber": 665,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 666,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Initial launch"
+      },
+      {
+        "lineNumber": 667,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 668,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Download the jar file and copy into an empty folder"
+      },
+      {
+        "lineNumber": 669,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Double-click the jar file +"
+      },
+      {
+        "lineNumber": 670,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+      },
+      {
+        "lineNumber": 671,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 672,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Saving window preferences"
+      },
+      {
+        "lineNumber": 673,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 674,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+      },
+      {
+        "lineNumber": 675,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
+      },
+      {
+        "lineNumber": 676,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: The most recent window size and location is retained."
+      },
+      {
+        "lineNumber": 677,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 678,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{ more test cases ... }_"
+      },
+      {
+        "lineNumber": 679,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 680,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Deleting a person"
+      },
+      {
+        "lineNumber": 681,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 682,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Deleting a person while all persons are listed"
+      },
+      {
+        "lineNumber": 683,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 684,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+      },
+      {
+        "lineNumber": 685,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Test case: `delete 1` +"
+      },
+      {
+        "lineNumber": 686,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+      },
+      {
+        "lineNumber": 687,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Test case: `delete 0` +"
+      },
+      {
+        "lineNumber": 688,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+      },
+      {
+        "lineNumber": 689,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+      },
+      {
+        "lineNumber": 690,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: Similar to previous."
+      },
+      {
+        "lineNumber": 691,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 692,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{ more test cases ... }_"
+      },
+      {
+        "lineNumber": 693,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 694,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Saving data"
+      },
+      {
+        "lineNumber": 695,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 696,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Dealing with missing/corrupted data files"
+      },
+      {
+        "lineNumber": 697,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 698,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+      },
+      {
+        "lineNumber": 699,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 700,
+        "author": {
+          "gitId": "-"
+        },
         "content": "_{ more test cases ... }_"
       }
     ],
     "authorContributionMap": {
-      "chowyiyin": 52,
+      "chowyiyin": 102,
       "larrylawl": 72,
-      "chaitanyabaranwal": 56,
+      "chaitanyabaranwal": 54,
       "ybchen97": 31,
-      "-": 422
+      "-": 441
     }
   },
   {
@@ -11664,6 +12133,1160 @@
     "authorContributionMap": {
       "larrylawl": 2,
       "-": 47
+    }
+  },
+  {
+    "path": "docs/diagrams/MergeActivityDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ":Prompt user for merge;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ":User executes command;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "while (has unprompted different fields)"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "    :prompt next merge;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "    if () then ([\"yes\" or \"\"])"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "    :update field;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "    else ([\"no\"])"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "    :skip merge;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "    endif"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "endwhile"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "chowyiyin": 20
+    }
+  },
+  {
+    "path": "docs/diagrams/MergeClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "abstract class MergeCommand"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "class MergePersonCommand"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand \u003c|-- MergePersonCommand"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand : {abstract} getDifferences(): String[]"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand : {abstract} removeFirstDifferentField()"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand : {abstract} getNextMergeType(): String"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand : {abstract} onlyOneMergeLeft(): boolean"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand : equals(Object): boolean"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : originalPerson: Person"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : inputPerson: Person"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : differentFields: ArrayList\u003cString[]\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : MergePersonCommand(Person)"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : execute(Model): CommandResult"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : updateOriginalPerson(Person)"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : getNextMergePrompt(): String"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : getDifferences(): String[]"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : removeFirstDifferentField()"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : getNextMergeType(): String"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : getInputPerson(): Person"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : getOriginalPerson(): Person"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : onlyOneMergeLeft(): boolean"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand : equals(Object)"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "abstract class MergeConfirmedCommand"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "class MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeConfirmedCommand \u003c|-- MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeConfirmedCommand : {abstract} execute(Model): CommandResult"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeConfirmedCommand : {abstract} isLastMerge(Model): boolean"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeConfirmedCommand : equals(Object): boolean"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand \u003c-- MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand : MergePersonConfirmedCommand(MergePersonCommand)"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand : execute(Model): CommandResult"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand : isLastMerge(Model): boolean"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "abstract class MergeRejectedCommand"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "class MergePersonRejectedCommand"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeRejectedCommand \u003c|-- MergePersonRejectedCommand"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeRejectedCommand : {abstract} execute(Model): CommandResult"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeRejectedCommand : {abstract} isLastMerge(): boolean"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeRejectedCommand : equals(Object): boolean"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand \u003c-- MergePersonRejectedCommand"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonRejectedCommand : MergePersonRejectedCommand(MergePersonCommand)"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonRejectedCommand : execute(Model): CommandResult"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonRejectedCommand : isLastMerge(Model): boolean"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonRejectedCommand : equals(Object): boolean"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "class DoNotMergePersonCommand"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "DoNotMergePersonCommand : originalPerson: Person"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "DoNotMergePersonCommand : inputPerson: Person"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "DoNotMergePersonCommand : DoNotMergePersonCommand(Person)"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "DoNotMergePersonCommand : execute(Model): CommandResult"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "DoNotMergePersonCommand : equals(Object): boolean"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "class AddressBookParser"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser : ...()"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergeCommand \u003c-- AddressBookParser"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser : isMerging: boolean"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser : mergeType: String"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser : parseMerge(String): Command"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "chowyiyin": 69
+    }
+  },
+  {
+    "path": "docs/diagrams/MergeSequenceDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "box Logic LOGIC_COLOR_T2"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "participant \":LogicManager\" as LogicManager LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "participant \":AddressBookParser\" as AddressBookParser LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "participant \":MergePersonCommandParser\" as MergePersonCommandParser LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "participant \":MergePersonCommand\" as MergePersonCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "participant \":MergePersonConfirmedCommand\" as MergePersonConfirmedCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "participant \":EditCommand\" as EditCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "[-\u003eLogicManager: execute(\"merge add...\")"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate LogicManager"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "LogicManager -\u003e AddressBookParser: parse(String)"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate AddressBookParser"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser -\u003e MergePersonCommandParser: parse(String)"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate MergePersonCommandParser"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "create MergePersonCommand"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommandParser -\u003e MergePersonCommand: new MergePersonCommand(Person, Person)"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate MergePersonCommand"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand --\u003e MergePersonCommandParser"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate MergePersonCommand"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommandParser --\u003e AddressBookParser"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate MergePersonCommandParser"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser --\u003e LogicManager"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate AddressBookParser"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "LogicManager -\u003e MergePersonCommand: execute(Model)"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate MergePersonCommand"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand -\u003e MergePersonCommand: getDifferences()"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand -\u003e MergePersonCommand: getNextMergePrompt()"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand --\u003e LogicManager: CommandResult(String)"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "note left"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "Includes the prompt for the next merge"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "end note"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate MergePersonCommand"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "\u003c-- LogicManager"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate LogicManager"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "[-\u003eLogicManager: execute(\"yes\")"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate LogicManager"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "LogicManager -\u003e AddressBookParser: parse(String)"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate AddressBookParser"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "create MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser -\u003e MergePersonConfirmedCommand: new MergePersonConfirmedCommand(MergePersonCommand)"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand --\u003e AddressBookParser"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "AddressBookParser --\u003e LogicManager"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate AddressBookParser"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "LogicManager -\u003e MergePersonConfirmedCommand: execute(Model)"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand -\u003e MergePersonCommand: getOriginalPerson()"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand --\u003e MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand -\u003e MergePersonCommand: getInputPerson();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand --\u003e MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand -\u003e MergePersonCommand: getNextMergeFieldType();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonCommand --\u003e MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "create EditCommand"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand -\u003e EditCommand: new EditCommand()"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "activate EditCommand"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "EditCommand --\u003e MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate EditCommand"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand -\u003e EditCommand: executeForMerge(Person, EditPersonDescriptor, Model)"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand -\u003e MergePersonCommand: updateOriginalPerson(Person)"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand --\u003e MergePersonCommand: removeFirstDifferentField()"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "MergePersonConfirmedCommand --\u003e LogicManager: CommandResult(String)"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate MergePersonConfirmedCommand"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "\u003c-- LogicManager"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "deactivate LogicManager"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "chowyiyin"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "chowyiyin": 72
     }
   },
   {
@@ -37382,84 +39005,84 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import seedu.address.logic.commands.Command;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "import seedu.address.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.Command;"
+        "content": "import seedu.address.logic.commands.exceptions.DuplicatePersonWithMergeException;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.CommandResult;"
+        "content": "import seedu.address.model.Model;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.exceptions.DuplicatePersonWithMergeException;"
+        "content": "import seedu.address.model.person.Person;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.model.Model;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.model.person.Person;"
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": " * Rejects merging a duplicate profile."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "/**"
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": " * Rejects merging a duplicate profile."
+        "content": "public class DoNotMergePersonCommand extends Command {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "public class DoNotMergePersonCommand extends Command {"
+        "content": "    public static final String COMMAND_WORD \u003d \"nmerge\";"
       },
       {
         "lineNumber": 17,
@@ -37473,7 +39096,7 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"nmerge\";"
+        "content": "    public static final String MESSAGE_SUCCESS \u003d \"This profile was not updated : %1$s.\";"
       },
       {
         "lineNumber": 19,
@@ -37487,199 +39110,178 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public static final String MESSAGE_SUCCESS \u003d \"This profile was not updated : %1$s.\";"
+        "content": "    private final Person inputPerson;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    private Person originalPerson;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    private final Person inputPerson;"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    private Person originalPerson;"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    private ArrayList\u003cString[]\u003e differentFields \u003d new ArrayList\u003c\u003e();"
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "     * Creates an DoNotMergePersonCommand to skip the merging of a field in a merging process."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    /**"
+        "content": "    public DoNotMergePersonCommand(Person inputPerson) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     * Creates an DoNotMergePersonCommand to skip the merging of a field in a merging process."
+        "content": "        requireNonNull(inputPerson);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     */"
+        "content": "        this.inputPerson \u003d inputPerson;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public DoNotMergePersonCommand(Person inputPerson) {"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        requireNonNull(inputPerson);"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        this.inputPerson \u003d inputPerson;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "    public CommandResult execute(Model model) throws DuplicatePersonWithMergeException {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "        this.originalPerson \u003d model.getPerson(inputPerson);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public CommandResult execute(Model model) throws DuplicatePersonWithMergeException {"
+        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, originalPerson));"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        requireNonNull(model);"
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        this.originalPerson \u003d model.getPerson(inputPerson);"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return new CommandResult(String.format(MESSAGE_SUCCESS, originalPerson));"
+        "content": "    @Override"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "                || (other instanceof DoNotMergePersonCommand // instanceof handles nulls"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "                \u0026\u0026 inputPerson.equals(((DoNotMergePersonCommand) other).inputPerson));"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "                || (other instanceof DoNotMergePersonCommand // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "                \u0026\u0026 inputPerson.equals(((DoNotMergePersonCommand) other).inputPerson));"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "chowyiyin"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 45,
         "author": {
           "gitId": "chowyiyin"
         },
@@ -37687,7 +39289,7 @@
       }
     ],
     "authorContributionMap": {
-      "chowyiyin": 48
+      "chowyiyin": 45
     }
   },
   {
@@ -39991,91 +41593,91 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.Command;"
+        "content": "import seedu.address.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.CommandResult;"
+        "content": "import seedu.address.logic.commands.exceptions.DuplicatePersonWithMergeException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.exceptions.DuplicatePersonWithMergeException;"
+        "content": "import seedu.address.model.Model;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.model.Model;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "/**"
+        "content": " * Rejects an update of a data field of a duplicate {@code Person} in the Addressbook."
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": " * Rejects an update of a data field of a duplicate {@code Person} in the Addressbook."
+        "content": " */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": " */"
+        "content": "public class MergePersonRejectedCommand extends MergeRejectedCommand {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "public class MergePersonRejectedCommand extends Command {"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_MERGE_FIELD_NOT_EXECUTED \u003d \"%1$s not updated.\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"no\";"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    private MergePersonCommand previousMergeCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public static final String MESSAGE_MERGE_FIELD_NOT_EXECUTED \u003d \"%1$s not updated.\";"
+        "content": ""
       },
       {
         "lineNumber": 18,
@@ -40089,262 +41691,241 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    private MergePersonCommand previousMergeCommand;"
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "     * Creates an {@code MergePersonRejectedCommand}."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    /**"
+        "content": "    public MergePersonRejectedCommand(MergePersonCommand previousMergeCommand) {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     * Creates an {@code MergePersonRejectedCommand}."
+        "content": "        requireNonNull(previousMergeCommand);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     */"
+        "content": "        this.previousMergeCommand \u003d previousMergeCommand;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public MergePersonRejectedCommand(MergePersonCommand previousMergeCommand) {"
+        "content": "    }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        requireNonNull(previousMergeCommand);"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        this.previousMergeCommand \u003d previousMergeCommand;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "    public CommandResult execute(Model model) throws DuplicatePersonWithMergeException {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "        String fieldType \u003d previousMergeCommand.getNextMergeFieldType();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public CommandResult execute(Model model) throws DuplicatePersonWithMergeException {"
+        "content": "        if (isLastMerge()) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        requireNonNull(model);"
+        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        String fieldType \u003d previousMergeCommand.getNextMergeFieldType();"
+        "content": "                    + \"\\n\" + String.format(previousMergeCommand.MESSAGE_SUCCESS,"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        if (isLastMerge()) {"
+        "content": "                    previousMergeCommand.getOriginalPerson()));"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
+        "content": "        } else {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                    + \"\\n\" + String.format(previousMergeCommand.MESSAGE_SUCCESS,"
+        "content": "            previousMergeCommand.removeFirstDifferentField();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                    previousMergeCommand.getOriginalPerson()));"
+        "content": "            String nextMerge \u003d previousMergeCommand.getNextMergePrompt();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        } else {"
+        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            previousMergeCommand.removeFirstDifferentField();"
+        "content": "                    + \"\\n\" + nextMerge);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            String nextMerge \u003d previousMergeCommand.getNextMergePrompt();"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                    + \"\\n\" + nextMerge);"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        }"
+        "content": "    public boolean isLastMerge() {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "        return previousMergeCommand.onlyOneMergeLeft();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public boolean isLastMerge() {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return previousMergeCommand.onlyOneMergeLeft();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "                || (other instanceof MergePersonRejectedCommand // instanceof handles nulls"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "                \u0026\u0026 previousMergeCommand.equals(((MergePersonRejectedCommand) other).previousMergeCommand));"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "                || (other instanceof MergePersonRejectedCommand // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "                \u0026\u0026 previousMergeCommand.equals(((MergePersonRejectedCommand) other).previousMergeCommand));"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "chowyiyin"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 53,
         "author": {
           "gitId": "chowyiyin"
         },
@@ -40352,7 +41933,7 @@
       }
     ],
     "authorContributionMap": {
-      "chowyiyin": 56
+      "chowyiyin": 53
     }
   },
   {
@@ -41929,91 +43510,91 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.Command;"
+        "content": "import seedu.address.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.CommandResult;"
+        "content": "import seedu.address.logic.commands.exceptions.DuplicatePolicyWithMergeException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.logic.commands.exceptions.DuplicatePersonWithMergeException;"
+        "content": "import seedu.address.model.Model;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "import seedu.address.model.Model;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "/**"
+        "content": " * Rejects an update of a data field of a duplicate {@code Policy} in the Addressbook."
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": " * Rejects an update of a data field of a duplicate {@code Policy} in the Addressbook."
+        "content": " */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": " */"
+        "content": "public class MergePolicyRejectedCommand extends MergeRejectedCommand {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "public class MergePolicyRejectedCommand extends Command {"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_MERGE_FIELD_NOT_EXECUTED \u003d \"%1$s not updated.\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"no\";"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    private MergePolicyCommand previousMergeCommand;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public static final String MESSAGE_MERGE_FIELD_NOT_EXECUTED \u003d \"%1$s not updated.\";"
+        "content": ""
       },
       {
         "lineNumber": 18,
@@ -42027,262 +43608,241 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    private MergePolicyCommand previousMergeCommand;"
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "     * Creates an {@code MergePolicyRejectedCommand}."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    /**"
+        "content": "    public MergePolicyRejectedCommand(MergePolicyCommand previousMergeCommand) {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     * Creates an {@code MergePolicyRejectedCommand}."
+        "content": "        requireNonNull(previousMergeCommand);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     */"
+        "content": "        this.previousMergeCommand \u003d previousMergeCommand;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public MergePolicyRejectedCommand(MergePolicyCommand previousMergeCommand) {"
+        "content": "    }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        requireNonNull(previousMergeCommand);"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        this.previousMergeCommand \u003d previousMergeCommand;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "    public CommandResult execute(Model model) throws DuplicatePolicyWithMergeException {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "        String fieldType \u003d previousMergeCommand.getNextMergeFieldType();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public CommandResult execute(Model model) throws DuplicatePersonWithMergeException {"
+        "content": "        if (isLastMerge()) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        requireNonNull(model);"
+        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        String fieldType \u003d previousMergeCommand.getNextMergeFieldType();"
+        "content": "                    + \"\\n\" + String.format(previousMergeCommand.MESSAGE_SUCCESS,"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        if (isLastMerge()) {"
+        "content": "                    previousMergeCommand.getOriginalPolicy()));"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
+        "content": "        } else {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                    + \"\\n\" + String.format(previousMergeCommand.MESSAGE_SUCCESS,"
+        "content": "            previousMergeCommand.removeFirstDifferentField();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                    previousMergeCommand.getOriginalPolicy()));"
+        "content": "            String nextMerge \u003d previousMergeCommand.getNextMergePrompt();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        } else {"
+        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            previousMergeCommand.removeFirstDifferentField();"
+        "content": "                    + \"\\n\" + nextMerge);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            String nextMerge \u003d previousMergeCommand.getNextMergePrompt();"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "            return new CommandResult(String.format(MESSAGE_MERGE_FIELD_NOT_EXECUTED, fieldType)"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                    + \"\\n\" + nextMerge);"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        }"
+        "content": "    public boolean isLastMerge() {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "        return previousMergeCommand.onlyOneMergeLeft();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public boolean isLastMerge() {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return previousMergeCommand.onlyOneMergeLeft();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "                || (other instanceof MergePolicyRejectedCommand // instanceof handles nulls"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "                \u0026\u0026 previousMergeCommand.equals(((MergePolicyRejectedCommand) other).previousMergeCommand));"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "                || (other instanceof MergePolicyRejectedCommand // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "chowyiyin"
-        },
-        "content": "                \u0026\u0026 previousMergeCommand.equals(((MergePolicyRejectedCommand) other).previousMergeCommand));"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "chowyiyin"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 53,
         "author": {
           "gitId": "chowyiyin"
         },
@@ -42290,7 +43850,7 @@
       }
     ],
     "authorContributionMap": {
-      "chowyiyin": 56
+      "chowyiyin": 53
     }
   },
   {
@@ -42400,122 +43960,115 @@
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    /**"
+        "content": "     * Creates an {@code MergeRejectedCommand}."
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     * Creates an {@code MergeRejectedCommand}."
+        "content": "     */"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "     */"
+        "content": "    public MergeRejectedCommand() {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public MergeRejectedCommand() {"
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "    public abstract CommandResult execute(Model model) throws CommandException;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public abstract CommandResult execute(Model model) throws CommandException;"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    public abstract boolean isLastMerge();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public abstract boolean isLastMerge();"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    @Override"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "    public boolean equals(Object other) {"
+        "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "        return other \u003d\u003d this // short circuit if same object"
+        "content": "                || (other instanceof MergeRejectedCommand); // instanceof handles nulls"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "chowyiyin"
         },
-        "content": "                || (other instanceof MergeRejectedCommand); // instanceof handles nulls"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "chowyiyin"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 31,
         "author": {
           "gitId": "chowyiyin"
         },
@@ -42523,7 +44076,7 @@
       }
     ],
     "authorContributionMap": {
-      "chowyiyin": 32
+      "chowyiyin": 31
     }
   },
   {

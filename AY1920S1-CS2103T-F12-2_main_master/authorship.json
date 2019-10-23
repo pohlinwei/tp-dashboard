@@ -3982,492 +3982,492 @@
       {
         "lineNumber": 245,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": "// tag::visitationreport[]"
       },
       {
         "lineNumber": 246,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Visitation Report feature"
       },
       {
         "lineNumber": 247,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": "\u003d\u003d\u003d\u003d Implementation"
       },
       {
         "lineNumber": 248,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
         "lineNumber": 249,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": "The Visitation Report feature allows the user to `add`, `delete` and `edit` a `VisitReport` such that for every housecall, information like the prescription and diagnosis can be stored. Every `Person` has a `VisitList` attribute and each `VisitList` object contains an arraylist of `VisitReport` objects. The feature is facillitated by `VisitRecordWindow` which creates a form for the user to key in the details of the report, `VisitListPanel` which creates an indexed pop up list of visit reports for the user to check the index of the report they want to edit/delete and `SaveVisitCommand` which saves the users input from the form. The following operations are also implemented:"
       },
       {
         "lineNumber": 250,
         "author": {
-          "gitId": "-"
-        },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "* `VisitList#addRecord()` -- Adds new `VisitReport` object to stored arraylist"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "* `VisitList#editRecord()` -- Replaces `VisitReport` object at given index in arraylist with given `VisitReport`"
+      },
+      {
         "lineNumber": 253,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "*Logging Levels*"
+        "content": "* `VisitList#deleteRecord()` -- Deletes `VisitReport` by index from stored arraylist"
       },
       {
         "lineNumber": 254,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
         "lineNumber": 255,
         "author": {
-          "gitId": "-"
-        },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* `WARNING` : Can continue, but with caution"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "Given below is an example usage scenario and how every component of the Visitation Report feature behaves at each step."
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "Step 1. The user executes `addvisit 5 v/12/12/2019` command to add a visit report to the visitlist of the 5th person in the address book. This returns a  `CommandResult` which has the attribute `date` set as String `12/12/2019`. `MainWindow#executeCommand()` is called and the check for `CommandResult#isAddVisit()` passes, calling  `VisitRecordWindow#setReportInfo()` to pass the `index` of the person, the `date`, and a `Logic` object to initialize the respective attributes in the `VisitRecordWindow` class. `MainWindow#handleShowVisitForm()` is then called to display a pop up form for the user to fill in."
+      },
+      {
         "lineNumber": 260,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": ""
       },
       {
         "lineNumber": 261,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": "image::addvisit0.png[]"
       },
       {
         "lineNumber": 262,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
         "lineNumber": 263,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 264,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "If the user executes `addvisit 5` instead, the `date` attribute of the `CommandResult` will be set as the current date and the rest of the flow remains the same."
       },
       {
         "lineNumber": 265,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": ""
       },
       {
         "lineNumber": 266,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "Step 2. The user fills in the form and presses `f2` on the keyboard or clicks the `submit` button to save the report. This calls `VisitRecordWindow#saveReport()` which will create a new `SaveVisitCommand` and executes it, updating the `VisitList` of the person via `Model#setPerson()`."
       },
       {
         "lineNumber": 267,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 268,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "Step 3. The user decides to edit the report and executes the `editvisit 1 i/1` command.`MainWindow#executeCommand()` is called and the check for `CommandResult#isEditVisit()` passes, calling  `VisitRecordWindow#setOldReportInfo()` which initializes the respective attributes of `VisitRecordWindow` and populate the form with the content of the `VisitReport` from  `CommandResult#getOldReport()` .`MainWindow#handleShowVisitForm()` is then called to display a pop up form for the user to fill in."
       },
       {
         "lineNumber": 269,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d Testing"
+        "content": ""
       },
       {
         "lineNumber": 270,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "image::editvisit0.png[]"
       },
       {
         "lineNumber": 271,
         "author": {
-          "gitId": "-"
-        },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
-      },
-      {
-        "lineNumber": 272,
-        "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "[NOTE]"
+      },
+      {
         "lineNumber": 273,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d Dev Ops"
+        "content": "If the user executes `editvisit 1` instead, a `CommandResult` with a `ObservableList\u003cVisitReport\u003e` object will be returned. `MainWindow#executeCommand()` runs and the check for `CommandResult#isEditVisit()` fails while the check for `CommandResult#isShowVisitList()` passes, calling `VisitListPanel#setup()` which populates the `VisitListPanel` with the contents of the `ObservableList\u003cVisitReport\u003e` object from `CommandResult#getObservableVisitList()`.`MainWindow#handleShowVisitList()` is then called to display a pop up list showing an indexed list of all visitation records of the person."
       },
       {
         "lineNumber": 274,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
         "lineNumber": 275,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
+        "content": "Step 4. The user edits the form and presses `f2` on the keyboard or clicks the `submit` button to save the changes. The same mechanism mentioned in `Step 2` is used to update the contents of the edited visit report."
       },
       {
         "lineNumber": 276,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
         "lineNumber": 277,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "[appendix]"
+        "content": "Step 5. The user then decides that the report was beyond salvaging and decides to delete it. Executing the command `deletevisit 1 d/1`, `VisitList#deleteRecord()` deletes the entry from the arraylist and `Model#setPerson()` updates the person with the new `VisitList`. The `CommandResult#isShowVisitList()` check in  `MainWindow#executeCommand()` passes and a pop up list showing an indexed list of all visitation records of the person is displayed."
       },
       {
         "lineNumber": 278,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d Product Scope"
+        "content": ""
       },
       {
         "lineNumber": 279,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "image::deletevisit0.png[]"
       },
       {
         "lineNumber": 280,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "*Target user profile*:"
+        "content": ""
       },
       {
         "lineNumber": 281,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 282,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "* has a need to manage a significant number of contacts"
+        "content": "If the user executes `deletevisit 1` instead, the index value will be set to `-1` and the `VisitList#deleteRecord()` block would be skipped, but the rest of the flow remains the same."
       },
       {
         "lineNumber": 283,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "* prefer desktop apps over other types"
+        "content": ""
       },
       {
         "lineNumber": 284,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "* can type fast"
+        "content": ""
       },
       {
         "lineNumber": 285,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "* prefers typing over mouse input"
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 286,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "* is reasonably comfortable using CLI apps"
+        "content": ""
       },
       {
         "lineNumber": 287,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
       },
       {
         "lineNumber": 288,
         "author": {
-          "gitId": "-"
-        },
-        "content": "*Value proposition*: manage contacts faster than a typical mouse/GUI driven app"
-      },
-      {
-        "lineNumber": 289,
-        "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "* Creates a new `Person` object each time and using `Model#setPerson()` to replace the original person for every change in `VisitList `"
+      },
+      {
         "lineNumber": 290,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "[appendix]"
+        "content": "** Pros: Easy to implement and reuses existing code."
       },
       {
         "lineNumber": 291,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "\u003d\u003d User Stories"
+        "content": "** Cons: May have performance issues in terms of memory usage."
       },
       {
         "lineNumber": 292,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
         "lineNumber": 293,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+        "content": ""
       },
       {
         "lineNumber": 294,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the addvisit/deletevisit/editvisit commands"
       },
       {
         "lineNumber": 295,
         "author": {
-          "gitId": "-"
-        },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
-      },
-      {
-        "lineNumber": 296,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
-      },
-      {
-        "lineNumber": 297,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|Priority |As a ... |I want to ... |So that I can..."
-      },
-      {
-        "lineNumber": 298,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
-      },
-      {
-        "lineNumber": 299,
-        "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
         "content": ""
       },
       {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "*  Use a arraylist to store the `VisitReport` objects in `VisitList` object"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "** Pros: Fast retrieval by index."
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "** Cons: Need to handle index out of bound errors."
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "// end::visitationreport[]"
+      },
+      {
         "lineNumber": 300,
         "author": {
-          "gitId": "-"
+          "gitId": "SQwQ"
         },
-        "content": "|`* * *` |user |add a new person |"
+        "content": ""
       },
       {
         "lineNumber": 301,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "-"
         },
-        "content": "|`* * *` |user |delete a person |remove entries that I no longer need"
+        "content": ""
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 304,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user |view the full profile of a patient by searching for his/her name |see all details regarding a patient easily"
+        "content": ""
       },
       {
         "lineNumber": 305,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 306,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user |record down details of each \u003c\u003cvisitation,visitation\u003e\u003e |keep track of the patients situation"
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 307,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 308,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user |have daily reminders of important deadlines |keep track of appointments and visitations easily"
+        "content": ""
       },
       {
         "lineNumber": 309,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 310,
         "author": {
-          "gitId": "ReignOfComputer"
-        },
-        "content": "|`* * *` |user |set follow-up reminders |check in on my patients after some time or when their medication runs out"
-      },
-      {
-        "lineNumber": 311,
-        "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 311,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
+      },
+      {
         "lineNumber": 312,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "|`* * *` |user |have \u003c\u003cuser-defined-macros,user-defined macros\u003e\u003e |streamline my diagnosis documentation"
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 314,
         "author": {
           "gitId": "-"
         },
-        "content": "|`* *` |user |hide \u003c\u003cprivate-contact-detail,private contact details\u003e\u003e by default |minimize chance of someone else seeing them by accident"
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 315,
@@ -4481,14 +4481,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "|`*` |user with many persons in the address book |sort persons by name |locate a person easily"
+        "content": "[[Implementation-Configuration]]"
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 318,
@@ -4502,7 +4502,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 320,
@@ -4516,49 +4516,49 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": ""
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "-"
         },
-        "content": "(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)"
+        "content": ""
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "-"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: Delete person"
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 328,
@@ -4572,7 +4572,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "*MSS*"
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 330,
@@ -4586,42 +4586,42 @@
         "author": {
           "gitId": "-"
         },
-        "content": "1.  User requests to list persons"
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 332,
         "author": {
           "gitId": "-"
         },
-        "content": "2.  AddressBook shows a list of persons"
+        "content": ""
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "-"
         },
-        "content": "3.  User requests to delete a specific person in the list"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "-"
         },
-        "content": "4.  AddressBook deletes the person"
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "-"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": "*Target user profile*:"
       },
       {
         "lineNumber": 337,
@@ -4635,175 +4635,175 @@
         "author": {
           "gitId": "-"
         },
-        "content": "*Extensions*"
+        "content": "* has a need to manage a significant number of contacts"
       },
       {
         "lineNumber": 339,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* prefer desktop apps over other types"
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "-"
         },
-        "content": "[none]"
+        "content": "* can type fast"
       },
       {
         "lineNumber": 341,
         "author": {
           "gitId": "-"
         },
-        "content": "* 2a. The list is empty."
+        "content": "* prefers typing over mouse input"
       },
       {
         "lineNumber": 342,
         "author": {
           "gitId": "-"
         },
-        "content": "+"
+        "content": "* is reasonably comfortable using CLI apps"
       },
       {
         "lineNumber": 343,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Value proposition*: manage contacts faster than a typical mouse/GUI driven app"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "-"
         },
-        "content": "* 3a. The given index is invalid."
+        "content": ""
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "-"
         },
-        "content": "+"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "-"
         },
-        "content": "[none]"
+        "content": "\u003d\u003d User Stories"
       },
       {
         "lineNumber": 348,
         "author": {
           "gitId": "-"
         },
-        "content": "** 3a1. AddressBook shows an error message."
+        "content": ""
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "-"
         },
-        "content": "+"
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "-"
         },
-        "content": "Use case resumes at step 2."
+        "content": ""
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
       },
       {
         "lineNumber": 352,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "[discrete]"
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 353,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: View patient profile"
+        "content": "|Priority |As a ... |I want to ... |So that I can..."
       },
       {
         "lineNumber": 354,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App"
       },
       {
         "lineNumber": 355,
         "author": {
-          "gitId": "ReignOfComputer"
-        },
-        "content": "*MSS*"
-      },
-      {
-        "lineNumber": 356,
-        "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 356,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "|`* * *` |user |add a new person |"
+      },
+      {
         "lineNumber": 357,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "1.  User requests to list persons"
+        "content": ""
       },
       {
         "lineNumber": 358,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "2.  AddressBook shows a list of persons"
+        "content": "|`* * *` |user |delete a person |remove entries that I no longer need"
       },
       {
         "lineNumber": 359,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "3.  User requests to view patient profile by name/index"
+        "content": ""
       },
       {
         "lineNumber": 360,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "4.  AddressBook shows patient profile"
+        "content": "|`* * *` |user |view the full profile of a patient by searching for his/her name |see all details regarding a patient easily"
       },
       {
         "lineNumber": 361,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 362,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "|`* * *` |user |record down details of each \u003c\u003cvisitation,visitation\u003e\u003e |keep track of the patients situation"
       },
       {
         "lineNumber": 363,
@@ -4817,7 +4817,7 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": "|`* * *` |user |have daily reminders of important deadlines |keep track of appointments and visitations easily"
       },
       {
         "lineNumber": 365,
@@ -4831,420 +4831,420 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "|`* * *` |user |set follow-up reminders |check in on my patients after some time or when their medication runs out"
       },
       {
         "lineNumber": 367,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 2a. The list is empty."
+        "content": ""
       },
       {
         "lineNumber": 368,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "|`* * *` |user |have \u003c\u003cuser-defined-macros,user-defined macros\u003e\u003e |streamline my diagnosis documentation"
       },
       {
         "lineNumber": 369,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 370,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "[none]"
+        "content": "|`* *` |user |hide \u003c\u003cprivate-contact-detail,private contact details\u003e\u003e by default |minimize chance of someone else seeing them by accident"
       },
       {
         "lineNumber": 371,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "* 3. The given name/index is invalid."
+        "content": ""
       },
       {
         "lineNumber": 372,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "+"
+        "content": "|`*` |user with many persons in the address book |sort persons by name |locate a person easily"
       },
       {
         "lineNumber": 373,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "[none]"
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 374,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "** 3a. AddressBook shows an error message."
+        "content": ""
       },
       {
         "lineNumber": 375,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "+"
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 376,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "Use case resumes at step 2."
+        "content": ""
       },
       {
         "lineNumber": 377,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 378,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "[none]"
+        "content": "\u003d\u003d Use Cases"
       },
       {
         "lineNumber": 379,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "* 4. The profile is empty."
+        "content": ""
       },
       {
         "lineNumber": 380,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "+"
+        "content": "(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)"
       },
       {
         "lineNumber": 381,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 382,
         "author": {
-          "gitId": "ReignOfComputer"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 383,
-        "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "[discrete]"
       },
       {
+        "lineNumber": 383,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Use case: Delete person"
+      },
+      {
         "lineNumber": 384,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Use case: Record visitation details"
+        "content": ""
       },
       {
         "lineNumber": 385,
         "author": {
-          "gitId": "ReignOfComputer"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 386,
-        "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "*MSS*"
       },
       {
-        "lineNumber": 387,
+        "lineNumber": 386,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 388,
+        "lineNumber": 387,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "1.  User requests to list persons"
       },
       {
-        "lineNumber": 389,
+        "lineNumber": 388,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "2.  AddressBook shows a list of persons"
       },
       {
+        "lineNumber": 389,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "3.  User requests to delete a specific person in the list"
+      },
+      {
         "lineNumber": 390,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "3.  User requests to add new visitation record for a specific patient in the list"
+        "content": "4.  AddressBook deletes the person"
       },
       {
         "lineNumber": 391,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "4.  AddressBook adds new visitation record for chosen patient"
+        "content": "+"
       },
       {
         "lineNumber": 392,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "+"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 393,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 394,
         "author": {
-          "gitId": "ReignOfComputer"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 395,
-        "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "*Extensions*"
       },
       {
-        "lineNumber": 396,
+        "lineNumber": 395,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 396,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[none]"
       },
       {
         "lineNumber": 397,
         "author": {
-          "gitId": "ReignOfComputer"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 398,
-        "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "* 2a. The list is empty."
       },
       {
-        "lineNumber": 399,
+        "lineNumber": 398,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 400,
+        "lineNumber": 399,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "Use case ends."
       },
       {
-        "lineNumber": 401,
+        "lineNumber": 400,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 402,
+        "lineNumber": 401,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "* 3a. The given index is invalid."
       },
       {
-        "lineNumber": 403,
+        "lineNumber": 402,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 404,
+        "lineNumber": 403,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 405,
+        "lineNumber": 404,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "** 3a1. AddressBook shows an error message."
       },
       {
-        "lineNumber": 406,
+        "lineNumber": 405,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 407,
+        "lineNumber": 406,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "-"
         },
         "content": "Use case resumes at step 2."
+      },
+      {
+        "lineNumber": 407,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 408,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "[discrete]"
       },
       {
         "lineNumber": 409,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[discrete]"
+        "content": "\u003d\u003d\u003d Use case: View patient profile"
       },
       {
         "lineNumber": 410,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d\u003d Use case: Edit visitation record"
+        "content": ""
       },
       {
         "lineNumber": 411,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 412,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 413,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "1.  User requests to list persons"
       },
       {
         "lineNumber": 414,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "1.  User requests to edit visitation record for specific patient on specific date"
+        "content": "2.  AddressBook shows a list of persons"
       },
       {
         "lineNumber": 415,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "2.  AddressBook shows pop-up form for user to edit visitation record"
+        "content": "3.  User requests to view patient profile by name/index"
       },
       {
         "lineNumber": 416,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "3.  User saves edit"
+        "content": "4.  AddressBook shows patient profile"
       },
       {
         "lineNumber": 417,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "4.  AddressBook saves edit"
+        "content": "+"
       },
       {
         "lineNumber": 418,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 419,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 420,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 421,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 423,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "* 2a. The list is empty."
       },
       {
         "lineNumber": 424,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1a. The record does not exist."
+        "content": "+"
       },
       {
         "lineNumber": 425,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 426,
@@ -5258,413 +5258,413 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 1a1. AddressBook shows an error message."
+        "content": "* 3. The given name/index is invalid."
       },
       {
         "lineNumber": 428,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 429,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": "[none]"
       },
       {
         "lineNumber": 430,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "** 3a. AddressBook shows an error message."
       },
       {
         "lineNumber": 431,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1b. There are multiple records with the same name and date"
+        "content": "+"
       },
       {
         "lineNumber": 432,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "Use case resumes at step 2."
       },
       {
         "lineNumber": 433,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 434,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 1b1. AddressBook shows list of records and prompts user to re-enter last command with index of record to edit."
+        "content": "[none]"
       },
       {
         "lineNumber": 435,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "* 4. The profile is empty."
       },
       {
         "lineNumber": 436,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": "+"
       },
       {
         "lineNumber": 437,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 439,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d\u003d Use case: Delete visitation record"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 440,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: Record visitation details"
       },
       {
         "lineNumber": 441,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 442,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 443,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "1.  User requests to delete visitation record for specific patient on specific date"
+        "content": ""
       },
       {
         "lineNumber": 444,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "2.  AddressBook deletes visitation record"
+        "content": "* Precondition: User can see list of persons"
       },
       {
         "lineNumber": 445,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "1.  User requests to add new visitation record for a specific patient in the list"
       },
       {
         "lineNumber": 446,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "+"
+        "content": "2.  AddressBook adds new visitation record for chosen patient"
       },
       {
         "lineNumber": 447,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "+"
       },
       {
         "lineNumber": 448,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 449,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 450,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 451,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 452,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1a. The record does not exist."
+        "content": "[none]"
       },
       {
         "lineNumber": 453,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "+"
+        "content": "* 1a. The given index is invalid."
       },
       {
         "lineNumber": 454,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 455,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 1a1. AddressBook shows an error message."
+        "content": "[none]"
       },
       {
         "lineNumber": 456,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "** 1a1. AddressBook shows an error message."
       },
       {
         "lineNumber": 457,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": "+"
       },
       {
         "lineNumber": 458,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "Use case resumes at step 1."
       },
       {
         "lineNumber": 459,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1b. There are multiple records with the same name and date"
+        "content": ""
       },
       {
         "lineNumber": 460,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 461,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "\u003d\u003d\u003d Use case: Edit visitation record"
       },
       {
         "lineNumber": 462,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 1b1. AddressBook shows list of records and prompts user to re-enter last command with index of record to delete."
+        "content": ""
       },
       {
         "lineNumber": 463,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 464,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": ""
       },
       {
         "lineNumber": 465,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "* Precondition: User can see list of persons"
       },
       {
         "lineNumber": 466,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "[discrete]"
+        "content": "1.  User requests to edit visitation record for specific patient by patient index"
       },
       {
         "lineNumber": 467,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d\u003d Use case: Save user-defined macros"
+        "content": "2.  AddressBook shows pop-up form for user to edit visitation record"
       },
       {
         "lineNumber": 468,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "3.  User saves edit"
       },
       {
         "lineNumber": 469,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*MSS*"
+        "content": "4.  AddressBook saves edit"
       },
       {
         "lineNumber": 470,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 471,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "1.  User requests to save user-defined macros"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 472,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "2.  AddressBook saves user-defined macros"
+        "content": ""
       },
       {
         "lineNumber": 473,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 474,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 475,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "[none]"
       },
       {
         "lineNumber": 476,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "* 1a. The user does not provide a record index"
       },
       {
         "lineNumber": 477,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": "+"
       },
       {
         "lineNumber": 478,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 479,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "[none]"
+        "content": "** 1a1. AddressBook shows an indexed list of visitation records"
       },
       {
         "lineNumber": 480,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1a. The content of the macro is empty."
+        "content": "+"
       },
       {
         "lineNumber": 481,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "Use case resumes at step 1."
       },
       {
         "lineNumber": 482,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 483,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "** 1a1. AddressBook shows an error message."
+        "content": ""
       },
       {
         "lineNumber": 484,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 485,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": "\u003d\u003d\u003d Use case: Delete visitation record"
       },
       {
         "lineNumber": 486,
@@ -5678,70 +5678,70 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 488,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1b. The shortcut of the macro is illegal."
+        "content": ""
       },
       {
         "lineNumber": 489,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "+"
+        "content": "* Precondition: User can see list of persons"
       },
       {
         "lineNumber": 490,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": "[none]"
+        "content": "1.  User requests to delete visitation record for specific patient by index"
       },
       {
         "lineNumber": 491,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 1b1. AddressBook shows an error message."
+        "content": "2.  AddressBook deletes visitation record"
       },
       {
         "lineNumber": 492,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 493,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": "+"
       },
       {
         "lineNumber": 494,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 495,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 496,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d\u003d Use case: Invoke user-defined macros"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 497,
@@ -5755,49 +5755,49 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*MSS*"
+        "content": "[none]"
       },
       {
         "lineNumber": 499,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "* 1a. The user does not provide a record index"
       },
       {
         "lineNumber": 500,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "1.  User requests to invoke user-defined macros"
+        "content": "+"
       },
       {
         "lineNumber": 501,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "2.  AddressBook outputs user-defined data"
+        "content": "[none]"
       },
       {
         "lineNumber": 502,
         "author": {
-          "gitId": "ReignOfComputer"
+          "gitId": "SQwQ"
         },
-        "content": ""
+        "content": "** 1a1. AddressBook shows an indexed list of visitation records"
       },
       {
         "lineNumber": 503,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "Use case resumes at step 1."
       },
       {
         "lineNumber": 504,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": ""
       },
       {
         "lineNumber": 505,
@@ -5811,84 +5811,84 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": "[discrete]"
       },
       {
         "lineNumber": 507,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: Save user-defined macros"
       },
       {
         "lineNumber": 508,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 509,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 1a. The command is not defined."
+        "content": "*MSS*"
       },
       {
         "lineNumber": 510,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 511,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "1.  User requests to save user-defined macros"
       },
       {
         "lineNumber": 512,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 1a1. AddressBook shows an error message."
+        "content": "2.  AddressBook saves user-defined macros"
       },
       {
         "lineNumber": 513,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 514,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case resumes at step 1."
+        "content": "+"
       },
       {
         "lineNumber": 515,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 516,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 517,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d\u003d Use case: View reminders"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 518,
@@ -5902,35 +5902,35 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*MSS*"
+        "content": "[none]"
       },
       {
         "lineNumber": 520,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "* 1a. The content of the macro is empty."
       },
       {
         "lineNumber": 521,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "1.  User starts up AddressBook"
+        "content": "+"
       },
       {
         "lineNumber": 522,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "2.  Reminders are displayed"
+        "content": "[none]"
       },
       {
         "lineNumber": 523,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "** 1a1. AddressBook shows an error message."
       },
       {
         "lineNumber": 524,
@@ -5944,7 +5944,7 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "Use case resumes at step 1."
       },
       {
         "lineNumber": 526,
@@ -5958,84 +5958,84 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": "[none]"
       },
       {
         "lineNumber": 528,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "* 1b. The shortcut of the macro is illegal."
       },
       {
         "lineNumber": 529,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 530,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 2. No reminders are set to show"
+        "content": "[none]"
       },
       {
         "lineNumber": 531,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "** 1b1. AddressBook shows an error message."
       },
       {
         "lineNumber": 532,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 533,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 2a. AddressBook shows no reminder message."
+        "content": "Use case resumes at step 1."
       },
       {
         "lineNumber": 534,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 535,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "[discrete]"
       },
       {
         "lineNumber": 536,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: Invoke user-defined macros"
       },
       {
         "lineNumber": 537,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 538,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d\u003d Use case: View follow-up reminders"
+        "content": "*MSS*"
       },
       {
         "lineNumber": 539,
@@ -6049,49 +6049,49 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*MSS*"
+        "content": "1.  User requests to invoke user-defined macros"
       },
       {
         "lineNumber": 541,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "2.  AddressBook outputs user-defined data"
       },
       {
         "lineNumber": 542,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "1.  User starts up AddressBook"
+        "content": ""
       },
       {
         "lineNumber": 543,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "2.  Follow-up reminders for the day are displayed"
+        "content": "+"
       },
       {
         "lineNumber": 544,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 545,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 546,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 547,
@@ -6105,348 +6105,348 @@
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "*Extensions*"
+        "content": "[none]"
       },
       {
         "lineNumber": 549,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "* 1a. The command is not defined."
       },
       {
         "lineNumber": 550,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 551,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "* 2. No reminders are scheduled for the day"
+        "content": "[none]"
       },
       {
         "lineNumber": 552,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": "** 1a1. AddressBook shows an error message."
       },
       {
         "lineNumber": 553,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 554,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "** 2a. AddressBook shows no reminder message."
+        "content": "Use case resumes at step 1."
       },
       {
         "lineNumber": 555,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "+"
+        "content": ""
       },
       {
         "lineNumber": 556,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "Use case ends."
+        "content": "[discrete]"
       },
       {
         "lineNumber": 557,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Use case: View reminders"
       },
       {
         "lineNumber": 558,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 559,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 560,
         "author": {
-          "gitId": "-"
-        },
-        "content": "[appendix]"
-      },
-      {
-        "lineNumber": 561,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d Non Functional Requirements"
-      },
-      {
-        "lineNumber": 562,
-        "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
         "content": ""
       },
       {
+        "lineNumber": 561,
+        "author": {
+          "gitId": "ReignOfComputer"
+        },
+        "content": "1.  User starts up AddressBook"
+      },
+      {
+        "lineNumber": 562,
+        "author": {
+          "gitId": "ReignOfComputer"
+        },
+        "content": "2.  Reminders are displayed"
+      },
+      {
         "lineNumber": 563,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": ""
       },
       {
         "lineNumber": 564,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ".  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage."
+        "content": "+"
       },
       {
         "lineNumber": 565,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
+        "content": "Use case ends."
       },
       {
         "lineNumber": 566,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
         "content": ""
       },
       {
         "lineNumber": 567,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "_{More to be added}_"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 568,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
         "content": ""
       },
       {
         "lineNumber": 569,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "[appendix]"
+        "content": "[none]"
       },
       {
         "lineNumber": 570,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": "* 2. No reminders are set to show"
       },
       {
         "lineNumber": 571,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 572,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": "[none]"
       },
       {
         "lineNumber": 573,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": "** 2a. AddressBook shows no reminder message."
       },
       {
         "lineNumber": 574,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 575,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "[[private-contact-detail]] Private contact detail::"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 576,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "A contact detail that is not meant to be shared with others"
+        "content": ""
       },
       {
         "lineNumber": 577,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "[discrete]"
       },
       {
         "lineNumber": 578,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[[user-defined-macros]] User-defined macros::"
+        "content": "\u003d\u003d\u003d Use case: View follow-up reminders"
       },
       {
         "lineNumber": 579,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "User-defined shortcuts for large chunks of commonly used text for diagnosis"
+        "content": ""
       },
       {
         "lineNumber": 580,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 581,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "[[visitation]] Visitation::"
+        "content": ""
       },
       {
         "lineNumber": 582,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": "A housecall or appointment with the patient"
+        "content": "1.  User starts up AddressBook"
       },
       {
         "lineNumber": 583,
         "author": {
           "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "2.  Follow-up reminders for the day are displayed"
       },
       {
         "lineNumber": 584,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 585,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": "+"
       },
       {
         "lineNumber": 586,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "Use case ends."
       },
       {
         "lineNumber": 587,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "*Product Name*"
+        "content": ""
       },
       {
         "lineNumber": 588,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 589,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "Author: ..."
+        "content": ""
       },
       {
         "lineNumber": 590,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 591,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "Pros:"
+        "content": "* 2. No reminders are scheduled for the day"
       },
       {
         "lineNumber": 592,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 593,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "* ..."
+        "content": "[none]"
       },
       {
         "lineNumber": 594,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "* ..."
+        "content": "** 2a. AddressBook shows no reminder message."
       },
       {
         "lineNumber": 595,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 596,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "Cons:"
+        "content": "Use case ends."
       },
       {
         "lineNumber": 597,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
         "content": ""
       },
@@ -6455,70 +6455,70 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 599,
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": ""
       },
       {
         "lineNumber": 600,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 601,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "\u003d\u003d Non Functional Requirements"
       },
       {
         "lineNumber": 602,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": ""
       },
       {
         "lineNumber": 603,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
       },
       {
         "lineNumber": 604,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": ".  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage."
       },
       {
         "lineNumber": 605,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
       },
       {
         "lineNumber": 606,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 607,
         "author": {
           "gitId": "-"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 608,
@@ -6532,119 +6532,119 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 610,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Glossary"
       },
       {
         "lineNumber": 611,
         "author": {
           "gitId": "-"
         },
-        "content": ". Initial launch"
+        "content": ""
       },
       {
         "lineNumber": 612,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[[mainstream-os]] Mainstream OS::"
       },
       {
         "lineNumber": 613,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": "Windows, Linux, Unix, OS-X"
       },
       {
         "lineNumber": 614,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Double-click the jar file +"
+        "content": ""
       },
       {
         "lineNumber": 615,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+        "content": "[[private-contact-detail]] Private contact detail::"
       },
       {
         "lineNumber": 616,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "A contact detail that is not meant to be shared with others"
       },
       {
         "lineNumber": 617,
         "author": {
           "gitId": "-"
         },
-        "content": ". Saving window preferences"
+        "content": ""
       },
       {
         "lineNumber": 618,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ""
+        "content": "[[user-defined-macros]] User-defined macros::"
       },
       {
         "lineNumber": 619,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+        "content": "User-defined shortcuts for large chunks of commonly used text for diagnosis"
       },
       {
         "lineNumber": 620,
         "author": {
-          "gitId": "-"
-        },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
-      },
-      {
-        "lineNumber": 621,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "   Expected: The most recent window size and location is retained."
-      },
-      {
-        "lineNumber": 622,
-        "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
         "content": ""
       },
       {
+        "lineNumber": 621,
+        "author": {
+          "gitId": "ReignOfComputer"
+        },
+        "content": "[[visitation]] Visitation::"
+      },
+      {
+        "lineNumber": 622,
+        "author": {
+          "gitId": "ReignOfComputer"
+        },
+        "content": "A housecall or appointment with the patient"
+      },
+      {
         "lineNumber": 623,
         "author": {
-          "gitId": "-"
+          "gitId": "ReignOfComputer"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 624,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 625,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Deleting a person"
+        "content": "\u003d\u003d Product Survey"
       },
       {
         "lineNumber": 626,
@@ -6658,7 +6658,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": ". Deleting a person while all persons are listed"
+        "content": "*Product Name*"
       },
       {
         "lineNumber": 628,
@@ -6672,77 +6672,77 @@
         "author": {
           "gitId": "-"
         },
-        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+        "content": "Author: ..."
       },
       {
         "lineNumber": 630,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 1` +"
+        "content": ""
       },
       {
         "lineNumber": 631,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+        "content": "Pros:"
       },
       {
         "lineNumber": 632,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 0` +"
+        "content": ""
       },
       {
         "lineNumber": 633,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+        "content": "* ..."
       },
       {
         "lineNumber": 634,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+        "content": "* ..."
       },
       {
         "lineNumber": 635,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Similar to previous."
+        "content": ""
       },
       {
         "lineNumber": 636,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Cons:"
       },
       {
         "lineNumber": 637,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 638,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* ..."
       },
       {
         "lineNumber": 639,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Saving data"
+        "content": "* ..."
       },
       {
         "lineNumber": 640,
@@ -6756,31 +6756,311 @@
         "author": {
           "gitId": "-"
         },
-        "content": ". Dealing with missing/corrupted data files"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 642,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Instructions for Manual Testing"
       },
       {
         "lineNumber": 643,
         "author": {
           "gitId": "-"
         },
-        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+        "content": ""
       },
       {
         "lineNumber": 644,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Given below are instructions to test the app manually."
       },
       {
         "lineNumber": 645,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 646,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[NOTE]"
+      },
+      {
+        "lineNumber": 647,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+      },
+      {
+        "lineNumber": 648,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 649,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
+      },
+      {
+        "lineNumber": 650,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 651,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Initial launch"
+      },
+      {
+        "lineNumber": 652,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 653,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Download the jar file and copy into an empty folder"
+      },
+      {
+        "lineNumber": 654,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Double-click the jar file +"
+      },
+      {
+        "lineNumber": 655,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+      },
+      {
+        "lineNumber": 656,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 657,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Saving window preferences"
+      },
+      {
+        "lineNumber": 658,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 659,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+      },
+      {
+        "lineNumber": 660,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
+      },
+      {
+        "lineNumber": 661,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: The most recent window size and location is retained."
+      },
+      {
+        "lineNumber": 662,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 663,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{ more test cases ... }_"
+      },
+      {
+        "lineNumber": 664,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 665,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Deleting a person"
+      },
+      {
+        "lineNumber": 666,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 667,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Deleting a person while all persons are listed"
+      },
+      {
+        "lineNumber": 668,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 669,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+      },
+      {
+        "lineNumber": 670,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Test case: `delete 1` +"
+      },
+      {
+        "lineNumber": 671,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+      },
+      {
+        "lineNumber": 672,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Test case: `delete 0` +"
+      },
+      {
+        "lineNumber": 673,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+      },
+      {
+        "lineNumber": 674,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+      },
+      {
+        "lineNumber": 675,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "   Expected: Similar to previous."
+      },
+      {
+        "lineNumber": 676,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 677,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{ more test cases ... }_"
+      },
+      {
+        "lineNumber": 678,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 679,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d\u003d Saving data"
+      },
+      {
+        "lineNumber": 680,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 681,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Dealing with missing/corrupted data files"
+      },
+      {
+        "lineNumber": 682,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 683,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+      },
+      {
+        "lineNumber": 684,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 685,
         "author": {
           "gitId": "-"
         },
@@ -6788,8 +7068,9 @@
       }
     ],
     "authorContributionMap": {
-      "ReignOfComputer": 224,
-      "-": 421
+      "ReignOfComputer": 193,
+      "-": 421,
+      "SQwQ": 71
     }
   },
   {
@@ -9373,6 +9654,467 @@
       "-": 116,
       "SQwQ": 13,
       "gachia": 13
+    }
+  },
+  {
+    "path": "docs/diagrams/AddVisit0.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":User executes addvisit command;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "\u0027Since the beta syntax does not support placing the condition outside the"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "\u0027diamond we place it as the true branch instead."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "if () then ([given date])"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    if () then ([valid date]);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    :date is set as input;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    else([else])"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "        :shows error;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "        stop"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    endif"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "else ([else])"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    :date is set as current date;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "endif"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":shows pop-up form for user to fill in;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":User saves changes;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":VisitList is updated by invoking SaveVisitCommand;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "SQwQ": 25
+    }
+  },
+  {
+    "path": "docs/diagrams/DeleteVisit0.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":User executes deletevisit command;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "\u0027Since the beta syntax does not support placing the condition outside the"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "\u0027diamond we place it as the true branch instead."
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "if () then ([report index given])"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    :Delete chosen report;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "else ([no report index given])"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "endif"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":Show List of Visit Reports;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "SQwQ": 16
+    }
+  },
+  {
+    "path": "docs/diagrams/EditVisit0.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ":User executes editvisit command;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "\u0027Since the beta syntax does not support placing the condition outside the"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "\u0027diamond we place it as the true branch instead."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "if () then ([given report index])"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    if () then ([valid index]);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "        :shows pop-up form for user to fill in;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "        :User saves changes;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "        :VisitList is updated by invoking SaveVisitCommand;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    else([else])"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "        :shows error;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    endif"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "else ([no report index])"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "    :Show indexed list of Visit Reports;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "endif"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SQwQ"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "SQwQ": 21
     }
   },
   {

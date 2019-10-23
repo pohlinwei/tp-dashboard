@@ -24029,16 +24029,16 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "import seedu.ezwatchlist.model.Model;"
+        "content": "import seedu.ezwatchlist.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "heze8"
         },
-        "content": "import seedu.ezwatchlist.model.ReadOnlyWatchList;"
+        "content": "import seedu.ezwatchlist.model.Model;"
       },
       {
         "lineNumber": 10,
@@ -24050,210 +24050,210 @@
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "michelleykw"
-        },
-        "content": "import seedu.ezwatchlist.api.ApiMain;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": "import seedu.ezwatchlist.ui.SearchPanel;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
           "gitId": "jcjjjared"
         },
         "content": "import seedu.ezwatchlist.model.show.Movie;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 12,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "import seedu.ezwatchlist.model.show.Show;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 13,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 14,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "import java.util.ArrayList;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 15,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "import java.util.HashMap;"
+      },
+      {
+        "lineNumber": 16,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "import java.util.List;"
       },
       {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": ""
+      },
+      {
         "lineNumber": 18,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": "import java.util.Optional;"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 19,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": " * Finds and lists all shows in watchlist whose name contains any of the argument keywords."
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": " * Keyword matching is case insensitive."
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": " */"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 22,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "public class SearchCommand extends Command {"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 23,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "    public static final String COMMAND_WORD \u003d \"search\";"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 25,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Searches for shows online whose names contain any of \""
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
         "content": "            + \"the specified keywords (case-insensitive) and displays them as a list with index numbers.\\n\""
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
         "content": "            + \"Parameters: KEYWORD [MORE_KEYWORDS]...\\n\""
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 28,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "            + \"Example: \" + COMMAND_WORD + \" Joker\";"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 30,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "    private final String EMPTY_STRING \u003d \"\";"
       },
       {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private List\u003cString\u003e name_list;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private List\u003cString\u003e type_list;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private List\u003cString\u003e actor_list;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private List\u003cString\u003e is_watched_list;"
+      },
+      {
         "lineNumber": 35,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    private Name showName;"
+        "content": "    private List\u003cString\u003e is_internal_list;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    private String type;"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    /*private IsWatched isWatched;"
+        "content": "    List\u003cShow\u003e searchResult \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "    public static final String MESSAGE_INVALID_IS_INTERNAL_COMMAND \u003d"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    private List\u003cString\u003e actorList;*/"
+        "content": "            \"Invalid input. i/[Option] where option is either true, yes or false, no.\";"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
         "content": ""
       },
@@ -24262,54 +24262,54 @@
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    public SearchCommand(Optional\u003cString\u003e name/*, Optional\u003cString\u003e type, Optional\u003cString\u003e isWatched,"
+        "content": "    public SearchCommand(HashMap\u003cString, List\u003cString\u003e\u003e searchShowsHashMap) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                         List\u003cString\u003e actorList*/) {"
+        "content": "        name_list \u003d searchShowsHashMap.get(\"name\");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        if (name.isPresent()) {"
+        "content": "        type_list \u003d searchShowsHashMap.get(\"type\");"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            this.showName \u003d new Name(name.get().trim());"
+        "content": "        actor_list \u003d searchShowsHashMap.get(\"actor\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        } else {"
+        "content": "        is_watched_list \u003d searchShowsHashMap.get(\"is_watched\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            this.showName \u003d new Name(EMPTY_STRING);"
+        "content": "        is_internal_list \u003d searchShowsHashMap.get(\"is_internal\");"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -24318,409 +24318,451 @@
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        /*if (type.isPresent()) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            this.type \u003d type.get().trim();"
+        "content": "    public CommandResult execute(Model model) throws CommandException {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        } else {"
+        "content": "        requireNonNull(model);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            this.type \u003d EMPTY_STRING;"
+        "content": "        try {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        }"
+        "content": "            if (!is_internal_list.isEmpty()) { // set to be must internal (if true or yes)"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "                if (is_internal_list.get(0).equals(\"true\") || is_internal_list.get(0).equals(\"yes\")) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        this.isWatched \u003d new IsWatched(false);"
+        "content": "                    for (String showName : name_list) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        if (isWatched.isPresent()) {"
+        "content": "                        addShowFromWatchListIfSameNameAs(showName, model);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            this.isWatched \u003d new IsWatched(Boolean.parseBoolean(isWatched.get().trim()));"
+        "content": "                    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        }"
+        "content": "                } else if (is_internal_list.get(0).equals(\"false\") || is_internal_list.get(0).equals(\"no\")) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "                    for (String showName : name_list) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        this.actorList \u003d actorList;*/"
+        "content": "                        addShowFromOnlineIfSameNameAs(showName);"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "    }"
+        "content": "                    }"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "                } else {"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "    @Override"
+        "content": "                    throw new CommandException(MESSAGE_INVALID_IS_INTERNAL_COMMAND);"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "    public CommandResult execute(Model model) {"
+        "content": "                }"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        requireNonNull(model);"
+        "content": "            } else {"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "        try {"
+        "content": "                for (String showName : name_list) {"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "jcjjjared"
+          "gitId": "michelleykw"
         },
-        "content": "            List\u003cShow\u003e searchResult \u003d new ArrayList\u003c\u003e();"
+        "content": "                    addShowFromWatchListIfSameNameAs(showName, model);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "                    addShowFromOnlineIfSameNameAs(showName);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            if (!showName.getName().equals(EMPTY_STRING) /*\u0026\u0026  (model.hasShowName(name))*/) {"
+        "content": "                }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                List\u003cShow\u003e filteredShowList \u003d model.getShowIfSameNameAs(showName);"
+        "content": "            }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                for (Show show : filteredShowList) {"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                    searchResult.add(show);"
+        "content": "            model.updateSearchResultList(searchResult);"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "                }"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            }"
+        "content": "            return new CommandResult(String.format(Messages.MESSAGE_SHOWS_LISTED_OVERVIEW, model.getSearchResultList().size()));"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "jcjjjared"
+          "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        } catch (OnlineConnectionException e) {"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "            if (!showName.getName().equals(\"\")) {"
+        "content": "            return null;"
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "                List\u003cMovie\u003e movies \u003d new ApiMain().getMovieByName(showName.getName());"
+        "content": "            //to be added"
       },
       {
         "lineNumber": 78,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "                List\u003cTvShow\u003e tvShows \u003d new ApiMain().getTvShowByName(showName.getName());"
+        "content": "        }"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "jcjjjared"
+          "gitId": "michelleykw"
         },
-        "content": "                for (Movie movie : movies) {"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "jcjjjared"
-        },
-        "content": "                    searchResult.add(movie);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "jcjjjared"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "heze8"
-        },
-        "content": "                for(TvShow tvShow : tvShows) {"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "heze8"
-        },
-        "content": "                    searchResult.add(tvShow);"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "heze8"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "heze8"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "jcjjjared"
+          "gitId": "michelleykw"
         },
         "content": ""
       },
       {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private void addShowFromWatchListIfSameNameAs(String showName, Model model) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        if (!showName.equals(EMPTY_STRING) /*\u0026\u0026  (model.hasShowName(name))*/) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            List\u003cShow\u003e filteredShowList \u003d model.getShowIfSameNameAs(new Name(showName));"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            for (Show show : filteredShowList) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "                searchResult.add(show);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            }"
+      },
+      {
         "lineNumber": 87,
         "author": {
-          "gitId": "jcjjjared"
+          "gitId": "michelleykw"
         },
-        "content": "            model.updateSearchResultList(searchResult);"
+        "content": "        }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "jcjjjared"
         },
-        "content": "            return new CommandResult(String.format(Messages.MESSAGE_SHOWS_LISTED_OVERVIEW, model.getSearchResultList().size()));"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "        } catch (OnlineConnectionException e) {"
+        "content": "    private void addShowFromOnlineIfSameNameAs(String showName) throws OnlineConnectionException {"
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "            return null;"
+        "content": "        if (!showName.equals(\"\")) {"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "heze8"
+          "gitId": "michelleykw"
         },
-        "content": "            //to be added"
+        "content": "            List\u003cMovie\u003e movies \u003d new ApiMain().getMovieByName(showName);"
       },
       {
         "lineNumber": 93,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            List\u003cTvShow\u003e tvShows \u003d new ApiMain().getTvShowByName(showName);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "jcjjjared"
+        },
+        "content": "            for (Movie movie : movies) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "jcjjjared"
+        },
+        "content": "                searchResult.add(movie);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "jcjjjared"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "heze8"
+        },
+        "content": "            for(TvShow tvShow : tvShows) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "heze8"
+        },
+        "content": "                searchResult.add(tvShow);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "heze8"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 100,
         "author": {
           "gitId": "heze8"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
         "content": "    @Override"
       },
       {
-        "lineNumber": 97,
+        "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
         "content": "    public boolean equals(Object other) {"
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
         "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 106,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "                || (other instanceof SearchCommand // instanceof handles nulls"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 107,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                \u0026\u0026 showName.equals(((SearchCommand) other).showName)"
+        "content": "                \u0026\u0026 name_list.equals(((SearchCommand) other).name_list)"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 108,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                /*\u0026\u0026 type.equals(((SearchCommand) other).type)"
+        "content": "                \u0026\u0026 type_list.equals(((SearchCommand) other).type_list)"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 109,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                \u0026\u0026 isWatched.equals(((SearchCommand) other).isWatched)"
+        "content": "                \u0026\u0026 actor_list.equals(((SearchCommand) other).actor_list)"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 110,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                \u0026\u0026 actorList.equals(((SearchCommand) other).actorList)*/); // state check"
+        "content": "                \u0026\u0026 is_watched_list.equals(((SearchCommand) other).is_watched_list)"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 111,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "                \u0026\u0026 is_internal_list.equals(((SearchCommand) other).is_internal_list));"
+      },
+      {
+        "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 107,
+        "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
@@ -24728,10 +24770,10 @@
       }
     ],
     "authorContributionMap": {
-      "jcjjjared": 16,
-      "michelleykw": 51,
-      "heze8": 16,
-      "-": 24
+      "jcjjjared": 13,
+      "michelleykw": 73,
+      "heze8": 8,
+      "-": 19
     }
   },
   {
@@ -27655,12 +27697,19 @@
       {
         "lineNumber": 16,
         "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    public static final Prefix PREFIX_IS_INTERNAL \u003d new Prefix(\"i/\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
@@ -27670,6 +27719,7 @@
     "authorContributionMap": {
       "jcjjjared": 6,
       "wongchuankai": 1,
+      "michelleykw": 1,
       "-": 10
     }
   },
@@ -30027,37 +30077,37 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "import java.util.Arrays;"
+        "content": "import java.util.*;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "import java.util.List;"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "import java.util.Optional;"
+        "content": "import seedu.ezwatchlist.logic.commands.SearchCommand;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "heze8"
         },
-        "content": "import java.util.Set;"
+        "content": "import seedu.ezwatchlist.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "jcjjjared"
         },
-        "content": "import java.util.stream.Stream;"
+        "content": "import seedu.ezwatchlist.commons.core.Messages;"
       },
       {
         "lineNumber": 8,
@@ -30071,311 +30121,535 @@
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "import seedu.ezwatchlist.logic.commands.SearchCommand;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "heze8"
-        },
-        "content": "import seedu.ezwatchlist.logic.parser.exceptions.ParseException;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "jcjjjared"
-        },
-        "content": "import seedu.ezwatchlist.commons.core.Messages;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "michelleykw"
-        },
         "content": "import seedu.ezwatchlist.model.show.*;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 10,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "import seedu.ezwatchlist.model.actor.Actor;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 11,
         "author": {
           "gitId": "michelleykw"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 12,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "import static seedu.ezwatchlist.logic.parser.CliSyntax.*;"
       },
       {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "michelleykw"
-        },
-        "content": "import static seedu.ezwatchlist.logic.parser.CliSyntax.PREFIX_RUNNING_TIME;"
-      },
-      {
-        "lineNumber": 18,
+        "lineNumber": 13,
         "author": {
           "gitId": "michelleykw"
         },
         "content": ""
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 15,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": " * Parses input arguments and creates a new SearchCommand object"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
         "content": " */"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 17,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "public class SearchCommandParser implements Parser\u003cSearchCommand\u003e {"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 18,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    HashMap\u003cString, List\u003cString\u003e\u003e searchShowsHashMap \u003d new HashMap\u003c\u003e();"
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 21,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "     * Parses the given {@code String} of arguments in the context of the SearchCommand"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 22,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "     * and returns a SearchCommand object for execution."
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
         "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 25,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    public SearchCommand parse(String args) throws ParseException {"
+        "content": "    public SearchCommand parse(String args) {"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 26,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "        ArgumentMultimap argMultimap \u003d"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 27,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_IS_WATCHED, PREFIX_ACTOR);"
+        "content": "                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TYPE, PREFIX_IS_WATCHED, PREFIX_ACTOR, PREFIX_IS_INTERNAL);"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        List\u003cString\u003e name_optional \u003d argMultimap.getAllValues(PREFIX_NAME); // allow multiple values // allow 1 for now"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        Optional\u003cString\u003e type_optional \u003d argMultimap.getValue(PREFIX_TYPE); // at most one value"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        List\u003cString\u003e actor_optional \u003d argMultimap.getAllValues(PREFIX_ACTOR); // allow multiple values"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        Optional\u003cString\u003e is_watched_optional \u003d argMultimap.getValue(PREFIX_IS_WATCHED); // true or false"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        Optional\u003cString\u003e name \u003d argMultimap.getValue(PREFIX_NAME);"
+        "content": "        Optional\u003cString\u003e is_internal_optional \u003d argMultimap.getValue(PREFIX_IS_INTERNAL); // true or false"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        /*Optional\u003cString\u003e type \u003d argMultimap.getValue(PREFIX_TYPE);"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        Optional\u003cString\u003e isWatched \u003d argMultimap.getValue(PREFIX_IS_WATCHED);"
+        "content": "        parseNameToBeSearched(name_optional);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        List\u003cString\u003e actorList \u003d argMultimap.getAllValues(PREFIX_ACTOR);*/"
+        "content": "        parseTypeToBeSearched(type_optional);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        parseActorToBeSearched(actor_optional);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        return new SearchCommand(name/*, type, isWatched, actorList*/);"
+        "content": "        parseIsWatchedToBeSearched(is_watched_optional);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        /*if (anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TYPE, PREFIX_DATE_OF_RELEASE, PREFIX_IS_WATCHED)) {"
+        "content": "        parseIsInternalToBeSearched(is_internal_optional);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            return new SearchCommand(name, type, isWatched, actorList);"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        } else {"
+        "content": "        return new SearchCommand(searchShowsHashMap);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "            return new SearchCommand();"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        }*/"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "    }"
+        "content": "    private void parseNameToBeSearched(List\u003cString\u003e name_optional) {"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        searchShowsHashMap.put(\"name\", name_optional);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "     * Returns true if all of the prefixes contains empty {@code Optional} values in the given"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "     * {@code ArgumentMultimap}."
+        "content": "    private void parseTypeToBeSearched(Optional\u003cString\u003e type_optional) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "     */"
+        "content": "        ArrayList\u003cString\u003e listOfType \u003d new ArrayList\u003cString\u003e();"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    /*private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {"
+        "content": "        if (type_optional.isPresent()) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        return Stream.of(prefixes).anyMatch(prefix -\u003e argumentMultimap.getValue(prefix).isPresent());"
+        "content": "            String type \u003d type_optional.get().trim();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "    }*/"
+        "content": "            listOfType.add(type);"
       },
       {
         "lineNumber": 53,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            listOfType.add(\"movie\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            listOfType.add(\"tv\");"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        searchShowsHashMap.put(\"type\", listOfType);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private void parseActorToBeSearched(List\u003cString\u003e actor_optional) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        searchShowsHashMap.put(\"actor\", actor_optional);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private void parseIsWatchedToBeSearched(Optional\u003cString\u003e is_watched_optional) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        ArrayList\u003cString\u003e listOfIsWatched \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        if (is_watched_optional.isPresent()) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            String is_watched \u003d is_watched_optional.get().trim();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            listOfIsWatched.add(is_watched);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            listOfIsWatched.add(\"false\");"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            listOfIsWatched.add(\"true\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        searchShowsHashMap.put(\"is_watched\", listOfIsWatched);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "    private void parseIsInternalToBeSearched(Optional\u003cString\u003e is_internal_optional) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        ArrayList\u003cString\u003e listOfIsInternal \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        if (is_internal_optional.isPresent()) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            String is_internal \u003d is_internal_optional.get().trim(); // true or yes || false or no"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "            listOfIsInternal.add(is_internal);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        searchShowsHashMap.put(\"is_internal\", listOfIsInternal);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
@@ -30384,9 +30658,9 @@
     ],
     "authorContributionMap": {
       "jcjjjared": 4,
-      "michelleykw": 33,
+      "michelleykw": 66,
       "heze8": 2,
-      "-": 14
+      "-": 13
     }
   },
   {
@@ -80094,23 +80368,23 @@
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "import java.util.Arrays;"
+        "content": "import java.util.*;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.util.Collections;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "import java.util.Optional;"
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 13,
@@ -80122,254 +80396,254 @@
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
-        },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
           "gitId": "heze8"
         },
         "content": "import seedu.ezwatchlist.model.Model;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 15,
         "author": {
           "gitId": "heze8"
         },
         "content": "import seedu.ezwatchlist.model.ModelManager;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 16,
         "author": {
           "gitId": "heze8"
         },
         "content": "import seedu.ezwatchlist.model.UserPrefs;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 17,
         "author": {
           "gitId": "wongchuankai"
         },
         "content": "import seedu.ezwatchlist.model.show.NameContainsKeywordsPredicate;"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
         "content": "/**"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
         "content": " * Contains integration tests (interaction with the Model) for {@code FindCommand}."
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": " */"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 22,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "public class SearchCommandTest {"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 23,
         "author": {
           "gitId": "wongchuankai"
         },
         "content": "    private Model model \u003d new ModelManager(getTypicalWatchList(), new UserPrefs());"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 24,
         "author": {
           "gitId": "wongchuankai"
         },
         "content": "    private Model expectedModel \u003d new ModelManager(getTypicalWatchList(), new UserPrefs());"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
         "content": "    public void equals() {"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 28,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "        /*NameContainsKeywordsPredicate firstPredicate \u003d"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
         "content": "                new NameContainsKeywordsPredicate(Collections.singletonList(\"first\"));"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
         "content": "        NameContainsKeywordsPredicate secondPredicate \u003d"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 31,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "                new NameContainsKeywordsPredicate(Collections.singletonList(\"second\"));*/"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        HashMap\u003cString, List\u003cString\u003e\u003e firstHash \u003d new HashMap\u003cString, List\u003cString\u003e\u003e();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        HashMap\u003cString, List\u003cString\u003e\u003e secondHash \u003d new HashMap\u003cString, List\u003cString\u003e\u003e();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        SearchCommand searchFirstCommand \u003d new SearchCommand(Optional.of(\"first\"));"
+        "content": "        ArrayList\u003cString\u003e firstList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        SearchCommand searchSecondCommand \u003d new SearchCommand(Optional.of(\"second\"));"
+        "content": "        ArrayList\u003cString\u003e secondList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        firstList.add(\"first\");"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        // same object -\u003e returns true"
+        "content": "        secondList.add(\"second\");"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        assertTrue(searchFirstCommand.equals(searchFirstCommand));"
+        "content": "        firstHash.put(\"name\", firstList);"
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        secondHash.put(\"name\", secondList);"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        // same values -\u003e returns true"
+        "content": "        SearchCommand searchFirstCommand \u003d new SearchCommand(firstHash);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        SearchCommand findFirstCommandCopy \u003d new SearchCommand(Optional.of(\"first\"));"
+        "content": "        SearchCommand searchSecondCommand \u003d new SearchCommand(secondHash);"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "        assertTrue(searchFirstCommand.equals(findFirstCommandCopy));"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // same object -\u003e returns true"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        // different types -\u003e returns false"
+        "content": "        assertTrue(searchFirstCommand.equals(searchFirstCommand));"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "        assertFalse(searchFirstCommand.equals(1));"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // same values -\u003e returns true"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        // null -\u003e returns false"
+        "content": "        SearchCommand findFirstCommandCopy \u003d new SearchCommand(firstHash);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        assertFalse(searchFirstCommand.equals(null));"
+        "content": "        assertTrue(searchFirstCommand.equals(findFirstCommandCopy));"
       },
       {
         "lineNumber": 50,
@@ -80381,222 +80655,292 @@
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "wongchuankai"
+          "gitId": "-"
         },
-        "content": "        // different show -\u003e returns false"
+        "content": "        // different types -\u003e returns false"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        assertFalse(searchFirstCommand.equals(searchSecondCommand));"
+        "content": "        assertFalse(searchFirstCommand.equals(1));"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // null -\u003e returns false"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "    @Test"
+        "content": "        assertFalse(searchFirstCommand.equals(null));"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "wongchuankai"
+          "gitId": "-"
         },
-        "content": "    public void execute_zeroKeywords_noShowFound() {"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "wongchuankai"
         },
-        "content": "        String expectedMessage \u003d String.format(MESSAGE_SHOWS_LISTED_OVERVIEW, 0);"
+        "content": "        // different show -\u003e returns false"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        NameContainsKeywordsPredicate predicate \u003d preparePredicate(\" \");"
+        "content": "        assertFalse(searchFirstCommand.equals(searchSecondCommand));"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "        SearchCommand command \u003d new SearchCommand(Optional.of(\" \"));"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "        expectedModel.updateFilteredShowList(predicate);"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertCommandSuccess(command, model, expectedMessage, expectedModel);"
+        "content": "    @Test"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "wongchuankai"
         },
-        "content": "        assertEquals(Collections.emptyList(), model.getFilteredShowList());"
+        "content": "    public void execute_zeroKeywords_noShowFound() {"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "wongchuankai"
         },
-        "content": "    }"
+        "content": "        String expectedMessage \u003d String.format(MESSAGE_SHOWS_LISTED_OVERVIEW, 0);"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "wongchuankai"
+          "gitId": "-"
         },
-        "content": "/*"
+        "content": "        NameContainsKeywordsPredicate predicate \u003d preparePredicate(\" \");"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "    @Test"
+        "content": "        HashMap\u003cString, List\u003cString\u003e\u003e emptyHash \u003d new HashMap\u003cString, List\u003cString\u003e\u003e();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        ArrayList\u003cString\u003e emptyList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "wongchuankai"
+          "gitId": "michelleykw"
         },
-        "content": "    public void execute_multipleKeywords_multipleShowsFound() {"
+        "content": "        emptyList.add(\" \");"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "wongchuankai"
+          "gitId": "michelleykw"
         },
-        "content": "        String expectedMessage \u003d String.format(MESSAGE_SHOWS_LISTED_OVERVIEW, 3);"
+        "content": "        emptyHash.put(\"name\", emptyList);"
       },
       {
         "lineNumber": 69,
         "author": {
-          "gitId": "jcjjjared"
+          "gitId": "michelleykw"
         },
-        "content": "        NameContainsKeywordsPredicate predicate \u003d preparePredicate(\"Avengers: Saving God\");"
+        "content": "        SearchCommand command \u003d new SearchCommand(emptyHash);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        SearchCommand command \u003d new SearchCommand(Optional.of(\"Avengers: Saving God\"));"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "michelleykw"
-        },
         "content": "        expectedModel.updateFilteredShowList(predicate);"
       },
       {
-        "lineNumber": 72,
+        "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
         "content": "        assertCommandSuccess(command, model, expectedMessage, expectedModel);"
       },
       {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        assertEquals(Collections.emptyList(), model.getFilteredShowList());"
+      },
+      {
         "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "wongchuankai"
+        },
+        "content": "/*"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "wongchuankai"
+        },
+        "content": "    public void execute_multipleKeywords_multipleShowsFound() {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "wongchuankai"
+        },
+        "content": "        String expectedMessage \u003d String.format(MESSAGE_SHOWS_LISTED_OVERVIEW, 3);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "jcjjjared"
+        },
+        "content": "        NameContainsKeywordsPredicate predicate \u003d preparePredicate(\"Avengers: Saving God\");"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        SearchCommand command \u003d new SearchCommand(Optional.of(\"Avengers: Saving God\"));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        expectedModel.updateFilteredShowList(predicate);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assertCommandSuccess(command, model, expectedMessage, expectedModel);"
+      },
+      {
+        "lineNumber": 83,
         "author": {
           "gitId": "jcjjjared"
         },
         "content": "        assertEquals(Arrays.asList(AVENGERSENDGAME, SAVINGPRIVATERYAN, GODFATHER2), model.getFilteredShowList());"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 85,
         "author": {
           "gitId": "wongchuankai"
         },
         "content": "*/"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
         "content": "     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}."
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
         "content": "    private NameContainsKeywordsPredicate preparePredicate(String userInput) {"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
         "content": "        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split(\"\\\\s+\")));"
       },
       {
-        "lineNumber": 81,
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 82,
+        "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
@@ -80606,9 +80950,9 @@
     "authorContributionMap": {
       "wongchuankai": 11,
       "jcjjjared": 3,
-      "michelleykw": 18,
+      "michelleykw": 30,
       "heze8": 5,
-      "-": 45
+      "-": 43
     }
   },
   {
@@ -83791,201 +84135,222 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "import java.util.Arrays;"
+        "content": "import java.util.*;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "michelleykw"
+          "gitId": "-"
         },
-        "content": "import java.util.Optional;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "-"
         },
-        "content": "import org.junit.jupiter.api.Test;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 11,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "import seedu.ezwatchlist.logic.commands.SearchCommand;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 12,
         "author": {
           "gitId": "heze8"
         },
         "content": "import seedu.ezwatchlist.model.person.NameContainsKeywordsPredicate;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 14,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "public class SearchCommandParserTest {"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "    private SearchCommandParser parser \u003d new SearchCommandParser();"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Test"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    public void parse_emptyArg_throwsParseException() {"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 20,
         "author": {
           "gitId": "michelleykw"
         },
         "content": "        assertParseFailure(parser, \"     \", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Test"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Test"
+        "content": "    public void parse_validArgs_returnsFindCommand() {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void parse_validArgs_returnsFindCommand() {"
+        "content": "        // no leading and trailing whitespaces"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        // no leading and trailing whitespaces"
+        "content": "        HashMap\u003cString, List\u003cString\u003e\u003e searchHash \u003d new HashMap\u003c\u003e();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        SearchCommand expectedSearchCommand \u003d"
+        "content": "        ArrayList\u003cString\u003e nameList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "                new SearchCommand(Optional.of(\"Alice\"));"
+        "content": "        nameList.add(\"Alice\");"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        assertParseSuccess(parser, \"Alice\", expectedSearchCommand);"
+        "content": "        searchHash.put(\"name\", nameList);"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": ""
+        "content": "        SearchCommand expectedSearchCommand \u003d"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "michelleykw"
         },
-        "content": "        // multiple whitespaces between keywords"
+        "content": "                new SearchCommand(searchHash);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "michelleykw"
         },
-        "content": "        assertParseSuccess(parser, \" \\n Alice \\n\", expectedSearchCommand);"
+        "content": "        assertParseSuccess(parser, \"Alice\", expectedSearchCommand);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        // multiple whitespaces between keywords"
       },
       {
         "lineNumber": 35,
+        "author": {
+          "gitId": "michelleykw"
+        },
+        "content": "        assertParseSuccess(parser, \" \\n Alice \\n\", expectedSearchCommand);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
@@ -83993,9 +84358,9 @@
       }
     ],
     "authorContributionMap": {
-      "michelleykw": 9,
+      "michelleykw": 13,
       "heze8": 5,
-      "-": 21
+      "-": 20
     }
   },
   {
