@@ -61271,7 +61271,7 @@
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    final SimpleDateFormat simpleDateFormat \u003d new SimpleDateFormat(\"EEE, MMM d\");"
+        "content": "    final SimpleDateFormat simpleDateFormat \u003d new SimpleDateFormat(\"EEE, MMM d, yyyy\");"
       },
       {
         "lineNumber": 31,
@@ -61880,332 +61880,381 @@
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "dalisc"
         },
-        "content": ""
+        "content": "        for (Body body: bodyList) {"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    /**"
+        "content": "            Date noTimeDate \u003d formatDateNoTime(body.getDateOfAdmission());"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * Update the tree map upon a body being added - the frequency (value) associated with the date of admission (key)"
+        "content": "            Number oldFreq \u003d freqByDate.getOrDefault(noTimeDate, 0);"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * will increase by one."
+        "content": "            int newFreq \u003d oldFreq.intValue() + 1;"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * @param c Change in the ObservableList of bodies."
+        "content": "            freqByDate.put(noTimeDate, newFreq);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    private void updateBodyAdded(ListChangeListener.Change\u003c? extends Body\u003e c) throws ParseException {"
+        "content": "    }"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        Date date \u003d c.getAddedSubList().get(0).getDateOfAdmission();"
+        "content": ""
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        Date noTimeDate \u003d formatDateNoTime(date);"
+        "content": "    /**"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        Number oldFreq \u003d freqByDate.getOrDefault(noTimeDate, 0);"
+        "content": "     * Update the tree map upon a body being added - the frequency (value) associated with the date of admission (key)"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        int newFreq \u003d oldFreq.intValue() + 1;"
+        "content": "     * will increase by one."
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        freqByDate.put(noTimeDate, newFreq);"
+        "content": "     * @param c Change in the ObservableList of bodies."
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "dalisc"
         },
-        "content": ""
+        "content": "    private void updateBodyAdded(ListChangeListener.Change\u003c? extends Body\u003e c) throws ParseException {"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    /**"
+        "content": "        Date date \u003d c.getAddedSubList().get(0).getDateOfAdmission();"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * Update the tree map upon a body being deleted - the frequency (value) associated with the date of admission (key)"
+        "content": "        Date noTimeDate \u003d formatDateNoTime(date);"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * will decrease by one."
+        "content": "        Number oldFreq \u003d freqByDate.getOrDefault(noTimeDate, 0);"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * @param c Change in the ObservableList of bodies."
+        "content": "        int newFreq \u003d oldFreq.intValue() + 1;"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     */"
+        "content": "        freqByDate.put(noTimeDate, newFreq);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    private void updateBodyRemoved(ListChangeListener.Change\u003c? extends Body\u003e c) throws ParseException {"
+        "content": "    }"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        Date date \u003d c.getRemoved().get(0).getDateOfAdmission();"
+        "content": ""
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        Date noTimeDate \u003d formatDateNoTime(date);"
+        "content": "    /**"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        Number oldFreq \u003d freqByDate.getOrDefault(noTimeDate, 0);"
+        "content": "     * Update the tree map upon a body being deleted - the frequency (value) associated with the date of admission (key)"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        int newFreq \u003d oldFreq.intValue() - 1;"
+        "content": "     * will decrease by one."
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        freqByDate.put(noTimeDate, newFreq);"
+        "content": "     * @param c Change in the ObservableList of bodies."
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "dalisc"
         },
-        "content": ""
+        "content": "    private void updateBodyRemoved(ListChangeListener.Change\u003c? extends Body\u003e c) throws ParseException {"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    /**"
+        "content": "        Date date \u003d c.getRemoved().get(0).getDateOfAdmission();"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     * Clears series data and populate series again with the current tree map keys and values."
+        "content": "        Date noTimeDate \u003d formatDateNoTime(date);"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "     */"
+        "content": "        Number oldFreq \u003d freqByDate.getOrDefault(noTimeDate, 0);"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    private void updateSeries() {"
+        "content": "        int newFreq \u003d oldFreq.intValue() - 1;"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        // clear previous data"
+        "content": "        freqByDate.put(noTimeDate, newFreq);"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        series.getData().clear();"
+        "content": "    }"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        // Update series based on dates in current hashmap"
+        "content": ""
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        freqByDate.forEach((date, freq) -\u003e {"
+        "content": "    /**"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "            series.getData().add(new XYChart.Data\u003cString, Number\u003e(simpleDateFormat.format(date), freq));"
+        "content": "     * Clears series data and populate series again with the current tree map keys and values."
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "            if (series.getData().size() \u003e WINDOW_SIZE) {"
+        "content": "     */"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "                series.getData().remove(0);"
+        "content": "    private void updateSeries() {"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "            }"
+        "content": "        // clear previous data"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        });"
+        "content": "        series.getData().clear();"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    }"
+        "content": "        // Update series based on dates in current hashmap"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "dalisc"
         },
-        "content": ""
+        "content": "        freqByDate.forEach((date, freq) -\u003e {"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    private Date formatDateNoTime(Date date) throws ParseException {"
+        "content": "            series.getData().add(new XYChart.Data\u003cString, Number\u003e(simpleDateFormat.format(date), freq));"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "        return simpleDateFormat.parse(simpleDateFormat.format(date));"
+        "content": "            if (series.getData().size() \u003e WINDOW_SIZE) {"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "dalisc"
         },
-        "content": "    }"
+        "content": "                series.getData().remove(0);"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "dalisc"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 164,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": "    private Date formatDateNoTime(Date date) throws ParseException {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": "        return simpleDateFormat.parse(simpleDateFormat.format(date));"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "dalisc"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 171,
         "author": {
           "gitId": "dalisc"
         },
@@ -62213,7 +62262,7 @@
       }
     ],
     "authorContributionMap": {
-      "dalisc": 164
+      "dalisc": 171
     }
   },
   {
