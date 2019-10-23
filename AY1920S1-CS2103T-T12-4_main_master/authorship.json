@@ -3293,23 +3293,23 @@
       {
         "lineNumber": 156,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "// tag::undoredo[]"
+        "content": "// tag::flashcardexport[]"
       },
       {
         "lineNumber": 157,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Undo/Redo feature"
+        "content": "\u003d\u003d\u003d Exporting of FlashCards"
       },
       {
         "lineNumber": 158,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "\u003d\u003d\u003d\u003d Proposed Implementation"
+        "content": "\u003d\u003d\u003d\u003d Implementation"
       },
       {
         "lineNumber": 159,
@@ -3321,51 +3321,51 @@
       {
         "lineNumber": 160,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "The undo/redo mechanism is facilitated by `VersionedAddressBook`."
+        "content": "The `FlashCard` exporting mechanism is primarily facilitated by the following classes:"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "-"
         },
-        "content": "It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`."
+        "content": ""
       },
       {
         "lineNumber": 162,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "Additionally, it implements the following operations:"
+        "content": "* `ExportUtil` -- Handles the actual exporting of `FlashCard` s"
       },
       {
         "lineNumber": 163,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "* `ExportCommand` -- Embodies an `export` command by the user; carries information about which `FlashCard` s are to be exported, and to where"
       },
       {
         "lineNumber": 164,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "* `VersionedAddressBook#commit()` -- Saves the current address book state in its history."
+        "content": "* `ExportCommandParser` -- Parses user input and uses it to construct an `ExportCommand` instance"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
-        "content": "* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history."
+        "content": ""
       },
       {
         "lineNumber": 166,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history."
+        "content": "The mechanism is also supported by the package `seedu.address.model.export`, consisting of the following classes:"
       },
       {
         "lineNumber": 167,
@@ -3377,23 +3377,23 @@
       {
         "lineNumber": 168,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively."
+        "content": "* `DocumentPath` -- Represents the path to a specific document - either absolute or relative to the application directory"
       },
       {
         "lineNumber": 169,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "* `DocumentFilePath` -- Represents the path to a specific document, relative to its immediate parent directory"
       },
       {
         "lineNumber": 170,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "Given below is an example usage scenario and how the undo/redo mechanism behaves at each step."
+        "content": "* `DirectoryPath` -- Represents the path to a specific directory - either absolute or relative to the application directory"
       },
       {
         "lineNumber": 171,
@@ -3405,37 +3405,37 @@
       {
         "lineNumber": 172,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state."
+        "content": "Of particular note is `ExportUtil`, as it is arguably the class responsible for doing the most tangible work. "
       },
       {
         "lineNumber": 173,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "Similar to the other classes in the `util` package, it consists entirely of `static` methods, and does not keep track of any variables."
       },
       {
         "lineNumber": 174,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "image::UndoRedoState0.png[]"
+        "content": "It exposes a single method, `ExportUtil#exportFlashCards(List\u003cFlashCard\u003e, DocumentPath)`, which prints a `List` of `FlashCard` s to a `.docx`"
       },
       {
         "lineNumber": 175,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "document located at the given `DocumentPath`. This is done by interfacing with the Apache POI library (in particular, the package"
       },
       {
         "lineNumber": 176,
         "author": {
-          "gitId": "ShuTingY"
+          "gitId": "LeowWB"
         },
-        "content": "Step 2. The user executes `delete 5` command to delete the 5th flashCard in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state."
+        "content": "`org.apache.poi.xwpf.usermodel`)."
       },
       {
         "lineNumber": 177,
@@ -3447,9 +3447,9 @@
       {
         "lineNumber": 178,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "image::UndoRedoState1.png[]"
+        "content": "The following sequence diagram shows how the export operation works:"
       },
       {
         "lineNumber": 179,
@@ -3461,9 +3461,9 @@
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "ShuTingY"
+          "gitId": "LeowWB"
         },
-        "content": "Step 3. The user executes `add n/David ...` to add a new flashCard. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`."
+        "content": "image::ExportSequenceDiagram.png[]"
       },
       {
         "lineNumber": 181,
@@ -3475,9 +3475,9 @@
       {
         "lineNumber": 182,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "image::UndoRedoState2.png[]"
+        "content": "The following activity diagram summarizes what happens when a user executes an export command:"
       },
       {
         "lineNumber": 183,
@@ -3489,156 +3489,156 @@
       {
         "lineNumber": 184,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "[NOTE]"
+        "content": "image::ExportActivityDiagram.png[width\u003d320,height\u003d480]"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "-"
         },
-        "content": "If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`."
+        "content": ""
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 187,
         "author": {
-          "gitId": "ShuTingY"
+          "gitId": "-"
         },
-        "content": "Step 4. The user now decides that adding the flashCard was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state."
+        "content": ""
       },
       {
         "lineNumber": 188,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Method of obtaining desired `FlashCard` s for exporting"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState3.png[]"
+        "content": ""
       },
       {
         "lineNumber": 190,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "* **Alternative 1:** Update the `Model` to show all desired `FlashCard` s, then export all of said `FlashCard` s"
       },
       {
         "lineNumber": 191,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "[NOTE]"
+        "content": "** Pros: Is easy to implement as it makes use of existing logic in `Model`; user receives immediate visual feedback regarding which specific `FlashCard` s were exported"
       },
       {
         "lineNumber": 192,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo."
+        "content": "** Cons: May cause confusion - `export` command does not imply that the selected `FlashCard` s will also be shown to the user"
       },
       {
         "lineNumber": 193,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "* **Alternative 2 (current choice):** Implement a new method in `Model` that returns the selected `FlashCard` s, without updating the on-screen list"
       },
       {
         "lineNumber": 194,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "The following sequence diagram shows how the undo operation works:"
+        "content": "** Pros: Will not cause confusion to user - `export` command does exactly what one would expect it to do"
       },
       {
         "lineNumber": 195,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "** Cons: Is harder to implement and might result in duplication of logic"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoSequenceDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 197,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Export file format"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "-"
         },
-        "content": "NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
+        "content": ""
       },
       {
         "lineNumber": 199,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "* **Alternative 1 (current choice):** Export to a `.docx` file"
       },
       {
         "lineNumber": 200,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state."
+        "content": "** Pros: Is easy and convenient to print for use as a cheat sheet"
       },
       {
         "lineNumber": 201,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "** Cons: Requires an external library due to the nature of the file format"
       },
       {
         "lineNumber": 202,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "[NOTE]"
+        "content": "* **Alternative 2:** Export to a `.txt` file"
       },
       {
         "lineNumber": 203,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo."
+        "content": "** Pros: Is easier to implement; the Java standard libraries already have the ability to write to text files"
       },
       {
         "lineNumber": 204,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": ""
+        "content": "** Cons: Might give rise to inconvenience in printing, as most text editors (e.g. Notepad, Vim, Gedit) do not have built-in printing functionality"
       },
       {
         "lineNumber": 205,
         "author": {
-          "gitId": "-"
+          "gitId": "LeowWB"
         },
-        "content": "Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged."
+        "content": "// end::flashcardexport[]"
       },
       {
         "lineNumber": 206,
@@ -3652,210 +3652,210 @@
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState4.png[]"
+        "content": "// tag::dataencryption[]"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "-"
         },
-        "content": "Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow."
+        "content": ""
       },
       {
         "lineNumber": 210,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{Explain here how the data encryption feature will be implemented}_"
       },
       {
         "lineNumber": 211,
         "author": {
           "gitId": "-"
         },
-        "content": "image::UndoRedoState5.png[]"
+        "content": ""
       },
       {
         "lineNumber": 212,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// end::dataencryption[]"
       },
       {
         "lineNumber": 213,
         "author": {
           "gitId": "-"
         },
-        "content": "The following activity diagram summarizes what happens when a user executes a new command:"
+        "content": ""
       },
       {
         "lineNumber": 214,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 215,
         "author": {
           "gitId": "-"
         },
-        "content": "image::CommitActivityDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 216,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 217,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d Design Considerations"
+        "content": ""
       },
       {
         "lineNumber": 218,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 219,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How undo \u0026 redo executes"
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 220,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 221,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 1 (current choice):** Saves the entire address book."
+        "content": ""
       },
       {
         "lineNumber": 222,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Easy to implement."
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 223,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: May have performance issues in terms of memory usage."
+        "content": ""
       },
       {
         "lineNumber": 224,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 2:** Individual command knows how to undo/redo by itself."
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
       },
       {
         "lineNumber": 225,
         "author": {
-          "gitId": "ShuTingY"
+          "gitId": "-"
         },
-        "content": "** Pros: Will use less memory (e.g. for `delete`, just save the flashCard being deleted)."
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 226,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: We must ensure that the implementation of each individual command are correct."
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 227,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 228,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: Data structure to support the undo/redo commands"
+        "content": ""
       },
       {
         "lineNumber": 229,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[[Implementation-Configuration]]"
       },
       {
         "lineNumber": 230,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 1 (current choice):** Use a list to store the history of address book states."
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 231,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project."
+        "content": ""
       },
       {
         "lineNumber": 232,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`."
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 233,
         "author": {
           "gitId": "-"
         },
-        "content": "* **Alternative 2:** Use `HistoryManager` for undo/redo"
+        "content": ""
       },
       {
         "lineNumber": 234,
         "author": {
           "gitId": "-"
         },
-        "content": "** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase."
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 235,
         "author": {
           "gitId": "-"
         },
-        "content": "** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things."
+        "content": ""
       },
       {
         "lineNumber": 236,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::undoredo[]"
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 237,
@@ -3869,70 +3869,70 @@
         "author": {
           "gitId": "-"
         },
-        "content": "// tag::dataencryption[]"
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 239,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+        "content": ""
       },
       {
         "lineNumber": 240,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 241,
         "author": {
           "gitId": "-"
         },
-        "content": "_{Explain here how the data encryption feature will be implemented}_"
+        "content": ""
       },
       {
         "lineNumber": 242,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 243,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 244,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 245,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": ""
       },
       {
         "lineNumber": 246,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "[appendix]"
       },
       {
         "lineNumber": 247,
         "author": {
           "gitId": "-"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 248,
@@ -3946,70 +3946,70 @@
         "author": {
           "gitId": "-"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": "*Target user profile*:"
       },
       {
         "lineNumber": 250,
         "author": {
           "gitId": "-"
         },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
+        "content": ""
       },
       {
         "lineNumber": 251,
         "author": {
-          "gitId": "-"
+          "gitId": "dalsontws"
         },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
+        "content": "* is a student that needs to revise for exams"
       },
       {
         "lineNumber": 252,
         "author": {
-          "gitId": "-"
+          "gitId": "dalsontws"
         },
-        "content": ""
+        "content": "* has a need to remember certain things"
       },
       {
         "lineNumber": 253,
         "author": {
           "gitId": "-"
         },
-        "content": "*Logging Levels*"
+        "content": "* prefer desktop apps over other types"
       },
       {
         "lineNumber": 254,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* can type fast"
       },
       {
         "lineNumber": 255,
         "author": {
           "gitId": "-"
         },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
+        "content": "* prefers typing over mouse input"
       },
       {
         "lineNumber": 256,
         "author": {
           "gitId": "-"
         },
-        "content": "* `WARNING` : Can continue, but with caution"
+        "content": "* is reasonably comfortable using CLI apps"
       },
       {
         "lineNumber": 257,
         "author": {
           "gitId": "-"
         },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
+        "content": ""
       },
       {
         "lineNumber": 258,
         "author": {
-          "gitId": "-"
+          "gitId": "dalsontws"
         },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
+        "content": "*Value proposition*: learning platform to help students remember things easily, test their knowledge on certain subjects and at the same time be reminded on important study sessions and exams"
       },
       {
         "lineNumber": 259,
@@ -4023,14 +4023,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 261,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": "\u003d\u003d User Stories"
       },
       {
         "lineNumber": 262,
@@ -4044,7 +4044,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
       },
       {
         "lineNumber": 264,
@@ -4058,469 +4058,469 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
       },
       {
         "lineNumber": 266,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 267,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 268,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d Testing"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 271,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
-      },
-      {
-        "lineNumber": 272,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 273,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d Dev Ops"
-      },
-      {
-        "lineNumber": 274,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 275,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
-      },
-      {
-        "lineNumber": 276,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 277,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[appendix]"
-      },
-      {
-        "lineNumber": 278,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d Product Scope"
-      },
-      {
-        "lineNumber": 279,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 280,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*Target user profile*:"
-      },
-      {
-        "lineNumber": 281,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 282,
-        "author": {
-          "gitId": "dalsontws"
-        },
-        "content": "* is a student that needs to revise for exams"
-      },
-      {
-        "lineNumber": 283,
-        "author": {
-          "gitId": "dalsontws"
-        },
-        "content": "* has a need to remember certain things"
-      },
-      {
-        "lineNumber": 284,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* prefer desktop apps over other types"
-      },
-      {
-        "lineNumber": 285,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* can type fast"
-      },
-      {
-        "lineNumber": 286,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* prefers typing over mouse input"
-      },
-      {
-        "lineNumber": 287,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* is reasonably comfortable using CLI apps"
-      },
-      {
-        "lineNumber": 288,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 289,
-        "author": {
-          "gitId": "dalsontws"
-        },
-        "content": "*Value proposition*: learning platform to help students remember things easily, test their knowledge on certain subjects and at the same time be reminded on important study sessions and exams"
-      },
-      {
-        "lineNumber": 290,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 291,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[appendix]"
-      },
-      {
-        "lineNumber": 292,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d User Stories"
-      },
-      {
-        "lineNumber": 293,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 294,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
-      },
-      {
-        "lineNumber": 295,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 296,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
-      },
-      {
-        "lineNumber": 297,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
-      },
-      {
-        "lineNumber": 298,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 299,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| Priority | As a... | I want to... | So that I can..."
       },
       {
-        "lineNumber": 300,
+        "lineNumber": 269,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | familiar with command line | type commands into a command line interface | perform tasks faster"
       },
       {
-        "lineNumber": 301,
+        "lineNumber": 270,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | university student | use flashcards to remember things easily | prepare better for my exams"
       },
       {
-        "lineNumber": 302,
+        "lineNumber": 271,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | meticulous student | set priorities of each subject I am studying  | study subjects in an orderly manner"
       },
       {
-        "lineNumber": 303,
+        "lineNumber": 272,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | forgetful student | set exam reminders   | remember when to start studying for my exams"
       },
       {
-        "lineNumber": 304,
+        "lineNumber": 273,
         "author": {
           "gitId": "LeowWB"
         },
         "content": "| `* * *` | busy student  | exit the \u003c\u003ctest, test\u003e\u003e mode at any time  | perform other tasks"
       },
       {
-        "lineNumber": 305,
+        "lineNumber": 274,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | meticulous student  | search for a particular flashcard | review a specific flashcard whenever I want"
       },
       {
-        "lineNumber": 306,
+        "lineNumber": 275,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | new user | key in part of a command and let the program suggest the rest | key in commands more easily"
       },
       {
-        "lineNumber": 307,
+        "lineNumber": 276,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | student | see a timer next to each flashcard  | know how long I\u0026#39;ve spent answering the current question"
       },
       {
-        "lineNumber": 308,
+        "lineNumber": 277,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | student studying multiple subjects | categorize my flashcards under different modules | study them in such manner"
       },
       {
-        "lineNumber": 309,
+        "lineNumber": 278,
         "author": {
           "gitId": "LeowWB"
         },
         "content": "| `* * *` | meticulous student | sort my subjects  | study subjects in an orderly manner"
       },
       {
-        "lineNumber": 310,
+        "lineNumber": 279,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | meticulous student | make use of colour codes  | highlight and know my weaknesses"
       },
       {
-        "lineNumber": 311,
+        "lineNumber": 280,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | advanced user | search through my content   | find subjects/topics easily"
       },
       {
-        "lineNumber": 312,
+        "lineNumber": 281,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | meticulous student,   | use the calendar to plan my study |  so that I will not miss any subject"
       },
       {
-        "lineNumber": 313,
+        "lineNumber": 282,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | meticulous student | view what tasks are overdue | know what I have not done"
       },
       {
-        "lineNumber": 314,
+        "lineNumber": 283,
         "author": {
           "gitId": "LeowWB"
         },
         "content": "| `* * *` | meticulous student | a mock \u003c\u003ctest, test\u003e\u003e timer to simulate exam situation | be prepared for my upcoming exams"
       },
       {
-        "lineNumber": 315,
+        "lineNumber": 284,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | meticulous student | label difficult questions | the flash cards will appear more frequently for better knowledge absorption"
       },
       {
-        "lineNumber": 316,
+        "lineNumber": 285,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* * *` | student | move backward through the flashcards  | recall the previous question/answer"
       },
       {
-        "lineNumber": 317,
+        "lineNumber": 286,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | meticulous student | view the overall statistic | monitor my performance overtime"
       },
       {
-        "lineNumber": 318,
+        "lineNumber": 287,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | meticulous student | use the scoring system  | know how well prepared I am"
       },
       {
-        "lineNumber": 319,
+        "lineNumber": 288,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | As a user | hide the answer until I finish all the questions | remember better"
       },
       {
-        "lineNumber": 320,
+        "lineNumber": 289,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | meticulous student | check the correctness of my answer | know whether my answer was right"
       },
       {
-        "lineNumber": 321,
+        "lineNumber": 290,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | busy student | use the night mode  | study in a dark environment"
       },
       {
-        "lineNumber": 322,
+        "lineNumber": 291,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | student with many friends | export flashcards in a simple shareable format | share with my friends"
       },
       {
-        "lineNumber": 323,
+        "lineNumber": 292,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | artistic student | customise the theme | so that I would have a better user experience"
       },
       {
-        "lineNumber": 324,
+        "lineNumber": 293,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `* *`  | colour blind student | special accessibility options  | see my flashcards clearly"
       },
       {
-        "lineNumber": 325,
+        "lineNumber": 294,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `*` | competitive student | export and share my statistics with my friends | compare my performance to theirs"
       },
       {
-        "lineNumber": 326,
+        "lineNumber": 295,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `*` | forgetful student | key in my answer | see my own attempt to compare with the correct answer"
       },
       {
-        "lineNumber": 327,
+        "lineNumber": 296,
         "author": {
           "gitId": "dalsontws"
         },
         "content": "| `*` | competitive student | compare my results with others | so that I can be recognised for my skills and knowledge"
       },
       {
-        "lineNumber": 328,
+        "lineNumber": 297,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 329,
+        "lineNumber": 298,
         "author": {
           "gitId": "-"
         },
         "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
-        "lineNumber": 330,
+        "lineNumber": 299,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 331,
+        "lineNumber": 300,
         "author": {
           "gitId": "-"
         },
         "content": "_{More to be added}_"
+      },
+      {
+        "lineNumber": 301,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 302,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 303,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d Use Cases"
+      },
+      {
+        "lineNumber": 304,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 305,
+        "author": {
+          "gitId": "LeonardTay748"
+        },
+        "content": "(For all use cases below, the *System* is `KeyboardFlashCards` and the *Actor* is the `user`, unless specified otherwise)"
+      },
+      {
+        "lineNumber": 306,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 307,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 308,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 309,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*MSS*"
+      },
+      {
+        "lineNumber": 310,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 311,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "1.  User requests to list all flashcards in a \u003c\u003ccategory, category\u003e\u003e"
+      },
+      {
+        "lineNumber": 312,
+        "author": {
+          "gitId": "LeonardTay748"
+        },
+        "content": "2.  System shows a list of flashcards with index"
+      },
+      {
+        "lineNumber": 313,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "3.  User requests to delete a flashcard in the list by providing \u003c\u003ccategory, category\u003e\u003e and index"
+      },
+      {
+        "lineNumber": 314,
+        "author": {
+          "gitId": "LeonardTay748"
+        },
+        "content": "4.  System deletes the flashcard"
+      },
+      {
+        "lineNumber": 315,
+        "author": {
+          "gitId": "ShuTingY"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 316,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 317,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 318,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 319,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "*Extensions*"
+      },
+      {
+        "lineNumber": 320,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 321,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 322,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "* 2a. The list is empty."
+      },
+      {
+        "lineNumber": 323,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 324,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Use case ends."
+      },
+      {
+        "lineNumber": 325,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 326,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "* 3a. The given \u003c\u003ccategory, category\u003e\u003e is invalid."
+      },
+      {
+        "lineNumber": 327,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 328,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 329,
+        "author": {
+          "gitId": "LeonardTay748"
+        },
+        "content": "** 3a1. System shows an error message."
+      },
+      {
+        "lineNumber": 330,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 331,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Use case resumes at step 2."
       },
       {
         "lineNumber": 332,
@@ -4532,518 +4532,518 @@
       {
         "lineNumber": 333,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
-        "content": "[appendix]"
+        "content": "* 3b. The given index is invalid."
       },
       {
         "lineNumber": 334,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": "+"
       },
       {
         "lineNumber": 335,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
-        "content": ""
+        "content": "[none]"
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "LeonardTay748"
         },
-        "content": "(For all use cases below, the *System* is `KeyboardFlashCards` and the *Actor* is the `user`, unless specified otherwise)"
+        "content": "** 3b1. System shows an error message."
       },
       {
         "lineNumber": 337,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
-        "content": ""
+        "content": "+"
       },
       {
         "lineNumber": 338,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
-        "content": "[discrete]"
+        "content": "Use case resumes at step 2."
       },
       {
         "lineNumber": 339,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
         "lineNumber": 340,
         "author": {
-          "gitId": "-"
+          "gitId": "LeonardTay748"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 341,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 342,
-        "author": {
-          "gitId": "LeowWB"
-        },
-        "content": "1.  User requests to list all flashcards in a \u003c\u003ccategory, category\u003e\u003e"
-      },
-      {
-        "lineNumber": 343,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "2.  System shows a list of flashcards with index"
-      },
-      {
-        "lineNumber": 344,
-        "author": {
-          "gitId": "LeowWB"
-        },
-        "content": "3.  User requests to delete a flashcard in the list by providing \u003c\u003ccategory, category\u003e\u003e and index"
-      },
-      {
-        "lineNumber": 345,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "4.  System deletes the flashcard"
-      },
-      {
-        "lineNumber": 346,
-        "author": {
-          "gitId": "ShuTingY"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 347,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 348,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 349,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 350,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "*Extensions*"
-      },
-      {
-        "lineNumber": 351,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 352,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 353,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "* 2a. The list is empty."
-      },
-      {
-        "lineNumber": 354,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 355,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Use case ends."
-      },
-      {
-        "lineNumber": 356,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 357,
-        "author": {
-          "gitId": "LeowWB"
-        },
-        "content": "* 3a. The given \u003c\u003ccategory, category\u003e\u003e is invalid."
-      },
-      {
-        "lineNumber": 358,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 359,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 360,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "** 3a1. System shows an error message."
-      },
-      {
-        "lineNumber": 361,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 362,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "Use case resumes at step 2."
-      },
-      {
-        "lineNumber": 363,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 364,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "* 3b. The given index is invalid."
-      },
-      {
-        "lineNumber": 365,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 366,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "[none]"
-      },
-      {
-        "lineNumber": 367,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "** 3b1. System shows an error message."
-      },
-      {
-        "lineNumber": 368,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "+"
-      },
-      {
-        "lineNumber": 369,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": "Use case resumes at step 2."
-      },
-      {
-        "lineNumber": 370,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 371,
-        "author": {
-          "gitId": "LeonardTay748"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 372,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "[discrete]"
       },
       {
-        "lineNumber": 373,
+        "lineNumber": 342,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "\u003d\u003d\u003d Use case: Edit Flashcard"
       },
       {
-        "lineNumber": 374,
+        "lineNumber": 343,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
-        "lineNumber": 375,
+        "lineNumber": 344,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "*MSS*"
       },
       {
-        "lineNumber": 376,
+        "lineNumber": 345,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
-        "lineNumber": 377,
+        "lineNumber": 346,
         "author": {
           "gitId": "LeowWB"
         },
         "content": "1.  User requests to list all flashcards in a \u003c\u003ccategory, category\u003e\u003e"
       },
       {
-        "lineNumber": 378,
+        "lineNumber": 347,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "2.  System shows a list of flashcards with index"
       },
       {
-        "lineNumber": 379,
+        "lineNumber": 348,
         "author": {
           "gitId": "LeowWB"
         },
         "content": "3.  User requests to edit a flashcard in the list by providing \u003c\u003ccategory, category\u003e\u003e and index"
       },
       {
-        "lineNumber": 380,
+        "lineNumber": 349,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "4.  System provides a pop-up for user to enter changes"
       },
       {
-        "lineNumber": 381,
+        "lineNumber": 350,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "5.  User enters changes"
       },
       {
-        "lineNumber": 382,
+        "lineNumber": 351,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "6.  System updates flashcard with the user input"
       },
       {
-        "lineNumber": 383,
+        "lineNumber": 352,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "+"
       },
       {
-        "lineNumber": 384,
+        "lineNumber": 353,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "Use case ends."
       },
       {
-        "lineNumber": 385,
+        "lineNumber": 354,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
-        "lineNumber": 386,
+        "lineNumber": 355,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "*Extensions*"
       },
       {
-        "lineNumber": 387,
+        "lineNumber": 356,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
-        "lineNumber": 388,
+        "lineNumber": 357,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 389,
+        "lineNumber": 358,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "* 2a. The list is empty."
       },
       {
-        "lineNumber": 390,
+        "lineNumber": 359,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "+"
       },
       {
-        "lineNumber": 391,
+        "lineNumber": 360,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "Use case ends."
       },
       {
-        "lineNumber": 392,
+        "lineNumber": 361,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
-        "lineNumber": 393,
+        "lineNumber": 362,
         "author": {
           "gitId": "LeowWB"
         },
         "content": "* 3a. The given \u003c\u003ccategory, category\u003e\u003e is invalid."
       },
       {
-        "lineNumber": 394,
+        "lineNumber": 363,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "+"
       },
       {
-        "lineNumber": 395,
+        "lineNumber": 364,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 396,
+        "lineNumber": 365,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "** 3a1. System shows an error message."
       },
       {
-        "lineNumber": 397,
+        "lineNumber": 366,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "+"
       },
       {
-        "lineNumber": 398,
+        "lineNumber": 367,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "Use case resumes at step 2."
       },
       {
-        "lineNumber": 399,
+        "lineNumber": 368,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": ""
       },
       {
-        "lineNumber": 400,
+        "lineNumber": 369,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "* 3b. The given index is invalid."
       },
       {
-        "lineNumber": 401,
+        "lineNumber": 370,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "+"
       },
       {
-        "lineNumber": 402,
+        "lineNumber": 371,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 403,
+        "lineNumber": 372,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "** 3b1. System shows an error message."
       },
       {
-        "lineNumber": 404,
+        "lineNumber": 373,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "+"
       },
       {
-        "lineNumber": 405,
+        "lineNumber": 374,
         "author": {
           "gitId": "LeonardTay748"
         },
         "content": "Use case resumes at step 2."
       },
       {
-        "lineNumber": 406,
+        "lineNumber": 375,
         "author": {
           "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 376,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 377,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d Non Functional Requirements"
+      },
+      {
+        "lineNumber": 378,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 379,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+      },
+      {
+        "lineNumber": 380,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  Should be able to hold up to 2000 flash cards without a noticeable sluggishness in performance for typical usage."
+      },
+      {
+        "lineNumber": 381,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  Should be able to hold up to 4000 (2 times that of flash cards?) tags without a noticeable sluggishness in performance for typical usage."
+      },
+      {
+        "lineNumber": 382,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
+      },
+      {
+        "lineNumber": 383,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  The programme should be able to respond within 1 second."
+      },
+      {
+        "lineNumber": 384,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  The file export format to be shared with friends should be backwards compatible."
+      },
+      {
+        "lineNumber": 385,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  The user interface should be intuitive enough for users familiar with the command line and/or vim."
+      },
+      {
+        "lineNumber": 386,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  The source code should be open source."
+      },
+      {
+        "lineNumber": 387,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  Flash card tests should be not be executable if there are no flash cards in the system."
+      },
+      {
+        "lineNumber": 388,
+        "author": {
+          "gitId": "keiteo"
+        },
+        "content": ".  Old flash cards should still be working every time there\u0027s an update to the programme."
+      },
+      {
+        "lineNumber": 389,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 390,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "_{More to be added}_"
+      },
+      {
+        "lineNumber": 391,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 392,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[appendix]"
+      },
+      {
+        "lineNumber": 393,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u003d\u003d Glossary"
+      },
+      {
+        "lineNumber": 394,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 395,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "[[category]] Category::"
+      },
+      {
+        "lineNumber": 396,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "A tag that can be assigned to a flashcard for better categorisation"
+      },
+      {
+        "lineNumber": 397,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 398,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[[mainstream-os]] Mainstream OS::"
+      },
+      {
+        "lineNumber": 399,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Windows, Linux, Unix, OS-X"
+      },
+      {
+        "lineNumber": 400,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 401,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[[private-contact-detail]] Private contact detail::"
+      },
+      {
+        "lineNumber": 402,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "A contact detail that is not meant to be shared with others"
+      },
+      {
+        "lineNumber": 403,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 404,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "[[test]] Test::"
+      },
+      {
+        "lineNumber": 405,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "The state in which the user is shown their flashcards one-by-one and in succession, allowing them to test their understanding of the covered content"
+      },
+      {
+        "lineNumber": 406,
+        "author": {
+          "gitId": "LeowWB"
         },
         "content": ""
       },
@@ -5059,7 +5059,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Non Functional Requirements"
+        "content": "\u003d\u003d Product Survey"
       },
       {
         "lineNumber": 409,
@@ -5073,70 +5073,70 @@
         "author": {
           "gitId": "-"
         },
-        "content": ".  Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": "*Product Name*"
       },
       {
         "lineNumber": 411,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  Should be able to hold up to 2000 flash cards without a noticeable sluggishness in performance for typical usage."
+        "content": ""
       },
       {
         "lineNumber": 412,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  Should be able to hold up to 4000 (2 times that of flash cards?) tags without a noticeable sluggishness in performance for typical usage."
+        "content": "Author: ..."
       },
       {
         "lineNumber": 413,
         "author": {
           "gitId": "-"
         },
-        "content": ".  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
+        "content": ""
       },
       {
         "lineNumber": 414,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  The programme should be able to respond within 1 second."
+        "content": "Pros:"
       },
       {
         "lineNumber": 415,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  The file export format to be shared with friends should be backwards compatible."
+        "content": ""
       },
       {
         "lineNumber": 416,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  The user interface should be intuitive enough for users familiar with the command line and/or vim."
+        "content": "* ..."
       },
       {
         "lineNumber": 417,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  The source code should be open source."
+        "content": "* ..."
       },
       {
         "lineNumber": 418,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  Flash card tests should be not be executable if there are no flash cards in the system."
+        "content": ""
       },
       {
         "lineNumber": 419,
         "author": {
-          "gitId": "keiteo"
+          "gitId": "-"
         },
-        "content": ".  Old flash cards should still be working every time there\u0027s an update to the programme."
+        "content": "Cons:"
       },
       {
         "lineNumber": 420,
@@ -5150,54 +5150,54 @@
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": "* ..."
       },
       {
         "lineNumber": 422,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* ..."
       },
       {
         "lineNumber": 423,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 424,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 425,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Instructions for Manual Testing"
       },
       {
         "lineNumber": 426,
         "author": {
-          "gitId": "LeowWB"
+          "gitId": "-"
         },
-        "content": "[[category]] Category::"
+        "content": ""
       },
       {
         "lineNumber": 427,
         "author": {
-          "gitId": "LeowWB"
+          "gitId": "-"
         },
-        "content": "A tag that can be assigned to a flashcard for better categorisation"
+        "content": "Given below are instructions to test the app manually."
       },
       {
         "lineNumber": 428,
         "author": {
-          "gitId": "LeowWB"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -5206,14 +5206,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 430,
         "author": {
           "gitId": "-"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
       },
       {
         "lineNumber": 431,
@@ -5227,119 +5227,119 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[[private-contact-detail]] Private contact detail::"
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
       },
       {
         "lineNumber": 433,
         "author": {
           "gitId": "-"
         },
-        "content": "A contact detail that is not meant to be shared with others"
+        "content": ""
       },
       {
         "lineNumber": 434,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Initial launch"
       },
       {
         "lineNumber": 435,
         "author": {
-          "gitId": "LeowWB"
+          "gitId": "-"
         },
-        "content": "[[test]] Test::"
+        "content": ""
       },
       {
         "lineNumber": 436,
         "author": {
-          "gitId": "LeowWB"
+          "gitId": "-"
         },
-        "content": "The state in which the user is shown their flashcards one-by-one and in succession, allowing them to test their understanding of the covered content"
+        "content": ".. Download the jar file and copy into an empty folder"
       },
       {
         "lineNumber": 437,
         "author": {
-          "gitId": "LeowWB"
+          "gitId": "-"
         },
-        "content": ""
+        "content": ".. Double-click the jar file +"
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
       },
       {
         "lineNumber": 439,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": ""
       },
       {
         "lineNumber": 440,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Saving window preferences"
       },
       {
         "lineNumber": 441,
         "author": {
           "gitId": "-"
         },
-        "content": "*Product Name*"
+        "content": ""
       },
       {
         "lineNumber": 442,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
       },
       {
         "lineNumber": 443,
         "author": {
           "gitId": "-"
         },
-        "content": "Author: ..."
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
       },
       {
         "lineNumber": 444,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: The most recent window size and location is retained."
       },
       {
         "lineNumber": 445,
         "author": {
           "gitId": "-"
         },
-        "content": "Pros:"
+        "content": ""
       },
       {
         "lineNumber": 446,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 447,
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": ""
       },
       {
         "lineNumber": 448,
         "author": {
-          "gitId": "-"
+          "gitId": "ShuTingY"
         },
-        "content": "* ..."
+        "content": "\u003d\u003d\u003d Deleting a flashCard"
       },
       {
         "lineNumber": 449,
@@ -5351,9 +5351,9 @@
       {
         "lineNumber": 450,
         "author": {
-          "gitId": "-"
+          "gitId": "ShuTingY"
         },
-        "content": "Cons:"
+        "content": ". Deleting a flashCard while all flashCards are listed"
       },
       {
         "lineNumber": 451,
@@ -5365,51 +5365,51 @@
       {
         "lineNumber": 452,
         "author": {
-          "gitId": "-"
+          "gitId": "ShuTingY"
         },
-        "content": "* ..."
+        "content": ".. Prerequisites: List all flashCards using the `list` command. Multiple flashCards in the list."
       },
       {
         "lineNumber": 453,
         "author": {
           "gitId": "-"
         },
-        "content": "* ..."
+        "content": ".. Test case: `delete 1` +"
       },
       {
         "lineNumber": 454,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
       },
       {
         "lineNumber": 455,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ".. Test case: `delete 0` +"
       },
       {
         "lineNumber": 456,
         "author": {
-          "gitId": "-"
+          "gitId": "ShuTingY"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": "   Expected: No flashCard is deleted. Error details shown in the status message. Status bar remains the same."
       },
       {
         "lineNumber": 457,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
       },
       {
         "lineNumber": 458,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": "   Expected: Similar to previous."
       },
       {
         "lineNumber": 459,
@@ -5423,276 +5423,59 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 461,
         "author": {
           "gitId": "-"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": ""
       },
       {
         "lineNumber": 462,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Saving data"
       },
       {
         "lineNumber": 463,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": ""
       },
       {
         "lineNumber": 464,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Dealing with missing/corrupted data files"
       },
       {
         "lineNumber": 465,
         "author": {
           "gitId": "-"
         },
-        "content": ". Initial launch"
+        "content": ""
       },
       {
         "lineNumber": 466,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
       },
       {
         "lineNumber": 467,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": ""
       },
       {
         "lineNumber": 468,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Double-click the jar file +"
-      },
-      {
-        "lineNumber": 469,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
-      },
-      {
-        "lineNumber": 470,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 471,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ". Saving window preferences"
-      },
-      {
-        "lineNumber": 472,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 473,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
-      },
-      {
-        "lineNumber": 474,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
-      },
-      {
-        "lineNumber": 475,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "   Expected: The most recent window size and location is retained."
-      },
-      {
-        "lineNumber": 476,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 477,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "_{ more test cases ... }_"
-      },
-      {
-        "lineNumber": 478,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 479,
-        "author": {
-          "gitId": "ShuTingY"
-        },
-        "content": "\u003d\u003d\u003d Deleting a flashCard"
-      },
-      {
-        "lineNumber": 480,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 481,
-        "author": {
-          "gitId": "ShuTingY"
-        },
-        "content": ". Deleting a flashCard while all flashCards are listed"
-      },
-      {
-        "lineNumber": 482,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 483,
-        "author": {
-          "gitId": "ShuTingY"
-        },
-        "content": ".. Prerequisites: List all flashCards using the `list` command. Multiple flashCards in the list."
-      },
-      {
-        "lineNumber": 484,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Test case: `delete 1` +"
-      },
-      {
-        "lineNumber": 485,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
-      },
-      {
-        "lineNumber": 486,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Test case: `delete 0` +"
-      },
-      {
-        "lineNumber": 487,
-        "author": {
-          "gitId": "ShuTingY"
-        },
-        "content": "   Expected: No flashCard is deleted. Error details shown in the status message. Status bar remains the same."
-      },
-      {
-        "lineNumber": 488,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
-      },
-      {
-        "lineNumber": 489,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "   Expected: Similar to previous."
-      },
-      {
-        "lineNumber": 490,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 491,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "_{ more test cases ... }_"
-      },
-      {
-        "lineNumber": 492,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 493,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "\u003d\u003d\u003d Saving data"
-      },
-      {
-        "lineNumber": 494,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 495,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ". Dealing with missing/corrupted data files"
-      },
-      {
-        "lineNumber": 496,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 497,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
-      },
-      {
-        "lineNumber": 498,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 499,
         "author": {
           "gitId": "-"
         },
@@ -5700,12 +5483,12 @@
       }
     ],
     "authorContributionMap": {
-      "ShuTingY": 11,
-      "LeowWB": 15,
+      "ShuTingY": 7,
+      "LeowWB": 50,
       "LeonardTay748": 45,
       "dalsontws": 29,
       "keiteo": 8,
-      "-": 391
+      "-": 329
     }
   },
   {
@@ -9707,6 +9490,605 @@
     }
   },
   {
+    "path": "docs/diagrams/ExportActivityDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "start"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ":User executes export command;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "\u0027Since the beta syntax does not support placing the condition outside the"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "\u0027diamond we place it as the true branch instead."
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "if () then ([file path is valid])"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    :Obtain the desired FlashCards;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    :Create a new document;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    repeat"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "        :Write FlashCard to document;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    repeat while () is ([more FlashCards])"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    -\u003e[all FlashCards written];"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    :Save document to given file path;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    :Display success message;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "else ([else])"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    :Display error message;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "endif"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "stop"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "LeowWB": 21
+    }
+  },
+  {
+    "path": "docs/diagrams/ExportSequenceDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "box Logic LOGIC_COLOR_T1"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "participant \":ExportCommand\" as ExportCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "box Model MODEL_COLOR_T1"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "participant \":Model\" as Model MODEL_COLOR"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "box Commons COMMONS_COLOR_T1"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "participant \"\u003c\u003cclass\u003e\u003e\\nExportUtil\" as ExportUtil COMMONS_COLOR"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "box org.apache.poi.xwpf.usermodel EXTERNAL_LIBRARY_COLOR_T1"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "participant \":XWPFDocument\" as XWPFDocument EXTERNAL_LIBRARY_COLOR"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "[-\u003e ExportCommand : execute(model)"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "activate ExportCommand"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportCommand -\u003e ExportCommand : categoryToPredicate(category)"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "activate ExportCommand"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportCommand \u003c-- ExportCommand : predicate"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "deactivate ExportCommand"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportCommand -\u003e Model : getFilteredFlashCardListNoCommit(predicate)"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "activate Model"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportCommand \u003c-- Model : list"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "deactivate Model"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportCommand -\u003e ExportUtil : exportFlashCards(list, documentPath)"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "activate ExportUtil"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "create XWPFDocument"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportUtil -\u003e XWPFDocument : XWPFDocument()"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "activate XWPFDocument"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportUtil \u003c-- XWPFDocument : document"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "deactivate XWPFDocument"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "loop for each FlashCard in list"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    ExportUtil -\u003e XWPFDocument : createParagraph()"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    activate XWPFDocument"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    ExportUtil \u003c-- XWPFDocument"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "    deactivate XWPFDocument"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "end"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportUtil -\u003e ExportUtil : writeDocumentToFile(document, documentPath)"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "activate ExportUtil"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportUtil \u003c-- ExportUtil"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "deactivate ExportUtil"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "ExportCommand \u003c-- ExportUtil"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "deactivate ExportUtil"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "[\u003c--ExportCommand"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "deactivate ExportCommand"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "LeowWB": 62
+    }
+  },
+  {
     "path": "docs/diagrams/ModelClassDiagram.puml",
     "fileType": "other",
     "lines": [
@@ -10085,6 +10467,625 @@
     "authorContributionMap": {
       "ShuTingY": 17,
       "-": 36
+    }
+  },
+  {
+    "path": "docs/diagrams/style.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "/\u0027"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " \u0027Commonly used styles and colors across diagrams."
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " \u0027Refer to https://plantuml-documentation.readthedocs.io/en/latest for a more"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " \u0027comprehensive list of skinparams."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": " \u0027/"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u0027T1 through T4 are shades of the original color from lightest to darkest"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define UI_COLOR #1D8900"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define UI_COLOR_T1 #83E769"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define UI_COLOR_T2 #3FC71B"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define UI_COLOR_T3 #166800"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define UI_COLOR_T4 #0E4100"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define LOGIC_COLOR #3333C4"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define LOGIC_COLOR_T1 #C8C8FA"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define LOGIC_COLOR_T2 #6A6ADC"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define LOGIC_COLOR_T3 #1616B0"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define LOGIC_COLOR_T4 #101086"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define MODEL_COLOR #9D0012"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define MODEL_COLOR_T1 #F97181"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define MODEL_COLOR_T2 #E41F36"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define MODEL_COLOR_T3 #7B000E"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define MODEL_COLOR_T4 #51000A"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define STORAGE_COLOR #A38300"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define STORAGE_COLOR_T1 #FFE374"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define STORAGE_COLOR_T2 #EDC520"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define STORAGE_COLOR_T3 #806600"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define STORAGE_COLOR_T2 #544400"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define COMMONS_COLOR #b06300"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define COMMONS_COLOR_T1 #ffd39e"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define COMMONS_COLOR_T2 #a88e6d"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define COMMONS_COLOR_T3 #ff8f00"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define COMMONS_COLOR_T4 #593200"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define EXTERNAL_LIBRARY_COLOR #420061"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define EXTERNAL_LIBRARY_COLOR_T1 #e09eff"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define EXTERNAL_LIBRARY_COLOR_T2 #7800b0"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define EXTERNAL_LIBRARY_COLOR_T3 #845c96"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": "!define EXTERNAL_LIBRARY_COLOR_T4 #7700ff"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "LeowWB"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!define USER_COLOR #000000"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam BackgroundColor #FFFFFFF"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam Shadowing false"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam Class {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    FontColor #FFFFFF"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    BorderThickness 1"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    BorderColor #FFFFFF"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    StereotypeFontColor #FFFFFF"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    FontName Arial"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam Actor {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    BorderColor USER_COLOR"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Color USER_COLOR"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    FontName Arial"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam Sequence {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    MessageAlign center"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    BoxFontSize 15"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    BoxPadding 0"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    BoxFontColor #FFFFFF"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    FontName Arial"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam Participant {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    FontColor #FFFFFFF"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    Padding 20"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam MinClassWidth 50"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam ParticipantPadding 10"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam Shadowing false"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam DefaultTextAlignment center"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam packageStyle Rectangle"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "hide footbox"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "hide members"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "hide circle"
+      }
+    ],
+    "authorContributionMap": {
+      "LeowWB": 12,
+      "-": 75
     }
   },
   {

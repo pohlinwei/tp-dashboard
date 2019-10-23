@@ -37540,159 +37540,299 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.commands.CommandResult;"
+        "content": "import seedu.address.calendar.model.Year;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.calendar.parser.CliSyntax;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "/**"
+        "content": "import seedu.address.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": " * Shows user the his/her calendar for the specified month."
+        "content": "import seedu.address.ui.Page;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": " */"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "public class ShowCommand extends Command {"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public static final String COMMAND_WORD \u003d \"show\";"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public static final String SHOWING_REQUESTED_MESSAGE \u003d \"Showing month view for %s %d\";"
+        "content": "/**"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": " * Shows user the his/her calendar for the specified month."
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    MonthOfYear monthOfYear;"
+        "content": " */"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    int year;"
+        "content": "public class ShowCommand extends Command {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    public static final String COMMAND_WORD \u003d \"show\";"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public ShowCommand(MonthOfYear monthOfYear, int year) {"
+        "content": "    public static final String MESSAGE_SHOWING_REQUESTED \u003d \"Showing month view for %s %s\";"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        this.monthOfYear \u003d monthOfYear;"
+        "content": "    public static final String MESSAGE_USAGE \u003d COMMAND_WORD + \": Shows a month view of the requested month\""
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        this.year \u003d year;"
+        "content": "            + \"Parameters: \""
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "            + CliSyntax.PREFIX_MONTH + \" MONTH \""
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "            + \"[\" + CliSyntax.PREFIX_YEAR + \"YEAR]\" + \"\\n\""
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public CommandResult execute(Calendar calendar) {"
+        "content": "            + \"Example: \" + COMMAND_WORD + \" \" + CliSyntax.PREFIX_MONTH + \" Dec \" + CliSyntax.PREFIX_YEAR + \" 2019\";"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        Month requestedMonth \u003d new Month(monthOfYear, year);"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        calendar.updateMonthShown(requestedMonth);"
+        "content": "    private MonthOfYear monthOfYear;"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        return new CommandResult(SHOWING_REQUESTED_MESSAGE);"
+        "content": "    private Year year;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ShowCommand(MonthOfYear monthOfYear, Optional\u003cYear\u003e year) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (year.isEmpty()) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            this.monthOfYear \u003d monthOfYear;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            // get current year"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            java.util.Calendar currentDate \u003d java.util.Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            int currentYear \u003d currentDate.get(java.util.Calendar.YEAR);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            this.year \u003d new Year(currentYear);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            this.year \u003d year.get();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.monthOfYear \u003d monthOfYear;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    public CommandResult execute(Calendar calendar) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        Month requestedMonth \u003d new Month(monthOfYear, year);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        calendar.updateMonthShown(requestedMonth);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String formattedFeedback \u003d String.format(MESSAGE_SHOWING_REQUESTED, monthOfYear.toString(), year.toString());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new CommandResult(formattedFeedback);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -37700,7 +37840,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 28
+      "-": 29,
+      "ngzhaoming": 19
     }
   },
   {
@@ -37726,112 +37867,112 @@
         "author": {
           "gitId": "-"
         },
-        "content": "public class Calendar {"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private Month monthShown;"
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private int currentYear;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private boolean hasVisibleUpdates;"
+        "content": "public class Calendar {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    private Month monthShown;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public Calendar() {"
+        "content": "    private Year currentYear;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        java.util.Calendar currentDate \u003d java.util.Calendar.getInstance();"
+        "content": "    private boolean hasVisibleUpdates;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "    private List\u003cEvent\u003e events;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        currentYear \u003d currentDate.get(java.util.Calendar.YEAR);"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    public Calendar() {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        int currentUnformattedMonth \u003d currentDate.get(java.util.Calendar.MONTH);"
+        "content": "        java.util.Calendar currentDate \u003d java.util.Calendar.getInstance();"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        MonthOfYear currentMonth \u003d MonthOfYear.convertJavaMonth(currentUnformattedMonth);"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        this.currentYear \u003d new Year(currentDate.get(java.util.Calendar.YEAR));"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        monthShown \u003d new Month(currentMonth, currentYear);"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        hasVisibleUpdates \u003d false;"
+        "content": "        int currentUnformattedMonth \u003d currentDate.get(java.util.Calendar.MONTH);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "        MonthOfYear currentMonth \u003d MonthOfYear.convertJavaMonth(currentUnformattedMonth);"
       },
       {
         "lineNumber": 19,
@@ -37845,49 +37986,49 @@
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public Month getMonth() {"
+        "content": "        monthShown \u003d new Month(currentMonth, currentYear);"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return monthShown;"
+        "content": "        hasVisibleUpdates \u003d false;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "        events \u003d new ArrayList\u003c\u003e(); // todo: update this such that it is linked to storage"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public void updateMonthShown(Month updatedMonth) {"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        monthShown \u003d updatedMonth;"
+        "content": "    public Month getMonth() {"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        hasVisibleUpdates \u003d true;"
+        "content": "        return Month.copy(monthShown);"
       },
       {
         "lineNumber": 27,
@@ -37908,293 +38049,227 @@
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": "    public void updateMonthShown(Month updatedMonth) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Checks whether there are any visible update that has to be shown to user."
+        "content": "        monthShown \u003d updatedMonth;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @return {@code true} if and only if there are visible updates that can be shown to user"
+        "content": "        hasVisibleUpdates \u003d true;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public boolean hasViewUpdates() {"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return hasVisibleUpdates;"
+        "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "     * Checks whether there are any visible update that has to be shown to user."
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "     * @return {@code true} if and only if there are visible updates that can be shown to user"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "     * Marks visible update as complete, i.e. latest visible update has been shown to user."
+        "content": "    public boolean hasVisibleUpdates() {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "        return hasVisibleUpdates;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public void completeUpdate() {"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        hasVisibleUpdates \u003d false;"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "ngzhaoming"
         },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "-": 4,
-      "ngzhaoming": 39
-    }
-  },
-  {
-    "path": "src/main/java/seedu/address/calendar/model/CalendarSimplified.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "package seedu.address.calendar.model;"
+        "content": "     * Marks visible update as complete, i.e. latest visible update has been shown to user."
       },
       {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
+        "lineNumber": 44,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import java.util.stream.Stream;"
+        "content": "     */"
       },
       {
-        "lineNumber": 4,
+        "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public void completeVisibleUpdates() {"
       },
       {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " * Simplified and static calendar"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class CalendarSimplified extends Calendar {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
+        "lineNumber": 46,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    Month month \u003d new Month(MonthOfYear.OCTOBER, 2019);"
+        "content": "        hasVisibleUpdates \u003d false;"
       },
       {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    // todo: use Java built-in function to get current date and time"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    public Stream\u003cDay\u003e getDays() {"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        return (new Month(MonthOfYear.OCTOBER, 2019)).getDaysInMonth();"
-      },
-      {
-        "lineNumber": 15,
+        "lineNumber": 47,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 48,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 49,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public Month getMonth() {"
+        "content": "    /**"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 50,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        return month;"
+        "content": "     * Adds an event to the calendar"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 51,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 52,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "    public void addEvent(Event event) {"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 53,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    // todo: upgrade this method LOL"
+        "content": "        events.add(event);"
       },
       {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    public void updateMonth(String str) {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        MonthOfYear newMonth \u003d MonthOfYear.valueOf(str);"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        month \u003d new Month(newMonth, 2019);"
-      },
-      {
-        "lineNumber": 25,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    // todo: extract the following and implement it using model manager"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public ReadOnlyCalendar getCalendar() {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        List\u003cEvent\u003e eventsCopy \u003d List.copyOf(events);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new ReadOnlyCalendar(eventsCopy);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
@@ -38202,8 +38277,8 @@
       }
     ],
     "authorContributionMap": {
-      "-": 10,
-      "ngzhaoming": 16
+      "-": 27,
+      "ngzhaoming": 34
     }
   },
   {
@@ -38313,7 +38388,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    private Day(DayOfWeek dayOfWeek, int dayOfMonth) {"
+        "content": "    public Day(DayOfWeek dayOfWeek, int dayOfMonth) {"
       },
       {
         "lineNumber": 16,
@@ -38586,12 +38661,117 @@
         "author": {
           "gitId": "-"
         },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return String.format(\"%s, %d\", dayOfWeek, dayOfMonth);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public boolean equals(Object o) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (o \u003d\u003d this) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } else if (!(o instanceof Day)) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Day dayToCompare \u003d (Day) o;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return dayToCompare.dayOfWeek.equals(this.dayOfWeek) \u0026\u0026 dayToCompare.dayOfMonth \u003d\u003d this.dayOfMonth;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
       "pohlinwei": 1,
-      "-": 53
+      "-": 68
     }
   },
   {
@@ -38848,11 +39028,172 @@
         "author": {
           "gitId": "-"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        switch(this) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case SUN:"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Sun\";"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case MON:"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Mon\";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case TUE:"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Tue\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case WED:"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Wed\";"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case THU:"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Thu\";"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case FRI:"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Fri\";"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case SAT:"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"Sat\";"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            assert false : \"Only possible values are from Sun to Mon\";"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"\";"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "-": 21,
+      "-": 44,
       "ngzhaoming": 15
     }
   },
@@ -38940,9 +39281,9 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    int year;"
+        "content": "    Year year;"
       },
       {
         "lineNumber": 13,
@@ -38961,9 +39302,9 @@
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public Month(MonthOfYear monthOfYear, int year) {"
+        "content": "    public Month(MonthOfYear monthOfYear, Year year) {"
       },
       {
         "lineNumber": 16,
@@ -38982,7 +39323,7 @@
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": "        this.daysInMonth \u003d monthOfYear.getNumDaysInMonth(year);"
       },
@@ -39143,306 +39484,397 @@
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public MonthOfYear getMonthOfYear() {"
+        "content": "    public Day getDay(int dayOfMonth) {"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        return monthOfYear;"
+        "content": "        int dayOfMonthZeroBased \u003d dayOfMonth - 1;"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "        return days.get(dayOfMonthZeroBased);"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Computes which day (of week) {@code} month starts on"
+        "content": "    public MonthOfYear getMonthOfYear() {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @return day (of week) {@code this} month starts on"
+        "content": "        return monthOfYear;"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private int findFirstDayOfWeekAsNum() {"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        int monthNumerical \u003d monthOfYear.getNumericalVal();"
+        "content": "    public Year getYear() {"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        int zellerMonth \u003d findZellerMonth(monthNumerical);"
+        "content": "        return year;"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        int zellerYear \u003d findZellerYear(zellerMonth);"
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        int zellerCentury \u003d zellerYear / 100;"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        int lastTwoDigitsOfYear \u003d zellerYear % 100;"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static Month copy(Month month) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return new Month(month.getMonthOfYear(), month.getYear());"
+      },
+      {
         "lineNumber": 56,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        // use Zeller\u0027s formula"
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        int day \u003d ((FIRST_DAY_OF_MONTH + (13 * zellerMonth - 1) / 5 + lastTwoDigitsOfYear + (lastTwoDigitsOfYear / 4)"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                + (zellerCentury / 4) - 2 * zellerCentury)) % 7;"
+        "content": "    /**"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        int positiveDay \u003d day \u003c 0 ? (day + 7) : day;"
+        "content": "     * Computes which day (of week) {@code} month starts on"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "     * @return day (of week) {@code this} month starts on"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return positiveDay;"
+        "content": "     */"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "    private int findFirstDayOfWeekAsNum() {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        int monthNumerical \u003d monthOfYear.getNumericalVal();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": "        int zellerMonth \u003d findZellerMonth(monthNumerical);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Computes the numerical value of {@code this} month such that it can be easily used with Zeller\u0027s rule."
+        "content": "        int zellerYear \u003d findZellerYear(zellerMonth);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     *"
+        "content": "        int zellerCentury \u003d zellerYear / 100;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @param monthNumerical numerical representation of {@code this} month"
+        "content": "        int lastTwoDigitsOfYear \u003d zellerYear % 100;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @return numerical value of {@code this} month such that it can be easily used with Zeller\u0027s rule"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "        // use Zeller\u0027s formula"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private int findZellerMonth(int monthNumerical) {"
+        "content": "        int day \u003d ((FIRST_DAY_OF_MONTH + (13 * zellerMonth - 1) / 5 + lastTwoDigitsOfYear + (lastTwoDigitsOfYear / 4)"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        int shiftedMonth \u003d ((monthNumerical - 2) + MonthOfYear.getNumMonthsInYear()) % MonthOfYear.getNumMonthsInYear();"
+        "content": "                + (zellerCentury / 4) - 2 * zellerCentury)) % 7;"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return shiftedMonth;"
+        "content": "        int positiveDay \u003d day \u003c 0 ? (day + 7) : day;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        return positiveDay;"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Computes the year such that it can be easily used with Zeller\u0027s rule."
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     *"
+        "content": "    /**"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @param zellerMonth {@code this} month such that it can be easily used with Zeller\u0027s rule"
+        "content": "     * Computes the numerical value of {@code this} month such that it can be easily used with Zeller\u0027s rule."
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @return year such that it can be easily used with Zeller\u0027s rule."
+        "content": "     *"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "     * @param monthNumerical numerical representation of {@code this} month"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private int findZellerYear(int zellerMonth) {"
+        "content": "     * @return numerical value of {@code this} month such that it can be easily used with Zeller\u0027s rule"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return zellerMonth \u003e 10 ? (year - 1) : year;"
+        "content": "     */"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "    private int findZellerMonth(int monthNumerical) {"
       },
       {
         "lineNumber": 84,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        int shiftedMonth \u003d ((monthNumerical - 2) + MonthOfYear.getNumMonthsInYear()) % MonthOfYear.getNumMonthsInYear();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        return shiftedMonth;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     * Computes the year such that it can be easily used with Zeller\u0027s rule."
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     * @param zellerMonth {@code this} month such that it can be easily used with Zeller\u0027s rule"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     * @return year such that it can be easily used with Zeller\u0027s rule."
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    private int findZellerYear(int zellerMonth) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return zellerMonth \u003e 10 ? (year.getNumericalValue() - 1) : year.getNumericalValue();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -39450,7 +39882,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 84
+      "-": 17,
+      "ngzhaoming": 80
     }
   },
   {
@@ -39693,7 +40126,7 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    int getNumDaysInMonth(int year) {"
+        "content": "    public int getNumDaysInMonth(Year year) {"
       },
       {
         "lineNumber": 35,
@@ -39712,9 +40145,9 @@
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            return isLeapYear(year) ? DAYS_IN_FEB_LEAP : numDaysInMonth;"
+        "content": "            return isLeapYear(year.getNumericalValue()) ? DAYS_IN_FEB_LEAP : numDaysInMonth;"
       },
       {
         "lineNumber": 38,
@@ -39852,9 +40285,9 @@
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    static MonthOfYear convertJavaMonth(int javaMonth) {"
+        "content": "    public static MonthOfYear convertJavaMonth(int javaMonth) {"
       },
       {
         "lineNumber": 58,
@@ -40106,12 +40539,243 @@
         "author": {
           "gitId": "-"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        switch(this) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case JANUARY:"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"January\";"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case FEBRUARY:"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"February\";"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case MARCH:"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"March\";"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case APRIL:"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"April\";"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case MAY:"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"May\";"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case JUNE:"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"June\";"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case JULY:"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"July\";"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case AUGUST:"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"August\";"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case SEPTEMBER:"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"September\";"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case OCTOBER:"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"October\";"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case NOVEMBER:"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"November\";"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case DECEMBER:"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return \"December\";"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        assert false : \"Month of year should be valid\";"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        return \"\"; // this should not be returned"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "-": 43,
-      "ngzhaoming": 50
+      "-": 78,
+      "ngzhaoming": 48
     }
   },
   {
@@ -40135,306 +40799,334 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import seedu.address.calendar.commands.ShowCommand;"
+        "content": "import seedu.address.calendar.commands.AddCommitmentCommand;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import seedu.address.calendar.commands.Command;"
+        "content": "import seedu.address.calendar.commands.ShowCommand;"
       },
       {
         "lineNumber": 5,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "import seedu.address.calendar.commands.Command;"
+      },
+      {
+        "lineNumber": 6,
         "author": {
           "gitId": "bjhoohaha"
         },
         "content": "import seedu.address.address.logic.commands.HelpCommand;"
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 7,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 8,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import java.util.regex.Matcher;"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import java.util.regex.Pattern;"
+        "content": "import java.util.regex.Matcher;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "import java.util.regex.Pattern;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "public class CalendarParser {"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": "public class CalendarParser {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Used for initial separation of command word and args."
+        "content": "    /**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "     * Used for initial separation of command word and args."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
+        "content": "     */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    private static final Pattern BASIC_COMMAND_FORMAT \u003d Pattern.compile(\"(?\u003ccommandWord\u003e\\\\S+)(?\u003carguments\u003e.*)\");"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Parses user input into command for execution."
+        "content": "    /**"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     *"
+        "content": "     * Parses user input into command for execution."
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @param userInput full user input string"
+        "content": "     *"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @return the command based on the user input"
+        "content": "     * @param userInput full user input string"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * @throws ParseException if the user input does not conform the expected format"
+        "content": "     * @return the command based on the user input"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "     * @throws ParseException if the user input does not conform the expected format"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public Command parseCommand(String userInput) throws ParseException {"
+        "content": "     */"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
+        "content": "    public Command parseCommand(String userInput) throws ParseException {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "        final Matcher matcher \u003d BASIC_COMMAND_FORMAT.matcher(userInput.trim());"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        }"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
+        "content": "        final String commandWord \u003d matcher.group(\"commandWord\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        final String arguments \u003d matcher.group(\"arguments\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        switch(commandWord) {"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        switch(commandWord) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        case ShowCommand.COMMAND_WORD:"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            return new ShowParser().parse(arguments);"
+        "content": "        case ShowCommand.COMMAND_WORD:"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "            return new ShowParser().parse(arguments);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        default:"
+        "content": ""
       },
       {
         "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        case AddCommitmentCommand.COMMAND_WORD:"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return new AddCommandParser().parse(arguments);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 47,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);"
       },
       {
-        "lineNumber": 44,
+        "lineNumber": 48,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 49,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 50,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -40443,6 +41135,7 @@
     ],
     "authorContributionMap": {
       "bjhoohaha": 1,
+      "-": 4,
       "ngzhaoming": 45
     }
   },
@@ -40488,254 +41181,254 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import java.util.regex.Matcher;"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import java.util.regex.Pattern;"
+        "content": "import java.util.regex.Matcher;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "import java.util.regex.Pattern;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "class MonthParser {"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String FORMAT_ERROR_MESSAGE \u003d \"Incorrect month format.\";"
+        "content": "class MonthParser {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String MONTH_ERROR_MESSAGE \u003d \"No such month can be found.\";"
+        "content": "    private static final String FORMAT_ERROR_MESSAGE \u003d \"Incorrect month format.\";"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    private static final String MONTH_ERROR_MESSAGE \u003d \"No such month can be found.\";"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String MONTH_STR_KEY \u003d \"monthStr\";"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String MONTH_STR_PATTERN \u003d \"(?\u003c\" + MONTH_STR_KEY + \"\u003e\\\\S{3,})\";"
+        "content": "    private static final String MONTH_STR_KEY \u003d \"monthStr\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String MONTH_NUM_KEY \u003d \"monthNum\";"
+        "content": "    private static final String MONTH_STR_PATTERN \u003d \"(?\u003c\" + MONTH_STR_KEY + \"\u003e\\\\S{3,})\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String MONTH_NUM_PATTERN \u003d \"(?\u003c\" + MONTH_NUM_KEY + \"\u003e\\\\d{1,2}?)\";"
+        "content": "    private static final String MONTH_NUM_KEY \u003d \"monthNum\";"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final Pattern MONTH_FORMAT \u003d Pattern.compile(MONTH_NUM_PATTERN + \"|\" + MONTH_STR_PATTERN);"
+        "content": "    private static final String MONTH_NUM_PATTERN \u003d \"(?\u003c\" + MONTH_NUM_KEY + \"\u003e\\\\d{1,2}?)\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    private static final Pattern MONTH_FORMAT \u003d Pattern.compile(MONTH_NUM_PATTERN + \"|\" + MONTH_STR_PATTERN);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    MonthOfYear parse(String userInput) throws ParseException {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        final Matcher matcher \u003d MONTH_FORMAT.matcher(userInput.trim());"
+        "content": "    Optional\u003cMonthOfYear\u003e parse(Optional\u003cString\u003e monthInput) throws ParseException {"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        if (monthInput.isEmpty()) {"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": "            return Optional.empty();"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            throw new ParseException(FORMAT_ERROR_MESSAGE);"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 24,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String input \u003d monthInput.get();"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        MonthOfYear month;"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        final Matcher matcher \u003d MONTH_FORMAT.matcher(input.trim());"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        if (matcher.group(MONTH_NUM_KEY) !\u003d null) {"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            String monthNum \u003d matcher.group(MONTH_NUM_PATTERN);"
+        "content": "        if (!matcher.matches()) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            month \u003d convertMonthNum(monthNum);"
+        "content": "            throw new ParseException(FORMAT_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        } else {"
+        "content": "        }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            String monthStr \u003d matcher.group(MONTH_STR_KEY);"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            month \u003d convertMonthStr(monthStr);"
+        "content": "        MonthOfYear month;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        if (matcher.group(MONTH_NUM_KEY) !\u003d null) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return month;"
+        "content": "            String monthNum \u003d matcher.group(MONTH_NUM_PATTERN);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "            month \u003d convertMonthNum(monthNum);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private MonthOfYear convertMonthNum(String monthNum) throws ParseException {"
+        "content": "            String monthStr \u003d matcher.group(MONTH_STR_KEY);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        // assumes that user represents Jan with 1, Feb with 2, etc."
+        "content": "            month \u003d convertMonthStr(monthStr);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        int zeroBasedMonth \u003d Integer.parseInt(monthNum) - 1;"
+        "content": "        }"
       },
       {
         "lineNumber": 42,
@@ -40747,117 +41440,166 @@
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        if (!MonthOfYear.isValidMonthNum(zeroBasedMonth)) {"
+        "content": "        return Optional.of(month);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            throw new ParseException(MONTH_ERROR_MESSAGE);"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "    private MonthOfYear convertMonthNum(String monthNum) throws ParseException {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        MonthOfYear month \u003d MonthOfYear.convertNumToMonth(zeroBasedMonth);"
+        "content": "        // assumes that user represents Jan with 1, Feb with 2, etc."
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return month;"
+        "content": "        int zeroBasedMonth \u003d Integer.parseInt(monthNum) - 1;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        if (!MonthOfYear.isValidMonthNum(zeroBasedMonth)) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private MonthOfYear convertMonthStr(String monthStr) throws ParseException {"
+        "content": "            throw new ParseException(MONTH_ERROR_MESSAGE);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        if (!MonthOfYear.isValidMonthStr(monthStr)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            throw new ParseException(MONTH_ERROR_MESSAGE);"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        }"
+        "content": "        MonthOfYear month \u003d MonthOfYear.convertNumToMonth(zeroBasedMonth);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        return month;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        MonthOfYear month \u003d MonthOfYear.convertStrToMonth(monthStr);"
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return month;"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "    private MonthOfYear convertMonthStr(String monthStr) throws ParseException {"
       },
       {
         "lineNumber": 59,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        if (!MonthOfYear.isValidMonthStr(monthStr)) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "            throw new ParseException(MONTH_ERROR_MESSAGE);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        MonthOfYear month \u003d MonthOfYear.convertStrToMonth(monthStr);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        return month;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -40865,7 +41607,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 59
+      "-": 10,
+      "ngzhaoming": 56
     }
   },
   {
@@ -40896,58 +41639,58 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import seedu.address.calendar.model.MonthOfYear;"
+        "content": "import seedu.address.calendar.model.Month;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import seedu.address.calendar.model.MonthOfYear;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.calendar.model.Year;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import java.util.regex.Matcher;"
+        "content": "import seedu.address.logic.parser.ArgumentMultimap;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import java.util.regex.Pattern;"
+        "content": "import seedu.address.logic.parser.ArgumentTokenizer;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "class ShowParser {"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private static final String FORMAT_ERROR_MESSAGE \u003d \"Incorrect month/year format.\";"
+        "content": "import java.util.Optional;"
       },
       {
         "lineNumber": 12,
@@ -40959,114 +41702,114 @@
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private static final String MONTH_ONLY_KEY \u003d \"monthOnly\";"
+        "content": "public class ShowParser {"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private static final String MONTH_ONLY_PATTERN \u003d \"(?\u003c\" + MONTH_ONLY_KEY + \"\u003e\\\\S+)\";"
+        "content": "    private static final String MESSAGE_INVALID_COMMAND_FORMAT \u003d \"Incorrect month/year format. %s\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private static final String MONTH_KEY \u003d \"month\";"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private static final String YEAR_KEY \u003d \"year\";"
+        "content": "    ShowCommand parse(String args) throws ParseException {"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private static final String MONTH_AND_YEAR_PATTERN \u003d \"(?\u003c\" + MONTH_KEY + \"\u003e\\\\S+)\\\\s(?\u003c\" + YEAR_KEY + \"\u003e\\\\d{4}?)\";"
+        "content": "        ArgumentMultimap argMultimap \u003d ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_MONTH, CliSyntax.PREFIX_YEAR);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "     * Used for initial separation of month and year (if any)."
+        "content": "        if (!ParserUtil.arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MONTH)) {"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "     */"
+        "content": "            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE));"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private static final Pattern MONTH_YEAR_FORMAT \u003d Pattern.compile(MONTH_ONLY_PATTERN + \"|\" + MONTH_AND_YEAR_PATTERN);"
+        "content": "        } else if (ParserUtil.hasMultiplePrefixes(argMultimap, CliSyntax.PREFIX_MONTH, CliSyntax.PREFIX_YEAR)) {"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "            throw new ParseException(ParserUtil.MESSAGE_DUPLICATED_ARG);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    ShowCommand parse(String userInput) throws ParseException {"
+        "content": "        }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        final Matcher matcher \u003d MONTH_YEAR_FORMAT.matcher(userInput.trim());"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        Optional\u003cMonthOfYear\u003e monthOfYear \u003d new MonthParser().parse(argMultimap.getValue(CliSyntax.PREFIX_MONTH));"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        if (!matcher.matches()) {"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            throw new ParseException(FORMAT_ERROR_MESSAGE);"
+        "content": "        assert monthOfYear.isEmpty() : \"Month of year cannot be empty for a show command\";"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        }"
+        "content": "        MonthOfYear monthOfYearVal \u003d monthOfYear.get();"
       },
       {
         "lineNumber": 29,
@@ -41078,124 +41821,33 @@
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        int year;"
+        "content": "        Optional\u003cYear\u003e year \u003d new YearParser().parse(argMultimap.getValue(CliSyntax.PREFIX_YEAR));"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        String month;"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        return new ShowCommand(monthOfYearVal, year);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        if (matcher.group(MONTH_ONLY_KEY) !\u003d null) {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            month \u003d matcher.group(MONTH_ONLY_KEY);"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            java.util.Calendar currentDate \u003d java.util.Calendar.getInstance();"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            year \u003d currentDate.get(java.util.Calendar.YEAR);"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            month \u003d matcher.group(MONTH_KEY);"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            year \u003d Integer.parseInt(matcher.group(YEAR_KEY));"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        MonthOfYear formattedMonth \u003d new MonthParser().parse(month);"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        return new ShowCommand(formattedMonth, year);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 34,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -41203,7 +41855,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 47
+      "-": 18,
+      "ngzhaoming": 16
     }
   },
   {
@@ -41236,112 +41889,112 @@
         "author": {
           "gitId": "-"
         },
-        "content": "import javafx.geometry.Pos;"
+        "content": "import javafx.scene.Scene;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "-"
         },
-        "content": "import javafx.scene.Scene;"
+        "content": "import javafx.scene.layout.StackPane;"
       },
       {
         "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.control.Label;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.control.TextField;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import javafx.scene.layout.GridPane;"
-      },
-      {
-        "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import javafx.scene.layout.VBox;"
       },
       {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "import javafx.scene.text.TextAlignment;"
-      },
-      {
-        "lineNumber": 11,
+        "lineNumber": 7,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.calendar.commands.Command;"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 8,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.calendar.model.Calendar;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.calendar.model.Month;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.calendar.model.MonthOfYear;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.calendar.model.Year;"
+      },
+      {
+        "lineNumber": 12,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.calendar.parser.CalendarParser;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.logic.commands.CommandResult;"
+      },
+      {
+        "lineNumber": 14,
         "author": {
           "gitId": "bjhoohaha"
         },
         "content": "import seedu.address.address.logic.AddressBookLogic;"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 15,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.logic.commands.exceptions.CommandException;"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.ui.Page;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
         "content": "import seedu.address.ui.PageType;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import seedu.address.ui.UiPart;"
       },
       {
         "lineNumber": 20,
@@ -41355,147 +42008,147 @@
         "author": {
           "gitId": "-"
         },
-        "content": "public class CalendarPage implements Page {"
+        "content": "public class CalendarPage extends UiPart\u003cScene\u003e implements Page {"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "    private static final String FXML \u003d \"CalendarPage.fxml\";"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "    private final static PageType pageType \u003d PageType.CALENDAR;"
+        "content": "    private static final PageType pageType \u003d PageType.CALENDAR;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "    private boolean isOpened \u003d false;"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private ResultDisplay resultDisplay;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "    Scene calendarScene;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "    StackPane commandBoxPlaceholder;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    VBox calendarPane \u003d new VBox();"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "    StackPane monthHeaderPlaceholder;"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "    GridPane weekHeader;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML"
+        "content": "    StackPane yearHeaderPlaceholder;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    GridPane monthView;"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    @FXML // todo change the following to CommandBox class?"
+        "content": "    StackPane monthViewPlaceholder;"
       },
       {
         "lineNumber": 35,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    TextField commandBoxPlaceHolder \u003d new TextField();"
-      },
-      {
-        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
         "content": "    @FXML"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "    Label monthLabel;"
+        "content": "    VBox resultDisplayPlaceholder;"
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 38,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    private Calendar calendar;"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 40,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    public CalendarPage() {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 42,
@@ -41507,427 +42160,427 @@
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        commandBoxPlaceHolder \u003d new CommandBox(this::executeCommand).getCommandBox();"
+        "content": "        fillInnerParts();"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        setUp();"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 46,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public boolean isOpened() {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        return isOpened;"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    void setOpened(boolean isOpened) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        this.isOpened \u003d isOpened;"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 55,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    public Scene getScene() {"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 47,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        return calendarScene;"
+        "content": "        return getRoot();"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 48,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 49,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": ""
       },
       {
-        "lineNumber": 59,
+        "lineNumber": 50,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    public PageType getPageType() {"
       },
       {
-        "lineNumber": 60,
+        "lineNumber": 51,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "        return pageType;"
       },
       {
-        "lineNumber": 61,
+        "lineNumber": 52,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 53,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": ""
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 54,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 55,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "     * Sets up calendar page by laying out nodes."
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 56,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "     */"
       },
       {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void fillInnerParts() {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Month currentMonth \u003d calendar.getMonth();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        MonthOfYear monthOfYear \u003d currentMonth.getMonthOfYear();"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        MonthHeader monthHeader \u003d new MonthHeader(monthOfYear);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        monthHeaderPlaceholder.getChildren().add(monthHeader.getRoot());"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Year year \u003d currentMonth.getYear();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        YearHeader yearHeader \u003d new YearHeader(year);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        yearHeaderPlaceholder.getChildren().add(yearHeader.getRoot());"
+      },
+      {
         "lineNumber": 66,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private void setUp() {"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        weekHeader \u003d WeekHeader.generateWeekHeader();"
+        "content": "        MonthView monthView \u003d new MonthView(currentMonth);"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        monthViewPlaceholder.getChildren().add(monthView.generateMonthGrid());"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        Month currentMonth \u003d calendar.getMonth();"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        MonthView monthV \u003d new MonthView(currentMonth);"
+        "content": "        resultDisplay \u003d new ResultDisplay();"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        monthView \u003d monthV.generateMonthGrid();"
+        "content": "        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        monthLabel \u003d monthV.generateMonthLabel();"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        monthLabel.setTextAlignment(TextAlignment.CENTER);"
+        "content": "        CommandBox commandBox \u003d new CommandBox(this::executeCommand);"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        calendarPane.setAlignment(Pos.BOTTOM_LEFT);"
+        "content": "    }"
       },
       {
         "lineNumber": 76,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        calendarPane.getChildren().addAll(monthLabel, weekHeader, monthView, commandBoxPlaceHolder);"
+        "content": ""
       },
       {
         "lineNumber": 77,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        calendarScene \u003d new Scene(calendarPane);"
+        "content": "    private void updateCalendarPage(Month updatedMonth) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        Year year \u003d updatedMonth.getYear();"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        MonthOfYear monthOfYear \u003d updatedMonth.getMonthOfYear();"
       },
       {
         "lineNumber": 80,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private void updateCalendarView(MonthView updatedMonthView) {"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        updateMonthLabel(updatedMonthView);"
+        "content": "        updateYearHeader(year);"
       },
       {
         "lineNumber": 82,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        updateMonthGrid(updatedMonthView);"
+        "content": "        updateMonthHeader(monthOfYear);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        updateMonthView(updatedMonth);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private void updateMonthLabel(MonthView updatedMonthView) {"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        Label updatedMonthLabel \u003d updatedMonthView.generateMonthLabel();"
+        "content": "    private void updateYearHeader(Year year) {"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        calendarPane.getChildren().set(0, updatedMonthLabel);"
+        "content": "        YearHeader yearHeader \u003d new YearHeader(year);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        yearHeaderPlaceholder.getChildren().clear();"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "        yearHeaderPlaceholder.getChildren().add(yearHeader.getRoot());"
       },
       {
         "lineNumber": 90,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    private void updateMonthGrid(MonthView updatedMonthView) {"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        GridPane updatedMonthGrid \u003d updatedMonthView.generateMonthGrid();"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        calendarPane.getChildren().set(2, updatedMonthGrid);"
-      },
-      {
-        "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private void updateMonthHeader(MonthOfYear monthOfYear) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        MonthHeader monthHeader \u003d new MonthHeader(monthOfYear);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        monthHeaderPlaceholder.getChildren().clear();"
+      },
+      {
         "lineNumber": 95,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        monthHeaderPlaceholder.getChildren().add(monthHeader.getRoot());"
       },
       {
         "lineNumber": 96,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "     * Executes the command and returns the result."
+        "content": "    }"
       },
       {
         "lineNumber": 97,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "     *"
+        "content": ""
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "bjhoohaha"
+          "gitId": "-"
         },
-        "content": "     * @see AddressBookLogic#execute(String)"
+        "content": "    private void updateMonthView(Month month) {"
       },
       {
         "lineNumber": 99,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "     */"
+        "content": "        MonthView monthView \u003d new MonthView(month);"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    private void executeCommand(String commandText) throws CommandException, ParseException {"
+        "content": "        monthViewPlaceholder.getChildren().clear();"
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        Command command \u003d (new CalendarParser()).parseCommand(commandText);"
+        "content": "        monthViewPlaceholder.getChildren().add(monthView.generateMonthGrid());"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        command.execute(calendar);"
+        "content": "    }"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -41936,52 +42589,164 @@
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        if (calendar.hasViewUpdates()) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            Month newMonth \u003d calendar.getMonth();"
+        "content": "     * Executes the command and returns the result."
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            MonthView newMonthView \u003d new MonthView(newMonth);"
+        "content": "     *"
       },
       {
         "lineNumber": 107,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "bjhoohaha"
         },
-        "content": "            updateCalendarView(newMonthView);"
+        "content": "     * @see AddressBookLogic#execute(String)"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            calendar.completeUpdate();"
+        "content": "     */"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        }"
+        "content": "    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 111,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "            Command command \u003d (new CalendarParser()).parseCommand(commandText);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            CommandResult commandResult \u003d command.execute(calendar);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (calendar.hasVisibleUpdates()) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                Month updatedMonth \u003d calendar.getMonth();"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                updateCalendarPage(updatedMonth);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                calendar.completeVisibleUpdates();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            resultDisplay.setDisplayText(commandResult.getFeedbackToUser());"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            return commandResult;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            resultDisplay.setDisplayText(e.getMessage());"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 127,
         "author": {
           "gitId": "-"
         },
@@ -41990,8 +42755,8 @@
     ],
     "authorContributionMap": {
       "bjhoohaha": 2,
-      "-": 48,
-      "ngzhaoming": 61
+      "-": 96,
+      "ngzhaoming": 29
     }
   },
   {
@@ -42015,257 +42780,320 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import javafx.scene.control.TextField;"
+        "content": "import javafx.fxml.FXML;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
+        "content": "import javafx.scene.control.TextField;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
+        "content": "import javafx.scene.layout.Region;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.logic.commands.CommandResult;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "public class CommandBox {"
+        "content": "import seedu.address.logic.commands.exceptions.CommandException;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    private TextField commandBox;"
+        "content": "import seedu.address.logic.parser.exceptions.ParseException;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.ui.UiPart;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    CommandBox(CommandExecutor commandExecutor) {"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        commandBox \u003d new TextField();"
+        "content": "public class CommandBox extends UiPart\u003cRegion\u003e {"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        commandBox.setOnAction(event -\u003e {"
+        "content": "    private static final String FXML \u003d \"CommandBox.fxml\";"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            String userInput \u003d commandBox.getText();"
+        "content": "    private CommandExecutor commandExecutor;"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            try {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "                commandExecutor.execute(userInput);"
+        "content": "    private TextField commandTextField;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "            } catch (ParseException e) {"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                System.out.println(e);"
+        "content": "    CommandBox(CommandExecutor commandExecutor) {"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            } catch (CommandException e) {"
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "                System.out.println(e);"
+        "content": "        this.commandExecutor \u003d commandExecutor;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "            }"
+        "content": "    }"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            commandBox.setText(\"\");"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        });"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Handles the Enter button pressed event."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
         "lineNumber": 25,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    public TextField getCommandBox() {"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        return commandBox;"
+        "content": "    private void handleCommandEntered() {"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    }"
+        "content": "        String userInput \u003d commandTextField.getText();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    /**"
+        "content": "            commandExecutor.execute(userInput);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     * Represents a function that can execute commands."
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "     */"
+        "content": "            System.out.println(e);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    @FunctionalInterface"
+        "content": "        } catch (CommandException e) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    public interface CommandExecutor {"
+        "content": "            System.out.println(e);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        /**"
+        "content": "        }"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "         * Executes the command."
+        "content": "        commandTextField.setText(\"\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "         */"
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        void execute(String commandText) throws CommandException, ParseException;"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 39,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     * Represents a function that can execute commands."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    @FunctionalInterface"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    public interface CommandExecutor {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "         * Executes the command."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "         */"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        CommandResult execute(String commandText) throws CommandException, ParseException;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -42273,7 +43101,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 39
+      "-": 21,
+      "ngzhaoming": 27
     }
   },
   {
@@ -42297,9 +43126,9 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import javafx.geometry.Insets;"
+        "content": "import javafx.fxml.FXML;"
       },
       {
         "lineNumber": 4,
@@ -42311,82 +43140,89 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import javafx.scene.layout.VBox;"
+        "content": "import javafx.scene.layout.Region;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import seedu.address.ui.UiPart;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "public class DayView {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "public class DayView extends UiPart\u003cRegion\u003e {"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "    static VBox generateDayView(int date) {"
+        "content": "    private static final String FXML \u003d \"CalendarDayView.fxml\";"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        VBox dayView \u003d new VBox();"
+        "content": "    @FXML"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        Label dateOfMonth \u003d new Label(Integer.toString(date));"
+        "content": "    private Label dayOfMonth;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        dayView.getChildren().add(dateOfMonth);"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        dayView.setPadding(new Insets(10));"
+        "content": "    public DayView(int date) {"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        return dayView;"
+        "content": "        super(FXML);"
       },
       {
         "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        dayOfMonth.setText(Integer.toString(date));"
+      },
+      {
+        "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 17,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -42394,7 +43230,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 16
+      "-": 10,
+      "ngzhaoming": 7
     }
   },
   {
@@ -42418,389 +43255,16 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import javafx.scene.control.Label;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import javafx.scene.layout.GridPane;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import javafx.scene.layout.RowConstraints;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import javafx.scene.layout.VBox;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import seedu.address.calendar.model.Day;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import seedu.address.calendar.model.Month;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import java.util.stream.IntStream;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "import java.util.stream.Stream;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "class MonthView {"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    private Month month;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    MonthView(Month month) {"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        this.month \u003d month;"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    GridPane generateMonthGrid() {"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        Stream\u003cDay\u003e days \u003d month.getDaysInMonth();"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        Day firstDay \u003d month.getFirstDayOfMonth();"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        int height \u003d 100;"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        GridPane monthView \u003d new GridPane();"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        monthView.setGridLinesVisible(true);"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        IntStream.range(0, 5)"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "                .forEach(i -\u003e {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "                    RowConstraints newRow \u003d new RowConstraints();"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "                    newRow.setPrefHeight(height);"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "                    monthView.getRowConstraints().add(newRow);"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "                });"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        int width \u003d 150;"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        days.forEach(day -\u003e {"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            VBox dayView \u003d DayView.generateDayView(day.getDayOfMonth());"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            dayView.setPrefWidth(width);"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            int firstDayOfWeekAsNum \u003d firstDay.getDayOfWeekZeroIndex();"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            int rowIndex \u003d (firstDayOfWeekAsNum + day.getDayOfMonth()) / 7;"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            int shiftedRowIndex \u003d rowIndex \u003c 5 ? rowIndex : 0;"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "            monthView.add(dayView, day.getDayOfWeekOneBased(), shiftedRowIndex);"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        });"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        return monthView;"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    Label generateMonthLabel() {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        String unformattedMonthLabel \u003d month.getMonthOfYear().toString();"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        String formattedMonthLabel \u003d unformattedMonthLabel.charAt(0)"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "                + unformattedMonthLabel.substring(1).toLowerCase();"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "        return new Label(formattedMonthLabel);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "ngzhaoming": 52
-    }
-  },
-  {
-    "path": "src/main/java/seedu/address/calendar/ui/WeekHeader.java",
-    "fileType": "functional",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": "package seedu.address.calendar.ui;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "ngzhaoming"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": "import javafx.geometry.HPos;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "import javafx.geometry.Insets;"
+        "content": "import javafx.geometry.VPos;"
       },
       {
         "lineNumber": 5,
@@ -42812,7 +43276,7 @@
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
         "content": "import javafx.scene.layout.ColumnConstraints;"
       },
@@ -42826,30 +43290,30 @@
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "import javafx.scene.layout.Priority;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "import java.util.stream.IntStream;"
+        "content": "import javafx.scene.layout.RowConstraints;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": ""
+        "content": "import seedu.address.calendar.model.Day;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "class WeekHeader {"
+        "content": "import seedu.address.calendar.model.Month;"
       },
       {
         "lineNumber": 12,
@@ -42863,129 +43327,388 @@
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "    static GridPane generateWeekHeader() {"
+        "content": "import java.util.stream.IntStream;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        GridPane weekHeader \u003d new GridPane();"
+        "content": "import java.util.stream.Stream;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        String[] days \u003d { \"Sun\", \"Mon\", \"Tues\", \"Wed\", \"Thu\", \"Fri\", \"Sat\" };"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        int widthPercent \u003d 100 / days.length;"
+        "content": "class MonthView {"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        weekHeader.setHgap(10);"
+        "content": "    private static final int NUM_ROWS \u003d 5;"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "ngzhaoming"
+          "gitId": "-"
         },
-        "content": "        weekHeader.setVgap(10);"
+        "content": "    private static final int NUM_COLS \u003d 7;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        weekHeader.setPadding(new Insets(10));"
+        "content": "    private Month month;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        IntStream.range(0, days.length)"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                .forEach(i -\u003e {"
+        "content": "    MonthView(Month month) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                    ColumnConstraints newColumn \u003d new ColumnConstraints();"
+        "content": "        this.month \u003d month;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                    newColumn.setPercentWidth(widthPercent);"
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                    newColumn.setHalignment(HPos.CENTER);"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                    weekHeader.getColumnConstraints().add(newColumn);"
+        "content": "    GridPane generateMonthGrid() {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                    Label day \u003d new Label(days[i]);"
+        "content": "        Stream\u003cDay\u003e days \u003d month.getDaysInMonth();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                    weekHeader.add(day, i, 0);"
+        "content": "        Day firstDay \u003d month.getFirstDayOfMonth();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "                });"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "ngzhaoming"
         },
-        "content": "        return weekHeader;"
+        "content": "        GridPane monthView \u003d new GridPane();"
       },
       {
         "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        GridPane.setVgrow(monthView, Priority.ALWAYS);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        GridPane.setHgrow(monthView, Priority.ALWAYS);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        monthView.setGridLinesVisible(true);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        IntStream.range(0, NUM_ROWS)"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "                .forEach(i -\u003e {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "                    RowConstraints newRow \u003d new RowConstraints();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    newRow.setValignment(VPos.TOP);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    newRow.setVgrow(Priority.ALWAYS);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "                    monthView.getRowConstraints().add(newRow);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "                });"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        IntStream.range(0, NUM_COLS)"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                .forEach(i -\u003e {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    ColumnConstraints col \u003d new ColumnConstraints();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    col.setHgrow(Priority.ALWAYS);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    col.setHalignment(HPos.CENTER);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    monthView.getColumnConstraints().add(col);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                });"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        monthView.setGridLinesVisible(false);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        days.forEach(day -\u003e {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            DayView dayView \u003d new DayView(day.getDayOfMonth());"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "            int firstDayOfWeekAsNum \u003d firstDay.getDayOfWeekZeroIndex();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "            int rowIndex \u003d (firstDayOfWeekAsNum + day.getDayOfMonth()) / 7;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "            int shiftedRowIndex \u003d rowIndex \u003c 5 ? rowIndex : 0;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            monthView.add(dayView.getRoot(), day.getDayOfWeekOneBased(), shiftedRowIndex);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        return monthView;"
+      },
+      {
+        "lineNumber": 60,
         "author": {
           "gitId": "ngzhaoming"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 61,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    Label generateMonthLabel() {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        String unformattedMonthLabel \u003d month.getMonthOfYear().toString();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        String formattedMonthLabel \u003d unformattedMonthLabel.charAt(0)"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "                + unformattedMonthLabel.substring(1).toLowerCase();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "        return new Label(formattedMonthLabel);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "ngzhaoming"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
         "author": {
           "gitId": "ngzhaoming"
         },
@@ -42993,7 +43716,8 @@
       }
     ],
     "authorContributionMap": {
-      "ngzhaoming": 31
+      "-": 24,
+      "ngzhaoming": 44
     }
   },
   {

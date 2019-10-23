@@ -105,6 +105,20 @@
             "deletions": 242
           }
         ]
+      },
+      {
+        "insertions": 395,
+        "deletions": 168,
+        "date": "2019-10-23",
+        "commitResults": [
+          {
+            "hash": "afbf7c7172a08cfc34ade308c16aee19f3fda443",
+            "messageTitle": "Further develop Events: Add Events using \u0027add\u0027 command, add popups to convert transpired Events to Expenses (#105)",
+            "messageBody": "* Allow Events to be added using \u0027add\u0027 command word\r\n\r\n* Add popup feature to allow user to add Expenses based on transpired Events\r\n\r\n* Fix bug with transpired Events not being deleted\r\n\r\n* Fix merge conflicts\r\n",
+            "insertions": 395,
+            "deletions": 168
+          }
+        ]
       }
     ],
     "briyanii": [
@@ -427,6 +441,20 @@
             "messageBody": "",
             "insertions": 1,
             "deletions": 1
+          }
+        ]
+      },
+      {
+        "insertions": 2628,
+        "deletions": 1184,
+        "date": "2019-10-23",
+        "commitResults": [
+          {
+            "hash": "c3bc10ba967cea39ba2f13159404339bac9ed9fd",
+            "messageTitle": "Changes To GUI (#106)",
+            "messageBody": "* Draft GUI\r\n\r\n*  Update budget related methods within model to be consistent with expense related methods.\r\n\r\n* Create BudgetCard to display Budget information\r\n\r\nWIP, does not update when propertiews change\r\n\r\n* Add ChangeListener to update BudgetCard status when expense list has change.\r\n\r\n* Add BudgetListPanel to visualise Budget List\r\n\r\n* Add support for changing budget progress bar colour when budget is exceeded.\r\n\r\n* Remove block comments from ExpenseListPanel\r\n\r\n* Add BudgetPanel to show expenses within Budget\r\n\r\n* Add demo for BudgetCard, BudgetPanel, BudgetListPanel\r\n\r\n* Update ExpenseListCard to display Expense\u0027s Date field\r\n\r\n* Remove duplicate code\r\n\r\n* Update theme\r\n\r\n* Enable switching content of window between budgetList, primaryBudget, expenseList\r\n\r\n* Add method to remove Expense from Budget\r\n\r\n* Remove demo files used for testing new Ui parts\r\n\r\n* Fix code to pass failing tests.\r\n\r\n* Make tab spacing consistent in fxml files\r\n\r\n* Make change progress bar colour so text is more readable\r\n\r\nand remove radius from make budget card background\r\n\r\n* Add placeholder page for when no primary budget is set\r\n\r\n* Change colour to something less bright\r\n\r\n* Fix regression caused by method signature change\r\n\r\n* Resolve merge conflicts\r\n\r\n* Add placeholder replacement\r\n\r\n* Add TextArea which supports syntax highlighting\r\n\r\n* Fix second match onwards of placeholder not being replaced\r\n\r\nand fix text area not filling width\r\n\r\n* Fix events not mirroring properly\r\n\r\nreplace addEventHandler with addEventFilter\r\n\r\n* Refactor Command, New Command, New UI element to change panels\r\n\r\n-refactor CommandResult to include boolean on whether command should change the panel in focus.\r\n\r\n-packaged commands for different features into different packages\r\n\r\n-new classes to manage UI element currently being viewed.\r\n\r\n-new command to chance panel being viewed\r\n\r\n* Manually readd addbudgetcommand\r\n\r\nwhich was accidentally removed during rebase\r\n\r\n* Package budget command\r\n\r\n* Update tests to match refactored CommandResult\r\n\r\n* Add methods to model and mainwindow to support UI\r\n\r\n* Refactor Prefix for compatability with Autofill feature\r\n\r\n* Add support to allow user to change visible ui element through CLI.\r\n\r\nAdd tests for these classes.\r\n\r\n* Fix Storage issue with AliasMapping not being read properly.\r\n\r\nRefactor Alias and AliasMappings\r\n\r\n* Refactor Commands to match previous changes\r\n\r\nAnd\r\n\r\nAdd tests for new classes\r\n\r\n* Change budgetPanel, expenseListPanel, budgetListPanel to local variable\r\n\r\nremove it being property fields of mainwindow\r\n\r\n* Fix checkstyle violations\r\n\r\n* Fix merge conflicts\r\n\r\n* Fix checkstyle violations\r\n\r\n* Resolve merge conflicts\r\n\r\n* Remove syntaxTextDemo\r\n",
+            "insertions": 2628,
+            "deletions": 1184
           }
         ]
       }
@@ -895,6 +923,20 @@
             "deletions": 9
           }
         ]
+      },
+      {
+        "insertions": 1588,
+        "deletions": 86,
+        "date": "2019-10-23",
+        "commitResults": [
+          {
+            "hash": "98705c64334b0bf4c79b366e51442a153be54116",
+            "messageTitle": "Budget developments for mid-v1.3 (#103)",
+            "messageBody": "* Add unit tests for Budget class\r\n\r\n* Add unit tests for Percentage class\r\n\r\n* Add unit tests for Percentage class (supplement to previous commit)\r\n\r\n* Add unit tests for AddBudgetCommand\r\n\r\n* Add unit tests for AddBudgetCommandParser\r\n\r\n* Add unit tests for UniqueBudgetList\r\n\r\n* Add unit tests for JsonAdaptedBudget\r\n\r\n* Add unit tests for SwitchBudgetCommand\r\n\r\n* Add unit tests for SwitchBudgetCommandParser\r\n\r\n* Update UniqueBudgetList to automatically set newly added budget as primary\r\n\r\n* Add Budget field to Expense\r\n\r\n* Update AddExpense method in AddressBook to suit the new Expense with a Budget field\r\n\r\nSpecifically,\r\nstep 1: check primary budget - if null, add default and set primary, if yes - do nothing\r\nstep 2: check expense\u0027s budget - if null, add to primary budget, if yes - add to corresponding budget\r\nstep 3: add expense to expenses list\r\n\r\n* Cosmetic changes: Remove extra whitespace\r\n\r\n* Check null parameters in JsonAdaptedBudget constructor\r\n\r\n* Update EditCommand following the changes to Expense class (new budgetName field)\r\n\r\n* Add method to check which expenses are within current budget period\r\n\r\nOther changes:\r\n- add method to update the proportion used\r\n- check for duplicate expense before adding\r\n- change expired condition to include end date\r\n- increase default budget limit\r\n- cosmetic changes to make code more concise\r\n\r\n* Change Expense\u0027s budgetName field type from String to Description\r\n\r\n* Update tests following the addition of budgetName field to Expense class\r\n\r\n* Fix checkstyle errors in Main and Test\r\n\r\n* Update Percentage class such that percentage larger than 1 will be treated as 1 instead of throwing an exception\r\n\r\n* Fix unit test failures due to addition of Category field to Expense\r\n\r\n* Fix checkstyle errors in Main and Test\r\n",
+            "insertions": 1588,
+            "deletions": 86
+          }
+        ]
       }
     ],
     "ryoarmanda": [
@@ -985,47 +1027,47 @@
     ]
   },
   "authorFinalContributionMap": {
-    "czkay": 1096,
-    "briyanii": 3424,
-    "qweiping31415": 1303,
-    "anqichen9856": 1554,
-    "ryoarmanda": 998
+    "czkay": 1381,
+    "briyanii": 5237,
+    "qweiping31415": 1219,
+    "anqichen9856": 3048,
+    "ryoarmanda": 1003
   },
   "authorFileTypeContributionMap": {
     "czkay": {
       "docs": 63,
-      "tests": 145,
-      "functional": 888
+      "tests": 183,
+      "functional": 1135
     },
     "briyanii": {
       "docs": 53,
-      "tests": 1492,
-      "functional": 1876,
+      "tests": 1948,
+      "functional": 3233,
       "other": 3
     },
     "qweiping31415": {
       "docs": 80,
-      "tests": 277,
-      "functional": 946
+      "tests": 249,
+      "functional": 890
     },
     "anqichen9856": {
       "docs": 446,
-      "tests": 57,
-      "functional": 1049,
+      "tests": 1400,
+      "functional": 1200,
       "other": 2
     },
     "ryoarmanda": {
       "docs": 1,
-      "tests": 478,
-      "functional": 519
+      "tests": 482,
+      "functional": 520
     }
   },
   "authorContributionVariance": {
-    "czkay": 19219.773,
-    "briyanii": 1265074.6,
-    "qweiping31415": 36603.723,
-    "anqichen9856": 17366.1,
-    "ryoarmanda": 14568.746
+    "czkay": 24333.531,
+    "briyanii": 1492519.6,
+    "qweiping31415": 35878.195,
+    "anqichen9856": 71087.266,
+    "ryoarmanda": 14285.788
   },
   "authorDisplayNameMap": {
     "czkay": "CS2103T-T11-1 CHONG ...  KANG",

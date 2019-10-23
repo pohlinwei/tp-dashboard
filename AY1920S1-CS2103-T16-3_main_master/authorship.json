@@ -2424,9 +2424,9 @@
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "jonchan51"
         },
-        "content": "The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`."
+        "content": "The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1` in the Meme tab."
       },
       {
         "lineNumber": 68,
@@ -2662,9 +2662,9 @@
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "-"
+          "gitId": "jonchan51"
         },
-        "content": ".  `Logic` uses the `AddressBookParser` class to parse the user command."
+        "content": ".  `Logic` uses a subclass of `WemeParser` to parse the user command."
       },
       {
         "lineNumber": 102,
@@ -2676,9 +2676,9 @@
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "-"
+          "gitId": "jonchan51"
         },
-        "content": ".  The command execution can affect the `Model` (e.g. adding a person)."
+        "content": ".  The command execution can affect the `Model` (e.g. adding a meme)."
       },
       {
         "lineNumber": 104,
@@ -2739,9 +2739,9 @@
       {
         "lineNumber": 112,
         "author": {
-          "gitId": "-"
+          "gitId": "jonchan51"
         },
-        "content": "NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
+        "content": "NOTE: The lifeline for `MemeDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram."
       },
       {
         "lineNumber": 113,
@@ -2949,9 +2949,9 @@
       {
         "lineNumber": 142,
         "author": {
-          "gitId": "-"
+          "gitId": "jonchan51"
         },
-        "content": "* can save the Address Book data in json format and read it back."
+        "content": "* can save the Meme Book data in json format and read it back."
       },
       {
         "lineNumber": 143,
@@ -3049,7 +3049,7 @@
         "author": {
           "gitId": "jonchan51"
         },
-        "content": "Undo and Redo is necessary to give users the flexibility of undoing or redoing a wrongly executed command. Especially in Weme where we deal with image files, it is possible to key in the wrong file when adding a meme. Hence, simply entering the command `undo` allows the user to revert this mistake and add the correct file accordingly."
+        "content": "The Undo and Redo commands are necessary to give users the flexibility of undoing or redoing a wrongly executed command. Especially in Weme where we deal with image files, it is possible to key in the wrong file when adding a meme. Hence, simply entering the command `undo` allows the user to revert this mistake and add the correct file accordingly."
       },
       {
         "lineNumber": 157,
@@ -3945,1603 +3945,1603 @@
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "image::ModelClassDiagram.png[]"
+        "content": ".Partial class diagram showing only classes in `Model` that concern `Template`"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "image::TemplateClassDiagram.png[]"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Templates are stored alongside `Memes` in `MemeBook` in a `UniqueTemplateList`."
+        "content": ""
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The `ModelManager` will store a `FilteredList\u003cTemplate\u003e` that only holds the `Templates` that satisfy the current filter predicate."
+        "content": "Templates are stored alongside `Memes` in `MemeBook` in a `UniqueTemplateList`."
       },
       {
         "lineNumber": 288,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The `Model` exposes this filtered list of `Templates` as an unmodifiable `ObservableList\u003cTemplate\u003e` that the UI can subscribe to."
+        "content": "The `ModelManager` will store a `FilteredList\u003cTemplate\u003e` that only holds the `Templates` that satisfy the current filter predicate."
       },
       {
         "lineNumber": 289,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "In order to display the effect of adding text to a template while in meme creation mode,"
+        "content": "The `Model` exposes this filtered list of `Templates` as an unmodifiable `ObservableList\u003cTemplate\u003e` that the UI can subscribe to."
       },
       {
         "lineNumber": 290,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "`CommandResult` will be extended to store the user\u0027s actions and the UI will use this information to update itself accordingly."
+        "content": "In order to display the effect of adding text to a template while in meme creation mode,"
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "`CommandResult` will be extended to store the user\u0027s actions and the UI will use this information to update itself accordingly."
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "When the user requests to generate a meme using a template, Weme will enter meme creation mode."
+        "content": ""
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The user can then add any text to one or more places on the template image."
+        "content": "When the user requests to generate a meme using a template, Weme will enter meme creation mode."
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "When the user is done, Weme will create a new `Meme` with all the added text included."
+        "content": "The user can then add any text to one or more places on the template image."
       },
       {
         "lineNumber": 295,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The user can then browse this `Meme` in the collection and export or share it as desired."
+        "content": "When the user is done, Weme will create a new `Meme` with all the added text included."
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The user can then browse this `Meme` in the collection and export or share it as desired."
       },
       {
         "lineNumber": 297,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Given below is an example usage scenario of meme creation using a template."
+        "content": ""
       },
       {
         "lineNumber": 298,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Given below is an example usage scenario of meme creation using a template."
       },
       {
         "lineNumber": 299,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 1. The user launches the application and enters the *Templates* tab."
+        "content": ""
       },
       {
         "lineNumber": 300,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Step 1. The user launches the application and enters the *Templates* tab."
       },
       {
         "lineNumber": 301,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 2. The user executes `find doge` command to find the _doge_ template."
+        "content": ""
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The `FilteredList\u003cTemplate\u003e` in `ModelManager` will be updated with a predicate that matches only templates whose names match _doge_."
+        "content": "Step 2. The user executes `find doge` command to find the _doge_ template."
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The `FilteredList\u003cTemplate\u003e` in `ModelManager` will be updated with a predicate that matches only templates whose names match _doge_."
       },
       {
         "lineNumber": 304,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes `use 1` to enter meme creation mode."
+        "content": ""
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Weme will update the `ModelContext` to receive commands that are meant for template manipulation, and the UI will zoom into the template chosen."
+        "content": "Step 3. Assuming the template that the user wants to use is displayed as the first template, the user executes `use 1` to enter meme creation mode."
       },
       {
         "lineNumber": 306,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Weme will update the `ModelContext` to receive commands that are meant for template manipulation, and the UI will zoom into the template chosen."
       },
       {
         "lineNumber": 307,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 4. The user executes `add cs students be like x/0.3 y/0.5` command to add the text \"cs students be like\"."
+        "content": ""
       },
       {
         "lineNumber": 308,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The text will be placed 30% horizontally from the left border and 50% vertically from the top border."
+        "content": "Step 4. The user executes `add cs students be like x/0.3 y/0.5` command to add the text \"cs students be like\"."
       },
       {
         "lineNumber": 309,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "This is made possible because the execution of this command returns a `CommandResult` that stores the text and position information."
+        "content": "The text will be placed 30% horizontally from the left border and 50% vertically from the top border."
       },
       {
         "lineNumber": 310,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "UI will then use this information to render the text at the correct position."
+        "content": "This is made possible because the execution of this command returns a `CommandResult` that stores the text and position information."
       },
       {
         "lineNumber": 311,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The newly added text will be labelled number *1* for future references."
+        "content": "UI will then use this information to render the text at the correct position."
       },
       {
         "lineNumber": 312,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The newly added text will be labelled number *1* for future references."
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 5. The user decides that there is a typo in the text because \"cs\" is not capitalized."
+        "content": ""
       },
       {
         "lineNumber": 314,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The user executes the command `delete 1` to delete the text labelled *1*, which is the text that was just added."
+        "content": "Step 5. The user decides that there is a typo in the text because \"cs\" is not capitalized."
       },
       {
         "lineNumber": 315,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The user executes the command `delete 1` to delete the text labelled *1*, which is the text that was just added."
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 6. The user then executes `add CS student be like x/0.3 y/0.5` to add the correct text."
+        "content": ""
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Step 6. The user then executes `add CS student be like x/0.3 y/0.5` to add the correct text."
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Step 7. The user executes `generate d/A meme about CS students t/funny t/CS` to complete the editing session."
+        "content": ""
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Weme will create a new image with the text added and create a new `Meme` with that image."
+        "content": "Step 7. The user executes `generate d/A meme about CS students t/funny t/CS` to complete the editing session."
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The `Meme` created will also have description \"A meme about CS students\" and tags \"funny\" and \"CS\"."
+        "content": "Weme will create a new image with the text added and create a new `Meme` with that image."
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The description and tag arguments are similar to those for `Meme` add command."
+        "content": "The `Meme` created will also have description \"A meme about CS students\" and tags \"funny\" and \"CS\"."
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The description and tag arguments are similar to those for `Meme` add command."
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The user can also abort any meme creation session by typing `abort`. This will put Weme back to displaying the content of the *Templates* tab."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The user can also abort any meme creation session by typing `abort`. This will put Weme back to displaying the content of the *Templates* tab."
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The following activity diagram summarizes the meme creation process:"
+        "content": ""
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The following activity diagram summarizes the meme creation process:"
       },
       {
         "lineNumber": 328,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "image::MemeCreationActivityDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 329,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "image::MemeCreationActivityDiagram.png[]"
       },
       {
         "lineNumber": 330,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "The following sequence diagram shows how `CommandResult` relays information about the text added to the UI."
+        "content": ""
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "The following sequence diagram shows how `CommandResult` relays information about the text added to the UI."
       },
       {
         "lineNumber": 332,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "image::TemplateCommandResultSequenceDiagram.png[]"
+        "content": ""
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "image::TemplateCommandResultSequenceDiagram.png[]"
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "\u003d\u003d\u003d\u003d Design Considerations"
+        "content": ""
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d Design Considerations"
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How to update the UI while adding text to templates"
+        "content": ""
       },
       {
         "lineNumber": 337,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How to update the UI while adding text to templates"
       },
       {
         "lineNumber": 338,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "* **Alternative 1 (current choice):** Wrap the text and position information in `CommandResult`, let the UI decide what to do."
+        "content": ""
       },
       {
         "lineNumber": 339,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Pros: No additional coupling, clearer separation of concerns."
+        "content": "* **Alternative 1 (current choice):** Wrap the text and position information in `CommandResult`, let the UI decide what to do."
       },
       {
         "lineNumber": 340,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Cons: Additional layer of abstraction in `CommandResult`."
+        "content": "** Pros: No additional coupling, clearer separation of concerns."
       },
       {
         "lineNumber": 341,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "* **Alternative 2:** Execution of the command updates the UI directly."
+        "content": "** Cons: Additional layer of abstraction in `CommandResult`."
       },
       {
         "lineNumber": 342,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Pros: More direct, less abstraction"
+        "content": "* **Alternative 2:** Execution of the command updates the UI directly."
       },
       {
         "lineNumber": 343,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Cons: `Command` will have dependency on `UI`"
+        "content": "** Pros: More direct, less abstraction"
       },
       {
         "lineNumber": 344,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "** Cons: `Command` will have dependency on `UI`"
       },
       {
         "lineNumber": 345,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How the user adds/deletes text"
+        "content": ""
       },
       {
         "lineNumber": 346,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d\u003d\u003d Aspect: How the user adds/deletes text"
       },
       {
         "lineNumber": 347,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "* **Alternative 1 (current choice):** The user enters commands to add/delete text."
+        "content": ""
       },
       {
         "lineNumber": 348,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Pros: Easier to implement."
+        "content": "* **Alternative 1 (current choice):** The user enters commands to add/delete text."
       },
       {
         "lineNumber": 349,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Cons: User might not be able to position the text accurately."
+        "content": "** Pros: Easier to implement."
       },
       {
         "lineNumber": 350,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "* **Alternative 2:** The user controls the UI through individual key strokes."
+        "content": "** Cons: User might not be able to position the text accurately."
       },
       {
         "lineNumber": 351,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "For example, `a` to add a piece of text, arrow keys to adjust the position of the currently selected text,"
+        "content": "* **Alternative 2:** The user controls the UI through individual key strokes."
       },
       {
         "lineNumber": 352,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "`1` to select text labelled *1* and `d` to delete the currently selected text."
+        "content": "For example, `a` to add a piece of text, arrow keys to adjust the position of the currently selected text,"
       },
       {
         "lineNumber": 353,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Pros: The user can accurately adjust the position of the text."
+        "content": "`1` to select text labelled *1* and `d` to delete the currently selected text."
       },
       {
         "lineNumber": 354,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** Cons: Very hard to implement. Requires major work on the UI."
+        "content": "** Pros: The user can accurately adjust the position of the text."
       },
       {
         "lineNumber": 355,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "** Cons: Very hard to implement. Requires major work on the UI."
       },
       {
         "lineNumber": 356,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "// end::templates[]"
+        "content": ""
       },
       {
         "lineNumber": 357,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "// end::templates[]"
       },
       {
         "lineNumber": 358,
         "author": {
-          "gitId": "-"
+          "gitId": "gary-lgy"
         },
-        "content": "// tag::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 359,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
+        "content": "// tag::dataencryption[]"
       },
       {
         "lineNumber": 360,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d [Proposed] Data Encryption"
       },
       {
         "lineNumber": 361,
         "author": {
           "gitId": "-"
         },
-        "content": "_{Explain here how the data encryption feature will be implemented}_"
+        "content": ""
       },
       {
         "lineNumber": 362,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{Explain here how the data encryption feature will be implemented}_"
       },
       {
         "lineNumber": 363,
         "author": {
           "gitId": "-"
         },
-        "content": "// end::dataencryption[]"
+        "content": ""
       },
       {
         "lineNumber": 364,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "// end::dataencryption[]"
       },
       {
         "lineNumber": 365,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Logging"
+        "content": ""
       },
       {
         "lineNumber": 366,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Logging"
       },
       {
         "lineNumber": 367,
         "author": {
           "gitId": "-"
         },
-        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
+        "content": ""
       },
       {
         "lineNumber": 368,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations."
       },
       {
         "lineNumber": 369,
         "author": {
           "gitId": "-"
         },
-        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
+        "content": ""
       },
       {
         "lineNumber": 370,
         "author": {
           "gitId": "-"
         },
-        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
+        "content": "* The logging level can be controlled using the `logLevel` setting in the configuration file (See \u003c\u003cImplementation-Configuration\u003e\u003e)"
       },
       {
         "lineNumber": 371,
         "author": {
           "gitId": "-"
         },
-        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
+        "content": "* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)` which will log messages according to the specified logging level"
       },
       {
         "lineNumber": 372,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* Currently log messages are output through: `Console` and to a `.log` file."
       },
       {
         "lineNumber": 373,
         "author": {
           "gitId": "-"
         },
-        "content": "*Logging Levels*"
+        "content": ""
       },
       {
         "lineNumber": 374,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Logging Levels*"
       },
       {
         "lineNumber": 375,
         "author": {
           "gitId": "-"
         },
-        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
+        "content": ""
       },
       {
         "lineNumber": 376,
         "author": {
           "gitId": "-"
         },
-        "content": "* `WARNING` : Can continue, but with caution"
+        "content": "* `SEVERE` : Critical problem detected which may possibly cause the termination of the application"
       },
       {
         "lineNumber": 377,
         "author": {
           "gitId": "-"
         },
-        "content": "* `INFO` : Information showing the noteworthy actions by the App"
+        "content": "* `WARNING` : Can continue, but with caution"
       },
       {
         "lineNumber": 378,
         "author": {
           "gitId": "-"
         },
-        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
+        "content": "* `INFO` : Information showing the noteworthy actions by the App"
       },
       {
         "lineNumber": 379,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "* `FINE` : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size"
       },
       {
         "lineNumber": 380,
         "author": {
           "gitId": "-"
         },
-        "content": "[[Implementation-Configuration]]"
+        "content": ""
       },
       {
         "lineNumber": 381,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Configuration"
+        "content": "[[Implementation-Configuration]]"
       },
       {
         "lineNumber": 382,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Configuration"
       },
       {
         "lineNumber": 383,
         "author": {
           "gitId": "-"
         },
-        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
+        "content": ""
       },
       {
         "lineNumber": 384,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`)."
       },
       {
         "lineNumber": 385,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Documentation"
+        "content": ""
       },
       {
         "lineNumber": 386,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Documentation"
       },
       {
         "lineNumber": 387,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 388,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDocumentation#, here\u003e\u003e."
       },
       {
         "lineNumber": 389,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Testing"
+        "content": ""
       },
       {
         "lineNumber": 390,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Testing"
       },
       {
         "lineNumber": 391,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 392,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cTesting#, here\u003e\u003e."
       },
       {
         "lineNumber": 393,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Dev Ops"
+        "content": ""
       },
       {
         "lineNumber": 394,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Dev Ops"
       },
       {
         "lineNumber": 395,
         "author": {
           "gitId": "-"
         },
-        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
+        "content": ""
       },
       {
         "lineNumber": 396,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Refer to the guide \u003c\u003cDevOps#, here\u003e\u003e."
       },
       {
         "lineNumber": 397,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 398,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Scope"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 399,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Scope"
       },
       {
         "lineNumber": 400,
         "author": {
           "gitId": "-"
         },
-        "content": "*Target user profile*:"
+        "content": ""
       },
       {
         "lineNumber": 401,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Target user profile*:"
       },
       {
         "lineNumber": 402,
         "author": {
-          "gitId": "LivingOnEdge"
+          "gitId": "-"
         },
-        "content": "* wants to manage a library of memes"
+        "content": ""
       },
       {
         "lineNumber": 403,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "* wants to create memes for entertainment"
+        "content": "* wants to manage a library of memes"
       },
       {
         "lineNumber": 404,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": "* wants to create memes for entertainment"
+      },
+      {
+        "lineNumber": 405,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* prefers desktop apps over other types"
       },
       {
-        "lineNumber": 405,
+        "lineNumber": 406,
         "author": {
           "gitId": "-"
         },
         "content": "* prefers typing over mouse input"
       },
       {
-        "lineNumber": 406,
+        "lineNumber": 407,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "* wants to participate in the meme culture by sharing memes"
       },
       {
-        "lineNumber": 407,
+        "lineNumber": 408,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 408,
+        "lineNumber": 409,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "*Value proposition*: manage memes faster than a typical mouse/GUI driven app"
       },
       {
-        "lineNumber": 409,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 410,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 411,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d User Stories"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 412,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d User Stories"
       },
       {
         "lineNumber": 413,
         "author": {
           "gitId": "-"
         },
-        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
+        "content": ""
       },
       {
         "lineNumber": 414,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Priorities: High (must have) - `* * \\*`, Medium (nice to have) - `* \\*`, Low (unlikely to have) - `*`"
       },
       {
         "lineNumber": 415,
         "author": {
           "gitId": "-"
         },
-        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
+        "content": ""
       },
       {
         "lineNumber": 416,
         "author": {
           "gitId": "-"
         },
-        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
+        "content": "[width\u003d\"59%\",cols\u003d\"22%,\u003c23%,\u003c25%,\u003c30%\",options\u003d\"header\",]"
       },
       {
         "lineNumber": 417,
         "author": {
-          "gitId": "LivingOnEdge"
+          "gitId": "-"
         },
-        "content": "|Priority |As a ... |I want to ... |So that ..."
+        "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
         "lineNumber": 418,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "|`* * *` |meme lover |manage my collection of memes |I can view them anytime I want"
+        "content": "|Priority |As a ... |I want to ... |So that ..."
       },
       {
         "lineNumber": 419,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": "|`* * *` |meme lover |manage my collection of memes |I can view them anytime I want"
+      },
+      {
+        "lineNumber": 420,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |organized meme lover |tag memes |I can better organize my memes"
       },
       {
-        "lineNumber": 420,
+        "lineNumber": 421,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "|`* * *` |user with many memes |filter memes |I can quickly locate a certain meme"
       },
       {
-        "lineNumber": 421,
+        "lineNumber": 422,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |creative person |create my own memes from meme templates |"
       },
       {
-        "lineNumber": 422,
+        "lineNumber": 423,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "|`* * *` |user |archive memes |I can stop seeing old memes"
       },
       {
-        "lineNumber": 423,
+        "lineNumber": 424,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |careless user |undo/redo any accidental deletion of memes |I can retrieve back my favourite memes"
       },
       {
-        "lineNumber": 424,
+        "lineNumber": 425,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |user |get hints on command syntax when i type |I don\u0027t have to memorize the command syntax"
       },
       {
-        "lineNumber": 425,
+        "lineNumber": 426,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |meme lover |easily share my memes to other platforms |I can send them in my chats"
       },
       {
-        "lineNumber": 426,
+        "lineNumber": 427,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |user |import memes |I can import memes my friends shared with me into my personal collection"
       },
       {
-        "lineNumber": 427,
+        "lineNumber": 428,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* * *` |user |export memes |I can backup the memes or share them with another user"
       },
       {
-        "lineNumber": 428,
+        "lineNumber": 429,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "|`* * *` |user |view statistics of my meme usage |I know which memes are more liked/used"
       },
       {
-        "lineNumber": 429,
+        "lineNumber": 430,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "|`* *` |bored person |view random memes |I can kill time"
       },
       {
-        "lineNumber": 430,
+        "lineNumber": 431,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`* *` |user |bookmark my favourite memes |I can find them quickly"
       },
       {
-        "lineNumber": 431,
+        "lineNumber": 432,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "|`*` |person new to meme |get the reference to the meme I see for the first time |I can learn how to use the meme"
       },
       {
-        "lineNumber": 432,
+        "lineNumber": 433,
         "author": {
           "gitId": "-"
         },
         "content": "|\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d"
       },
       {
-        "lineNumber": 433,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 434,
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 435,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 436,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 437,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Use Cases"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 438,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Use Cases"
       },
       {
         "lineNumber": 439,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 440,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "(For all use cases below, the *System* is the `Weme` and the *Actor* is the `user`, unless specified otherwise)"
       },
       {
-        "lineNumber": 440,
+        "lineNumber": 441,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 441,
+        "lineNumber": 442,
         "author": {
           "gitId": "-"
         },
         "content": "[discrete]"
       },
       {
-        "lineNumber": 442,
+        "lineNumber": 443,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "\u003d\u003d\u003d Use case 1: Add template"
       },
       {
-        "lineNumber": 443,
+        "lineNumber": 444,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 444,
+        "lineNumber": 445,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "*MSS*"
       },
       {
-        "lineNumber": 445,
+        "lineNumber": 446,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 446,
-        "author": {
-          "gitId": "gary-lgy"
-        },
-        "content": "1. User requests to open the template tab"
       },
       {
         "lineNumber": 447,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "2. Weme opens the template tab"
+        "content": "1. User requests to open the template tab"
       },
       {
         "lineNumber": 448,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "3. User requests to create a template, using a base picture from the disk"
+        "content": "2. Weme opens the template tab"
       },
       {
         "lineNumber": 449,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "4. Weme creates the template"
+        "content": "3. User requests to create a template, using a base picture from the disk"
       },
       {
         "lineNumber": 450,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "5. User requests to edit the template"
+        "content": "4. Weme creates the template"
       },
       {
         "lineNumber": 451,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "6. Weme loads the template into the editing area"
+        "content": "5. User requests to edit the template"
       },
       {
         "lineNumber": 452,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "7. User requests to add/move text boxes in the template"
+        "content": "6. Weme loads the template into the editing area"
       },
       {
         "lineNumber": 453,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "8. Weme adds/moves text boxes in the template"
+        "content": "7. User requests to add/move text boxes in the template"
       },
       {
         "lineNumber": 454,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "9. User requests to complete the edit session"
+        "content": "8. Weme adds/moves text boxes in the template"
       },
       {
         "lineNumber": 455,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "10. Weme successfully completes the edit session"
+        "content": "9. User requests to complete the edit session"
       },
       {
         "lineNumber": 456,
         "author": {
-          "gitId": "LivingOnEdge"
+          "gitId": "gary-lgy"
         },
-        "content": "+"
+        "content": "10. Weme successfully completes the edit session"
       },
       {
         "lineNumber": 457,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "Use case ends"
+        "content": "+"
       },
       {
         "lineNumber": 458,
         "author": {
-          "gitId": "-"
+          "gitId": "LivingOnEdge"
         },
-        "content": ""
+        "content": "Use case ends"
       },
       {
         "lineNumber": 459,
         "author": {
-          "gitId": "LivingOnEdge"
+          "gitId": "-"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 460,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "[none]"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 461,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 462,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 3a. The given path is invalid"
       },
       {
-        "lineNumber": 462,
+        "lineNumber": 463,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 463,
+        "lineNumber": 464,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 3a1. Weme shows an error message"
       },
       {
-        "lineNumber": 464,
+        "lineNumber": 465,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "+"
       },
       {
-        "lineNumber": 465,
+        "lineNumber": 466,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "Use case resumes at step 2"
       },
       {
-        "lineNumber": 466,
+        "lineNumber": 467,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 467,
+        "lineNumber": 468,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 5a. The given index is invalid"
       },
       {
-        "lineNumber": 468,
+        "lineNumber": 469,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "+"
       },
       {
-        "lineNumber": 469,
+        "lineNumber": 470,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 470,
+        "lineNumber": 471,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 5a1. Weme shows an error message"
       },
       {
-        "lineNumber": 471,
-        "author": {
-          "gitId": "LivingOnEdge"
-        },
-        "content": "+"
-      },
-      {
         "lineNumber": 472,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "Use case resumes at step 2"
+        "content": "+"
       },
       {
         "lineNumber": 473,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": ""
+        "content": "Use case resumes at step 2"
       },
       {
         "lineNumber": 474,
         "author": {
-          "gitId": "gary-lgy"
+          "gitId": "LivingOnEdge"
         },
-        "content": "* 9a. User enters another command before completing the edit session"
+        "content": ""
       },
       {
         "lineNumber": 475,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "+"
+        "content": "* 9a. User enters another command before completing the edit session"
       },
       {
         "lineNumber": 476,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "[none]"
+        "content": "+"
       },
       {
         "lineNumber": 477,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** 9a1. Weme aborts the current edit session"
+        "content": "[none]"
       },
       {
         "lineNumber": 478,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** 9a2. Weme executes the command just entered by the user"
+        "content": "** 9a1. Weme aborts the current edit session"
       },
       {
         "lineNumber": 479,
         "author": {
-          "gitId": "-"
+          "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "** 9a2. Weme executes the command just entered by the user"
       },
       {
         "lineNumber": 480,
         "author": {
           "gitId": "-"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 481,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 482,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "\u003d\u003d\u003d Use case 2: Create meme from template"
       },
       {
-        "lineNumber": 482,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 483,
         "author": {
           "gitId": "-"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 484,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 485,
         "author": {
-          "gitId": "gary-lgy"
+          "gitId": "-"
         },
-        "content": "1. User requests to list meme templates"
+        "content": ""
       },
       {
         "lineNumber": 486,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "2. Weme shows a list of meme templates"
+        "content": "1. User requests to list meme templates"
       },
       {
         "lineNumber": 487,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "3. User selects a template to create a meme"
+        "content": "2. Weme shows a list of meme templates"
       },
       {
         "lineNumber": 488,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "4. Weme creates the meme from the selected template based on user input"
+        "content": "3. User selects a template to create a meme"
       },
       {
         "lineNumber": 489,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "4. Weme creates the meme from the selected template based on user input"
+      },
+      {
+        "lineNumber": 490,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 490,
+        "lineNumber": 491,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "Use case ends"
-      },
-      {
-        "lineNumber": 491,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
       },
       {
         "lineNumber": 492,
         "author": {
           "gitId": "-"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 493,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 494,
         "author": {
           "gitId": "-"
         },
-        "content": "[none]"
+        "content": ""
       },
       {
         "lineNumber": 495,
         "author": {
-          "gitId": "gary-lgy"
+          "gitId": "-"
         },
-        "content": "* 2a. The template list is empty"
+        "content": "[none]"
       },
       {
         "lineNumber": 496,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "+"
+        "content": "* 2a. The template list is empty"
       },
       {
         "lineNumber": 497,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Use case ends"
+        "content": "+"
       },
       {
         "lineNumber": 498,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Use case ends"
       },
       {
         "lineNumber": 499,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "* 3a. The given index is invalid"
+        "content": ""
       },
       {
         "lineNumber": 500,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "+"
+        "content": "* 3a. The given index is invalid"
       },
       {
         "lineNumber": 501,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 502,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 502,
+        "lineNumber": 503,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 3a1. Weme shows an error message"
       },
       {
-        "lineNumber": 503,
+        "lineNumber": 504,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 504,
+        "lineNumber": 505,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "Use case resumes at step 2"
       },
       {
-        "lineNumber": 505,
+        "lineNumber": 506,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 506,
+        "lineNumber": 507,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 4a. The given input is invalid"
       },
       {
-        "lineNumber": 507,
+        "lineNumber": 508,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 508,
+        "lineNumber": 509,
         "author": {
           "gitId": "-"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 509,
+        "lineNumber": 510,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 4a1. Weme shows an error message"
       },
       {
-        "lineNumber": 510,
+        "lineNumber": 511,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 511,
-        "author": {
-          "gitId": "gary-lgy"
-        },
-        "content": "Use case resumes at step 2"
-      },
-      {
         "lineNumber": 512,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Use case resumes at step 2"
       },
       {
         "lineNumber": 513,
@@ -5553,268 +5553,268 @@
       {
         "lineNumber": 514,
         "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 515,
+        "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[discrete]"
       },
       {
-        "lineNumber": 515,
+        "lineNumber": 516,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "\u003d\u003d\u003d Use case 3: Import meme"
       },
       {
-        "lineNumber": 516,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 517,
         "author": {
           "gitId": "-"
         },
-        "content": "*MSS*"
+        "content": ""
       },
       {
         "lineNumber": 518,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "*MSS*"
       },
       {
         "lineNumber": 519,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 520,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "1. User requests to open the import tab"
       },
       {
-        "lineNumber": 520,
+        "lineNumber": 521,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "2. Weme opens the import tab"
       },
       {
-        "lineNumber": 521,
+        "lineNumber": 522,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "3. User requests to import a meme collection from a directory"
       },
       {
-        "lineNumber": 522,
+        "lineNumber": 523,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "4. Weme adds the memes from the collection into the staging area"
       },
       {
-        "lineNumber": 523,
+        "lineNumber": 524,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "5. User requests to delete unwanted memes in the staging area"
       },
       {
-        "lineNumber": 524,
+        "lineNumber": 525,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "6. Weme deletes those memes from the staging area"
       },
       {
-        "lineNumber": 525,
+        "lineNumber": 526,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "7. User confirms the import"
       },
       {
-        "lineNumber": 526,
+        "lineNumber": 527,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "8. Weme successfully imports the selected memes from the collection"
       },
       {
-        "lineNumber": 527,
+        "lineNumber": 528,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 528,
+        "lineNumber": 529,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "Use case ends"
       },
       {
-        "lineNumber": 529,
+        "lineNumber": 530,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 530,
+        "lineNumber": 531,
         "author": {
           "gitId": "-"
         },
         "content": "*Extensions*"
       },
       {
-        "lineNumber": 531,
+        "lineNumber": 532,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
-      },
-      {
-        "lineNumber": 532,
-        "author": {
-          "gitId": "gary-lgy"
-        },
-        "content": "* 3a. The given directory path is invalid."
       },
       {
         "lineNumber": 533,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "[none]"
+        "content": "* 3a. The given directory path is invalid."
       },
       {
         "lineNumber": 534,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "** 3a1. Weme shows an error message"
+        "content": "[none]"
       },
       {
         "lineNumber": 535,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "+"
+        "content": "** 3a1. Weme shows an error message"
       },
       {
         "lineNumber": 536,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "Use case resumes at step 2"
+        "content": "+"
       },
       {
         "lineNumber": 537,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "Use case resumes at step 2"
       },
       {
         "lineNumber": 538,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "* 3b. The given collection is corrupted"
+        "content": ""
       },
       {
         "lineNumber": 539,
         "author": {
           "gitId": "gary-lgy"
         },
-        "content": "+"
+        "content": "* 3b. The given collection is corrupted"
       },
       {
         "lineNumber": 540,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "+"
+      },
+      {
+        "lineNumber": 541,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 541,
+        "lineNumber": 542,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 3b1. Weme shows an error message"
       },
       {
-        "lineNumber": 542,
+        "lineNumber": 543,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "+"
       },
       {
-        "lineNumber": 543,
+        "lineNumber": 544,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "Use case resumes at step 2"
       },
       {
-        "lineNumber": 544,
+        "lineNumber": 545,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 545,
+        "lineNumber": 546,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 7a. There are no memes left in the staging area"
       },
       {
-        "lineNumber": 546,
+        "lineNumber": 547,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "+"
       },
       {
-        "lineNumber": 547,
+        "lineNumber": 548,
         "author": {
           "gitId": "-"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 548,
+        "lineNumber": 549,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 7a1. Weme shows an error message"
       },
       {
-        "lineNumber": 549,
+        "lineNumber": 550,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 550,
-        "author": {
-          "gitId": "LivingOnEdge"
-        },
-        "content": "Use case resumes at step 2"
-      },
-      {
         "lineNumber": 551,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": ""
+        "content": "Use case resumes at step 2"
       },
       {
         "lineNumber": 552,
@@ -5828,105 +5828,105 @@
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "[discrete]"
+        "content": ""
       },
       {
         "lineNumber": 554,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": "[discrete]"
+      },
+      {
+        "lineNumber": 555,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "\u003d\u003d\u003d Use case 4: Undo/Redo"
       },
       {
-        "lineNumber": 555,
+        "lineNumber": 556,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": ""
       },
       {
-        "lineNumber": 556,
+        "lineNumber": 557,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "*MSS*"
       },
       {
-        "lineNumber": 557,
+        "lineNumber": 558,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 558,
+        "lineNumber": 559,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "1. User opens Weme"
       },
       {
-        "lineNumber": 559,
+        "lineNumber": 560,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "2. User requests to delete a meme"
       },
       {
-        "lineNumber": 560,
+        "lineNumber": 561,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "3. Weme deletes the meme"
       },
       {
-        "lineNumber": 561,
+        "lineNumber": 562,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "4. User requests to undo"
       },
       {
-        "lineNumber": 562,
+        "lineNumber": 563,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "5. Weme undoes the deletion and restores the meme"
       },
       {
-        "lineNumber": 563,
+        "lineNumber": 564,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "6. User requests to redo"
       },
       {
-        "lineNumber": 564,
+        "lineNumber": 565,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "7. Weme redoes and re-executes step 3"
       },
       {
-        "lineNumber": 565,
+        "lineNumber": 566,
         "author": {
           "gitId": "-"
         },
         "content": "+"
       },
       {
-        "lineNumber": 566,
-        "author": {
-          "gitId": "LivingOnEdge"
-        },
-        "content": "Use case ends"
-      },
-      {
         "lineNumber": 567,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": ""
+        "content": "Use case ends"
       },
       {
         "lineNumber": 568,
@@ -5940,215 +5940,215 @@
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "*Extensions*"
+        "content": ""
       },
       {
         "lineNumber": 570,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "[none]"
+        "content": "*Extensions*"
       },
       {
         "lineNumber": 571,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": "[none]"
+      },
+      {
+        "lineNumber": 572,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 5a. User keys in undo again"
       },
       {
-        "lineNumber": 572,
+        "lineNumber": 573,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 573,
+        "lineNumber": 574,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 5a1. Weme shows an error message"
       },
       {
-        "lineNumber": 574,
-        "author": {
-          "gitId": "LivingOnEdge"
-        },
-        "content": "+"
-      },
-      {
         "lineNumber": 575,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": "Use case resumes at step 1"
+        "content": "+"
       },
       {
         "lineNumber": 576,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": ""
+        "content": "Use case resumes at step 1"
       },
       {
         "lineNumber": 577,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 578,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 5b. User adds a meme and keys in redo"
       },
       {
-        "lineNumber": 578,
+        "lineNumber": 579,
         "author": {
           "gitId": "-"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 579,
+        "lineNumber": 580,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 5b1. Weme shows an error message"
       },
       {
-        "lineNumber": 580,
+        "lineNumber": 581,
         "author": {
           "gitId": "-"
         },
         "content": "+"
-      },
-      {
-        "lineNumber": 581,
-        "author": {
-          "gitId": "LivingOnEdge"
-        },
-        "content": "Use case resumes at step 1"
       },
       {
         "lineNumber": 582,
         "author": {
           "gitId": "LivingOnEdge"
         },
-        "content": ""
+        "content": "Use case resumes at step 1"
       },
       {
         "lineNumber": 583,
+        "author": {
+          "gitId": "LivingOnEdge"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 584,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "* 6a. User keys in redo again"
       },
       {
-        "lineNumber": 584,
+        "lineNumber": 585,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "[none]"
       },
       {
-        "lineNumber": 585,
+        "lineNumber": 586,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "** 6a1. Weme shows an error message"
       },
       {
-        "lineNumber": 586,
+        "lineNumber": 587,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "+"
       },
       {
-        "lineNumber": 587,
+        "lineNumber": 588,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "Use case resumes at step 1"
       },
       {
-        "lineNumber": 588,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 589,
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 590,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 591,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 592,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Non Functional Requirements"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 593,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Non Functional Requirements"
       },
       {
         "lineNumber": 594,
         "author": {
           "gitId": "-"
         },
-        "content": ". Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+        "content": ""
       },
       {
         "lineNumber": 595,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ". Should work on any \u003c\u003cmainstream-os,mainstream OS\u003e\u003e as long as it has Java `11` or above installed."
+      },
+      {
+        "lineNumber": 596,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": ". Should be able to hold up to 1000 memes without a noticeable sluggishness in performance for typical usage."
       },
       {
-        "lineNumber": 596,
+        "lineNumber": 597,
         "author": {
           "gitId": "-"
         },
         "content": ". A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse."
       },
       {
-        "lineNumber": 597,
+        "lineNumber": 598,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": ". Should have a ui design that is intuitive enough for the user to use."
       },
       {
-        "lineNumber": 598,
-        "author": {
-          "gitId": "LivingOnEdge"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 599,
         "author": {
-          "gitId": "-"
+          "gitId": "LivingOnEdge"
         },
         "content": ""
       },
@@ -6157,126 +6157,126 @@
         "author": {
           "gitId": "-"
         },
-        "content": "_{More to be added}_"
+        "content": ""
       },
       {
         "lineNumber": 601,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{More to be added}_"
       },
       {
         "lineNumber": 602,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 603,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Glossary"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 604,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Glossary"
       },
       {
         "lineNumber": 605,
         "author": {
           "gitId": "-"
         },
-        "content": "[[mainstream-os]] Mainstream OS::"
+        "content": ""
       },
       {
         "lineNumber": 606,
         "author": {
           "gitId": "-"
         },
-        "content": "Windows, Linux, Unix, OS-X"
+        "content": "[[mainstream-os]] Mainstream OS::"
       },
       {
         "lineNumber": 607,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Windows, Linux, Unix, OS-X"
       },
       {
         "lineNumber": 608,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 609,
         "author": {
           "gitId": "gary-lgy"
         },
         "content": "[[meme-template]] Meme template::"
       },
       {
-        "lineNumber": 609,
+        "lineNumber": 610,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "A picture with placeholders for text. A meme can be created by replacing the placeholders with text."
       },
       {
-        "lineNumber": 610,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
         "lineNumber": 611,
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 612,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Product Survey"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 613,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Product Survey"
       },
       {
         "lineNumber": 614,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 615,
         "author": {
           "gitId": "LivingOnEdge"
         },
         "content": "*Weme*"
       },
       {
-        "lineNumber": 615,
+        "lineNumber": 616,
         "author": {
           "gitId": "-"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 616,
-        "author": {
-          "gitId": "gary-lgy"
-        },
-        "content": "_{TODO}_"
       },
       {
         "lineNumber": 617,
         "author": {
-          "gitId": "-"
+          "gitId": "gary-lgy"
         },
-        "content": ""
+        "content": "_{TODO}_"
       },
       {
         "lineNumber": 618,
@@ -6290,311 +6290,318 @@
         "author": {
           "gitId": "-"
         },
-        "content": "[appendix]"
+        "content": ""
       },
       {
         "lineNumber": 620,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d Instructions for Manual Testing"
+        "content": "[appendix]"
       },
       {
         "lineNumber": 621,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d Instructions for Manual Testing"
       },
       {
         "lineNumber": 622,
         "author": {
           "gitId": "-"
         },
-        "content": "Given below are instructions to test the app manually."
+        "content": ""
       },
       {
         "lineNumber": 623,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "Given below are instructions to test the app manually."
       },
       {
         "lineNumber": 624,
         "author": {
           "gitId": "-"
         },
-        "content": "[NOTE]"
+        "content": ""
       },
       {
         "lineNumber": 625,
         "author": {
           "gitId": "-"
         },
-        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
+        "content": "[NOTE]"
       },
       {
         "lineNumber": 626,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing."
       },
       {
         "lineNumber": 627,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Launch and Shutdown"
+        "content": ""
       },
       {
         "lineNumber": 628,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Launch and Shutdown"
       },
       {
         "lineNumber": 629,
         "author": {
           "gitId": "-"
         },
-        "content": ". Initial launch"
+        "content": ""
       },
       {
         "lineNumber": 630,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Initial launch"
       },
       {
         "lineNumber": 631,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Download the jar file and copy into an empty folder"
+        "content": ""
       },
       {
         "lineNumber": 632,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Double-click the jar file +"
+        "content": ".. Download the jar file and copy into an empty folder"
       },
       {
         "lineNumber": 633,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
+        "content": ".. Double-click the jar file +"
       },
       {
         "lineNumber": 634,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum."
       },
       {
         "lineNumber": 635,
         "author": {
           "gitId": "-"
         },
-        "content": ". Saving window preferences"
+        "content": ""
       },
       {
         "lineNumber": 636,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Saving window preferences"
       },
       {
         "lineNumber": 637,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
+        "content": ""
       },
       {
         "lineNumber": 638,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Re-launch the app by double-clicking the jar file. +"
+        "content": ".. Resize the window to an optimum size. Move the window to a different location. Close the window."
       },
       {
         "lineNumber": 639,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: The most recent window size and location is retained."
+        "content": ".. Re-launch the app by double-clicking the jar file. +"
       },
       {
         "lineNumber": 640,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: The most recent window size and location is retained."
       },
       {
         "lineNumber": 641,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 642,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 643,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Deleting a person"
+        "content": ""
       },
       {
         "lineNumber": 644,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Deleting a person"
       },
       {
         "lineNumber": 645,
         "author": {
           "gitId": "-"
         },
-        "content": ". Deleting a person while all persons are listed"
+        "content": ""
       },
       {
         "lineNumber": 646,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Deleting a person while all persons are listed"
       },
       {
         "lineNumber": 647,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
+        "content": ""
       },
       {
         "lineNumber": 648,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 1` +"
+        "content": ".. Prerequisites: List all persons using the `list` command. Multiple persons in the list."
       },
       {
         "lineNumber": 649,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
+        "content": ".. Test case: `delete 1` +"
       },
       {
         "lineNumber": 650,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Test case: `delete 0` +"
+        "content": "   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated."
       },
       {
         "lineNumber": 651,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
+        "content": ".. Test case: `delete 0` +"
       },
       {
         "lineNumber": 652,
         "author": {
           "gitId": "-"
         },
-        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
+        "content": "   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same."
       },
       {
         "lineNumber": 653,
         "author": {
           "gitId": "-"
         },
-        "content": "   Expected: Similar to previous."
+        "content": ".. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +"
       },
       {
         "lineNumber": 654,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "   Expected: Similar to previous."
       },
       {
         "lineNumber": 655,
         "author": {
           "gitId": "-"
         },
-        "content": "_{ more test cases ... }_"
+        "content": ""
       },
       {
         "lineNumber": 656,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "_{ more test cases ... }_"
       },
       {
         "lineNumber": 657,
         "author": {
           "gitId": "-"
         },
-        "content": "\u003d\u003d\u003d Saving data"
+        "content": ""
       },
       {
         "lineNumber": 658,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "\u003d\u003d\u003d Saving data"
       },
       {
         "lineNumber": 659,
         "author": {
           "gitId": "-"
         },
-        "content": ". Dealing with missing/corrupted data files"
+        "content": ""
       },
       {
         "lineNumber": 660,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ". Dealing with missing/corrupted data files"
       },
       {
         "lineNumber": 661,
         "author": {
           "gitId": "-"
         },
-        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
+        "content": ""
       },
       {
         "lineNumber": 662,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": ".. _{explain how to simulate a missing/corrupted file and the expected behavior}_"
       },
       {
         "lineNumber": 663,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 664,
         "author": {
           "gitId": "-"
         },
@@ -6604,9 +6611,9 @@
     "authorContributionMap": {
       "LivingOnEdge": 66,
       "moziliar": 1,
-      "jonchan51": 63,
-      "-": 367,
-      "gary-lgy": 166
+      "jonchan51": 68,
+      "-": 362,
+      "gary-lgy": 167
     }
   },
   {
@@ -10099,6 +10106,275 @@
     }
   },
   {
+    "path": "docs/diagrams/ArchitectureSequenceDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Actor User as user USER_COLOR"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Participant \":UI\" as ui UI_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Participant \":Logic\" as logic LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Participant \":Model\" as model MODEL_COLOR"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Participant \":Storage\" as storage STORAGE_COLOR"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "user -[USER_COLOR]\u003e ui : \"delete 1\""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate ui UI_COLOR"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ui -[UI_COLOR]\u003e logic : execute(\"delete 1\")"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate logic LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "logic -[LOGIC_COLOR]\u003e model : deleteMeme(m)"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate model MODEL_COLOR"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "model -[MODEL_COLOR]-\u003e logic"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate model"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "logic -[LOGIC_COLOR]\u003e storage : saveMemeBook(memeBook)"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate storage STORAGE_COLOR"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "storage -[STORAGE_COLOR]\u003e storage : Save to file"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate storage STORAGE_COLOR_T1"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate storage"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "storage --[STORAGE_COLOR]\u003e logic"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate storage"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "logic --[LOGIC_COLOR]\u003e ui"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate logic"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ui--[UI_COLOR]\u003e user"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate ui"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "jonchan51": 2,
+      "-": 35
+    }
+  },
+  {
     "path": "docs/diagrams/CommitActivityDiagram.puml",
     "fileType": "other",
     "lines": [
@@ -10218,6 +10494,985 @@
     "authorContributionMap": {
       "jonchan51": 4,
       "-": 12
+    }
+  },
+  {
+    "path": "docs/diagrams/DeleteSequenceDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "scale 1.5"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "box Logic LOGIC_COLOR_T1"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "participant \":LogicManager\" as LogicManager LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "participant \":MemeParser\" as MemeParser LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "participant \":MemeDeleteCommandParser\" as MemeDeleteCommandParser LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "participant \"d:MemeDeleteCommand\" as MemeDeleteCommand LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "participant \":CommandResult\" as CommandResult LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "box Model MODEL_COLOR_T1"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "participant \":Model\" as Model MODEL_COLOR"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "end box"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[-\u003e LogicManager : execute(\"delete 1\")"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate LogicManager"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "LogicManager -\u003e MemeParser : parseCommand(\"delete 1\")"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "activate MemeParser"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "create MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeParser -\u003e MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "activate MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommandParser --\u003e MemeParser"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "deactivate MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeParser -\u003e MemeDeleteCommandParser : parse(\"1\")"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "activate MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "create MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommandParser -\u003e MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "activate MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommand --\u003e MemeDeleteCommandParser : d"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "deactivate MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommandParser --\u003e MemeParser : d"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "deactivate MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "\u0027Hidden arrow to position the destroy marker below the end of the activation bar."
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommandParser -[hidden]-\u003e MemeParser"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "destroy MemeDeleteCommandParser"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeParser --\u003e LogicManager : d"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "deactivate MemeParser"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "LogicManager -\u003e MemeDeleteCommand : execute()"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "activate MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommand -\u003e Model : deleteMeme(1)"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate Model"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Model --\u003e MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate Model"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "create CommandResult"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommand -\u003e CommandResult"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "activate CommandResult"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "CommandResult --\u003e MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate CommandResult"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeDeleteCommand --\u003e LogicManager : result"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "deactivate MemeDeleteCommand"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "[\u003c--LogicManager"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "deactivate LogicManager"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "jonchan51": 32,
+      "-": 38
+    }
+  },
+  {
+    "path": "docs/diagrams/LogicClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "scale 1.5"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowThickness 1.1"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowColor LOGIC_COLOR_T4"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam classBackgroundColor LOGIC_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Logic {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Parser {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface Parser \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Class \"{abstract}\\nWemeParser\" as WemeParser"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Class XYZParser"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class XYZCommandParser"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class CliSyntax"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class ParserUtil"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class ArgumentMultimap"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class ArgumentTokenizer"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class Prefix"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Command {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class XYZCommand"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class CommandResult"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class \"{abstract}\\nCommand\" as Command"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface Logic \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class LogicManager"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Model{"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class HiddenModel #FFFFFF"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class HiddenOutside #FFFFFF"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "HiddenOutside ..\u003e Logic"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "LogicManager .up.|\u003e Logic"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "LogicManager ..\u003e WemeParser"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "XYZParser -up-|\u003e WemeParser"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "XYZParser .down.\u003e XYZCommandParser : creates \u003e"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "note right of XYZParser: XYZParser \u003d MemeParser, TemplateParser, \\nImportParser, etc."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommandParser ..\u003e XYZCommand : creates \u003e"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommandParser ..|\u003e Parser"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommandParser ..\u003e ArgumentMultimap"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommandParser ..\u003e ArgumentTokenizer"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ArgumentTokenizer .left.\u003e ArgumentMultimap"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommandParser ..\u003e CliSyntax"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "CliSyntax ..\u003e Prefix"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommandParser ..\u003e ParserUtil"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ParserUtil .down.\u003e Prefix"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ArgumentTokenizer .down.\u003e Prefix"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "XYZCommand -up-|\u003e Command"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "LogicManager .left.\u003e Command : executes \u003e"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "LogicManager --\u003e Model"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Command .right.\u003e Model"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "note right of XYZCommand: XYZCommand \u003d MemeAddCommand, \\nFindCommand, etc"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Logic ..\u003e CommandResult"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "LogicManager .down.\u003e CommandResult"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Command .up.\u003e CommandResult"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "CommandResult -[hidden]-\u003e Parser"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "jonchan51": 9,
+      "-": 58
     }
   },
   {
@@ -10814,6 +12069,466 @@
     }
   },
   {
+    "path": "docs/diagrams/StorageClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "scale 1.5"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowThickness 1.1"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowColor STORAGE_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam classBackgroundColor STORAGE_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface Storage \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface UserPrefsStorage \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Interface MemeBookStorage \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class StorageManager"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class JsonUserPrefsStorage"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Class JsonMemeBookStorage"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "StorageManager .left.|\u003e Storage"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "StorageManager o-right-\u003e UserPrefsStorage"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "StorageManager o--\u003e MemeBookStorage"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "JsonUserPrefsStorage .left.|\u003e UserPrefsStorage"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "JsonMemeBookStorage .left.|\u003e MemeBookStorage"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "JsonMemeBookStorage .down.\u003e JsonSerializableMemeBookStorage"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "JsonSerializableMemeBookStorage .right.\u003e JsonSerializableMeme"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "JsonSerializableMeme .right.\u003e JsonAdaptedTag"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "jonchan51": 8,
+      "-": 17
+    }
+  },
+  {
+    "path": "docs/diagrams/TemplateClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "skinparam arrowThickness 1.1"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "skinparam arrowColor MODEL_COLOR"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "skinparam classBackgroundColor MODEL_COLOR"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Package Model \u003c\u003cRectangle\u003e\u003e{"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Interface Model \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Interface ObservableList \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class MemeBook"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class ModelManager"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class FilteredList"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Package Template {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class Template"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class Name"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class UniqueTemplateList"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Package ImagePath {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class ImagePath"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Class HiddenOutside #FFFFFF"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "HiddenOutside ..\u003e Model"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Model .right.\u003e ObservableList"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "ModelManager .up.|\u003e Model"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "ModelManager o--\u003e \"1\" MemeBook"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "MemeBook *--\u003e \"1\" UniqueTemplateList"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "UniqueTemplateList o--\u003e \"*\" Template"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Template *--\u003e \"1\" Name"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "Template *--\u003e \"1\" ImagePath"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "ModelManager --\u003e\"1\" Template : filtered list"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "gary-lgy"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "gary-lgy": 38
+    }
+  },
+  {
     "path": "docs/diagrams/TemplateCommandResultSequenceDiagram.puml",
     "fileType": "other",
     "lines": [
@@ -11275,6 +12990,443 @@
     ],
     "authorContributionMap": {
       "gary-lgy": 65
+    }
+  },
+  {
+    "path": "docs/diagrams/UiClassDiagram.puml",
+    "fileType": "other",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@startuml"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "scale 1.5"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "!include style.puml"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowThickness 1.1"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam arrowColor UI_COLOR_T4"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "skinparam classBackgroundColor UI_COLOR"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package UI \u003c\u003cRectangle\u003e\u003e{"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Interface Ui \u003c\u003cInterface\u003e\u003e"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class \"{abstract}\\nUiPart\" as UiPart"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class UiManager"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class MainWindow"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class HelpWindow"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class ResultDisplay"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Class MemeGridPanel"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "Class MemeCard"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class StatusBarFooter"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class CommandBox"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Model \u003c\u003cRectangle\u003e\u003e {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class HiddenModel #FFFFFF"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Logic \u003c\u003cRectangle\u003e\u003e {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class HiddenLogic #FFFFFF"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "Class HiddenOutside #FFFFFF"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "HiddenOutside ..\u003e Ui"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "UiManager .left.|\u003e Ui"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "UiManager -down-\u003e MainWindow"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow --\u003e HelpWindow"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow *-down-\u003e CommandBox"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow *-down-\u003e ResultDisplay"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MainWindow *-down-\u003e MemeGridPanel"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow *-down-\u003e StatusBarFooter"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeGridPanel -down-\u003e MemeCard"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow -left-|\u003e UiPart"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ResultDisplay --|\u003e UiPart"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "CommandBox --|\u003e UiPart"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeGridPanel --|\u003e UiPart"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeCard --|\u003e UiPart"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "StatusBarFooter --|\u003e UiPart"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "HelpWindow -down-|\u003e UiPart"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeCard ..\u003e Model"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "UiManager -right-\u003e Logic"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow -left-\u003e Logic"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "jonchan51"
+        },
+        "content": "MemeGridPanel -[hidden]left- HelpWindow"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "HelpWindow -[hidden]left- CommandBox"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "CommandBox -[hidden]left- ResultDisplay"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "ResultDisplay -[hidden]left- StatusBarFooter"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "MainWindow -[hidden]-|\u003e UiPart"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "@enduml"
+      }
+    ],
+    "authorContributionMap": {
+      "jonchan51": 9,
+      "-": 52
     }
   },
   {
@@ -12223,9 +14375,9 @@
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "jonchan51"
         },
-        "content": "note right on link: State ab2 deleted."
+        "content": "note right on link: State mb2 deleted."
       },
       {
         "lineNumber": 22,
@@ -12237,8 +14389,8 @@
     ],
     "authorContributionMap": {
       "moziliar": 1,
-      "jonchan51": 4,
-      "-": 17
+      "jonchan51": 5,
+      "-": 16
     }
   },
   {

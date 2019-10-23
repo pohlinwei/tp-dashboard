@@ -35344,9 +35344,9 @@
       {
         "lineNumber": 167,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "            return isEqualEngagement(otherEngagement);"
+        "content": "            return isSameEngagement(otherEngagement);"
       },
       {
         "lineNumber": 168,
@@ -35430,101 +35430,129 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    public boolean isEqualEngagement(Engagement otherEngagement) {"
+        "content": "    public boolean isSameEngagement(Engagement otherEngagement) {"
       },
       {
         "lineNumber": 180,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        return otherEngagement.location.equals(location)"
+        "content": "        if (otherEngagement \u003d\u003d this) {"
       },
       {
         "lineNumber": 181,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        return otherEngagement !\u003d null"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                \u0026\u0026 otherEngagement.location.equals(location)"
+      },
+      {
+        "lineNumber": 185,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                \u0026\u0026 otherEngagement.attendees.equals(attendees)"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 186,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                \u0026\u0026 otherEngagement.description.equals(description)"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 187,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                \u0026\u0026 otherEngagement.startTime.equals(startTime)"
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 188,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                \u0026\u0026 otherEngagement.endTime.equals(endTime)"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 189,
         "author": {
           "gitId": "lyskevin"
         },
         "content": "                \u0026\u0026 otherEngagement.priority.equals(priority)"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 190,
         "author": {
           "gitId": "lyskevin"
         },
         "content": "                \u0026\u0026 otherEngagement.getType().equals(this.getType());"
       },
       {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "    public int hashCode() {"
-      },
-      {
         "lineNumber": 191,
         "author": {
           "gitId": "uggi121"
         },
-        "content": "        return Objects.hash(startTime, endTime, location, description, attendees, priority);"
+        "content": "    }"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "uggi121"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 193,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "    public int hashCode() {"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "        return Objects.hash(startTime, endTime, location, description, attendees, priority);"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 197,
         "author": {
           "gitId": "nordic96"
         },
@@ -35532,9 +35560,9 @@
       }
     ],
     "authorContributionMap": {
-      "uggi121": 138,
+      "uggi121": 136,
       "nordic96": 50,
-      "lyskevin": 5
+      "lyskevin": 11
     }
   },
   {
@@ -37609,14 +37637,14 @@
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "-"
+          "gitId": "uggi121"
         },
         "content": "import java.util.Iterator;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "uggi121"
         },
         "content": "import java.util.List;"
       },
@@ -37637,100 +37665,100 @@
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "import com.typee.model.person.Person;"
+        "content": "import com.typee.model.engagement.exceptions.DuplicateEngagementException;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "nordic96"
+          "gitId": "lyskevin"
         },
-        "content": "import com.typee.model.person.exceptions.DuplicatePersonException;"
+        "content": "import com.typee.model.engagement.exceptions.EngagementNotFoundException;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "nordic96"
+          "gitId": "uggi121"
         },
-        "content": "import com.typee.model.person.exceptions.PersonNotFoundException;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "uggi121"
         },
-        "content": ""
+        "content": "import javafx.collections.FXCollections;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "uggi121"
         },
-        "content": "import javafx.collections.FXCollections;"
+        "content": "import javafx.collections.ObservableList;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "import javafx.collections.ObservableList;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "/**"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "/**"
+        "content": " * A list of engagements that enforces uniqueness between its elements and does not allow nulls."
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": " * A list of persons that enforces uniqueness between its elements and does not allow nulls."
+        "content": " * An engagement is considered unique by comparing using {@code Engagement#isSameEngagement(Engagement)}."
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": " * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of"
+        "content": " * As such, adding and updating of engagements uses {@code Engagement#isSameEngagement(Engagement)}"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": " * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is"
+        "content": " * for equality so as to ensure that the engagement being added or updated is"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": " * unique in terms of identity in the UniqueEngagementList."
+        "content": " * unique in terms of details in the UniqueEngagementList."
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": " * However, the removal of a person uses Person#equals(Object) so"
+        "content": " * However, the removal of an engagement uses Engagement#equals(Object) so"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": " * as to ensure that the person with exactly the same fields will be removed."
+        "content": " * as to ensure that the engagement with exactly the same fields will be removed."
       },
       {
         "lineNumber": 23,
@@ -37756,9 +37784,9 @@
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": " * @see Person#isSamePerson(Person)"
+        "content": " * @see Engagement#isSameEngagement(Engagement)"
       },
       {
         "lineNumber": 27,
@@ -37819,9 +37847,9 @@
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * Returns true if the list contains an equivalent person as the given argument."
+        "content": "     * Returns true if the list contains an equivalent engagement as the given argument."
       },
       {
         "lineNumber": 36,
@@ -37875,16 +37903,16 @@
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * Adds a person to the list."
+        "content": "     * Adds an engagement to the list."
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * The person must not already exist in the list."
+        "content": "     * The engagement must not already exist in the list."
       },
       {
         "lineNumber": 45,
@@ -37917,9 +37945,9 @@
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "            throw new DuplicatePersonException();"
+        "content": "            throw new DuplicateEngagementException();"
       },
       {
         "lineNumber": 50,
@@ -37959,9 +37987,9 @@
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * Replaces the person {@code target} in the list with {@code editedPerson}."
+        "content": "     * Replaces the engagement {@code target} in the list with {@code editedEngagement}."
       },
       {
         "lineNumber": 56,
@@ -37973,9 +38001,9 @@
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * The person identity of {@code editedPerson} must not be the same as another existing person in the list."
+        "content": "     * The details of {@code editedEngagement} must not be the same as another existing engagement in the list."
       },
       {
         "lineNumber": 58,
@@ -38022,9 +38050,9 @@
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "            throw new PersonNotFoundException();"
+        "content": "            throw new EngagementNotFoundException();"
       },
       {
         "lineNumber": 65,
@@ -38050,9 +38078,9 @@
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "            throw new DuplicatePersonException();"
+        "content": "            throw new DuplicateEngagementException();"
       },
       {
         "lineNumber": 69,
@@ -38064,495 +38092,488 @@
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "uggi121"
         },
-        "content": ""
+        "content": "        internalList.set(index, editedEngagement);"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "-"
         },
-        "content": "        internalList.set(index, editedEngagement);"
+        "content": "    }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    /**"
+        "content": "     * Removes the equivalent engagement from the list."
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * Removes the equivalent person from the list."
+        "content": "     * The engagement must exist in the list."
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "     * The person must exist in the list."
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
         "content": "     */"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 77,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    public void remove(Engagement toRemove) {"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
         "content": "        requireNonNull(toRemove);"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
         "content": "        if (!internalList.remove(toRemove)) {"
       },
       {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "            throw new EngagementNotFoundException();"
+      },
+      {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new PersonNotFoundException();"
+        "content": "        }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 84,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    public void setEngagements(UniqueEngagementList replacement) {"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
         "content": "        requireNonNull(replacement);"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
         "content": "        internalList.setAll(replacement.internalList);"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 90,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    /**"
+        "content": "     * Replaces the contents of this list with {@code engagements}."
       },
       {
         "lineNumber": 91,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     * Replaces the contents of this list with {@code persons}."
+        "content": "     * {@code engagements} must not contain duplicate engagements."
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "     * {@code persons} must not contain duplicate persons."
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "-"
-        },
         "content": "     */"
       },
       {
-        "lineNumber": 94,
+        "lineNumber": 93,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    public void setEngagements(List\u003cEngagement\u003e engagements) {"
       },
       {
-        "lineNumber": 95,
+        "lineNumber": 94,
         "author": {
           "gitId": "uggi121"
         },
         "content": "        CollectionUtil.requireAllNonNull(engagements);"
       },
       {
-        "lineNumber": 96,
+        "lineNumber": 95,
         "author": {
           "gitId": "uggi121"
         },
         "content": "        if (!engagementsAreUnique(engagements)) {"
       },
       {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "            throw new DuplicateEngagementException();"
+      },
+      {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new DuplicatePersonException();"
+        "content": "        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "-"
-        },
         "content": ""
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 99,
         "author": {
           "gitId": "uggi121"
         },
         "content": "        internalList.setAll(engagements);"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "     * Returns the backing list as an unmodifiable {@code ObservableList}."
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns the backing list as an unmodifiable {@code ObservableList}."
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "-"
-        },
         "content": "     */"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 105,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    public ObservableList\u003cEngagement\u003e asUnmodifiableObservableList() {"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
         "content": "        return internalUnmodifiableList;"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "-"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "-"
-        },
         "content": "    @Override"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 110,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    public Iterator\u003cEngagement\u003e iterator() {"
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 111,
         "author": {
           "gitId": "-"
         },
         "content": "        return internalList.iterator();"
       },
       {
-        "lineNumber": 113,
+        "lineNumber": 112,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public boolean equals(Object other) {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
-        "content": "    public boolean equals(Object other) {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "-"
-        },
         "content": "        return other \u003d\u003d this // short circuit if same object"
       },
       {
-        "lineNumber": 118,
+        "lineNumber": 117,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                || (other instanceof UniqueEngagementList // instanceof handles nulls"
       },
       {
-        "lineNumber": 119,
+        "lineNumber": 118,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                        \u0026\u0026 internalList.equals(((UniqueEngagementList) other).internalList));"
       },
       {
-        "lineNumber": 120,
+        "lineNumber": 119,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "-"
         },
-        "content": "    @Override"
+        "content": "    public int hashCode() {"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
-        "content": "    public int hashCode() {"
+        "content": "        return internalList.hashCode();"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "-"
         },
-        "content": "        return internalList.hashCode();"
+        "content": "    }"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 127,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    /**"
+        "content": "     * Returns true if {@code engagements} contains only unique engagements."
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Returns true if {@code persons} contains only unique persons."
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "-"
-        },
         "content": "     */"
       },
       {
-        "lineNumber": 130,
+        "lineNumber": 129,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    private boolean engagementsAreUnique(List\u003cEngagement\u003e engagements) {"
       },
       {
-        "lineNumber": 131,
+        "lineNumber": 130,
         "author": {
           "gitId": "uggi121"
         },
         "content": "        for (int i \u003d 0; i \u003c engagements.size() - 1; i++) {"
       },
       {
-        "lineNumber": 132,
+        "lineNumber": 131,
         "author": {
           "gitId": "uggi121"
         },
         "content": "            for (int j \u003d i + 1; j \u003c engagements.size(); j++) {"
       },
       {
-        "lineNumber": 133,
+        "lineNumber": 132,
         "author": {
           "gitId": "uggi121"
         },
         "content": "                if (engagements.get(i).isConflictingWith(engagements.get(j))) {"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 133,
         "author": {
           "gitId": "-"
         },
         "content": "                    return false;"
       },
       {
-        "lineNumber": 135,
+        "lineNumber": 134,
         "author": {
           "gitId": "-"
         },
         "content": "                }"
       },
       {
-        "lineNumber": 136,
+        "lineNumber": 135,
         "author": {
           "gitId": "-"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 137,
+        "lineNumber": 136,
         "author": {
           "gitId": "-"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 138,
+        "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
         "content": "        return true;"
       },
       {
-        "lineNumber": 139,
+        "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 140,
+        "lineNumber": 139,
         "author": {
           "gitId": "-"
         },
@@ -38560,9 +38581,147 @@
       }
     ],
     "authorContributionMap": {
-      "uggi121": 29,
-      "nordic96": 3,
-      "-": 108
+      "uggi121": 30,
+      "nordic96": 1,
+      "lyskevin": 25,
+      "-": 83
+    }
+  },
+  {
+    "path": "src/main/java/com/typee/model/engagement/exceptions/DuplicateEngagementException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "package com.typee.model.engagement.exceptions;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": " * Signals that the operation will result in duplicate Engagements"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": " * (Engagements are considered duplicates if they have the same fields)."
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "public class DuplicateEngagementException extends RuntimeException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public DuplicateEngagementException() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        super(\"Operation would result in duplicate engagements\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lyskevin": 11
+    }
+  },
+  {
+    "path": "src/main/java/com/typee/model/engagement/exceptions/EngagementNotFoundException.java",
+    "fileType": "functional",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "package com.typee.model.engagement.exceptions;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": " * Signals that the operation is unable to find the specified engagement."
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "public class EngagementNotFoundException extends RuntimeException {}"
+      }
+    ],
+    "authorContributionMap": {
+      "lyskevin": 6
     }
   },
   {
@@ -68767,7 +68926,7 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "            return this.engagement.isEqualEngagement(engagement);"
+        "content": "            return this.engagement.isSameEngagement(engagement);"
       },
       {
         "lineNumber": 310,
@@ -68858,7 +69017,7 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "            return engagementsAdded.stream().anyMatch(engagement::isEqualEngagement);"
+        "content": "            return engagementsAdded.stream().anyMatch(engagement::isSameEngagement);"
       },
       {
         "lineNumber": 323,
@@ -69766,128 +69925,128 @@
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "    /*"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public static final String VALID_NAME_AMY \u003d \"Amy Bee\";"
+        "content": "    public static final String VALID_DESCRIPTION_LUNCH_APPOINTMENT \u003d \"Lunch\";"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public static final String VALID_NAME_BOB \u003d \"Bob Choo\";"
+        "content": "    public static final String VALID_DESCRIPTION_GOOGLE_INTERVIEW \u003d \"Googs\";"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public static final String VALID_PHONE_AMY \u003d \"11111111\";"
+        "content": "    public static final String VALID_DESCRIPTION_TEAM_MEETING \u003d \"Team Project Meeting\";"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public static final String VALID_PHONE_BOB \u003d \"22222222\";"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "uggi121"
         },
-        "content": "    public static final String VALID_EMAIL_AMY \u003d \"amy@example.com\";"
+        "content": "    /*"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String VALID_EMAIL_BOB \u003d \"bob@example.com\";"
+        "content": "    public static final String VALID_NAME_AMY \u003d \"Amy Bee\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String VALID_ADDRESS_AMY \u003d \"Block 312, Amy Street 1\";"
+        "content": "    public static final String VALID_NAME_BOB \u003d \"Bob Choo\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String VALID_ADDRESS_BOB \u003d \"Block 123, Bobby Street 3\";"
+        "content": "    public static final String VALID_PHONE_AMY \u003d \"11111111\";"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "jun-ha0"
+          "gitId": "-"
         },
-        "content": "    public static final String VALID_REMARK_AMY \u003d \"Like skiing.\";"
+        "content": "    public static final String VALID_PHONE_BOB \u003d \"22222222\";"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "jun-ha0"
+          "gitId": "-"
         },
-        "content": "    public static final String VALID_REMARK_BOB \u003d \"Favourite pastime: Eating\";"
+        "content": "    public static final String VALID_EMAIL_AMY \u003d \"amy@example.com\";"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String VALID_TAG_HUSBAND \u003d \"husband\";"
+        "content": "    public static final String VALID_EMAIL_BOB \u003d \"bob@example.com\";"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String VALID_TAG_FRIEND \u003d \"friend\";"
+        "content": "    public static final String VALID_ADDRESS_AMY \u003d \"Block 312, Amy Street 1\";"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public static final String VALID_ADDRESS_BOB \u003d \"Block 123, Bobby Street 3\";"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "jun-ha0"
         },
-        "content": "    public static final String NAME_DESC_AMY \u003d \" \" + PREFIX_NAME + VALID_NAME_AMY;"
+        "content": "    public static final String VALID_REMARK_AMY \u003d \"Like skiing.\";"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "jun-ha0"
         },
-        "content": "    public static final String NAME_DESC_BOB \u003d \" \" + PREFIX_NAME + VALID_NAME_BOB;"
+        "content": "    public static final String VALID_REMARK_BOB \u003d \"Favourite pastime: Eating\";"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public static final String VALID_TAG_HUSBAND \u003d \"husband\";"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String INVALID_NAME_DESC \u003d \" \" + PREFIX_NAME + \"James\u0026\"; // \u0027\u0026\u0027 not allowed in names"
+        "content": "    public static final String VALID_TAG_FRIEND \u003d \"friend\";"
       },
       {
         "lineNumber": 40,
@@ -69901,14 +70060,14 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String PREAMBLE_WHITESPACE \u003d \"\\t  \\r  \\n\";"
+        "content": "    public static final String NAME_DESC_AMY \u003d \" \" + PREFIX_NAME + VALID_NAME_AMY;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static final String PREAMBLE_NON_EMPTY \u003d \"NonEmptyPreamble\";"
+        "content": "    public static final String NAME_DESC_BOB \u003d \" \" + PREFIX_NAME + VALID_NAME_BOB;"
       },
       {
         "lineNumber": 43,
@@ -69920,364 +70079,364 @@
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "-"
         },
-        "content": "    public static final EditCommand.EditEngagementDescriptor DESC_AMY;"
+        "content": "    public static final String INVALID_NAME_DESC \u003d \" \" + PREFIX_NAME + \"James\u0026\"; // \u0027\u0026\u0027 not allowed in names"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "-"
         },
-        "content": "    public static final EditCommand.EditEngagementDescriptor DESC_BOB;"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public static final String PREAMBLE_WHITESPACE \u003d \"\\t  \\r  \\n\";"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "    static {"
+        "content": "    public static final String PREAMBLE_NON_EMPTY \u003d \"NonEmptyPreamble\";"
       },
       {
         "lineNumber": 48,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "    public static final EditCommand.EditEngagementDescriptor DESC_AMY;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "    public static final EditCommand.EditEngagementDescriptor DESC_BOB;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    static {"
+      },
+      {
+        "lineNumber": 53,
         "author": {
           "gitId": "jun-ha0"
         },
         "content": "        DESC_AMY \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();"
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 54,
         "author": {
           "gitId": "jun-ha0"
         },
         "content": "        DESC_BOB \u003d new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 55,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 56,
         "author": {
           "gitId": "uggi121"
         },
         "content": "    */"
       },
       {
-        "lineNumber": 52,
+        "lineNumber": 57,
         "author": {
           "gitId": "lyskevin"
         },
         "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * - the returned {@link CommandResult} matches {@code expectedCommandResult} \u003cbr\u003e"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     * - the {@code actualModel} matches {@code expectedModel}"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "     */"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,"
+        "content": "    /**"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "-"
         },
-        "content": "                                            Model expectedModel) {"
+        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "-"
         },
-        "content": "        try {"
+        "content": "     * - the returned {@link CommandResult} matches {@code expectedCommandResult} \u003cbr\u003e"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "-"
         },
-        "content": "            CommandResult result \u003d command.execute(actualModel);"
+        "content": "     * - the {@code actualModel} matches {@code expectedModel}"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
-        "content": "            assertEquals(expectedCommandResult, result);"
+        "content": "     */"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "            assertEquals(expectedModel, actualModel);"
+        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "        } catch (CommandException ce) {"
+        "content": "                                            Model expectedModel) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "            throw new AssertionError(\"Execution of command should not fail.\", ce);"
+        "content": "        try {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "        }"
+        "content": "            CommandResult result \u003d command.execute(actualModel);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "            assertEquals(expectedCommandResult, result);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "            assertEquals(expectedModel, actualModel);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        } catch (CommandException ce) {"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "-"
         },
-        "content": "     * Convenience wrapper to"
+        "content": "            throw new AssertionError(\"Execution of command should not fail.\", ce);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "-"
         },
-        "content": "     * that takes a string {@code expectedMessage}."
+        "content": "        }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "                                            Model expectedModel) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
+          "gitId": "uggi121"
         },
-        "content": "        CommandResult expectedCommandResult \u003d new CommandResult(expectedMessage);"
+        "content": "     * Convenience wrapper to"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);"
+        "content": "     * that takes a string {@code expectedMessage}."
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "                                            Model expectedModel) {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
+        "content": "        CommandResult expectedCommandResult \u003d new CommandResult(expectedMessage);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - a {@code CommandException} is thrown \u003cbr\u003e"
+        "content": "        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - the CommandException message matches {@code expectedMessage} \u003cbr\u003e"
+        "content": "    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {"
+        "content": "     * Executes the given {@code command}, confirms that \u003cbr\u003e"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "        // we are unable to defensively copy the model for comparison later, so we can"
+        "content": "     * - a {@code CommandException} is thrown \u003cbr\u003e"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "        // only do so by copying its components."
+        "content": "     * - the CommandException message matches {@code expectedMessage} \u003cbr\u003e"
       },
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "lyskevin"
+          "gitId": "-"
         },
-        "content": "        EngagementList expectedEngagementList \u003d new EngagementList(actualModel.getEngagementList());"
+        "content": "     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "lyskevin"
+          "gitId": "-"
         },
-        "content": "        List\u003cEngagement\u003e expectedFilteredList \u003d new ArrayList\u003c\u003e(actualModel.getFilteredEngagementList());"
+        "content": "     */"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "        assertThrows(CommandException.class, expectedMessage, () -\u003e command.execute(actualModel));"
+        "content": "        // we are unable to defensively copy the model for comparison later, so we can"
       },
       {
         "lineNumber": 92,
         "author": {
-          "gitId": "lyskevin"
+          "gitId": "-"
         },
-        "content": "        assertEquals(expectedEngagementList, actualModel.getEngagementList());"
+        "content": "        // only do so by copying its components."
       },
       {
         "lineNumber": 93,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        assertEquals(expectedFilteredList, actualModel.getFilteredEngagementList());"
+        "content": "        EngagementList expectedEngagementList \u003d new EngagementList(actualModel.getEngagementList());"
       },
       {
         "lineNumber": 94,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "        List\u003cEngagement\u003e expectedFilteredList \u003d new ArrayList\u003c\u003e(actualModel.getFilteredEngagementList());"
       },
       {
         "lineNumber": 95,
         "author": {
-          "gitId": "nordic96"
+          "gitId": "-"
         },
         "content": ""
       },
@@ -70286,115 +70445,150 @@
         "author": {
           "gitId": "-"
         },
-        "content": "    /**"
+        "content": "        assertThrows(CommandException.class, expectedMessage, () -\u003e command.execute(actualModel));"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "     * Updates {@code model}\u0027s filtered list to show only the engagement at the given {@code targetIndex} in the"
+        "content": "        assertEquals(expectedEngagementList, actualModel.getEngagementList());"
       },
       {
         "lineNumber": 98,
         "author": {
-          "gitId": "lyskevin"
+          "gitId": "uggi121"
         },
-        "content": "     * {@code model}\u0027s engagement list."
+        "content": "        assertEquals(expectedFilteredList, actualModel.getFilteredEngagementList());"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 100,
         "author": {
-          "gitId": "lyskevin"
+          "gitId": "nordic96"
         },
-        "content": "    public static void showEngagementAtIndex(Model model, Index targetIndex) {"
+        "content": ""
       },
       {
         "lineNumber": 101,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "-"
         },
-        "content": "        assertTrue(targetIndex.getZeroBased() \u003c model.getFilteredEngagementList().size());"
+        "content": "    /**"
       },
       {
         "lineNumber": 102,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "     * Updates {@code model}\u0027s filtered list to show only the engagement at the given {@code targetIndex} in the"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        Engagement engagement \u003d model.getFilteredEngagementList().get(targetIndex.getZeroBased());"
+        "content": "     * {@code model}\u0027s engagement list."
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "lyskevin"
+          "gitId": "-"
         },
-        "content": "        final String[] splitDescription \u003d engagement.getDescription().split(\"\\\\s+\");"
+        "content": "     */"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        model.updateFilteredEngagementList(new DescriptionContainsKeywordsPredicate(("
+        "content": "    public static void showEngagementAtIndex(Model model, Index targetIndex) {"
       },
       {
         "lineNumber": 106,
+        "author": {
+          "gitId": "uggi121"
+        },
+        "content": "        assertTrue(targetIndex.getZeroBased() \u003c model.getFilteredEngagementList().size());"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement engagement \u003d model.getFilteredEngagementList().get(targetIndex.getZeroBased());"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        final String[] splitDescription \u003d engagement.getDescription().split(\"\\\\s+\");"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        model.updateFilteredEngagementList(new DescriptionContainsKeywordsPredicate(("
+      },
+      {
+        "lineNumber": 111,
         "author": {
           "gitId": "lyskevin"
         },
         "content": "                Arrays.asList(splitDescription[0]))"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 112,
         "author": {
           "gitId": "lyskevin"
         },
         "content": "        ));"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 113,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 114,
         "author": {
           "gitId": "uggi121"
         },
         "content": "        assertEquals(1, model.getFilteredEngagementList().size());"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 115,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 116,
         "author": {
           "gitId": "-"
         },
         "content": ""
       },
       {
-        "lineNumber": 112,
+        "lineNumber": 117,
         "author": {
           "gitId": "-"
         },
@@ -70405,7 +70599,7 @@
       "jun-ha0": 4,
       "uggi121": 8,
       "nordic96": 2,
-      "lyskevin": 27,
+      "lyskevin": 32,
       "-": 71
     }
   },
@@ -78716,625 +78910,971 @@
     }
   },
   {
-    "path": "src/test/java/com/typee/model/AddressBookTest.java",
+    "path": "src/test/java/com/typee/model/EngagementListTest.java",
     "fileType": "tests",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
-          "gitId": "nordic96"
+          "gitId": "lyskevin"
         },
         "content": "package com.typee.model;"
       },
       {
         "lineNumber": 2,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "//import static com.typee.testutil.TypicalPersons.ALICE;"
+        "content": "import static com.typee.testutil.TypicalEngagements.TYPICAL_APPOINTMENT;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "//import static com.typee.testutil.TypicalPersons.getTypicalAddressBook;"
+        "content": "import static com.typee.testutil.TypicalEngagements.TYPICAL_INTERVIEW;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "nordic96"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "import static com.typee.testutil.TypicalEngagements.TYPICAL_MEETING;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "public class AddressBookTest {"
+        "content": "import static com.typee.testutil.TypicalEngagements.getTypicalEngagementList;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "    /*"
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    private final EngagementList addressBook \u003d new HistoryManager(new EngagementList());"
+        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    @Test"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void constructor() {"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        assertEquals(Collections.emptyList(), addressBook.getEngagementList());"
+        "content": "import java.util.Collection;"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "import java.util.Collections;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void resetData_null_throwsNullPointerException() {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertThrows(NullPointerException.class, () -\u003e addressBook.resetData(null));"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.model.engagement.Engagement;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.model.engagement.exceptions.DuplicateEngagementException;"
+      },
+      {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    @Test"
+        "content": "import com.typee.testutil.EngagementBuilder;"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void resetData_withValidReadOnlyAddressBook_replacesData() {"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        EngagementList newData \u003d getTypicalAddressBook();"
+        "content": "import javafx.collections.FXCollections;"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        addressBook.resetData(newData);"
+        "content": "import javafx.collections.ObservableList;"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        assertEquals(newData, addressBook);"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "public class EngagementListTest {"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    @Test"
+        "content": "    private final EngagementList engagementList \u003d new HistoryManager(new EngagementList());"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        // Two persons with the same identity fields"
+        "content": "    @Test"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "jun-ha0"
+          "gitId": "lyskevin"
         },
-        "content": "        Person editedAlice \u003d new PersonBuilder(ALICE).build();"
+        "content": "    public void constructor() {"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        List\u003cPerson\u003e newPersons \u003d Arrays.asList(ALICE, editedAlice);"
+        "content": "        assertEquals(Collections.emptyList(), engagementList.getEngagementList());"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        AddressBookStub newData \u003d new AddressBookStub(newPersons);"
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        assertThrows(DuplicatePersonException.class, () -\u003e addressBook.resetData(newData));"
+        "content": "    @Test"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "    public void resetData_null_throwsNullPointerException() {"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "        assertThrows(NullPointerException.class, () -\u003e engagementList.resetData(null));"
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    @Test"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void hasPerson_nullPerson_throwsNullPointerException() {"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        assertThrows(NullPointerException.class, () -\u003e addressBook.hasEngagement(null));"
+        "content": "    @Test"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "    public void resetData_withValidReadOnlyEngagementList_replacesData() {"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "        EngagementList newData \u003d getTypicalEngagementList();"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    @Test"
+        "content": "        engagementList.resetData(newData);"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void hasPerson_personNotInAddressBook_returnsFalse() {"
+        "content": "        assertEquals(newData, engagementList);"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        assertFalse(addressBook.hasEngagement(ALICE));"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": "    @Test"
       },
       {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void resetData_withDuplicateAppointments_throwsDuplicateEngagementException() {"
+      },
+      {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void hasPerson_personInAddressBook_returnsTrue() {"
+        "content": "        // Two engagements with the same details"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        addressBook.addEngagement(ALICE);"
+        "content": "        Engagement editedAppointment \u003d new EngagementBuilder(TYPICAL_APPOINTMENT).buildAsAppointment();"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        assertTrue(addressBook.hasEngagement(ALICE));"
+        "content": "        List\u003cEngagement\u003e newEngagements \u003d Arrays.asList(TYPICAL_APPOINTMENT, editedAppointment);"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "        EngagementListStub newData \u003d new EngagementListStub(newEngagements);"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    @Test"
+        "content": "        assertThrows(DuplicateEngagementException.class, () -\u003e engagementList.resetData(newData));"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        addressBook.addEngagement(ALICE);"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "jun-ha0"
-        },
-        "content": "        Person editedAlice \u003d new PersonBuilder(ALICE).build();"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "        assertTrue(addressBook.hasEngagement(editedAlice));"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": "    @Test"
       },
       {
-        "lineNumber": 62,
+        "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    public void getPersonList_modifyList_throwsUnsupportedOperationException() {"
+        "content": "    public void hasEngagement_nullEngagement_throwsNullPointerException() {"
       },
       {
-        "lineNumber": 63,
+        "lineNumber": 59,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "        assertThrows(UnsupportedOperationException.class, () -\u003e addressBook.getEngagementList().remove(0));"
+        "content": "        assertThrows(NullPointerException.class, () -\u003e engagementList.hasEngagement(null));"
       },
       {
-        "lineNumber": 64,
+        "lineNumber": 60,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 65,
+        "lineNumber": 61,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasAppointment_appointmentNotInEngagementList_returnsFalse() {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(engagementList.hasEngagement(TYPICAL_APPOINTMENT));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
         "lineNumber": 66,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
         "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "     */"
+        "content": "    @Test"
       },
       {
         "lineNumber": 68,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "    /**"
+        "content": "    public void hasInterview_interviewNotInEngagementList_returnsFalse() {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "     * A stub ReadOnlyEngagementList whose persons list can violate interface constraints."
+        "content": "        assertFalse(engagementList.hasEngagement(TYPICAL_INTERVIEW));"
       },
       {
         "lineNumber": 70,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 71,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "    /*"
+        "content": ""
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    private static class AddressBookStub implements ReadOnlyEngagementList {"
+        "content": "    @Test"
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": "        private final ObservableList\u003cPerson\u003e persons \u003d FXCollections.observableArrayList();"
+        "content": "    public void hasMeeting_meetingNotInEngagementList_returnsFalse() {"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "        assertFalse(engagementList.hasEngagement(TYPICAL_MEETING));"
       },
       {
         "lineNumber": 75,
         "author": {
-          "gitId": "-"
-        },
-        "content": "        AddressBookStub(Collection\u003cPerson\u003e persons) {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            this.persons.setAll(persons);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        @Override"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "        public ObservableList\u003cPerson\u003e getEngagementList() {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "            return persons;"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 84,
+        "lineNumber": 76,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasAppointment_appointmentInEngagementList_returnsTrue() {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        engagementList.addEngagement(TYPICAL_APPOINTMENT);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(engagementList.hasEngagement(TYPICAL_APPOINTMENT));"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasInterview_interviewInEngagementList_returnsTrue() {"
       },
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": "     */"
+        "content": "        engagementList.addEngagement(TYPICAL_INTERVIEW);"
       },
       {
         "lineNumber": 86,
         "author": {
-          "gitId": "uggi121"
+          "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "        assertTrue(engagementList.hasEngagement(TYPICAL_INTERVIEW));"
       },
       {
         "lineNumber": 87,
         "author": {
-          "gitId": "-"
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasMeeting_meetingInEngagementList_returnsTrue() {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        engagementList.addEngagement(TYPICAL_MEETING);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(engagementList.hasEngagement(TYPICAL_MEETING));"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasAppointment_appointmentWithSameDetailsInEngagementList_returnsTrue() {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        engagementList.addEngagement(TYPICAL_APPOINTMENT);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedAppointment \u003d new EngagementBuilder(TYPICAL_APPOINTMENT).buildAsAppointment();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(engagementList.hasEngagement(editedAppointment));"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasInterview_interviewWithSameDetailsInEngagementList_returnsTrue() {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        engagementList.addEngagement(TYPICAL_INTERVIEW);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedInterview \u003d new EngagementBuilder(TYPICAL_INTERVIEW).buildAsInterview();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(engagementList.hasEngagement(editedInterview));"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void hasMeeting_meetingWithSameDetailsInEngagementList_returnsTrue() {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        engagementList.addEngagement(TYPICAL_MEETING);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedMeeting \u003d new EngagementBuilder(TYPICAL_MEETING).buildAsMeeting();"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(engagementList.hasEngagement(editedMeeting));"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void getEngagementList_modifyList_throwsUnsupportedOperationException() {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertThrows(UnsupportedOperationException.class, () -\u003e engagementList.getEngagementList().remove(0));"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "     * A stub ReadOnlyEngagementList whose engagement list can violate interface constraints."
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    private static class EngagementListStub implements ReadOnlyEngagementList {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        private final ObservableList\u003cEngagement\u003e engagements \u003d FXCollections.observableArrayList();"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        EngagementListStub(Collection\u003cEngagement\u003e engagements) {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "            this.engagements.setAll(engagements);"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        @Override"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        public ObservableList\u003cEngagement\u003e getEngagementList() {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "            return engagements;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "lyskevin"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "jun-ha0": 2,
-      "uggi121": 17,
-      "nordic96": 2,
-      "lyskevin": 4,
-      "-": 62
+      "lyskevin": 137
     }
   },
   {
@@ -80340,6 +80880,1209 @@
     }
   },
   {
+    "path": "src/test/java/com/typee/model/person/AppointmentTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "package com.typee.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.logic.commands.CommandTestUtil.VALID_DESCRIPTION_LUNCH_APPOINTMENT;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.testutil.TypicalEngagements.LUNCH_APPOINTMENT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.testutil.TypicalEngagements.TYPICAL_APPOINTMENT;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.model.engagement.Engagement;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.testutil.EngagementBuilder;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "public class AppointmentTest {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void isSameAppointment() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_APPOINTMENT.isSameEngagement(TYPICAL_APPOINTMENT));"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_APPOINTMENT.isSameEngagement(null));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different description -\u003e returns false"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedAppointment \u003d new EngagementBuilder(TYPICAL_APPOINTMENT)"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .withDescription(VALID_DESCRIPTION_LUNCH_APPOINTMENT)"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .buildAsAppointment();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_APPOINTMENT.isSameEngagement(editedAppointment));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement appointmentCopy \u003d new EngagementBuilder(TYPICAL_APPOINTMENT).buildAsAppointment();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_APPOINTMENT.equals(appointmentCopy));"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_APPOINTMENT.equals(TYPICAL_APPOINTMENT));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_APPOINTMENT.equals(null));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different type -\u003e returns false"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_APPOINTMENT.equals(5));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different appointment -\u003e returns false"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_APPOINTMENT.equals(LUNCH_APPOINTMENT));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different description -\u003e returns false"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedAppointment \u003d new EngagementBuilder(TYPICAL_APPOINTMENT)"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .withDescription(VALID_DESCRIPTION_LUNCH_APPOINTMENT)"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .buildAsAppointment();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_APPOINTMENT.equals(editedAppointment));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lyskevin": 56
+    }
+  },
+  {
+    "path": "src/test/java/com/typee/model/person/InterviewTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "package com.typee.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE_INTERVIEW;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.testutil.TypicalEngagements.GOOGLE_INTERVIEW;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.testutil.TypicalEngagements.TYPICAL_INTERVIEW;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.model.engagement.Engagement;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.testutil.EngagementBuilder;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "public class InterviewTest {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void isSameInterview() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_INTERVIEW.isSameEngagement(TYPICAL_INTERVIEW));"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_INTERVIEW.isSameEngagement(null));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different description -\u003e returns false"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedInterview \u003d new EngagementBuilder(TYPICAL_INTERVIEW)"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .withDescription(VALID_DESCRIPTION_GOOGLE_INTERVIEW)"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .buildAsInterview();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_INTERVIEW.isSameEngagement(editedInterview));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement interviewCopy \u003d new EngagementBuilder(TYPICAL_INTERVIEW).buildAsInterview();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_INTERVIEW.equals(interviewCopy));"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_INTERVIEW.equals(TYPICAL_INTERVIEW));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_INTERVIEW.equals(null));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different type -\u003e returns false"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_INTERVIEW.equals(5));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different interview -\u003e returns false"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_INTERVIEW.equals(GOOGLE_INTERVIEW));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different description -\u003e returns false"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedInterview \u003d new EngagementBuilder(TYPICAL_INTERVIEW)"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .withDescription(VALID_DESCRIPTION_GOOGLE_INTERVIEW)"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .buildAsInterview();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_INTERVIEW.equals(editedInterview));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lyskevin": 56
+    }
+  },
+  {
+    "path": "src/test/java/com/typee/model/person/MeetingTest.java",
+    "fileType": "tests",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "package com.typee.model.person;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TEAM_MEETING;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.testutil.TypicalEngagements.TEAM_MEETING;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static com.typee.testutil.TypicalEngagements.TYPICAL_MEETING;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertFalse;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.model.engagement.Engagement;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "import com.typee.testutil.EngagementBuilder;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "public class MeetingTest {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void isSameMeeting() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_MEETING.isSameEngagement(TYPICAL_MEETING));"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_MEETING.isSameEngagement(null));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different description -\u003e returns false"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedMeeting \u003d new EngagementBuilder(TYPICAL_MEETING)"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .withDescription(VALID_DESCRIPTION_TEAM_MEETING)"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .buildAsMeeting();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_MEETING.isSameEngagement(editedMeeting));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public void equals() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same values -\u003e returns true"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement meetingCopy \u003d new EngagementBuilder(TYPICAL_MEETING).buildAsMeeting();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_MEETING.equals(meetingCopy));"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // same object -\u003e returns true"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertTrue(TYPICAL_MEETING.equals(TYPICAL_MEETING));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // null -\u003e returns false"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_MEETING.equals(null));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different type -\u003e returns false"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_MEETING.equals(5));"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different meeting -\u003e returns false"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_MEETING.equals(TEAM_MEETING));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        // different description -\u003e returns false"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        Engagement editedMeeting \u003d new EngagementBuilder(TYPICAL_MEETING)"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .withDescription(VALID_DESCRIPTION_TEAM_MEETING)"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "                .buildAsMeeting();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        assertFalse(TYPICAL_MEETING.equals(editedMeeting));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lyskevin": 56
+    }
+  },
+  {
     "path": "src/test/java/com/typee/model/person/NameContainsKeywordsPredicateTest.java",
     "fileType": "tests",
     "lines": [
@@ -81185,347 +82928,6 @@
     "authorContributionMap": {
       "nordic96": 2,
       "-": 38
-    }
-  },
-  {
-    "path": "src/test/java/com/typee/model/person/PersonTest.java",
-    "fileType": "tests",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "nordic96"
-        },
-        "content": "package com.typee.model.person;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "//import static com.typee.logic.commands.CommandTestUtil.VALID_NAME_BOB;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "//import static com.typee.testutil.TypicalPersons.ALICE;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "//import static com.typee.testutil.TypicalPersons.BOB;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class PersonTest {"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "    /*"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void isSamePerson() {"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // same object -\u003e returns true"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(ALICE.isSamePerson(ALICE));"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // null -\u003e returns false"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(ALICE.isSamePerson(null));"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different name -\u003e returns false"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "jun-ha0"
-        },
-        "content": "        Person editedAlice \u003d new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(ALICE.isSamePerson(editedAlice));"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    @Test"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public void equals() {"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // same values -\u003e returns true"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Person aliceCopy \u003d new PersonBuilder(ALICE).build();"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(ALICE.equals(aliceCopy));"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // same object -\u003e returns true"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertTrue(ALICE.equals(ALICE));"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // null -\u003e returns false"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(ALICE.equals(null));"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different type -\u003e returns false"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(ALICE.equals(5));"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different person -\u003e returns false"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(ALICE.equals(BOB));"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        // different name -\u003e returns false"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        Person editedAlice \u003d new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        assertFalse(ALICE.equals(editedAlice));"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "uggi121"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "jun-ha0": 1,
-      "uggi121": 6,
-      "nordic96": 1,
-      "-": 39
     }
   },
   {
@@ -88723,7 +90125,7 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    public static final Engagement APPOINTMENT \u003d new EngagementBuilder().withDescription(\"Appointment\")"
+        "content": "    public static final Engagement TYPICAL_APPOINTMENT \u003d new EngagementBuilder().withDescription(\"Appointment\")"
       },
       {
         "lineNumber": 18,
@@ -88751,7 +90153,7 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    public static final Engagement INTERVIEW \u003d new EngagementBuilder().withDescription(\"Interview\")"
+        "content": "    public static final Engagement TYPICAL_INTERVIEW \u003d new EngagementBuilder().withDescription(\"Interview\")"
       },
       {
         "lineNumber": 22,
@@ -88779,7 +90181,7 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    public static final Engagement MEETING \u003d new EngagementBuilder().withDescription(\"Meeting\")"
+        "content": "    public static final Engagement TYPICAL_MEETING \u003d new EngagementBuilder().withDescription(\"Meeting\")"
       },
       {
         "lineNumber": 26,
@@ -88807,105 +90209,105 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "    public static final Engagement LUNCH_APPOINTMENT \u003d new EngagementBuilder().withDescription(\"Lunch\")"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    private TypicalEngagements() {"
+        "content": "            .withStartAndEndTime(LocalDateTime.of(2019, 11, 20, 10, 0),"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    } // prevents instantiation"
+        "content": "                    LocalDateTime.of(2019, 11, 20, 11, 0))"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "            .buildAsAppointment();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    /**"
+        "content": "    public static final Engagement GOOGLE_INTERVIEW \u003d new EngagementBuilder().withDescription(\"Googs\")"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "     * Returns an {@code EngagementList} with all the typical persons."
+        "content": "            .withStartAndEndTime(LocalDateTime.of(2019, 11, 20, 12, 0),"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "     */"
+        "content": "                    LocalDateTime.of(2019, 11, 20, 13, 0))"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    public static HistoryManager getTypicalEngagementList() {"
+        "content": "            .buildAsInterview();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        EngagementList engagementList \u003d new EngagementList();"
+        "content": "    public static final Engagement TEAM_MEETING \u003d new EngagementBuilder().withDescription(\"Team Project Meeting\")"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        for (Engagement engagement : getTypicalEngagements()) {"
+        "content": "            .withStartAndEndTime(LocalDateTime.of(2019, 11, 20, 17, 0),"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "            engagementList.addEngagement(engagement);"
+        "content": "                    LocalDateTime.of(2019, 11, 20, 21, 0))"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        }"
+        "content": "            .buildAsMeeting();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        HistoryManager hm \u003d new HistoryManager(engagementList);"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        return hm;"
+        "content": "    private TypicalEngagements() {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "    } // prevents instantiation"
       },
       {
         "lineNumber": 44,
@@ -88919,31 +90321,115 @@
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    public static List\u003cEngagement\u003e getTypicalEngagements() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "        return new ArrayList\u003c\u003e(Arrays.asList(APPOINTMENT, INTERVIEW, MEETING));"
+        "content": "     * Returns an {@code EngagementList} with all the typical persons."
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lyskevin"
         },
-        "content": ""
+        "content": "    public static HistoryManager getTypicalEngagementList() {"
       },
       {
         "lineNumber": 49,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        EngagementList engagementList \u003d new EngagementList();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        for (Engagement engagement : getTypicalEngagements()) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "            engagementList.addEngagement(engagement);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        HistoryManager hm \u003d new HistoryManager(engagementList);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        return hm;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    public static List\u003cEngagement\u003e getTypicalEngagements() {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "        return new ArrayList\u003c\u003e(Arrays.asList(TYPICAL_APPOINTMENT, TYPICAL_INTERVIEW, TYPICAL_MEETING));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lyskevin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
         "author": {
           "gitId": "lyskevin"
         },
@@ -88951,7 +90437,7 @@
       }
     ],
     "authorContributionMap": {
-      "lyskevin": 49
+      "lyskevin": 61
     }
   },
   {
